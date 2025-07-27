@@ -1,0 +1,25 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"flip": {
+			"loop": true,
+			"animation_length": 1.04,
+			"bones": {
+				"tnt": {
+					"rotation": {
+						"0.0": [0, 0, 0],
+						"0.24": [83.08, 0, 0],
+						"0.52": [180, 0, 0],
+						"0.8": [276.92, 0, 0],
+						"1.04": [360, 0, 0]
+					},
+					"position": [0, 0, 0]
+				}
+			}
+		},
+		"idle": {
+			"loop": true,
+			"override_previous_animation": true
+		}
+	}
+}

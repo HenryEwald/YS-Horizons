@@ -1,0 +1,924 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+
+### DEBUG ###
+
+
+debug:
+  Skills:
+  - effect:particles{particle=flame;amount=50;hS=.25;vS=.5;y=.5}
+ 
+
+
+#### SITTING ####
+
+ANUBISsitting:
+  Skills:
+  - delay 1
+  - setstance{stance=sitting} @self
+  - skill{s=anubissitting_face_east} @self
+  - setAI{ai=false} @self
+  - defaultstate{m=lr_anubis;t=idle;s=sitting} @self
+  
+anubissitting_face_east:
+  Skills:
+  - effect:spin{duration=1;velocity=-52} @self
+  #- setrotation{relative=false;yaw=-90;pitch=0} @Self
+  
+anubissitting_face_west:
+  Skills:
+  - effect:spin{duration=1;velocity=52} @self
+  #- setrotation{relative=false;yaw=90;pitch=0} @Self
+  
+anubissitting_face_north:
+  Skills:
+  - effect:spin{duration=1;velocity=98} @self
+  #- setrotation{relative=false;yaw=0;pitch=0} @Self
+  
+anubissitting_face_south:
+  Skills:
+  - effect:spin{duration=1;velocity=0} @self
+  #- setrotation{relative=false;yaw=180;pitch=0} @Self
+  
+ANUBISget_up_prox:
+  Conditions:
+  - playerwithin{d=12} true
+  - stance{s=sitting} true
+  Skills:
+  - setstance{stance=default} @self
+  - state{s=get_up} @self
+  - defaultstate{m=lr_anubis;t=idle;s=idle} @self
+  - delay 20
+  - setAI{ai=true} @self
+  
+ANUBISget_up_damaged:
+  Conditions:
+  - stance{s=sitting} true
+  Skills:
+  - setstance{stance=default} @self
+  - state{s=get_up} @self
+  - defaultstate{m=lr_anubis;t=idle;s=idle} @self
+  - delay 20
+  - setAI{ai=true} @self
+  
+ 
+#### GENERAL ####
+
+ANUBIS_bossbar_damage:
+  Skills:  
+  - barSet{name="ANUBIS";display="<caster.name>";value="<caster.hp>/<caster.mhp>";color=WHITE;style=SEGMENTED_6} @self
+  - delay 2
+  - barSet{name="ANUBIS";display="<caster.name>";value="<caster.hp>/<caster.mhp>";color=PURPLE;style=SEGMENTED_6} @self
+  - delay 2
+  - barSet{name="ANUBIS";display="<caster.name>";value="<caster.hp>/<caster.mhp>";color=WHITE;style=SEGMENTED_6} @self
+  - delay 2
+  - barSet{name="ANUBIS";display="<caster.name>";value="<caster.hp>/<caster.mhp>";color=PURPLE;style=SEGMENTED_6} @self
+  
+ANUBISdamagedfx:
+  Conditions:
+  - score{o=DARK;v=1} false
+  Skills:
+  - changepart{m=lr_anubis;pid=torso;nm=lr_anubis_parts;npid=torso} @self
+  - changepart{m=lr_anubis;pid=cheek_drape1;nm=lr_anubis_parts;npid=cheek_drape1} @self
+  - changepart{m=lr_anubis;pid=cheek_drape2;nm=lr_anubis_parts;npid=cheek_drape2} @self
+  - changepart{m=lr_anubis;pid=cheek_drape3;nm=lr_anubis_parts;npid=cheek_drape3} @self
+  - changepart{m=lr_anubis;pid=cheek_drape4;nm=lr_anubis_parts;npid=cheek_drape4} @self
+  - changepart{m=lr_anubis;pid=cape1;nm=lr_anubis_parts;npid=cape1} @self
+  - changepart{m=lr_anubis;pid=cape2;nm=lr_anubis_parts;npid=cape2} @self
+  - changepart{m=lr_anubis;pid=left_leg;nm=lr_anubis_parts;npid=left_leg} @self
+  - changepart{m=lr_anubis;pid=left_shin;nm=lr_anubis_parts;npid=left_shin} @self
+  - changepart{m=lr_anubis;pid=left_foot;nm=lr_anubis_parts;npid=left_foot} @self
+  - changepart{m=lr_anubis;pid=right_leg;nm=lr_anubis_parts;npid=right_leg} @self
+  - changepart{m=lr_anubis;pid=right_shin;nm=lr_anubis_parts;npid=right_shin} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis_parts;npid=right_foot} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape1;nm=lr_anubis_parts;npid=pelvis_drape1} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape2;nm=lr_anubis_parts;npid=pelvis_drape2} @self
+  - changepart{m=lr_anubis;pid=left_arm;nm=lr_anubis_parts;npid=left_arm} @self
+  - changepart{m=lr_anubis;pid=left_forearm;nm=lr_anubis_parts;npid=left_forearm} @self
+  - changepart{m=lr_anubis;pid=left_hand;nm=lr_anubis_parts;npid=left_hand} @self
+  - changepart{m=lr_anubis;pid=arm_drape1;nm=lr_anubis_parts;npid=arm_drape1} @self
+  - changepart{m=lr_anubis;pid=arm_drape2;nm=lr_anubis_parts;npid=arm_drape2} @self
+  - changepart{m=lr_anubis;pid=arm_drape3;nm=lr_anubis_parts;npid=arm_drape3} @self
+  - changepart{m=lr_anubis;pid=right_arm;nm=lr_anubis_parts;npid=right_arm} @self
+  - changepart{m=lr_anubis;pid=right_forearm;nm=lr_anubis_parts;npid=right_forearm} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis_parts;npid=right_foot} @self
+  - changepart{m=lr_anubis;pid=arm_drape4;nm=lr_anubis_parts;npid=arm_drape4} @self
+  - changepart{m=lr_anubis;pid=arm_drape5;nm=lr_anubis_parts;npid=arm_drape5} @self
+  - changepart{m=lr_anubis;pid=arm_drape6;nm=lr_anubis_parts;npid=arm_drape6} @self
+  - changepart{m=lr_anubis;pid=staff;nm=lr_anubis_parts;npid=staff} @self
+  - changepart{m=lr_anubis;pid=neck;nm=lr_anubis_parts;npid=neck} @self
+  - changepart{m=lr_anubis;pid=head;nm=lr_anubis_parts;npid=head} @self
+  - changepart{m=lr_anubis;pid=ears;nm=lr_anubis_parts;npid=ears} @self
+  - delay 3
+  - changepart{m=lr_anubis;pid=torso;nm=lr_anubis;npid=torso} @self
+  - changepart{m=lr_anubis;pid=cheek_drape1;nm=lr_anubis;npid=cheek_drape1} @self
+  - changepart{m=lr_anubis;pid=cheek_drape2;nm=lr_anubis;npid=cheek_drape2} @self
+  - changepart{m=lr_anubis;pid=cheek_drape3;nm=lr_anubis;npid=cheek_drape3} @self
+  - changepart{m=lr_anubis;pid=cheek_drape4;nm=lr_anubis;npid=cheek_drape4} @self
+  - changepart{m=lr_anubis;pid=cape1;nm=lr_anubis;npid=cape1} @self
+  - changepart{m=lr_anubis;pid=cape2;nm=lr_anubis;npid=cape2} @self
+  - changepart{m=lr_anubis;pid=left_leg;nm=lr_anubis;npid=left_leg} @self
+  - changepart{m=lr_anubis;pid=left_shin;nm=lr_anubis;npid=left_shin} @self
+  - changepart{m=lr_anubis;pid=left_foot;nm=lr_anubis;npid=left_foot} @self
+  - changepart{m=lr_anubis;pid=right_leg;nm=lr_anubis;npid=right_leg} @self
+  - changepart{m=lr_anubis;pid=right_shin;nm=lr_anubis;npid=right_shin} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis;npid=right_foot} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape1;nm=lr_anubis;npid=pelvis_drape1} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape2;nm=lr_anubis;npid=pelvis_drape2} @self
+  - changepart{m=lr_anubis;pid=left_arm;nm=lr_anubis;npid=left_arm} @self
+  - changepart{m=lr_anubis;pid=left_forearm;nm=lr_anubis;npid=left_forearm} @self
+  - changepart{m=lr_anubis;pid=left_hand;nm=lr_anubis;npid=left_hand} @self
+  - changepart{m=lr_anubis;pid=arm_drape1;nm=lr_anubis;npid=arm_drape1} @self
+  - changepart{m=lr_anubis;pid=arm_drape2;nm=lr_anubis;npid=arm_drape2} @self
+  - changepart{m=lr_anubis;pid=arm_drape3;nm=lr_anubis;npid=arm_drape3} @self
+  - changepart{m=lr_anubis;pid=right_arm;nm=lr_anubis;npid=right_arm} @self
+  - changepart{m=lr_anubis;pid=right_forearm;nm=lr_anubis;npid=right_forearm} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis;npid=right_foot} @self
+  - changepart{m=lr_anubis;pid=arm_drape4;nm=lr_anubis;npid=arm_drape4} @self
+  - changepart{m=lr_anubis;pid=arm_drape5;nm=lr_anubis;npid=arm_drape5} @self
+  - changepart{m=lr_anubis;pid=arm_drape6;nm=lr_anubis;npid=arm_drape6} @self
+  - changepart{m=lr_anubis;pid=staff;nm=lr_anubis;npid=staff} @self
+  - changepart{m=lr_anubis;pid=neck;nm=lr_anubis;npid=neck} @self
+  - changepart{m=lr_anubis;pid=head;nm=lr_anubis;npid=head} @self
+  - changepart{m=lr_anubis;pid=ears;nm=lr_anubis;npid=ears} @self
+  
+#### MOVEMENT ####
+
+ANUBISrun:
+  Conditions:
+  - offgcd true
+  - stance{stance=run} false
+  - targetnotwithin{d=8} true
+  Skills:
+  - setstance{stance=run} @self
+  - setspeed{type=walking;speed=2}
+  - defaultstate{m=lr_anubis;t=walk;s=run} @self
+  
+ANUBISstoprun:
+  Conditions:
+  - offgcd true
+  - stance{stance=run} true
+  - targetwithin{d=8} true
+  Skills:
+  - setstance{stance=walk} @self
+  - setspeed{type=walking;speed=1}
+  - defaultstate{m=lr_anubis;t=walk;s=walk} @self
+  
+  
+#### COMBAT ####
+
+ANUBISmelee1sync:
+  Skills:
+  - CancelEvent
+  - skill{s=ANUBISmelee1} @self
+  
+ANUBISmelee1:
+  Cooldown: 4
+  Conditions:
+  - stance{stance=run} false
+  - offgcd true
+  - targetwithin{d=4} true
+  Skills:
+  - gcd{ticks=60} @self
+  - setspeed{type=walking;speed=0}
+  - state{s=melee1} @self
+  - delay 17
+  - skill{s=ANUBIS_whoosh} @self
+  - delay 3
+  - lunge{v=1} @forward{f=2}
+  - skill{s=ANUBIS_anubisfoot} @self
+  - totem{ch=1;md=2;oH=ANUBISmelee1damage;repeat=3;repeatInterval=2;hS=2;vS=2} @modelpart{m=lr_anubis;p=left_foot}
+  - delay 1
+  - recoil{r=15;pitch=-.5} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=.4} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=-.3} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=.2} @pir{r=6}
+  - delay 16
+  - setspeed{type=walking;speed=1}
+  
+ANUBISmelee1damage:
+  Skills:
+  - skill{s=ANUBIS_impact}
+  - recoil{r=15;pitch=1}
+  - damage{a=10}
+  - throw{v=6;vy=2}
+  
+  
+  
+  
+  
+ANUBISmelee2sync:
+  Skills:
+  - CancelEvent
+  - skill{s=ANUBISmelee2} @self
+  
+ANUBISmelee2:
+  Cooldown: 4
+  Conditions:
+  - stance{stance=run} false
+  - offgcd true
+  - targetwithin{d=5} true
+  Skills:
+  - gcd{ticks=60} @self
+  - setspeed{type=walking;speed=0}
+  - state{s=melee2} @self
+  - delay 5
+  - skill{s=ANUBIS_whoosh} @self
+  - delay 5
+  - skill{s=ANUBIS_whoosh} @self
+  - delay 10
+  - skill{s=ANUBISslashattack} @forward{f=5}
+  - skill{s=ANUBIS_whoosh} @self
+  #- lunge{v=1} @forward{f=2}
+  - totem{ch=1;md=2;oH=ANUBISmelee2damage;repeat=10;repeatInterval=1;hS=3;vS=3} @modelpart{m=lr_anubis;p=staff;offset=LOCAL;z=-2;y=0;x=0}
+  - delay 20
+  - setspeed{type=walking;speed=1}
+  
+ANUBISmelee2damage:
+  Skills:
+  - skill{s=ANUBIS_impact}
+  - recoil{r=15;pitch=-1}
+  - damage{a=10}
+  - throw{v=15;vy=2}
+  
+ANUBISslashattack:
+  Conditions:
+  - score{o=DARK;v=1} true
+  Skills:
+  - projectile{bulletType=TRACKING;bulletMaterial=INK_SAC;bulletModel=3;oH=ANUBISbullethelldamage;v=15;i=1;hR=3;vR=1;hnp=false;mr=16;sfo=0;sE=false;syo=1;hs=true}
+  
+  
+  
+  
+ANUBISmelee3sync:
+  Skills:
+  - CancelEvent
+  - skill{s=ANUBISmelee3} @self
+  
+ANUBISmelee3:
+  Cooldown: 4
+  Conditions:
+  - stance{stance=run} false
+  - offgcd true
+  - targetwithin{d=3} true
+  Skills:
+  - gcd{ticks=60} @self
+  - setspeed{type=walking;speed=0}
+  - state{s=melee3} @self
+  - delay 7
+  - skill{s=ANUBIS_whoosh} @self
+  #- lunge{v=1} @forward{f=2}
+  - delay 3
+  - totem{ch=1;md=2;oH=ANUBISmelee3damage;repeat=5;repeatInterval=1;hS=3;vS=3} @modelpart{m=lr_anubis;p=left_foot}
+  - delay 20
+  - setspeed{type=walking;speed=1}
+  
+ANUBISmelee3damage:
+  Skills:
+  - skill{s=ANUBIS_impact}
+  - recoil{r=15;pitch=-1}
+  - damage{a=10}
+  - throw{v=6;vy=6}
+  
+  
+ANUBISsummonpillars:
+  Cooldown: 20
+  Conditions:
+  - incombat true
+  - score{o=DARK;v=1} false
+  - stance{stance=run} false
+  - offgcd true
+  Skills:
+  - gcd{ticks=160} @self
+  - setspeed{type=walking;speed=0}
+  - state{s=spell1} @self
+  - delay 10
+  - skill{s=ANUBIS_staffimpact} @self
+  - delay 23
+  - throw{v=10;vy=0} @pir{r=8}
+  - skill{s=ANUBISsummonBULLETHELL} @Sphere{radius=12;points=12;yoffset=1}
+  - summon{t=lr_anubis_obelisk;a=2;r=5} @origin
+  - delay 37
+  - setspeed{type=walking;speed=1}
+  
+ANUBISsummonBULLETHELL:
+  Skills:
+  - projectile{bulletType=TRACKING;bulletMaterial=INK_SAC;bulletModel=2;oH=ANUBISbullethelldamage;v=20;i=1;hR=1;vR=1;hnp=false;mr=32;sfo=0;sE=false;Hs=true;hfs=0;syo=0}
+  
+ANUBISbullethelldamage:
+  Skills:
+  - damage{a=5}
+  - throw{v=1;vy=5}
+  
+#### OBELISK ####
+
+ANUBISobeliskSPAWN:
+  Skills:
+  - delay 1
+  - summon{t=ANUBISobeliskGROUNDfx} @selflocation{y=-.25}
+  - skill{s=ANUBIS_obeliskrise} @self
+  - skill{s=ANUBIS_groundcrack} @self
+  - gcd{ticks=70} @self
+  - skill{s=ANUBISobeliskSHAKEfx;repeat=35;repeatInterval=2} @pir{r=8}
+  - effect:particles{particle=block;material=sand;amount=50;hS=.25;vS=.1;y=.75;repeat=30;repeatInterval=2} @selflocation{y=-.5}
+  #- summon{t=lr_anubis_sandfx} @origin
+  - delay 69
+  - defaultstate{m=lr_anubis_obelisk;t=idle;s=idle_risen} @self
+  - remove @children{target=armorstands}
+  
+ANUBISobeliskSHAKEfx:
+  Skills:
+  - delay 1
+  - recoil{r=15;pitch=-.1} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=.1} @pir{r=6}
+  
+ANUBISobeliskHIT:
+  Conditions:
+  - offgcd true
+  Skills:  
+  - effect:particles{particle=block;material=sand;amount=50;hS=.25;vS=2;y=2} @origin
+  - state{s=hit} @self
+  
+
+  
+ANUBISobeliskLASER:
+  Cooldown: 2
+  Conditions:
+  - targetwithin{d=6} false
+  - offgcd true
+  - targetinlineofsight{} true
+  Skills:  
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskfire;v=1;sc=HOSTILE} @self
+  - delay 11
+  - projectile{bulletType=TRACKING;bulletMaterial=INK_SAC;bulletModel=1;oS=ANUBISobeliskLASERSTART;oE=ANUBISobeliskLASERground;oH=ANUBISobeliskLASERHit;v=40;i=1;hR=.5;vR=.5;hnp=false;syo=5.5;mr=64;sfo=0;sE=false}
+
+ANUBISobeliskLASERSTART:
+  Skills:
+  - effect:particles{particle=flash;amount=1}
+
+ANUBISobeliskLASERHit:
+  Conditions:
+  - blocking{} false
+  Skills:
+  - ignite{d=40}
+
+  
+ANUBISobeliskLASERground:
+  Skills:
+  - skill{s=ANUBIS_obeliskimpact} @self
+  - skill{s=ANUBIS_groundcrack} @self
+  - summon{t=ANUBISobeliskLASERFX} @origin
+  - effect:particles{particle=flame;amount=50;hS=1;vS=1;dir=0,1,0;d=true;speed=0.1;y=-1}
+  - effect:particles{particle=large_smoke;amount=150;hS=1;vS=1;dir=0,1,0;d=true;speed=0.1;y=-1}
+  - recoil{r=15;pitch=-.5} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=.4} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=-.3} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=.2} @pir{r=6}
+  
+ANUBISobeliskGROUNDfx:
+  Skills:
+  - skill{s=ANUBISobeliskgroundloop;repeat=50;repeatInterval=1} @self
+  - delay 50
+  - remove @self
+  
+ANUBISobeliskgroundloop:
+  Conditions:
+  - blocking{} false
+  Skills:
+  - throw{v=2;vy=5} @pir{r=3}
+  
+ANUBISobeliskLASERFX:
+  Skills:
+  - recoil{r=15;pitch=-.5} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=.4} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=-.3} @pir{r=6}
+  - delay 1
+  - recoil{r=15;pitch=.2} @pir{r=6}
+  - effect:particles{particle=flame;amount=25;hS=.25;vS=.25;dir=0,1,0;d=true;speed=0.01;repeat=10;repeatInterval=1}
+  - effect:particles{particle=large_smoke;amount=25;hS=.5;vS=.5;dir=0,1,0;d=true;speed=0.01;repeat=10;repeatInterval=1}
+  - delay 7
+  - remove @self
+  
+  
+ANUBISobeliskDEATH:
+  Skills:
+  - remove @children{target=armorstands}
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskdeath;v=5;sc=HOSTILE} @self
+  - state{s=death}
+
+
+
+
+#### PLAGUE ####
+
+ANUBISplague:
+  Cooldown: 20
+  Conditions:
+  - score{o=DARK;v=1} true
+  - offgcd true
+  - incombat true
+  Skills:
+  - gcd{ticks=60} @self
+  - state{s=spell2} @self
+  - delay 10
+  - sound{s=littleroom_anubis:littleroom.anubis.anubissummon;v=5;sc=HOSTILE} @self
+  - delay 10
+  - potion{type=SLOW;duration=80;level=1} @target
+  - summon{t=lr_anubis_souls} @target
+  - summon{t=lr_anubis_mummy;a=3;r=5} @self
+  
+ANUBISplaguelifespan:
+  Skills:
+  - delay 80
+  - remove @self
+  
+#### STUN ####
+  
+  
+
+ANUBIS_stun_75:
+  Conditions:
+  - offgcd true
+  - score{o=stun75;v=1} false
+  Skills:
+  - skill{s=ANUBIS_anubispain} @self
+  - damage{a=100} @MIR{r=32;t=lr_anubis_mummy}
+  - lockhead{lp=true;ly=true} @self
+  - gcd{ticks=110}
+  - modifytargetscore{objective=stun75;action=set;value=1} @self
+  - setAI{ai=false} @self
+  - state{s=stun} @self
+  - delay 10
+  - skill{s=ANUBIS_anubisfoot} @self
+  - delay 10
+  - setstance{stance=stun} @self
+  - delay 60
+  - setstance{s=default} @self
+  - delay 30
+  - setAI{ai=true} @self
+  - lockhead{lp=false;ly=false} @self
+  
+ANUBIS_stun_50:
+  Conditions:
+  - offgcd true
+  - score{o=stun50;v=1} false
+  Skills:
+  - skill{s=ANUBIS_anubispain} @self
+  - damage{a=100} @MIR{r=32;t=lr_anubis_mummy}
+  - lockhead{lp=true;ly=true} @self
+  - gcd{ticks=110}
+  - modifytargetscore{objective=stun50;action=set;value=1} @self
+  - setAI{ai=false} @self
+  - state{s=stun} @self
+  - delay 10
+  - skill{s=ANUBIS_anubisfoot} @self
+  - delay 10
+  - setstance{stance=stun} @self
+  - delay 60
+  - setstance{s=default} @self
+  - delay 30
+  - setAI{ai=true} @self
+  - lockhead{lp=false;ly=false} @self
+  
+ANUBIS_stun_hit:
+  Conditions:
+  - stance{s=stun} true
+  Skills:
+  - state{s=stun_hit} @self
+  - effect:particles{particle=crit;amount=25;hS=.25;vS=.25;speed=1.25} @self
+  
+  
+#### DARKMODE ####
+
+ANUBISLASER:
+  Conditions:
+  - score{o=DARK;v=1} true
+  - targetwithin{d=3} false
+  - offgcd true
+  - targetinlineofsight{} true
+  - incombat true
+  Skills:  
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskfire;v=5;sc=HOSTILE} @self
+  - delay 11
+  - projectile{bulletType=TRACKING;bulletMaterial=INK_SAC;bulletModel=1;oS=ANUBISobeliskLASERSTART;oE=ANUBISobeliskLASERground;oH=ANUBISobeliskLASERHit;v=40;i=1;hR=.5;vR=.5;hnp=false;syo=5.5;mr=64;sfo=0;sE=false}
+
+ANUBIS_DARKMODE:
+  Conditions:
+  - score{o=DARK;v=1} false
+  Skills:
+  - modifytargetscore{objective=DARK;action=set;value=1} @self
+  - setAI{ai=false} @self
+  - state{s=rage} @self
+  - delay 10
+  - damage{a=100} @children
+  - throw{v=10} @pir{r=10}
+  - effect:particles{particle=crit;amount=50} @self
+  - effect:particles{particle=flash;amount=1} @self
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisdarkmode;v=5;sc=HOSTILE} @self
+  - changepart{m=lr_anubis;pid=eye;nm=lr_anubis_parts;npid=eye} @self
+  - changepart{m=lr_anubis;pid=torso;nm=lr_anubis_parts;npid=torso2} @self
+  - changepart{m=lr_anubis;pid=cheek_drape1;nm=lr_anubis_parts;npid=cheek_drape5} @self
+  - changepart{m=lr_anubis;pid=cheek_drape2;nm=lr_anubis_parts;npid=cheek_drape6} @self
+  - changepart{m=lr_anubis;pid=cheek_drape3;nm=lr_anubis_parts;npid=cheek_drape7} @self
+  - changepart{m=lr_anubis;pid=cheek_drape4;nm=lr_anubis_parts;npid=cheek_drape8} @self
+  - changepart{m=lr_anubis;pid=cape1;nm=lr_anubis_parts;npid=cape3} @self
+  - changepart{m=lr_anubis;pid=cape2;nm=lr_anubis_parts;npid=cape4} @self
+  - changepart{m=lr_anubis;pid=left_leg;nm=lr_anubis_parts;npid=left_leg2} @self
+  - changepart{m=lr_anubis;pid=left_shin;nm=lr_anubis_parts;npid=left_shin2} @self
+  - changepart{m=lr_anubis;pid=left_foot;nm=lr_anubis_parts;npid=left_foot2} @self
+  - changepart{m=lr_anubis;pid=right_leg;nm=lr_anubis_parts;npid=right_leg2} @self
+  - changepart{m=lr_anubis;pid=right_shin;nm=lr_anubis_parts;npid=right_shin2} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis_parts;npid=right_foot2} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape1;nm=lr_anubis_parts;npid=pelvis_drape3} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape2;nm=lr_anubis_parts;npid=pelvis_drape4} @self
+  - changepart{m=lr_anubis;pid=left_arm;nm=lr_anubis_parts;npid=left_arm2} @self
+  - changepart{m=lr_anubis;pid=left_forearm;nm=lr_anubis_parts;npid=left_forearm2} @self
+  - changepart{m=lr_anubis;pid=left_hand;nm=lr_anubis_parts;npid=left_hand2} @self
+  - changepart{m=lr_anubis;pid=arm_drape1;nm=lr_anubis_parts;npid=arm_drape7} @self
+  - changepart{m=lr_anubis;pid=arm_drape2;nm=lr_anubis_parts;npid=arm_drape8} @self
+  - changepart{m=lr_anubis;pid=arm_drape3;nm=lr_anubis_parts;npid=arm_drape9} @self
+  - changepart{m=lr_anubis;pid=right_arm;nm=lr_anubis_parts;npid=right_arm2} @self
+  - changepart{m=lr_anubis;pid=right_forearm;nm=lr_anubis_parts;npid=right_forearm2} @self
+  - changepart{m=lr_anubis;pid=right_hand;nm=lr_anubis_parts;npid=right_hand2} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis_parts;npid=right_foot2} @self
+  - changepart{m=lr_anubis;pid=arm_drape4;nm=lr_anubis_parts;npid=arm_drape10} @self
+  - changepart{m=lr_anubis;pid=arm_drape5;nm=lr_anubis_parts;npid=arm_drape11} @self
+  - changepart{m=lr_anubis;pid=arm_drape6;nm=lr_anubis_parts;npid=arm_drape12} @self
+  - changepart{m=lr_anubis;pid=staff;nm=lr_anubis_parts;npid=staff2} @self
+  - changepart{m=lr_anubis;pid=neck;nm=lr_anubis_parts;npid=neck2} @self
+  - changepart{m=lr_anubis;pid=head;nm=lr_anubis_parts;npid=head2} @self
+  - changepart{m=lr_anubis;pid=ears;nm=lr_anubis_parts;npid=ears2} @self
+  - delay 10
+  - setAI{ai=true} @self
+  
+ANUBIS_DARKMODE_fx:
+  Conditions:
+  - score{o=DARK;v=1} true
+  Skills:
+  - effect:particles{particle=squid_ink;amount=15;hS=.5;vS=1;speed=0;y=2} @self
+  #- effect:particles{particle=end_rod;amount=1;hS=1;vS=1;speed=.25;dir=0,1,0;d=true;y=2} @self
+  
+  
+#### DEATH ####
+
+ANUBISdeath:
+  Skills:
+  - skill{s=ANUBIS_anubispain} @self
+  - damage{a=100} @children
+  - delay 3
+  - changepart{m=lr_anubis;pid=eye;nm=lr_anubis;npid=eye} @self
+  - changepart{m=lr_anubis;pid=torso;nm=lr_anubis;npid=torso} @self
+  - changepart{m=lr_anubis;pid=cheek_drape1;nm=lr_anubis;npid=cheek_drape1} @self
+  - changepart{m=lr_anubis;pid=cheek_drape2;nm=lr_anubis;npid=cheek_drape2} @self
+  - changepart{m=lr_anubis;pid=cheek_drape3;nm=lr_anubis;npid=cheek_drape3} @self
+  - changepart{m=lr_anubis;pid=cheek_drape4;nm=lr_anubis;npid=cheek_drape4} @self
+  - changepart{m=lr_anubis;pid=cape1;nm=lr_anubis;npid=cape1} @self
+  - changepart{m=lr_anubis;pid=cape2;nm=lr_anubis;npid=cape2} @self
+  - changepart{m=lr_anubis;pid=left_leg;nm=lr_anubis;npid=left_leg} @self
+  - changepart{m=lr_anubis;pid=left_shin;nm=lr_anubis;npid=left_shin} @self
+  - changepart{m=lr_anubis;pid=left_foot;nm=lr_anubis;npid=left_foot} @self
+  - changepart{m=lr_anubis;pid=right_leg;nm=lr_anubis;npid=right_leg} @self
+  - changepart{m=lr_anubis;pid=right_shin;nm=lr_anubis;npid=right_shin} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis;npid=right_foot} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape1;nm=lr_anubis;npid=pelvis_drape1} @self
+  - changepart{m=lr_anubis;pid=pelvis_drape2;nm=lr_anubis;npid=pelvis_drape2} @self
+  - changepart{m=lr_anubis;pid=left_arm;nm=lr_anubis;npid=left_arm} @self
+  - changepart{m=lr_anubis;pid=left_forearm;nm=lr_anubis;npid=left_forearm} @self
+  - changepart{m=lr_anubis;pid=left_hand;nm=lr_anubis;npid=left_hand} @self
+  - changepart{m=lr_anubis;pid=arm_drape1;nm=lr_anubis;npid=arm_drape1} @self
+  - changepart{m=lr_anubis;pid=arm_drape2;nm=lr_anubis;npid=arm_drape2} @self
+  - changepart{m=lr_anubis;pid=arm_drape3;nm=lr_anubis;npid=arm_drape3} @self
+  - changepart{m=lr_anubis;pid=right_arm;nm=lr_anubis;npid=right_arm} @self
+  - changepart{m=lr_anubis;pid=right_forearm;nm=lr_anubis;npid=right_forearm} @self
+  - changepart{m=lr_anubis;pid=right_foot;nm=lr_anubis;npid=right_foot} @self
+  - changepart{m=lr_anubis;pid=arm_drape4;nm=lr_anubis;npid=arm_drape4} @self
+  - changepart{m=lr_anubis;pid=arm_drape5;nm=lr_anubis;npid=arm_drape5} @self
+  - changepart{m=lr_anubis;pid=arm_drape6;nm=lr_anubis;npid=arm_drape6} @self
+  - changepart{m=lr_anubis;pid=staff;nm=lr_anubis;npid=staff} @self
+  - changepart{m=lr_anubis;pid=neck;nm=lr_anubis;npid=neck} @self
+  - changepart{m=lr_anubis;pid=head;nm=lr_anubis;npid=head} @self
+  - changepart{m=lr_anubis;pid=ears;nm=lr_anubis;npid=ears} @self
+  - delay 30
+  - skill{s=ANUBIS_anubisfoot} @self
+  - delay 47
+  - effect:particles{particle=squid_ink;amount=100;hS=1;vS=.5;speed=0;y=0} @self
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisremove;v=5;sc=HOSTILE} @self
+  
+  
+  
+#### MUMMY ####
+
+lr_anubis_mummy_spawn:
+  Skills:
+  - delay 1
+  - skill{s=ANUBIS_mummyidle} @self
+  - setAI{ai=false} @self
+  - delay 29
+  - defaultstate{m=lr_anubis_mummy;t=idle;s=idle_alive} @self
+  - setAI{ai=true} @self
+  - delay 480
+  - damage{a=100} @self
+
+lr_anubis_mummyATTACKsync:
+  Skills:
+  - CancelEvent
+  - skill{s=lr_anubis_mummyATTACK} @self
+  
+ANUBISMUMMYdamage:
+  Skills:
+  - damage{a=1;pi=true}
+  
+lr_anubis_mummyATTACK:
+  Conditions:
+  - targetwithin{d=3} true
+  - offgcd true
+  Skills:
+  - skill{s=ANUBIS_mummyswing} @self
+  - state{s=attack2;r=true} @self
+  - gcd{ticks=8}
+  - state{s=attack1} @self
+  - lunge{v=.25} @forward
+  - delay 3
+  - totem{ch=1;md=2;oH=ANUBISMUMMYdamage;hS=1;vS=1} @forward{f=1}
+  - delay 5
+  - skill{s=lr_anubis_mummyATTACK2} @self
+  
+lr_anubis_mummyATTACK2:
+  Conditions:
+  - targetwithin{d=3} true
+  - offgcd true
+  Skills:
+  - skill{s=ANUBIS_mummyswing} @self
+  - state{s=attack1;r=true} @self
+  - gcd{ticks=8}
+  - state{s=attack2} @self
+  - lunge{v=.25} @forward
+  - delay 3
+  - totem{ch=1;md=2;oH=ANUBISMUMMYdamage;hS=1;vS=1} @forward{f=1}
+  - delay 5
+  - skill{s=lr_anubis_mummyATTACK} @self
+  
+lr_anubis_mummy_death:
+  Skills:
+  - effect:particles{particle=sneeze;amount=200;speed=0.25} @self
+  
+  
+  
+#### SOUNDSTUFF ####
+
+ANUBIS_obeliskimpact:
+  Skills:
+  - randomskill{skills=ANUBIS_obeliskimpact1,ANUBIS_obeliskimpact2,ANUBIS_obeliskimpact3} @self
+
+ANUBIS_obeliskimpact1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskimpact1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_obeliskimpact2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskimpact2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_obeliskimpact3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskimpact3;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_groundcrack:
+  Skills:
+  - randomskill{skills=ANUBIS_groundcrack1,ANUBIS_groundcrack2,ANUBIS_groundcrack3} @self
+
+ANUBIS_groundcrack1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.groundcrack1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_groundcrack2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.groundcrack2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_groundcrack3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.groundcrack3;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_obeliskrise:
+  Skills:
+  - randomskill{skills=ANUBIS_obeliskrise1,ANUBIS_obeliskrise2} @self
+
+ANUBIS_obeliskrise1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskrise1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_obeliskrise2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.obeliskrise2;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_anubisidle:
+  Skills:
+  - randomskill{skills=ANUBIS_anubisidle1,ANUBIS_anubisidle2,ANUBIS_anubisidle3,ANUBIS_anubisidle4,ANUBIS_anubisidle5,ANUBIS_anubisidle6} @self
+
+ANUBIS_anubisidle1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisidle1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubisidle2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisidle2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubisidle3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisidle3;v=5;sc=HOSTILE} @self
+
+ANUBIS_anubisidle4:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisidle4;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubisidle5:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisidle5;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubisidle6:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisidle6;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_anubispain:
+  Skills:
+  - randomskill{skills=ANUBIS_anubispain1,ANUBIS_anubispain2,ANUBIS_anubispain3} @self
+
+ANUBIS_anubispain1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubispain1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubispain2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubispain2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubispain3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubispain3;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_staffimpact:
+  Skills:
+  - randomskill{skills=ANUBIS_staffimpact1,ANUBIS_staffimpact2,ANUBIS_staffimpact3} @self
+
+ANUBIS_staffimpact1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.staffimpact1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_staffimpact2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.staffimpact2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_staffimpact3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.staffimpact3;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_mummyswing:
+  Skills:
+  - randomskill{skills=ANUBIS_mummyswing1,ANUBIS_mummyswing2,ANUBIS_mummyswing3,ANUBIS_mummyswing4} @self
+
+ANUBIS_mummyswing1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyswing1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_mummyswing2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyswing2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_mummyswing3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyswing3;v=5;sc=HOSTILE} @self
+  
+ANUBIS_mummyswing4:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyswing4;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_swing:
+  Skills:
+  - randomskill{skills=ANUBIS_swing1,ANUBIS_swing2,ANUBIS_swing3,ANUBIS_swing4} @self
+
+ANUBIS_swing1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.swing1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_swing2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.swing2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_swing3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.swing3;v=5;sc=HOSTILE} @self
+  
+ANUBIS_swing4:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.swing4;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_impact:
+  Skills:
+  - randomskill{skills=ANUBIS_impact1,ANUBIS_impact2,ANUBIS_impact3,ANUBIS_impact4} @self
+
+ANUBIS_impact1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.impact1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_impact2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.impact2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_impact3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.impact3;v=5;sc=HOSTILE} @self
+  
+ANUBIS_impact4:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.impact4;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_anubisfoot:
+  Skills:
+  - randomskill{skills=ANUBIS_anubisfoot1,ANUBIS_anubisfoot2,ANUBIS_anubisfoot3} @self
+
+ANUBIS_anubisfoot1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisfoot1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubisfoot2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisfoot2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_anubisfoot3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.anubisfoot3;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_whoosh:
+  Skills:
+  - randomskill{skills=ANUBIS_whoosh1,ANUBIS_whoosh2,ANUBIS_whoosh3,ANUBIS_whoosh4} @self
+
+ANUBIS_whoosh1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.whoosh1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_whoosh2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.whoosh2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_whoosh3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.whoosh3;v=5;sc=HOSTILE} @self
+  
+ANUBIS_whoosh4:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.whoosh4;v=5;sc=HOSTILE} @self
+  
+  
+
+ANUBIS_mummyidle:
+  Skills:
+  - randomskill{skills=ANUBIS_mummyidle1,ANUBIS_mummyidle2,ANUBIS_mummyidle3,ANUBIS_mummyidle4,ANUBIS_mummyidle5} @self
+
+ANUBIS_mummyidle1:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyidle1;v=5;sc=HOSTILE} @self
+  
+ANUBIS_mummyidle2:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyidle2;v=5;sc=HOSTILE} @self
+  
+ANUBIS_mummyidle3:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyidle3;v=5;sc=HOSTILE} @self
+  
+ANUBIS_mummyidle4:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyidle4;v=5;sc=HOSTILE} @self
+  
+ANUBIS_mummyidle5:
+  Skills:
+  - sound{s=littleroom_anubis:littleroom.anubis.mummyidle4;v=5;sc=HOSTILE} @self

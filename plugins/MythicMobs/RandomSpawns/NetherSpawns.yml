@@ -1,0 +1,85 @@
+# For more information, check out the plugin manual or join us on Discord:
+# http://www.mythicmobs.net
+#  
+
+glavenus:
+  Action: ADD
+  Chance: 0.01
+  Priority: 1
+  Conditions:
+  - height{h=<63} true
+  Worlds: world_nether
+
+Lava_Mite:
+  Action: ADD
+  Chance: 0.1
+  Priority: 2
+  Conditions:
+  - height{h=<63} true
+  Worlds: world_nether
+
+Lava_Piranha:
+  Action: ADD
+  Chance: 0.1
+  Priority: 2
+  Conditions:
+  - height{h=<63} true
+  Worlds: world_nether
+  PositionType: SEA
+
+Fire_Imp:
+  Action: ADD
+  Chance: 0.1
+  Priority: 2
+  Conditions:
+  - height{h=<100} true
+  Worlds: world_nether
+
+
+
+Nether_Mushroom:
+  Action: ADD
+  Chance: 0.1
+  Priority: 2
+  Conditions:
+  - height{h=<63} true
+  Worlds: world_nether
+
+Lost_Soul:
+  Action: ADD
+  Chance: 0.1
+  Priority: 2
+  Conditions:
+  - height{h=<100} true
+  Worlds: world_nether
+  Conditions:
+  - biome SOUL_SAND_VALLEY true
+  
+  Hellhound:
+    Action: ADD
+    Chance: 0.1
+    Priority: 2
+    Conditions:
+    - height{h=<100} true
+    Worlds: world_nether
+    Conditions:
+    - biome SOUL_SAND_VALLEY false
+
+Dark_Imp:
+  Action: ADD
+  Chance: 0.1
+  Priority: 2
+  Conditions:
+  - height{h=<100} true
+  - biome SOUL_SAND_VALLEY true
+  Worlds: world_nether
+
+
+# Blaze_King:
+# Action: ADD
+#   Chance: 0.001
+#   Priority: 1
+#   Conditions:
+#   - height{h=<63} true
+#   Worlds: world_nether
+#   Cooldown: 60

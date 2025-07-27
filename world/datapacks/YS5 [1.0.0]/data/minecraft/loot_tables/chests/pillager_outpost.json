@@ -1,0 +1,293 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 1.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+			"weight": 1,
+          "name": "minecraft:crossbow"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 2.0,
+        "max": 3.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 3.0,
+                "max": 5.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:wheat"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 5.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:potato"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 3.0,
+                "max": 5.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:carrot"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 1.0,
+        "max": 3.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:dark_oak_log"
+        }
+      ]
+    },
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 2.0,
+        "max": 3.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 7,
+          "name": "minecraft:experience_bottle"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 6.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:string"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 4,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 7.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:arrow"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:tripwire_hook"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_randomly"
+            }
+          ],
+          "name": "minecraft:book"
+        }
+      ]
+    },
+	    {
+      "rolls": 3.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+				{
+					"type": "minecraft:item",
+					"weight": 4,
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 2.0,
+								"max": 7.0,
+								"type": "minecraft:uniform"
+							}
+						},
+						{
+							"function": "set_nbt",
+							"tag": "{CustomPotionEffects:[{Id:2,Duration:2400},{Id:18,Duration:4800}],CustomPotionColor:10031872,display:{Name:\"{\\\"text\\\":\\\"Debilitating Arrow\\\",\\\"italic\\\":false}\"}}"
+						}
+					],
+					"name": "minecraft:tipped_arrow"
+				},
+								{
+					"type": "minecraft:item",
+					"weight": 3,
+					"functions": [
+						{
+							"function": "minecraft:set_count",
+							"count": {
+								"min": 1.0,
+								"max": 3.0,
+								"type": "minecraft:uniform"
+							}
+						},
+						{
+							"function": "set_nbt",
+							"tag": "{Fireworks:{Explosions:[{Type:1,Flicker:1,Colors:[I;14602026],FadeColors:[I;11743532,15435844]}],Flight:1}}"
+						}
+					],
+					"name": "minecraft:firework_rocket"
+				},
+												{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Skull\\\"}\"},SkullOwner:{Id:[I;-967193132,-466204297,-1498950319,-1900097605],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmYyNGVkNjg3NTMwNGZhNGExZjBjNzg1YjJjYjZhNmE3MjU2M2U5ZjNlMjRlYTU1ZTE4MTc4NDUyMTE5YWE2NiJ9fX0=\"}]}}}"
+						}
+					],
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Bell\\\"}\"},SkullOwner:{Id:[I;-25486931,1811103986,-1366426131,-2019144095],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBhMjZhZjQ1MmRjOGUyOTBjMmM0MmUwNzlhMmVlYTZhNjUwYzgwNzRkY2JlMDVkYWM0NjYxODkwODE3NmExZCJ9fX0=\"}]}}}"
+						}
+					],
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Poison\\\"}\"},SkullOwner:{Id:[I;230629621,837109324,-1330587645,-865550672],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWI2NmRjY2UzMTQyY2YyYmEwYmEyOWVjMjllNzExNjA3MjNmNWViNTk4NzkzYTczMTJkMzI0YWYzYWI5OCJ9fX0=\"}]}}}"
+						}
+					],
+					"weight": 5
+				}
+      ]
+    },
+				{
+			"rolls": {
+			"min": 0.0,
+			"max": 1.0,
+			"type": "minecraft:uniform"
+			},
+			"entries": [
+				{
+					"type": "minecraft:item",
+					"name": "minecraft:crossbow",
+					"weight": 5
+				},
+				{
+					"type": "item",
+					"name": "minecraft:crossbow",
+					"weight": 1,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"The Repeater\\\"}\", Lore:[\"Quick and Deadly\"]}, RepairCost:99, Enchantments:[{id:\"minecraft:quick_charge\", lvl:4s}]}"
+						}
+					]
+				}
+			]
+		}
+  ]
+}

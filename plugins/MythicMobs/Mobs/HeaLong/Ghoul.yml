@@ -1,0 +1,37 @@
+Ghoul:
+  Type:  ZOMBIE
+  Display: '&aGhoul'
+  Health: 40
+  Damage: 3 #damage!!
+  Faction: Undead
+  Options:
+    PreventSunburn: true
+    FollowRange: 40
+    Silent: true
+    FollowRange: 60
+    MovementSpeed: 0.35
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    PreventJockeyMounts: false
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - clear
+  - hurtbytarget
+  - players
+  - golems
+  Skills:
+  - model{mid=ghoul;n=false;d=false} @Self ~onSpawn
+  - state{s=attack;li=3;lo=3} @Self ~onAttack
+  - skill{s=Ghoul_attack_sync;sync=true} @Self ~onAttack
+  - skill{s=Ghoul_ChangeAI} @trigger ~onAttack
+  - skill{s=Ghoul_attack} @Self ~onAttack
+  - skill{s=Ghoul_Moving_effect} @Self ~onTimer:20
+  - skill{s=Undeadking_ghoul_death_sound} @Self ~onDeath
+  - skill{s=Undeadking_ghoul_death_sound} @Self ~onDespawn
+  - skill{s=Undeadking_ghoul_Damaged_sound} @Self ~onDamaged
+  - skill{s=Ghoul_Death} @Self ~onDeath
+  - skill{s=Ghoul_Death} @Self ~onDespawn

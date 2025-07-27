@@ -1,0 +1,225 @@
+toro_deep_creature:
+  Type: HUSK
+  Display: '&b&lDeep Creature'
+  Faction: DEEP
+  Health: 2000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.2
+    FollowRange: 64
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  BossBar:
+    Enabled: true
+    Title: '&3&lThe Deep Creature'
+    Range: 40
+    Color: Aqua
+    Style: SEGMENTED_10
+  Skills:
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - skill{s=toro_deep_creature_spawn} @self ~onSpawn
+  - model{mid=deep_creature;n=false;tint=false;ride=true} @self ~onSpawn
+  - randomskill{s=toro_deep_creature_earthquake,toro_deep_creature_sonic} @target ~onTimer:45
+  - randomskill{s=toro_deep_creature_smash,toro_deep_creature_side_strike,toro_deep_creature_charge,toro_deep_creature_roar,toro_deep_creature_catch,toro_deep_creature_jumpsmash} @target ~onTimer:10
+  - skill{s=toro_deep_creature_death} @self ~onDeath
+  Drops:
+    - toro_deep_creatureDrops
+
+toro_deep_creature_still:
+  Type: HUSK
+  Display: '&b&lDeep Creature'
+  Faction: DEEP
+  Health: 2000
+  Options:
+    MovementSpeed: 0.0001
+    gravity: true
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  Skills:
+  - skill{s=deep_creature_still_spawn} @self ~onSpawn
+  - setAI{ai=false;delay=20} @self ~onSpawn
+  - skill{s=deep_creature_putinheart} @self ~onInteract
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deep_creature_still;n=false;tint=false} @self ~onSpawn
+
+toro_deep_creature_debris_large:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=toro_deep_creature_debris_large_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=toro_deep_debris_large;n=false;tint=false} @self ~onSpawn
+
+toro_deep_creature_debris_small:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=toro_deep_creature_debris_small_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=toro_deep_debris_small;n=false;tint=false} @self ~onSpawn
+
+toro_blue_explosion_large:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=toro_blue_explosion_large_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deep_explosion;n=false;tint=false} @self ~onSpawn
+
+toro_blue_explosion_small:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=toro_blue_explosion_small_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deep_explosion_small;n=false;tint=false} @self ~onSpawn
+
+toro_deep_creature_dust_ring:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=toro_deep_creature_dust_ring_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deep_creature_dust_ring;n=false;tint=false} @self ~onSpawn
+
+toro_deep_creature_dust_double:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    gravity: false
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=toro_deep_creature_dust_double_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deep_creature_dust_double;n=false;tint=false} @self ~onSpawn
+
+toro_deep_shine:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    gravity: false
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=toro_deep_shine_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deep_shine_vfx;n=false;tint=false} @self ~onSpawn

@@ -1,0 +1,32 @@
+location: 4727db74-7d17-4df7-b429-2e8dad934b2c~-39.5~67.5~618.5
+xn-radius: 7
+xp-radius: 7
+yn-radius: 7
+yp-radius: 7
+zn-radius: 7
+zp-radius: 7
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner
+upkeep-history:
+  '1748977442331': 0
+  '1748938901029': 0
+  '1748937099029': 0
+  '1748978008279': 0
+  '1748938001028': 0
+  '1748935296487': 0
+  '1748936197028': 0
+  '1748939803028': 0
+  '1748979001743': 0
+  '1748940489234': 0
+  '1748941191244': 0
+  '1748977299811': 0
+effects:
+- block_fire
+- door_use
+- deny_damage
+- block_break
+- block_build
+- block_liquid
+type: church
+exp: 0.0
+warehouse-enabled: true

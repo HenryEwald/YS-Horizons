@@ -1,0 +1,400 @@
+#            ___      _   _           ___         _                  Our plugins: https://alonsoaliaga.com/plugins
+#           | _ ) ___| |_| |_ ___ _ _| _ \_____ _(_)_ _____          Support server: https://alonsoaliaga.com/discord
+#           | _ \/ -_)  _|  _/ -_) '_|   / -_) V / \ V / -_)         Youtube: https://alonsoaliaga.com/play
+#           |___/\___|\__|\__\___|_| |_|_\___|\_/|_|\_/\___|         Test server: plugins.alonsoaliaga.com
+#                            by AlonsoAliaga                         Twitch: https://alonsoaliaga.com/twitch
+#        Considering donating? https://alonsoaliaga.com/donate       Thanks for using my plugin! <3
+#  ======================================================================================================================================
+#  |              Downloaded this jar in a server setup? Tell the author he is NOT allowed to upload someone else work!                 |
+#  |   Update to latest version as soon as possible. Support WON'T be given when using old versions. Specially from downloaded setups.  |
+#  | Remember: Support is only provided for .jar files downloaded DIRECTLY from spigotmc.org! Other files will be considered as invalid |
+#  |        as they are NOT the same .jar file the developer (me) uploaded and I cannot guarantee that the file is safe or not.         |
+#  |                   If you have issues with setup configs. Tell the setup author to update his config file.                          |
+#  ======================================================================================================================================
+
+#           ___      _   _           ___         _                  Our plugins: https://alonsoaliaga.com/plugins
+#          | _ ) ___| |_| |_ ___ _ _| _ \_____ _(_)_ _____          Support server: https://alonsoaliaga.com/discord
+#          | _ \/ -_)  _|  _/ -_) '_|   / -_) V / \ V / -_)         Youtube: https://alonsoaliaga.com/play
+#          |___/\___|\__|\__\___|_| |_|_\___|\_/|_|\_/\___|         Test server: plugins.alonsoaliaga.com
+#                           by AlonsoAliaga                         Twitch: https://alonsoaliaga.com/twitch
+#       Considering donating? https://alonsoaliaga.com/donate       Thanks for using my plugin! <3
+# ======================================================================================================================================
+# |              Downloaded this jar in a server setup? Tell the author he is NOT allowed to upload someone else work!                 |
+# |   Update to latest version as soon as possible. Support WON'T be given when using old versions. Specially from downloaded setups.  |
+# | Remember: Support is only provided for .jar files downloaded DIRECTLY from spigotmc.org! Other files will be considered as invalid |
+# |        as they are NOT the same .jar file the developer (me) uploaded and I cannot guarantee that the file is safe or not.         |
+# |                   If you have issues with setup configs. Tell the setup author to update his config file.                          |
+# ======================================================================================================================================
+Messages:
+  No-permission: '&cYou don''t have permission to do this.'
+  Reloaded: '&aSome messages and options have been reloaded. Other may require a restart!'
+  Invalid-player: '&cPlayer is not online!'
+  # Message sent if player attempts to revive another but doesn't have the permission.
+  Revive-no-permission: '&cYou cannot revive players. Get the job &4&l[MEDIC]&c or
+    purchase a rank in &bstore.yournetwork.net'
+  Revive-all:
+    None: '&cThere aren''t players bleeding..'
+    Revived: '&aYou revived {AMOUNT} player(s)!'
+    You-were-revived: '&6You were revived!'
+  Revive:
+    Not-bleeding: '&cTarget is not bleeding.'
+    Revived: '&aYou revived {TARGET}!'
+    You-were-revived: '&6You were revived!'
+  Help:
+    Admin:
+    - '&4 /giveup <target> &f- &cGive up for a player'
+    - '&4 /betterrevive bleeding &f- &cReturns list of player bleeding'
+    - '&4 /betterrevive revive <player> &f- &cRevive a player'
+    - '&4 /betterrevive reviveall &f- &cRevive all players'
+    - '&4 /betterrevive check <player> &f- &cCheck if a player is bleeding'
+    - '&4 /betterrevive reload &f- &cReload configuration (Restart recommended)'
+    User:
+    - '&4 /giveup &f- &cGive up with life'
+    - '&4 /betterrevive check <player> &f- &cCheck if a player is bleeding'
+  Player: '{PLAYER}'
+  Died:
+    # Set to [] to disable death messages caused by bleeding.
+    Bled-out-broadcast:
+    - '&9{PLAYER}&9 died after bleeding..'
+    - '&9{PLAYER}&9 bled until death..'
+  Bleeding:
+    # Supports PlaceholderAPI
+    Bleeding-broadcast:
+    - '&c{PLAYER}&7 is bleeding..'
+    - '&c{PLAYER}&7 is bleeding so bad..'
+    You-are-bleeding: '&c&lYou are bleeding..'
+    # Set to "" to disable. Placeholder available:
+    # {TIME} replaced with time before death.
+    # {TIME_FORMAT} replaced with time (watch format) before death.
+    You-are-bleeding-subtitle: '&4&l{TIME} left. &4Give up with &c/giveup'
+    Time-left: '&4&lYou will die in {TIME}. &4Give up with &c/giveup'
+    Disconnected-bleeding:
+    - '&c{PLAYER}&7 disconnected while bleeding..'
+    - '&c{PLAYER}&7 left the game while bleeding..'
+    # Set to "none" to disable this message.
+    You-cannot-chat: '&cYou cannot send messages while bleeding :('
+  Reviving:
+    Already-reviving: '&c{SAVIOR} is already reviving this player!'
+    Cannot-revive-while-bleeding: '&cYou cannot revive players while you are bleeding..'
+    You-stopped-reviving-target: '&cYou stopped reviving {TARGET}..'
+    Target-left: '&c{TARGET} left the server when you were reviving him..'
+    Already-revived: '&cThis player has already been revived!'
+    Character: ▮
+    # Color of completed chars.
+    Color-completed: '&a'
+    # Color of remaining chars.
+    Color-remaining: '&7'
+    Savior:
+      Title: '{PROGRESS}'
+      Subtitle: '&6Reviving &c{TARGET}'
+    Target:
+      Title: '{PROGRESS}'
+      Subtitle: '&c{PLAYER} &6is reviving you'
+  Revived:
+    Revive-broadcast:
+    - '&c{PLAYER}&7 has been saved by &a{SAVIOR}&7!'
+    - '&c{PLAYER}&7 has been revived by &a{SAVIOR}&7!'
+    - '&a{SAVIOR}&7 revived &c{PLAYER}&7!'
+    Revive-broadcast-no-player:
+    - '&c{PLAYER}&7 has been saved!'
+    - '&c{PLAYER}&7 was revived!'
+    Savior:
+      Title: '&6&lPlayer revived!'
+      Subtitle: '&aYou revived &c{TARGET}!'
+    Target:
+      Title: '&6&lYou revived!'
+      Subtitle: '&c{PLAYER} &arevived you!'
+  Placeholders:
+    Status:
+      Alive: '&aAlive'
+      Bleeding: '&cBleeding'
+      Bleeding-format: '&cDies in {TIME}'
+      Reviving: '&6Reviving'
+      Reviving-format: '&6Reviving in {TIME}'
+      Dead: '&4Dead'
+  Commands:
+    Bleeding:
+      No-players-bleeding: '&cThere aren''t players bleeding..'
+      Location: '&7({WORLD}: {X} {Y} {Z})'
+      Format: '&c{PLAYER} &7is bleeding.. &e(&b{TIME} left&e) {LOCATION}'
+      Messages:
+      - '&c&lPlayer bleeding:'
+      - '{PLAYERS}'
+      - '&eThere are {AMOUNT} players bleeding..'
+    Check:
+      Not-bleeding: '&cTarget is not bleeding..'
+      Already-revived: '&cTarget has been revived already!'
+      Location: '&7({WORLD}: {X} {Y} {Z})'
+      Bleeding: '&c{PLAYER} &7is bleeding.. &e(&b{TIME} left&e) {LOCATION}'
+    Revive:
+      Not-bleeding: '&cTarget is not bleeding..'
+      Already-revived: '&cTarget has been revived already!'
+      Target-revived: '&aYou revived {TARGET}.'
+      You-were-revived: '&6You were revived'
+    Revive-all:
+      Not-bleeding: '&cThere aren''t players bleeding..'
+      Revived-all: '&aYou revived {AMOUNT} players.'
+      You-were-revived: '&6You were revived'
+  Give-up:
+    Target-not-bleeding: '&cTarget is not bleeding..'
+    You-are-not-bleeding: '&cYou are not bleeding..'
+    Target-already-revived: '&cTarget has been already revived!'
+    You-are-already-revived: '&cYou have been already revived!'
+    Other-cancelled: '&cGive up attempt was cancelled by other plugin!'
+    Self-cancelled: '&cGods don''t want you to give up!'
+    Target-gave-up: '&6You made {TARGET} gave up..'
+    You-gave-up: '&6You gave up..'
+  Finish-off:
+    Your-health: '&cRemaining health: &4{HEALTH}&7/&c{MAX}&c❤'
+    Enemy-health: '&c{PLAYER}''s health: &4{HEALTH}&7/&c{MAX}&c❤'
+  Factions:
+    # Set to "none" to not send message.
+    Can-only-revive-same-faction-or-ally: 'none'
+    # Set to "none" to not send message.
+    Can-only-revive-same-faction: 'none'
+
+Options:
+  Debug-mode: false
+  # To apply changes for aliases you must RESTART the server.
+  # Plugman or similar plugins are NOT and will NEVER be supported.
+  # Use /reload or restart your server.
+  Main-command:
+    Aliases:
+    - brevive
+  Give-up-command:
+    Name: giveup
+    Aliases:
+    - giveupwithlife
+  # If disabled, "bleeding" and "revived" messages will be sent to all players in the world only.
+  Global-broadcast: true
+  Bleeding:
+    Mode:
+      Warning:
+      - In older versions (1.8 - 1.12.2) it will always sit the player.
+      - ' Mode: 1 => Sit on an invisible rabbit.'
+      - ' Mode: 2 => Swim position (Only 1.13+) - Send block changes through packets
+        to add a BARRIER'
+      - '            above player head so he can keep swimming position.'
+      - 'Warning: MODE 3 IS NOT RECOMMENDED. CONSTANT SOUND SPAM AND THERE IS NO WAY
+        TO REMOVE THAT.'
+      - ' Mode: 3 => Gliding position (Only 1.9+) - DO NOT USE, MIGHT GLITCH, IT SPAMS
+        A SOUND THAT'
+      - '            CANNOT BE REMOVED! Player movement is limited. (Recommended Mode
+        2)'
+      - Don't modify this message. It will be overwritten in plugins update. PLAYERS
+        DON'T SEE THIS MESSAGE.
+      Type: 0
+    # Time in seconds the player will bleed before dying.
+    # It MUST BE GREATER THAN revive time.
+    Time: 60
+    # Effects given to the bleeding player. Format is:
+    # POTION_TYPE,TIME_IN_TICKS,AMPLIFIER,AMBIENT/PARTICLES.
+    Effects:
+    - CONFUSION,9999,1,true
+    # - "BLINDNESS,9999,1,true"  #<---- EXAMPLE TO GIVE BLINDNESS!!!
+    # If enabled, player health will be set to zero DIRECTLY. This will not allow them to use TOTEMS.
+    # Only use it IF YOU HAVE ISSUES WITH ENCHANTMENTS. YOU HAVE BEEN WARNED.
+    Instant-kill: false
+    # Only available if Instant-kill is not set tu true.
+    # This is the damage that the player will take when he is supposed to die. (THIS IS A HIGH AMOUNT TO PREVENT SURVIVING FROM OTHER PLUGINS)
+    Kill-damage: 100
+    # Time between each attempt to set player passenger (only if mode is 1)
+    # Leave this as it is if you don't know what it does. Time in TICKS, only multiples of 5.
+    # Values can go from 5, 10, 15, 20, 25, etc. If not selected correctly, default will be 20.
+    # If 0 it will be disabled. This option SHOULD NOT BE NECESSARY.
+    # If having issues riding the invisible rabbit try FIRST changing "Mode" option to 2 (if you are 1.13+)
+    # If doesn't work, set Force-passenger to true (Required ProtocolLib).
+    # If doesn't work, set this to 20. (Except issues, contact the developer on https://alonsoaliaga.com/discord)
+    Passenger-interval: 0
+    # When enabled, plugin will first check if player has a totem in hands and will ignore damage (not cancel)
+    # Giving the totem chance to work. If disabled. Plugin will NOT check totems.
+    Totem-check: true
+    # Check absorption points. If enabled, plugin will also check if the player has absorption points to check if it would die.
+    # I don't recommend you to enable this as it USES reflections to access absorption points. This is only optional in 1.8.8 - 1.15.
+    # In newer version it's always used as it doesn't use reflections.
+    Check-absorption: true
+    # If enabled, the plugin will force passenger setting to the rabbit, this MIGHT look the player look glitched
+    # and can potentially make the player be kicked for "Spamming packets". Not recommended to enabled.
+    Force-passenger: false
+  Revive:
+    # Required time in seconds to revive a player. Minimum 2 seconds, maximum 60 seconds.
+    Time: 5
+    # The food for the player that is revived. Amount is in food points. 1 = half hunger points, 20 = full hunger bar.
+    # Minimum -1, maximum 20. If set to -1 food points won't be modified.
+    Food: -1
+    # The health for the player that is revived. Amount is in half hearts. 1 = half heart. 2 = 1 heart.
+    # Minimum 1, maximum 20.
+    Health: 3
+    # The amount of bubbles the player will have once is revived.
+    # Set to -1 to disable. Minimum 0 and maximum 10.
+    Air: -1
+    # This is a list of effects added to players that have been revived.
+    # Format is "EFFECT,DURATION,AMPLIFIER,PARTICLE"
+    # Duration is in ticks. 20 ticks = 1 second. 60 ticks = 3 seconds.
+    # Amplifier is additional level for base 1. Amplifier of 1 means base + 1 = 1 + 1 = 2.
+    # Particle is true or false. It makes the particles visible or not.
+    # Set to [] to not add any effect.
+    Effects:
+    - REGENERATION,100,1,true
+    # Amount of characters that will be used in reviving progress bar. Minimum 5, maximum 1000
+    Characters-amount: 20
+    # If you feel that your players goes through the block below when reviving, increase this value by 0.1 each time and test.
+    Position-fix: 0.7
+  Block:
+    # If enabled, players that are bleeding cannot place/break blocks.
+    Place-break: true
+    # If enabled, players that are bleeding cannot consume items.
+    Consume: true
+    # If enabled, players that are bleeding cannot drop items.
+    Drop: true
+    # If enabled, players that are bleeding cannot pick items.
+    Pick: true
+    # If enabled, players that are bleeding cannot interact with other entities.
+    Interact-at-entity: true
+    # If enabled, players that are bleeding cannot interact.
+    Interact: true
+    # If enabled, players that are bleeding cannot permission commands except from whitelisted commands.
+    Commands: true
+    # Prevent players from sending messages? Disabled by default!
+    Chat: false
+    # Make sure you whitelist commands you want them to be able to use.
+    Whitelisted-commands:
+    - /tell
+    - /msg
+    - /giveup
+    - /betterrevive
+    - /brevive
+  Worlds:
+    # Mode can be WHITELIST, BLACKLIST, ALL and NONE.
+    # If WHITELIST players can bleed in listed worlds.
+    # If BLACKLIST players cannot bleed in listed worlds.
+    # If ALL players will bleed in all worlds.
+    # If NONE players won't bleed in any world. However, they can using DeveloperAPI
+    Mode: ALL
+    List:
+    - world
+    - world_nether
+  # FINALLY HERE! This option allow players to keep damaging the player that is bleeding
+  # so they can finish off their enemies! This option is in early BETA phase so except bugs.
+  Finish-off:
+    # Should players finish off players?
+    Enabled: true
+    # Ficticious health the player will "have" so players need to finish off him dealing that amount of damage.
+    Health: 20
+    # Amount for damage multiplier. Example: Player A deals 10 damage with sword, so he can finish him in 2 attacks.
+    # but we don't want that, we want the player to make half damage he usually deals. We use 0.5 because
+    # player damage will be multiplied for this amount. If you don't want to reduce anything, use 1
+    Damage-multiplier: 0.25
+    Damage-cause:
+    - BLOCK_EXPLOSION
+    - CONTACT
+    - CRAMMING
+    - CUSTOM
+    - DRAGON_BREATH
+    - DROWNING
+    - DRYOUT
+    - ENTITY_ATTACK
+    - ENTITY_EXPLOSION
+    - ENTITY_SWEEP_ATTACK
+    - FALL
+    - FALLING_BLOCK
+    - FIRE
+    - FIRE_TICK
+    - FLY_INTO_WALL
+    - FREEZE
+    - HOT_FLOOR
+    - LAVA
+    - LIGHTNING
+    - MAGIC
+    - MELTING
+    - POISON
+    - PROJECTILE
+    - STARVATION
+    - SUFFOCATION
+    - SUICIDE
+    - THORNS
+    - VOID
+    - WITHER
+    # Should entities be able to target the player that is bleeding?
+    # true - Entities can target players that are bleeding and attack them.
+    # false - This will prevent mobs targeting/attacking player when it's bleeding but will still allow other players to attack them and finish them off.
+    Entity-target-player:
+      Enabled: true
+  WorldGuard:
+    Warning:
+    - 'Default flag:'
+    - ' This is the default behavior if the flag is not specified BUT you are inside
+      in a WorldGuard region.'
+    - '  true - Players can bleed.'
+    - '  false - Players will die directly.'
+    Default-flag: false
+  Hooks:
+    # Hook with available Faction plugins to allow only same faction to revive players?
+    Factions:
+      Enabled: false
+      # Allow member from an ally faction to revive a player?
+      Allow-ally: true
+    # Prevent players from using any element when bleeding.
+    ProjectKorra:
+      Enabled: true
+    # Prevent players from using QualityArmory weapons while bleeding.
+    QualityArmory:
+      Enabled: true
+    # Prevent players from using CrackShot weapons while bleeding.
+    CrackShot:
+      Enabled: true
+    Advanced-enchantments:
+      Enabled: true
+      # Leave like Blocked-enchantments: [] to block all enchantments when player is about to die.
+      # This is BETA BETA BETA and MIGHT NOT WORK CORRECTLY. I don't have the plugin to test it.
+      Blocked-enchantments:
+      - dodge
+      - reflect
+      - angelic
+      - chunky
+      - heavy
+    AdvancedEnchantments:
+      Enabled: false
+      Blocked-enchantments:
+      - dodge
+      - reflect
+      - angelic
+      - chunky
+      - heavy
+
+Permissions:
+  # Permission to use /giveup command
+  Give-up: none
+  # Permission to use /giveup <player> command
+  Give-up-others: betterrevive.giveup.others
+  Admin: betterrevive.admin
+  # Permission to revive player using command. CANNOT BE "none"
+  Admin-revive: betterrevive.admin.revive
+  # Permission to bleed when you receive fatal damage.
+  Bleed: betterrevive.bleed
+  # Permission to revive player using command. Set to "none" to not require permission.
+  Check: betterrevive.check
+  # Permission to see player location in command /betterrevive check.  Set to "none" to not require permission.
+  Check-location: betterrevive.check.location
+  # Permission to see player bleeding.  Set to "none" to not require permission.
+  Bleeding: betterrevive.bleeding
+  # Permission to see player location in command /betterrevive bleeding.  Set to "none" to not require permission.
+  Bleeding-location: betterrevive.bleeding.location
+  # Permission to allow players revive others. Useful if you want to add a "Doctor" job or allow
+  # only ranked players to revive others.
+  Revive: none
+  # Permission to revive members of other factions. Used only if Factions hook is enabled.
+  Faction-bypass: betterrevive.revive.factions.bypass
+
+Updates:
+  # Auto update configuration? Enabling will delete comments.
+  Auto-update-configuration: true
+  # Check for updates? Recommended to keep it enabled.
+  Check-updates: true
+  # Notify updates when player with permission joins the server?
+  Notify-updates: true
+  # Permission required to receive update message.
+  Permission: betterrevive.update
+  # Message to send when update is found.
+  Message: '&4[BetterRevive] &eA new update has been found! You are using version
+    {CURRENT}. Download version {NEW} here &c{LINK}'

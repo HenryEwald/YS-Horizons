@@ -1,0 +1,151 @@
+RandomGiantSquid:
+  MobType: MSO_GiantSquid
+  Worlds: world
+  Chance: 0.01
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+# RandomHammerheadShark:
+#   MobType: MSO_HammerheadShark
+#   Worlds: world
+#   Chance: 0.01
+#   Priority: 1
+#   Action: ADD
+#   PositionType: SEA
+  
+# RandomHammerheadShark2:
+#   MobType: MSO_HammerheadShark_2
+#   Worlds: world
+#   Chance: 0.01
+#   Priority: 1
+#   Action: ADD
+#   PositionType: SEA
+  
+
+RandomOctopus:
+  MobType: MSO_Octopus
+  Worlds: world
+  Chance: 0.01
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomOctopus2:
+  MobType: MSO_Octopus_2
+  Worlds: world
+  Chance: 0.01
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomStingray:
+  MobType: MSO_Stingray
+  Worlds: world
+  Chance: 0.01
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomPufferfish:
+  MobType: MSO_Pufferfish
+  Worlds: world
+  Chance: 0.03
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomPearlClam:
+  MobType: MSO_PearlClam
+  Worlds: world
+  Chance: 0.02
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomPistolShrimp:
+  MobType: MSO_PistolShrimp
+  Worlds: world
+  Chance: 0.02
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+# For more information, check out the plugin manual or join us on Discord:
+# http://www.mythicmobs.net
+#  
+
+# RandomBarracuda:
+#   MobType: MSO_Barracuda
+#   Worlds: world
+#   Chance: 0.01
+#   Priority: 1
+#   Action: ADD
+#   PositionType: SEA
+  
+ 
+ 
+RandomOrcaWhale:
+  MobType: MSO_OrcaWhale
+  Worlds: world
+  Chance: 0.01
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+
+RandomBoxJellyfish:
+  MobType: MSO_BoxJellyfish
+  Worlds: world
+  Chance: 0.02
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomAnglerfish:
+  MobType: MSO_Anglerfish
+  Worlds: world
+  Chance: 0.02
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomNautilus:
+  MobType: MSO_Nautilus
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+# RandomPiranha:
+#   MobType: MSO_Piranha
+#   Worlds: world
+#   Chance: 0.01
+#   Priority: 1
+#   Action: ADD
+#   PositionType: SEA
+  
+
+RandomSeaAngel:
+  MobType: MSO_SeaAngel
+  Worlds: world
+  Chance: 0.01
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+
+
+

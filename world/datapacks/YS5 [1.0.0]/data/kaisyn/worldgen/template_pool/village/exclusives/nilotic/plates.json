@@ -1,0 +1,76 @@
+{
+  "name": "kaisyn:village/exclusives/nilotic/plates",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "projection": "rigid",
+        "location": "kaisyn:village/exclusives/nilotic/plates/big_1",
+        "processors": "kaisyn:extend_down"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "projection": "rigid",
+        "location": "kaisyn:village/exclusives/nilotic/plates/big_big_1",
+        "processors": "kaisyn:extend_down"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "projection": "rigid",
+        "location": "kaisyn:village/exclusives/nilotic/plates/big_1",
+        "processors": "kaisyn:extend_down"
+      }
+    },
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "projection": "rigid",
+        "location": "kaisyn:village/exclusives/nilotic/plates/small_1",
+        "processors": "kaisyn:extend_down"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "projection": "rigid",
+        "location": "kaisyn:village/exclusives/nilotic/plates/small_big_1",
+        "processors": "kaisyn:extend_down"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "projection": "rigid",
+        "location": "kaisyn:village/exclusives/nilotic/plates/small_big_2",
+        "processors": "kaisyn:extend_down"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:legacy_single_pool_element",
+        "projection": "rigid",
+        "location": "kaisyn:village/exclusives/nilotic/plates/small_small_1",
+        "processors": "kaisyn:extend_down"
+      }
+    },
+    {
+      "weight": 2,
+      "element": {
+        "element_type": "minecraft:empty_pool_element",
+        "projection": "rigid"
+      }
+    }
+  ]
+}

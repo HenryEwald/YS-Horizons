@@ -1,0 +1,351 @@
+trees:
+  Nether:
+    display-name: Nether
+    chatcolor: RED
+    info:
+    - '&7- Surviving in the nether &8(1⚡&8/sec) '
+    - '&7- Killing a nether mobs &8(10⚡)'
+    - '&7- Killing the Wither &8(500⚡)'
+    accent_material: RED_STAINED_GLASS_PANE
+    skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDUwMDI5MmY0YWZlNTJkMTBmMjk5ZGZiMjYwMzYzMjI4MzA0NTAzMzFlMDAzMDg0YmIyMjAzMzM1MzA2NjRlMSJ9fX0=
+    skills:
+      Blaze Shield:
+        enabled: true
+        displayed_name: Blaze Shield
+        energy: 15000
+        description:
+        - ' '
+        - '&7Your skin becomes tougher as it'
+        - '&7adapts to the warm climate. All'
+        - '&7damage applied to you is reduced'
+        - '&7by &a15% while in the nether.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2QyYTViNGIxMDliZDc4OGVkYmEwMTcxZDBhYWI4YTU1MzA1YWMyZjU2MTg0ZGY3MGEzMTljZDQ4OGEzNmMzZSJ9fX0=
+      Wither Spirit:
+        enabled: true
+        displayed_name: Wither Spirit
+        energy: 30000
+        description:
+        - ' '
+        - '&7Your body absorbs lots of wither'
+        - '&7essence, increasing your attack'
+        - '&7damage by &a15% &7while in the nether.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzQ2MGQzNTQ3ZGYzYjQ1M2M1MTMxNDc3MWI4MGI5ZmRiNjhjMDM1OWIxNDQ3ZDhhNmYxYmM5NjU1NTc2OTUyMCJ9fX0=
+      Obsidian Skin:
+        enabled: false
+        displayed_name: Obsidian Skin
+        energy: 2500
+        description:
+        - ' '
+        - '&7Your skin grows an extra layer,'
+        - '&7making you immune to fire and'
+        - '&7lava damage.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTc5ZDBlOTZjMzUxZTJlMmQ5MDQyYTQ2ODJkZWM0MzBjNGU1MjI1NmVkNzdjZjgwYmQwMjY3ZjdjYWJlMzMwMCJ9fX0=
+      Flaming Debris:
+        enabled: true
+        displayed_name: Flaming Debris
+        energy: 80000
+        description:
+        - ' '
+        - '&7You discover a better technique to'
+        - '&7mine netherite; by melting it down'
+        - '&7at the source. You now recive two'
+        - '&7netherite scraps when mining ancient'
+        - '&7debris.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWZhMjYxMDU0NWM1MTkzYjE3NzZmYWU2ZjVkNmYxNzU3OWQ2MDAyYWVhMDMyZjlmNTJiNTRiZDNiZmY1OWE1MSJ9fX0=
+  Earth:
+    display-name: Earth
+    chatcolor: GREEN
+    info:
+    - '&7- Surviving while in the overworld &8(1⚡&8/sec) '
+    - '&7- Killing an overworld mob &8(10⚡)'
+    accent_material: GREEN_STAINED_GLASS_PANE
+    skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjEyYTAzYTRjMTFiNGQ0NzI0NzJlN2U0NTkzZDJlMTI2YTYyNTllMzNjYzgxZjQ0ZWIwNWNmMDQyZDA3Njk2NyJ9fX0=
+    skills:
+      Mob Assasin:
+        enabled: true
+        displayed_name: Mob Assasin
+        energy: 15000
+        description:
+        - ' '
+        - '&7Your fighting begins to improve as'
+        - '&7you battle more mobs. Damage against '
+        - '&7you is decreased by &a15% &7while in'
+        - '&7the overworld.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMmYyY2ZhYWQ2ZjhiNjJjOTkyYzNiNTVjZTMxNjlmZmE0MDA1YWFlZTJkYjM1YTYzZjRiMzc5MGU0YTU5NmMzNSJ9fX0=
+      Enhanced Endurance:
+        enabled: true
+        displayed_name: Enhanced Endurance
+        energy: 30000
+        description:
+        - ' '
+        - '&7Your body grows stronger as'
+        - '&7you remain active. Your damage'
+        - '&7is increased by &a15% &7while in the'
+        - '&7overworld.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjU5ODE5NDViZDlhOTE3OWZiODI5N2EwNjYxYmViMjMxYmNmZGE4M2E0ZGRlZTZiMjA4N2NmZDdiNGNiZDk5OSJ9fX0=
+      Fungal Forrager:
+        enabled: true
+        displayed_name: Fungal Forrager
+        energy: 50000
+        description:
+        - ' '
+        - '&7You learn more about the properties of'
+        - '&7the plants you harvest. You are now able'
+        - '&7to extract random boosts from harvesting'
+        - '&7fungi with your hands.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDQzMjIzYjZjMjllZjY1MmMzNjM2YWY3NzZkODk0NjZlOWY2OTdmMjU2NWI5Njc0YWE4ZGUwZTljMzZkNyJ9fX0=
+      Green Thumbs:
+        enabled: true
+        displayed_name: Green Thumbs
+        energy: 100000
+        description:
+        - ' '
+        - '&7You start to perfect your skills in'
+        - '&7the farm. You begin to make stronger'
+        - '&7food, increaseing the strength of all'
+        - '&7food by &a20%&7.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjdjMzNjZDBjMTRiYTgzMGRhMTQ5OTA3ZjdhNmFhZTgzNWI2YTM1YWVhMDFlMGNlMDczZmIzYzU5Y2M0NjMyNiJ9fX0=
+  End:
+    display-name: End
+    chatcolor: LIGHT_PURPLE
+    info:
+    - '&7- Surviving in the end &8(1⚡&8/sec) '
+    - '&7- Killing an end mob &8(10⚡)'
+    - '&7- Killing the Ender Dragon &8(500⚡)'
+    accent_material: MAGENTA_STAINED_GLASS_PANE
+    skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDY5OTRkNzFiODc1ZjA4N2U2NGRlYTliNGEwYTVjYjlmNGViOWFiMGU4ZDkwNjBkZmRlN2Y2ODAzYmFhMTc3OSJ9fX0=
+    skills:
+      Dragon's Scales:
+        enabled: true
+        displayed_name: Dragon's Scales
+        energy: 50000
+        description:
+        - ' '
+        - '&7Your body begins to adapt to the'
+        - '&7end climate and your skin becomes'
+        - '&7tougher, reducing damage by &a15%'
+        - '&7while in the end.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZiYTk5ODdmNzM4ZTZkNzVkM2IwMmMzMGQxNDgwYTM2MDU5M2RkYjQ2NGJkMWM4MWFiYjlkNzFkOWU2NTZjMCJ9fX0=
+      Dragon's Breath:
+        enabled: true
+        displayed_name: Dragon's Breath
+        energy: 80000
+        description:
+        - ' '
+        - '&7Your body continues to adapt to'
+        - '&7the ends'' climate. You now deal'
+        - '&a+15% &7damage while in the end.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDJlODcwODlmOTMyOWI1NGM5YTU5NjU2MjUzNTQxMDdjN2Y5NmIzMDU0ZjFkZWY4Y2VlYTJiOTBjZTZmOGQifX19
+      The Anti-Void:
+        enabled: false
+        displayed_name: The Anti-Void
+        energy: 80000
+        description:
+        - ' '
+        - '&7Harness the energy of the void.'
+        - '&7The voids'' energy prevents you'
+        - '&7from falling to your death.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2MyYzU5ZmNkOTI2MjVlYzRkNTc4MTU5YTVmZDViZDQyNDdlMzgyZDQ5NDcyODRjZjUwZjk5OWM4NDExNmMwIn19fQ==
+      Reverse Shulker:
+        enabled: false
+        displayed_name: Reverse Shulker
+        energy: 50000
+        description:
+        - ' '
+        - '&7You adapt to the shulkers'' attacks'
+        - '&7by reversing their energy fields.'
+        - '&7You no longer levitate when hit by'
+        - '&7a shulker, but intead recive the'
+        - '&fSlow Falling &7effect.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjU0OWVkMGQxMTRhNTNkYWM3MzA3YmFhZjBhYTQ0NDEyNzE3NjZjMTIwY2Q0YWNlY2JhMGFiNGVkOGU3OGQxIn19fQ==
+  Ocean:
+    display-name: Ocean
+    chatcolor: DARK_AQUA
+    info:
+    - '&7- Surviving while in water &8(1⚡&8/sec) '
+    - '&7- Killing an aquatic mob &8(10⚡)'
+    - '&7- Killing Elder Guardians &8(150⚡)'
+    accent_material: CYAN_STAINED_GLASS_PANE
+    skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTQ2OTNlMzcwNTQ2N2QyYjM0ZjE4NmZlOGFiYzhmNGIyMGIyOGU1MmE5NWI1YTUyNTEwN2VlZmE1ODgxY2ExMCJ9fX0=
+    skills:
+      Turtle Shell:
+        enabled: true
+        displayed_name: Turtle Shell
+        energy: 15000
+        description:
+        - ' '
+        - '&7Your body begins to adapt to the water'
+        - '&7by building up a resistance to attacks.'
+        - '&7All damage is reduced by &a15% &7while in'
+        - '&7water.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjY0Njk4ZmVhNWVjM2YyZmQ3ZGI3YThlM2Y0ZTk4OWExNzE2MDM1YzJiZDM2NjY0MzRiYTFhZjU4MTU3In19fQ==
+      Prismarine Spikes:
+        enabled: true
+        displayed_name: Prismarine Spikes
+        energy: 30000
+        description:
+        - ' '
+        - '&7Your body adjusts to the harsh'
+        - '&7ocean waters. Your endurance builds,'
+        - '&7increasing all damage by &a15% &7while'
+        - '&7in water.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGJlNjJlZGY1MmMwNDgwZTgxOWEwZWFhOGE1YmRjYTM5ZmQ0MmUzZTA4MWJkNmU1ODQ2Zjg5NTdiNGJkMzA0ZCJ9fX0=
+      Makeshift Gills:
+        enabled: false
+        displayed_name: Makeshift Gills
+        energy: 2500
+        description:
+        - ' '
+        - '&7Your lungs transform into makeshift'
+        - '&7gills, providing you with infinite'
+        - '&7oxygen while swimming.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYWU0MGZlNmE5ZGIyMmYyYjEyZTYwNWU0OTI5OTViZDQ2YWM5MzY3YjI2YjhhYjg1ZTA3MjY2ODAxYmVjZjcxZCJ9fX0=
+      Guardian's Aura:
+        enabled: true
+        displayed_name: Guardian's Aura
+        energy: 50000
+        description:
+        - ' '
+        - '&7You start to gain power from nearby'
+        - '&7guardians. Your damage increases by'
+        - '&7&a10% &7for each guardian within &e30'
+        - '&7blocks of you.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTBiZjM0YTcxZTc3MTViNmJhNTJkNWRkMWJhZTVjYjg1Zjc3M2RjOWIwZDQ1N2I0YmZjNWY5ZGQzY2M3Yzk0In19fQ==
+      Pocket Conduit:
+        enabled: false
+        displayed_name: Pocket Conduit
+        energy: 10000
+        description:
+        - ' '
+        - '&7Contact with conduits causes your'
+        - '&7body to change with its power.'
+        - '&7You now gain permanent &bconduit'
+        - '&bpower &7when in water.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjEwZjc5YWE1MGU4MmViM2YxYzYxNDYxYTVlMzQ4YzUxZmViMGI1ODBkYzhlYmZjOTkyYWU0MzY5OWY5ZTkzIn19fQ==
+      Eternal Bond:
+        enabled: true
+        displayed_name: Eternal Bond
+        energy: 80000
+        description:
+        - ' '
+        - '&7The dolphins grow close to you'
+        - '&7as you spend time in the oceans.'
+        - '&7You now gain infinite &bDolphins'
+        - '&bGrace &7when in water.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTQxNWQyYzU0M2UzNGJiODhlZGU5NGQ3OWI5NDI3NjkxZmM5YmU3MmRhYWQ4ODMxYTllZjI5NzE4MDU0NmUxOCJ9fX0=
+  Cave:
+    display-name: Cave
+    chatcolor: WHITE
+    info:
+    - '&7- Surviving while underground &8(1⚡&8/sec) '
+    - '&7- Killing a mob while underground &8(10⚡)'
+    - '&7- Mining an ore block &8(5⚡)'
+    accent_material: GRAY_STAINED_GLASS_PANE
+    skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTZjODQ0N2E4YjZiMGUwYzdlNzYyOWM2ODk4ZWM5Yzc0OWE3YTBhMmI0NTJiOWMzODUyYzc4NDdiYjRkYzUifX19
+    skills:
+      Denser Air:
+        enabled: true
+        displayed_name: Denser Air
+        energy: 15000
+        description:
+        - ' '
+        - '&7Your lungs adapt to the dense cave air,'
+        - '&7improving your fighting when underground.'
+        - '&7All damage is reduced by &a15%&7 when in the'
+        - '&7caves.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWEzYWJlZjNhYzlmYjA3Y2NiMTAzNWVmZmNkYWIxMjdmZjI3YmFlYmE2ZDllODc2OTJjZTMxOGI1NjY0MWIyIn19fQ==
+      Turbo Dexterity:
+        enabled: true
+        displayed_name: Turbo Dexterity
+        energy: 30000
+        description:
+        - ' '
+        - '&7Your body continues to alter to the'
+        - '&7cave climate. Your attack damage is'
+        - '&7increased by &a15%&7.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTVkNzZkOTBiMzc4MDgzZDE0Nzc1NjgwNTA1ZGRiMWU2YzJjNmRjZjRkZGU3ZjliMWY1ODgwOWJlYzZjNjVjOCJ9fX0=
+      Gemstone Extractor:
+        enabled: true
+        displayed_name: Gemstone Extractor
+        energy: 80000
+        description:
+        - ' '
+        - '&7As you continue to mine, you get better'
+        - '&7at extracting the valuables from ore.'
+        - '&7All ores now have a &a30% &7chance of'
+        - '&7dropping extra ore.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTY0ZjI1Y2ZmZjc1NGYyODdhOTgzOGQ4ZWZlMDM5OTgwNzNjMjJkZjdhOWQzMDI1YzQyNWUzZWQ3ZmY1MmMyMCJ9fX0=
+      Enhanced Eyesight:
+        enabled: true
+        displayed_name: Enhanced Eyesight
+        energy: 120000
+        description:
+        - ' '
+        - '&7Your eyes evolve as you spend time'
+        - '&7in the darkness. Your eyes change,'
+        - '&7allowing you to see in the dark, when'
+        - '&7in the caves.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDhkNWZiYTdiYzhiZGRlODk0NzUwMTczZWEzMTc5NDRiOWEzOWI3YzhkNTQyYjYxNDI1MjBiZDUyNjIxIn19fQ==
+      Energized Arms:
+        enabled: true
+        displayed_name: Energized Arms
+        energy: 150000
+        description:
+        - ' '
+        - '&7All of the time underground allows'
+        - '&7you to improve your craft. You now'
+        - '&7recive the &6Haste II &7effect when in the'
+        - '&7caves.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTAwZDc1YThjYzAzZTU5YzQ3NWNhYzc2ODFiYjRlNmQwOGFjNTkyOTBkNWYyMzlkNjA1Njc2MmI0ZTU1ZjkxNSJ9fX0=
+  Sky:
+    display-name: Sky
+    chatcolor: AQUA
+    info:
+    - '&7- Flying with an elytra &8(1⚡&8/sec) '
+    - '&7- Killing any flying mob &8(10⚡)'
+    accent_material: LIGHT_BLUE_STAINED_GLASS_PANE
+    skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODY4NmQ5NmFkOGU1OGE4NmE1YTI4MzI2Yzk5ZmRlOWQ0OTgxZTQ2YzA5ZWFlNTFlN2E5ODYxOTBjZDM2YjBmIn19fQ==
+    skills:
+      Smooth Glider:
+        enabled: true
+        displayed_name: Smooth Glider
+        energy: 10000
+        description:
+        - ' '
+        - '&7As you continue to fly, your gliding'
+        - '&7skills improve, preventing taking'
+        - '&7damage when flying into walls.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMjgxY2M2NGIwNDViMThhM2E0MTljNTk1YWQ2NThmNmNlMmM1OTk5NDk0NzdhZmU0MmE2YjU4N2FhMzE1YmYifX19
+      Feather Feet:
+        enabled: false
+        displayed_name: Feather Feet
+        energy: 1000
+        description:
+        - ' '
+        - '&7You master the ability to land on the'
+        - '&7ground gracefully. You now take no'
+        - '&7fall damage.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvN2ZmN2RkMmJkZjQxOGI0MDMzNmRhMWVjYmQ5MzE1YjU4YjIwNjI3YTk0YWVlNjlhZGFmMDFmNWQ0ZWFjODBkOSJ9fX0=
+      Elytra Launcher:
+        enabled: true
+        displayed_name: Elytra Launcher
+        energy: 20000
+        description:
+        - ' '
+        - '&7You discover a better way to launch'
+        - '&7yourself into the air. Hold down &e[Shift] &7'
+        - '&7while on the ground to initiate flight'
+        - '&7takeoff.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjJmYzIzODY2NTIzY2FhYThhOTUzNDU2NjEyN2E2ZjgzODlhZjNlNzZiOGUzYzMzYzI0NzNjYmE2ODg5YzQifX19
+      Eye of the Storm:
+        enabled: true
+        displayed_name: Eye of the Storm
+        energy: 30000
+        description:
+        - ' '
+        - '&7When it''s raining, you learn to harness'
+        - '&7the energy of the storm. Attacking a'
+        - '&7mob releases a powerfull bolt of'
+        - '&7lightning which damages mobs around'
+        - '&7you.'
+        skull_texture: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNWRhNjVlNTcwNWM4ZTk4NDYyOWNhY2Y1YWU3OTAyYjNhNzc2NmY5MDgzNjMwNDhlNmQ3ZTIwMDM5N2Q3N2VhYiJ9fX0=

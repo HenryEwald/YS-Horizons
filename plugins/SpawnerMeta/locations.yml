@@ -1,0 +1,22 @@
+# This file contains all player placed spawner locations.
+# Any invalid modifications may result in errors
+# and unwanted spawner exploits.
+# Location syntax must always be: [x, y, z]
+#
+# If you have used version 5.2 or lower and
+# had enabled player spawner placing limit, than
+# you are using legacy spawner limit.
+# Legacy spawner limit excludes spawner locations
+# and are stored on player. You can change the value
+# of 'Legacy' to false to enable new spawner location
+# saving.
+# Warning! Using the new location saving all previously
+# placed spawner will not be counted and be ignored,
+# meaning all players will have 0 spawner placed, but
+# all newly placed spawners will be saved in this file
+# for easy spawner location finding and searshing.
+#
+# Note! Spawner locations won't be saved if legacy
+# is set to true.
+
+Legacy: false

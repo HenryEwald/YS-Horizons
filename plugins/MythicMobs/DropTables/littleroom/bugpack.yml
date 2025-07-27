@@ -1,0 +1,102 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+
+antrarity:
+  TotalItems: 1
+  Drops:
+  - ant 1 0.75
+  - ant2 1 0.25
+  - ant3 1 .01
+  
+tarantulararity:
+  TotalItems: 1
+  Drops:
+  - tarantula 1 0.75
+  - tarantula2 1 0.25
+  - tarantula3 1 .01
+
+butterfly_bluerarity:
+  TotalItems: 1
+  Drops:
+  - butterfly_blue 1 0.75
+  - butterfly_blue2 1 0.25
+  - butterfly_blue3 1 .01
+  
+butterfly_indigorarity:
+  TotalItems: 1
+  Drops:
+  - butterfly_indigo 1 0.75
+  - butterfly_indigo2 1 0.25
+  - butterfly_indigo3 1 .01
+
+butterfly_redrarity:
+  TotalItems: 1
+  Drops:
+  - butterfly_red 1 0.75
+  - butterfly_red2 1 0.25
+  - butterfly_red3 1 .01
+  
+butterfly_violetrarity:
+  TotalItems: 1
+  Drops:
+  - butterfly_violet 1 0.75
+  - butterfly_violet2 1 0.25
+  - butterfly_violet3 1 .01
+  
+butterfly_whiterarity:
+  TotalItems: 1
+  Drops:
+  - butterfly_white 1 0.75
+  - butterfly_white2 1 0.25
+  - butterfly_white3 1 .01
+  
+butterfly_yellowrarity:
+  TotalItems: 1
+  Drops:
+  - butterfly_yellow 1 0.75
+  - butterfly_yellow2 1 0.25
+  - butterfly_yellow3 1 .01
+  
+mantisrarity:
+  TotalItems: 1
+  Drops:
+  - mantis 1 0.75
+  - mantis2 1 0.25
+  - mantis3 1 .01
+  
+fireflyrarity:
+  TotalItems: 1
+  Drops:
+  - firefly 1 0.75
+  - firefly2 1 0.25
+  - firefly3 1 .01
+  
+dungbeetlerarity:
+  TotalItems: 1
+  Drops:
+  - dungbeetle 1 0.75
+  - dungbeetle2 1 0.25
+  - dungbeetle3 1 .01
+  
+snailrarity:
+  TotalItems: 1
+  Drops:
+  - snail 1 0.75
+  - snail2 1 0.25
+  - snail3 1 .01
+  
+ladybugrarity:
+  TotalItems: 1
+  Drops:
+  - ladybug 1 0.75
+  - ladybug2 1 0.25
+  - ladybug3 1 .01
+  
+mothatlasrarity:
+  TotalItems: 1
+  Drops:
+  - mothatlas 1 0.75
+  - mothatlas2 1 0.25
+  - mothatlas3 1 .01

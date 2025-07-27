@@ -1,0 +1,44 @@
+deep_creature_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=1;vy=7}
+
+deep_creature_heavysmash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=13;vy=4}
+
+deep_creature_roar_knockback:
+    Skills:
+        - delay 1
+        - throw{v=20;vy=4}
+
+deep_creature_charge_knockback:
+    Skills:
+        - delay 1
+        - throw{v=10;vy=4}
+
+deep_creature_megasmash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=5;vy=15}
+
+deep_creature_sonic_knockback:
+    Skills:
+        - delay 1
+        - throw{v=15;vy=2}
+
+deep_creature_jumpsmash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=6;vy=5}
+
+deep_creature_sidestrike_knockback:
+    Skills:
+        - delay 1
+        - throw{v=12;vy=5}
+
+deep_creature_earthquake_knockback:
+    Skills:
+        - delay 1
+        - throw{v=2;vy=15}

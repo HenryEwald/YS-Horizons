@@ -1,0 +1,117 @@
+{
+  "@type" : "customcrafting:cauldron",
+  "group" : "",
+  "hidden" : false,
+  "vanillaBook" : true,
+  "priority" : "NORMAL",
+  "checkNBT" : false,
+  "conditions" : {
+    "values" : [ ]
+  },
+  "checkAllNBT" : false,
+  "cookingTime" : 60,
+  "waterLevel" : 1,
+  "xp" : 0,
+  "handItem" : {
+    "apiReference" : {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "AIR"
+      }
+    },
+    "equipmentSlots" : [ ],
+    "consumed" : true,
+    "blockVanillaEquip" : false,
+    "blockPlacement" : false,
+    "blockVanillaRecipes" : false,
+    "rarityPercentage" : 1.0,
+    "permission" : "",
+    "nbtChecks" : {
+      "checks" : [ {
+        "key" : "wolfyutilities:customitem_tag"
+      } ]
+    },
+    "replacement" : null,
+    "fuelSettings" : {
+      "allowedBlocks" : [ ],
+      "burnTime" : 20
+    },
+    "durabilityCost" : 0,
+    "particleContent" : { },
+    "actionSettings" : {
+      "events" : [ ]
+    },
+    "blockSettings" : {
+      "useCustomDrops" : true
+    },
+    "customDataMap" : {
+      "customcrafting:cauldron" : {
+        "enabled" : false
+      },
+      "customcrafting:recipe_book" : {
+        "enabled" : false
+      },
+      "customcrafting:elite_crafting_table" : {
+        "enabled" : false,
+        "gridSize" : 3,
+        "advancedRecipes" : false,
+        "allowHoppers" : false,
+        "keepItems" : false
+      }
+    },
+    "data" : [ ]
+  },
+  "ingredients" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "PRISMARINE_SHARD",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Spectral Silt\"}],\"text\":\"\"}",
+          "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"blue\",\"text\":\"Crafting component\"}],\"text\":\"\"}" ],
+          "custom-model-data" : 83680,
+          "enchants" : {
+            "DURABILITY" : 1
+          },
+          "ItemFlags" : [ "HIDE_ENCHANTS" ],
+          "PublicBukkitValues" : {
+            "realisticsurvival:rsvitem" : "spectral_silt",
+            "realisticsurvival:rsvmodule" : "Baubles"
+          }
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "replaceWithRemains" : true,
+    "allowEmpty" : false
+  },
+  "dropItems" : false,
+  "needsFire" : true,
+  "needsWater" : true,
+  "result" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "CARROT_ON_A_STICK",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"text\":\"Soul Bottle\",\"italic\":false}",
+          "lore" : [ "{\"italic\":false,\"color\":\"dark_gray\",\"extra\":[{\"italic\":false,\"color\":\"dark_aqua\",\"text\":\"50\"}],\"text\":\"Souls Held: \"}" ],
+          "custom-model-data" : 1,
+          "internal" : "H4sIAAAAAAAA/+NiYGBm4CrOL80pjs9IzUlhYGAwYmbgBgnEJ+WXlOSkAkUYGQCc7+4DJwAAAA=="
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "extensions" : [ ]
+  }
+}

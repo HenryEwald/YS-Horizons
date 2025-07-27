@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "blackstone",
+    "deepslate_tiles",
+	  "minecraft:netherrack",
+	  "end_stone"
+  ]
+}

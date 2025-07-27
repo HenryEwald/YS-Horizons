@@ -1,0 +1,350 @@
+CancelEventSkill:
+    Skills:
+        - CancelEvent
+
+#Visual effect of the horse, Can be Turn off to save server resources.
+soulknight_horse_vfx:
+    Skills:
+        - effect:particles{p=warped_spore;a=15;s=0.1;vs=1;hs=1} @self
+        - particles{p=reddust;color=#52C8DB;a=5;hs=0.2;vs=0.2} @ModelPart{mid=soulknight_withhorse;part=horse_leftfoot}
+        - particles{p=reddust;color=#52C8DB;a=5;hs=0.2;vs=0.2} @ModelPart{mid=soulknight_withhorse;part=horse_rightfoot}
+        - particles{p=reddust;color=#52C8DB;a=5;hs=0.2;vs=0.2} @ModelPart{mid=soulknight_withhorse;part=horse_leftbackfoot}
+        - particles{p=reddust;color=#52C8DB;a=5;hs=0.2;vs=0.2} @ModelPart{mid=soulknight_withhorse;part=horse_rightbackfoot}
+
+soulknight_horsedeath:
+    Skills:
+        - effect:sound{s=entity.wither.ambient;v=3;p=0.5} @self
+        - effect:particles{particle=end_rod;a=100;hs=2;vs=2;s=0.1} @self
+        - delay 36
+        - summon{type=toro_knight;amount=1;radius=0} @self
+
+#periodically change to running to chase players
+soulknight_rush:
+    Conditions:
+        - incombat true
+        - offgcd
+    Skills:
+        - defaultstate{m=soulknight_withhorse;t=walk;s=run} @self
+        - setspeed{speed=2;type=walking} @self
+
+# SideSwing (Can be dodged by crouching)
+soulknight_horse_sideswing:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to7} true
+    Skills:
+        - gcd{ticks=60} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=1} @self
+        - skill{s=soulknight_sideswing_vfx} @self
+        - state{s=sideswing} @self
+        - spin{d=50;v=0} @self
+        - potion{t=SPEED;d=4;l=5;icon=false;p=false} @self
+        - delay 6
+        - potion{t=SLOW;d=40;l=10;icon=false;p=false} @self
+        - delay 18
+        - effect:sound{s=torotoro:toro.weapon.swing1;v=3;p=1} @self
+        - skill{s=soulknight_horse_sideswing_damage} @LivingInCone{a=180.0;r=7;rot=0.0}
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+
+soulknight_horse_sideswing_damage:
+    TargetConditions:
+        - isplayer true
+        - crouching false
+    Skills:
+        - damage{a=10}
+
+soulknight_sideswing_vfx:
+    Skills:
+        - delay 4
+        - particles{p=block;m=dirt;a=30;hs=1;vs=0.5} @ModelPart{mid=soulknight_withhorse;part=horse_rightbackfoot}
+        - delay 10
+        - particles{p=block;m=dirt;a=30;hs=1;vs=0.5} @ModelPart{mid=soulknight_withhorse;part=horse_rightbackfoot}
+        - delay 8
+        - particles{p=reddust;color=#52C8DB;a=70;hs=3;vs=0.6} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+
+#====== Rearing stomp
+soulknight_horse_rearingstomp:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to5} true
+    Skills:
+        - gcd{ticks=58} @self
+        - state{s=rearing_stomp;sp=1.5} @self
+        - potion{t=SLOW;d=40;l=99;icon=false;p=false} @self
+        - effect:sound{s=entity.horse.breathe;v=3;p=0} @self
+        - delay 26
+        - lunge{v=0.3;repeat=2;repeatInterval=1} @forward
+        - potion{t=SLOW;d=30;l=99;icon=false;p=false} @self
+        - delay 10
+        - lunge{v=1} @target
+        - delay 2
+        - totem{ch=1;os=soulknight_horse_rearingstomp_damage;int=1;hR=3;md=1;yOffset=1} @forward{f=3}
+        - spin{d=20;v=0} @self
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+
+soulknight_horse_rearingstomp_damage:
+    Skills:
+        - damage{a=12} @PIR{r=5}
+        - effect:sound{s=torotoro:toro.weapon.smash1;v=3;p=1} @self
+        - particles{p=block;m=dirt;a=30;hs=4;vs=0.5} @origin
+        - particles{p=reddust;color=#52C8DB;a=70;hs=3;vs=0.6;yOffset=1} @origin
+        - particlering{p=block;m=dirt;a=10;r=3;points=16;hs=0.8;vs=0.5} @origin
+        - particlering{p=block;m=dirt;a=10;r=1;points=16;hs=0.5;vs=0.5} @origin
+
+#====downswing
+soulknight_horse_downswing:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to7} true
+    Skills:
+        - gcd{ticks=56} @self
+        - state{s=smash} @self
+        - potion{t=SLOW;d=40;l=99;icon=false;p=false} @self
+        - spin{d=40;v=0} @self
+        - effect:sound{s=entity.horse.breathe;v=3;p=0} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=1} @self
+        - delay 20
+        - particles{p=reddust;color=#52C8DB;a=70;hs=1;vs=3;yOffset=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - delay 2
+        - totem{ch=1;os=soulknight_horse_downswing_damage;int=1;hR=3;md=1;yOffset=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+
+soulknight_horse_downswing_damage:
+    Skills:
+        - damage{a=10} @PIR{r=6}
+        - effect:sound{s=torotoro:toro.weapon.weaponsmash2;v=3;p=1} @self
+        - effect:particles{p=block;m=dirt;a=30;hs=4;vs=0.5} @origin
+        - effect:particles{p=reddust;color=#52C8DB;a=70;hs=2;vs=0.6;yOffset=1} @origin
+        - effect:particlering{p=block;m=dirt;a=10;r=1;points=16;hs=0.5;vs=0.5} @origin
+
+#====sidestrike===
+soulknight_horse_sidestrike:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to6} true
+    Skills:
+        - gcd{ticks=45} @self
+        - state{s=sidestrike} @self
+        - potion{t=SLOW;d=40;l=99;icon=false;p=false} @self
+        - spin{d=40;v=0} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=1.5} @self
+        - effect:sound{s=item.armor.equip_iron;v=3;p=0} @self
+        - delay 16
+        - lunge{v=0.7} @target
+        - delay 2
+        - totem{ch=1;os=soulknight_horse_sidestrike_damage;int=1;hR=3;md=1;yOffset=-2.5} @ModelPart{mid=soulknight_withhorse;part=head}
+        - delay 4
+        - skill{s=soulknight_horse_cont_swing} @target
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+
+soulknight_horse_sidestrike_damage:
+    Skills:
+        - damage{a=6} @PIR{r=5}
+        - effect:sound{s=torotoro:toro.weapon.cloth;v=3;p=1} @self
+        - effect:sound{s=block.iron_trapdoor.close;v=3;p=0.5} @self
+        - effect:particles{p=block;m=blackstone;a=50;hs=2;vs=2} @origin
+
+#A swing followed by the side strike
+soulknight_horse_cont_swing:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to7} true
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=sidestrike_cont_swing} @self
+        - potion{t=SLOW;d=20;l=99;icon=false;p=false} @self
+        - spin{d=30;v=0} @self
+        - effect:sound{s=item.armor.equip_iron;v=3;p=0.5} @self
+        - delay 20
+        - particles{p=reddust;color=#52C8DB;a=70;hs=1;vs=2;yOffset=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - delay 2
+        - totem{ch=1;os=soulknight_horse_sidestrike_swing_damage;int=1;hR=3;md=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - delay 15
+        - skill{s=soulknight_horse_cont_thrust} @target
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+
+soulknight_horse_sidestrike_swing_damage:
+    Skills:
+        - damage{a=8} @PIR{r=7}
+        - effect:sound{s=torotoro:toro.weapon.swing2;v=3;p=1} @self
+        - effect:particles{p=reddust;color=#52C8DB;a=70;hs=3;vs=0.6;yOffset=1} @origin
+        - effect:particles{p=reddust;color=#52C8DB;a=70;hs=2;vs=0.6;yOffset=1} @origin
+
+# A thrust followed by the swing above
+soulknight_horse_cont_thrust:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to12} true
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=sidestrike_cont_swing_thrust;lerpin=2} @self
+        - potion{t=SLOW;d=14;l=99;icon=false;p=false} @self
+        - spin{d=14;v=0} @self
+        - delay 14
+        - effect:sound{s=item.armor.equip_iron;v=3;p=0} @self
+        - potion{t=SPEED;d=6;l=8;icon=false;p=false} @self
+        - particles{p=reddust;color=#52C8DB;a=10;hs=0.7;vs=0.7;yOffset=1;repeat=5;repeatInterval=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - delay 6
+        - totem{ch=1;os=soulknight_horse_sidestrike_swing_thrust_damage;int=1;hR=3;md=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - delay 28
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+
+soulknight_horse_sidestrike_swing_thrust_damage:
+    Skills:
+        - damage{a=12} @ENO{r=4}
+        - effect:sound{s=torotoro:toro.weapon.swing3;v=3;p=0.5} @self
+        - effect:particles{p=reddust;color=#52C8DB;a=70;hs=2;vs=0.6;yOffset=1} @origin
+        - effect:particlering{p=block;m=dirt;a=10;r=1;points=16;hs=0.5;vs=0.5} @origin
+
+#=====charge uppercut====
+soulknight_horse_chargeuppercut:
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=7to20} true
+    Skills:
+        - gcd{ticks=130} @self
+        - spin{d=50;v=0} @self
+        - potion{t=SLOW;d=40;l=99;icon=false;p=false} @self
+        - effect:sound{s=item.armor.equip_leather;v=3;p=0} @self
+        - state{s=charge_uppercut} @self
+        - delay 45
+        #=== Start Charging
+        - look{headOnly=false;immediately=true} @Target
+        - effect:sound{s=entity.horse.gallop;v=2;repeat=5;repeatInterval=7} @self
+        - delay 2
+        - spin{d=40;v=0} @self
+        - lunge{v=0.8;repeat=15;repeatInterval=2} @forward{f=10}
+        - totem{ch=1;os=soulknight_horse_charge_damage;int=1;hR=3;md=1;repeat=15;repeatInterval=2} @self
+        - delay 32
+        #=== Uppercut
+        - totem{ch=1;os=soulknight_horse_charge_uppercut_damage;int=1;hR=3;md=1;yOffset=-1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - delay 6
+        - lunge{v=0.1;repeat=28;repeatInterval=1} @forward{f=10}
+        - spin{d=30;v=-1} @self
+        - particles{p=block;m=dirt;a=30;hs=1;vs=0.5} @ModelPart{mid=soulknight_withhorse;part=horse_rightbackfoot}
+        - delay 10
+        - particles{p=block;m=dirt;a=30;hs=1;vs=0.5} @ModelPart{mid=soulknight_withhorse;part=horse_rightbackfoot}
+
+soulknight_horse_charge_damage:
+    Skills:
+        - damage{a=4} @PIR{r=5}
+        - skill{s=soulknight_charge_knockback} @ENO{r=5}
+soulknight_horse_charge_uppercut_damage:
+    Skills:
+        - damage{a=20} @PIR{r=7}
+        - delay 1
+        - skill{s=soulknight_uppercut_knockback} @ENO{r=7}
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3;p=1} @origin
+        - effect:sound{s=torotoro:toro.weapon.swing2;v=3;p=0.5} @origin
+        - effect:particles{p=reddust;color=#52C8DB;a=70;hs=3;vs=0.6;yOffset=1} @origin
+        - effect:particles{p=reddust;color=#52C8DB;a=70;hs=2;vs=0.6;yOffset=1} @origin
+        - delay 4
+        - particles{p=reddust;color=#52C8DB;a=10;hs=0.7;vs=0.7;yOffset=1;repeat=5;repeatInterval=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+
+#====leap strike====
+soulknight_horse_leapstrike:
+    Cooldown: 10
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=5to12} true
+    Skills:
+        - gcd{ticks=80} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=0} @self
+        - state{s=leap_strike} @self
+        - delay 14
+        - jump{v=0.5} @self #Delete this for a smoother leap, turn on if you want the knight to really "jump" over obstacles
+        - potion{t=SPEED;d=32;l=1;icon=false;p=false} @self
+        - delay 24
+        - spin{d=50;v=0} @self
+        - delay 8
+        - totem{ch=1;os=soulknight_horse_leapstrike_damage;int=1;hR=3;md=1;yOffset=1} @ModelPart{mid=soulknight_withhorse;part=spear_tip}
+        - potion{t=SLOW;d=40;l=99;icon=false;p=false} @self
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+
+
+soulknight_horse_leapstrike_damage:
+    Skills:
+        - damage{a=15} @PIR{r=6}
+        - effect:sound{s=torotoro:toro.weapon.weaponsmash2;v=3;p=0} @self
+        - particles{p=block;m=dirt;a=30;hs=4;vs=0.5} @origin
+        - particles{p=reddust;color=#52C8DB;a=70;hs=0.7;vs=3;yOffset=1}
+        - particles{p=reddust;color=#52C8DB;a=70;hs=3;vs=0.6;yOffset=1} @origin
+        - particlering{p=block;m=dirt;a=10;r=4;points=16;hs=0.8;vs=0.5} @origin
+        - particlering{p=block;m=dirt;a=10;r=1;points=16;hs=0.5;vs=0.5} @origin
+
+#==== charging=====
+soulknight_horse_charging:
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=8to20} true
+    Skills:
+        - gcd{ticks=150} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=run} @self
+        #=== circling
+        - setspeed{speed=2;type=walking} @self
+        - spin{d=2;v=35} @self
+        - delay 2
+        - spin{d=40;v=-4} @self
+        - effect:sound{s=entity.horse.gallop;v=2;repeat=5;repeatInterval=7} @self
+        - lunge{v=0.8;repeat=39;repeatInterval=1} @forward{f=10}
+        - delay 39
+        #==== Braking
+        - spin{d=17;v=0} @self
+        - potion{t=SLOW;d=26;l=2;icon=false;p=false} @self
+        - state{s=brake;sp=1.5;lerpout=4} @self
+        - totem{ch=1;os=soulknight_horse_brake_damage;int=1;hR=3;md=1} @self
+        - delay 20
+        #==== Charging
+        - defaultstate{m=soulknight_withhorse;t=walk;s=run_charging} @self
+        - effect:sound{s=entity.horse.gallop;v=2;repeat=3;repeatInterval=7} @self
+        - lunge{v=0.5;repeat=5;repeatInterval=1} @target
+        - look{headOnly=false;immediately=true;repeat=5;repeatInterval=1} @Target
+        - delay 5
+        - spin{d=16;v=0} @self
+        - lunge{v=1.2;repeat=14;repeatInterval=1} @forward{f=10}
+        - totem{ch=1;os=soulknight_horse_charging_damage;int=1;hR=3;md=1;repeat=15;repeatInterval=2} @self
+        - effect:particles{p=reddust;color=#52C8DB;a=10;hs=1;vs=1;repeat=19;repeatInterval=1} @self
+        - delay 20
+        #==== stop rearing
+        - setspeed{speed=1;type=walking} @self
+        - defaultstate{m=soulknight_withhorse;t=walk;s=walk} @self
+        - potion{t=SLOW;d=26;l=2;icon=false;p=false} @self
+        - state{s=stoprearing} @self
+        - delay 20
+        - effect:sound{s=entity.horse.breathe;v=3;p=0} @self
+
+soulknight_horse_brake_damage:
+    Skills:
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=1} @self
+        - damage{a=5} @PIR{r=5}
+        - effect:sound{s=block.gravel.break;repeat=4;repeatInterval=1;v=4;p=1} @self
+        - particles{p=block;m=dirt;a=15;hs=1;vs=0.5;repeat=5;repeatInterval=3} @ModelPart{mid=soulknight_withhorse;part=horse_rightbackfoot}
+
+# Different with soulknight_horse_charge_damage, which is the charing that follows an uppercut
+soulknight_horse_charging_damage:
+    Skills:
+        - damage{a=10} @PIR{r=5}
+        - skill{s=soulknight_charge_knockback} @ENO{r=5}

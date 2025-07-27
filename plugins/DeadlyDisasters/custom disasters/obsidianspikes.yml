@@ -1,0 +1,134 @@
+settings:
+    name: 'obsidianspikes'
+    title: '&8Obsidian Spikes'
+    start_delay: 0
+    natural: true
+    min_height: -60
+    max_height: 45
+    frequency: 0.3
+    environments:
+    - normal
+    game_version: 1.17
+    plugin_version: 9.0
+core:
+    level 1:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: geyser
+                    level: 1
+                    width: 1
+                    amount: 20
+                    damage: 10.0
+                    material: obsidian
+                    particleType: flame
+                    minReach: 30
+                    maxReach: 50
+                    range: 10
+                    spawnTicks: 3
+                    sound: block_chain_place
+                    volume: 0.5
+    level 2:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: geyser
+                    level: 2
+                    width: 1
+                    amount: 35
+                    damage: 10.0
+                    material: obsidian
+                    particleType: flame
+                    minReach: 30
+                    maxReach: 50
+                    range: 14
+                    spawnTicks: 3
+                    sound: block_chain_place
+                    volume: 0.5
+    level 3:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: geyser
+                    level: 3
+                    width: 1
+                    amount: 50
+                    damage: 10.0
+                    material: obsidian
+                    particleType: flame
+                    minReach: 30
+                    maxReach: 50
+                    range: 18
+                    spawnTicks: 3
+                    sound: block_chain_place
+                    volume: 0.5
+    level 4:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: geyser
+                    level: 4
+                    width: 1
+                    amount: 60
+                    damage: 10.0
+                    material: obsidian
+                    particleType: flame
+                    minReach: 30
+                    maxReach: 50
+                    range: 20
+                    spawnTicks: 3
+                    sound: block_chain_place
+                    volume: 0.5
+    level 5:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: geyser
+                    level: 5
+                    width: 2
+                    amount: 70
+                    damage: 10.0
+                    material: obsidian
+                    particleType: flame
+                    minReach: 30
+                    maxReach: 50
+                    range: 20
+                    spawnTicks: 2
+                    sound: block_chain_place
+                    volume: 0.5
+    level 6:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: geyser
+                    level: 6
+                    width: 2
+                    amount: 120
+                    damage: 10.0
+                    material: obsidian
+                    particleType: flame
+                    minReach: 30
+                    maxReach: 50
+                    range: 20
+                    spawnTicks: 2
+                    sound: block_chain_place
+                    volume: 0.5
+catalog:
+    item: 'obsidian'
+    name: '&c&lObsidian Spikes'
+    description: '&bObsidian spikes pierce underground players hiding in caves'
+    author: 'davidclue'
+    version: 1.0
+    id: 4

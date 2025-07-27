@@ -1,0 +1,19 @@
+isEnabled: false
+name: '&2[lvl 095] &fThe Knight''s Castle'
+dungeonLocationType: WORLD
+customInfo:
+- '&fChallenge the knights of the castle!'
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: LAIR
+worldName: em_knight_castle
+environment: NORMAL
+protect: true
+playerInfo: |-
+  Difficulty: &chard
+  $bossCount level $lowestTier Big Boss!
+  &6Face an honorable duel!
+regionEnterMessage: '&fAssault the castle!'
+regionLeaveMessage: '&fNow leaving the castle!'
+teleportLocation: em_knight_castle,-24.5,5.0,54.5,-117,0
+contentType: OPEN_DUNGEON
+dungeonConfigFolderName: the_knight_castle

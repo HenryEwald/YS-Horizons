@@ -1,0 +1,66 @@
+{
+    "structures": [
+        {
+            "weight": 1,
+            "structure": "imst:beehouse"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:sunflowerfarm"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:terralith/yurt"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:cactusfarm"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:desertwell"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:bandit_camp"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:rail_station"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:cocoa_farm"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:lumberjack/oak_hut"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:lumberjack/birch_hut"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:lumberjack/spruce_hut"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:lumberjack/acacia_hut"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:lumberjack/jungle_hut"
+        },
+        {
+            "weight": 1,
+            "structure": "imst:lumberjack/dark_oak_hut"
+        }
+    ],
+    "placement": {
+        "type": "minecraft:random_spread",
+        "spacing": 48,
+        "separation": 24,
+        "salt": 1358791759
+    }
+}

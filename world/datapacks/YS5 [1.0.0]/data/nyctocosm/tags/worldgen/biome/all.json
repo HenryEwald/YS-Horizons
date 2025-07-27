@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "nyctocosm:cimmerian_gorge",
+    "nyctocosm:dark_mire",
+    "nyctocosm:infernal_chasms",
+    "nyctocosm:night_wastes"
+  ]
+}

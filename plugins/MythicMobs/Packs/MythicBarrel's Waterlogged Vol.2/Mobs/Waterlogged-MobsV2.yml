@@ -1,0 +1,307 @@
+MSO_MahiMahi:
+  Type: DOLPHIN
+  Display: '&eMahi Mahi'
+  Health: 18
+  Damage: 2
+  Faction: waterlogged_carnivore
+  Options:
+    Silent: true
+  AITargetSelectors:
+  - clear
+  - SpecificFaction waterlogged_scavenger
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  Skills:
+  - model{mid=mso_mahi_mahi} @Self ~onSpawn
+MSO_Oarfish:
+  Type: COD
+  Display: '&dOarfish'
+  Health: 14
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+  Skills:
+  - model{mid=mso_oar_fish} @Self ~onSpawn
+MSO_ElectricEel:
+  Type: COD
+  Display: '&dElectric Eel'
+  Health: 12
+  Damage: 2
+  Faction: waterlogged_scavenger
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+  Skills:
+  - model{mid=mso_eletric_eel} @Self ~onSpawn
+  - skill{s=[
+    - basedamage{m=1} @PIR{r=6}
+    - potion{t=WITHER;l=1;d=10} @PIR{r=6}
+    - sound{s=block.lily_pad.place;p=0.2} @SelfLocation
+    ]} @Self ~onTimer:50 ?playersinradius{a=>0;r=16}
+MSO_TropicalFish:
+  Type: COD
+  Display: '&dTropical Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_tropical_fish1} @Self ~onSpawn
+MSO_TropicalFish_2:
+  Type: COD
+  Display: '&dTropical Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_tropical_fish2} @Self ~onSpawn
+MSO_TropicalFish_3:
+  Type: COD
+  Display: '&dTropical Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_tropical_fish3} @Self ~onSpawn
+MSO_TropicalFish_4:
+  Type: COD
+  Display: '&dTropical Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_tropical_fish4} @Self ~onSpawn
+MSO_Clownfish:
+  Type: TROPICAL_FISH
+  Display: '&dClownfish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_clownfish} @Self ~onSpawn
+MSO_BlueGlaucus:
+  Type: TROPICAL_FISH
+  Display: '&bBlue Glaucus'
+  Health: 12
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Drops:
+  - experience_bottle 1-4 0.5
+  Skills:
+  - model{mid=mso_blue_glaucus} @Self ~onSpawn
+MSO_BettaFish:
+  Type: TROPICAL_FISH
+  Display: '&dBetta Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_betta_fish1} @Self ~onSpawn
+MSO_BettaFish_2:
+  Type: TROPICAL_FISH
+  Display: '&dBetta Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_betta_fish2} @Self ~onSpawn
+MSO_BettaFish_3:
+  Type: TROPICAL_FISH
+  Display: '&dBetta Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_betta_fish3} @Self ~onSpawn
+MSO_Doryfish:
+  Type: COD
+  Display: '&dDory Fish'
+  Health: 4
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_dory_fish} @Self ~onSpawn
+MSO_GardenEel:
+  Type: DROWNED
+  Display: '&aGarden Eel'
+  Health: 8
+  Damage: 0
+  Faction: waterlogged_scavenger
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+  Drops:
+  - kelp 0-2 1
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  Skills:
+  - model{mid=mso_garden_eel} @Self ~onSpawn
+  - velocity{m=SET;x=0;y=-1;z=0} @Self ~onTimer:2
+  - skill{s=[
+    - summon{t=MSO_GardenEel_Summon;a=1} @RLNTE{r=5;p=<random.1to3>} 
+    ]} @Self ~onSpawn
+MSO_GardenEel_Summon:
+  Type: DROWNED
+  Display: '&aGarden Eel'
+  Health: 8
+  Damage: 0
+  Faction: waterlogged_scavenger
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+  Drops:
+  - kelp 0-2 1
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  Skills:
+  - model{mid=mso_garden_eel} @Self ~onSpawn
+  - velocity{m=SET;x=0;y=-1;z=0} @Self ~onTimer:2
+MSO_MantisShrimp:
+  Type: DROWNED
+  Display: '&cMantis Shrimp'
+  Health: 10
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+  AITargetSelectors:
+  - clear
+  - players
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  Skills:
+  - model{mid=mso_mantis_shrimp} @Self ~onSpawn
+  - velocity{m=ADD;x=0;y=-0.1;z=0} @Self ~onTimer:20
+  - cancelevent{sync=true} @Self ~onAttack
+  - skill{s=[
+    - damage{a=12} @Target
+    - throw{v=20} @Target
+    - sound{s=block.anvil.place;v=1;p=10} @Self
+    ]} @Self ~onAttack
+MSO_Narwhal:
+  Type: DOLPHIN
+  Display: '&bNarwhal'
+  Health: 18
+  Damage: 2
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_narwhal} @Self ~onSpawn
+MSO_Crab:
+  Type: DROWNED
+  Display: '&dCrab'
+  Health: 8
+  Damage: 1
+  Faction: waterlogged_scavenger
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+  AITargetSelectors:
+  - clear
+  - players
+  AIGoalSelectors:
+  - clear
+  - randomstroll
+  - meleeattack
+  Skills:
+  - model{mid=mso_crab} @Self ~onSpawn
+  - velocity{m=SET;x=0;y=-0.2;z=0} @Self ~onTimer:20
+MSO_Seahorse:
+  Type: COD
+  Display: '&dSeahorse'
+  Health: 7
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    MovementSpeed: 0.12
+  Skills:
+  - model{mid=mso_seahorse1} @Self ~onSpawn
+  - skill{s=[
+    - summon{t=MSO_Seahorse_Summon;a=1} @RLNTE{r=5;p=<random.1to5>} 
+    ]} @Self ~onSpawn
+MSO_Seahorse_Summon:
+  Type: COD
+  Display: '&dSeahorse'
+  Health: 7
+  Damage: 0
+  Faction: waterlogged_herbivore
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    MovementSpeed: 0.12
+  Skills:
+  - randomskill{skills=[
+      - model{mid=mso_seahorse1}
+    ],
+    [
+      - model{mid=mso_seahorse2}
+    ],
+    [
+      - model{mid=mso_seahorse3}
+    ]} @Self ~onSpawn
+MSO_Lionfish:
+  Type: PUFFERFISH
+  Display: '&eLionfish'
+  Health: 14
+  Damage: 0
+  Faction: waterlogged_carnivore
+  Options:
+    Silent: true
+  AITargetSelectors:
+  - clear
+  - players
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomstroll
+  Skills:
+  - model{mid=mso_lionfish} @Self ~onSpawn
+  - cancelevent{sync=true} @Self ~onAttack
+  - skill{s=[
+    - potion{t=POISON;l=2;d=120}
+    ]} @Self ~onAttack
+MSO_OceanSnail:
+  Type: DROWNED
+  Display: '&aOcean Snail'
+  Health: 10
+  Damage: 0
+  Faction: waterlogged_scavenger
+  Options:
+    Silent: true
+  Skills:
+  - model{mid=mso_ocean_snail} @Self ~onSpawn

@@ -1,0 +1,14 @@
+isEnabled: true
+entityType: VEX
+name: $eventBossLevel &eLightning Fae
+level: dynamic
+healthMultiplier: 0.3
+damageMultiplier: 0.3
+uniqueLootList:
+- the_feller.yml:0.3
+powers:
+- attack_lightning.yml
+trails:
+- SPELL
+onSpawnBlockStates: []
+onRemoveBlockStates: []

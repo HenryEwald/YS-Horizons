@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:jigsaw",
+    "biomes": "#hopo:all_biomes",
+    "step": "underground_decoration",
+    "adapt_noise": true,
+    "spawn_overrides": {},
+    "start_pool": "hopo:deepslate_portal",
+    "size": 1,  
+    "start_height": {
+    "type": "minecraft:uniform",
+    "min_inclusive": {
+      "absolute": -40
+    },
+    "max_inclusive": {
+      "absolute": -10
+    }
+  },
+  "max_distance_from_center": 100,
+  "use_expansion_hack": false
+}

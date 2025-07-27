@@ -1,0 +1,29 @@
+isEnabled: false
+name: '&2[lvl 010] &8The Catacombs'
+dungeonLocationType: WORLD
+customInfo:
+- '&fThe best starter lair for players!'
+- '&6Credits: Realm of Lotheridon'
+relativeBossLocations:
+- catacombs_tier_5_evoker_guard_2.yml:2.5,0.5,13.5
+- catacombs_tier_5_illusioner_guard_1.yml:-2.5,2.5,16.5
+- catacombs_tier_15_boss.yml:0.5,-7.5,45.5
+- catacombs_tier_10_miniboss.yml:-8.5,-15.5,36.5
+relativeTreasureChestLocations:
+- catacombs_tier_15_treasure_chest.yml:-1,-14,15
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: LAIR
+schematicName: em_catacombs.schem
+environment: NORMAL
+protect: true
+defaultSchematicRotation: SOUTH
+playerInfo: |-
+  Difficulty: &cHard
+  $bossCount bosses, from tier $lowestTier to $highestTier
+  &2The best Lair challenge for groups of beginners!
+regionEnterMessage: '&8[EM] &8Now entering the Catacombs. Be careful with what dwells
+  below...'
+regionLeaveMessage: '&8[EM] &8You have left the Catacombs. Was it worth it?'
+teleportLocationOffset: 0,0,0,0,0
+contentType: SCHEMATIC_DUNGEON
+dungeonConfigFolderName: the_catacombs

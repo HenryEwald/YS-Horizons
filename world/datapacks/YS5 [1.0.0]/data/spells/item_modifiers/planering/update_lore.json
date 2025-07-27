@@ -1,0 +1,28 @@
+{
+    "function": "minecraft:set_lore",
+    "entity": "this",
+    "lore": [
+      {
+        "text":"An advanced seelic field projector.",
+        "color":"dark_gray",
+        "italic":false
+      },
+      {
+        "text": "Souls Held: ",
+        "color": "dark_gray",
+        "italic": false,
+        "extra": [
+          {
+            "score": {
+              "name": "SoulCount",
+              "objective": "value"
+            },
+            "color": "dark_aqua",
+            "italic": false
+          }
+        ]
+      }
+    ],
+    "replace": true
+  }
+  

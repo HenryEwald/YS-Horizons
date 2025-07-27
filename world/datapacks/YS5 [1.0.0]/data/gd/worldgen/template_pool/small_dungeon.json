@@ -1,0 +1,152 @@
+{
+  "name": "gd:merchant",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/feature1",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/feature2",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/feature3",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/witch_hut_1",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/witch_hut_1_bottom",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/witch_hut_2",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 15,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/witch_hut_3",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/witch_hut_3_bottom",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_1",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_2",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_3",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_4",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_5",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_6",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_7",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 25,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/chest_8",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 18,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/dungeon_1",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:small_dungeon/dungeon_1_bottom",
+        "projection": "rigid",
+        "processors": "gd:small_dungeon"
+      }
+    }
+
+  ]
+}

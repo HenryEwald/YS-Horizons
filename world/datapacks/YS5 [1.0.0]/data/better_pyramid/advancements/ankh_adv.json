@@ -1,0 +1,13 @@
+{
+    "criteria": {
+        "Unlocked": {
+            "trigger": "minecraft:recipe_unlocked",
+            "conditions": {
+                "recipe": "better_pyramid:ankh"
+            }
+        }
+    },
+    "rewards": {
+        "function": "better_pyramid:give/ankh"
+    }
+}

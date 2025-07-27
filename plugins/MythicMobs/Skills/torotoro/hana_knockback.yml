@@ -1,0 +1,19 @@
+hana_finisher_knockback:
+    Skills:
+        - delay 1
+        - throw{v=6;vy=1} 
+
+hana_uppercut_knockback:
+    Skills:
+        - delay 1
+        - throw{v=-1;vy=6} 
+
+hana_magicsmash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=4;vy=4} 
+
+hana_magicexplode_knockback:
+    Skills:
+        - delay 1
+        - throw{v=-1;vy=10} 

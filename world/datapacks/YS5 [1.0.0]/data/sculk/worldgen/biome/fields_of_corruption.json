@@ -1,0 +1,36 @@
+{
+  "temperature": 0.2,
+  "downfall": 0.8,
+  "precipitation": "none",
+  "effects": {
+    "sky_color": 4012102,
+    "fog_color": 10131862,
+    "water_color": 336939,
+    "water_fog_color": 2567984,
+    "particle": {
+      "options": {
+        "type": "white_ash"
+      },
+      "probability": 0.118093334
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:sculk_vein",
+      "sculk:sculk_patch"
+    ],
+    [],
+    [],
+    []
+  ]
+}

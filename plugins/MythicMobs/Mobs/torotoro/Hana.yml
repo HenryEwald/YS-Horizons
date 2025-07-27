@@ -1,0 +1,122 @@
+#If Encountering error spam using mmoitem weapons, swap the models with the models in the "single_hitbox_model" folder
+hana:
+  Type: HUSK
+  Display: '&d&lHana'
+  Faction: Hana
+  Health: 200
+  KillMessages:
+  - '&7&l<target.name> is killed by Hana'
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  - 2 monsters
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.3
+    FollowRange: 64
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  BossBar:
+    Enabled: true
+    Title: 'Hana, the Voice of the Forest'
+    Range: 40
+    Color: Green
+    Style: SEGMENTED_10
+  Skills:
+  - randomskill{s=hana_block_leap,hana_sword,hana_magicexplode,hana_heal,hana_deer_spirit,hana_leapattack} @target ~onTimer:11
+  - skill{s=hana_gethit;sync=true} @self ~onDamaged 0.5
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=hana;n=false;tint=false} @self ~onSpawn
+  - ChangePart{model=hana;part=wood;newmodel=hana;newpart=magic} @self ~onSpawn
+
+#=====
+deer_spirit:
+  Type: cat
+  Faction: Hana
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    MovementSpeed: 0.2
+    FollowRange: 30
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 20
+  Skills:
+  - skill{s=deer_spirit_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deer_spirit;n=false;tint=false} @self ~onSpawn
+  #- bodyclamp{m=deer_spirit;c=0} @self ~onSpawn
+#=====
+light_beam:
+  Type: parrot
+  Faction: Hana
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    MovementSpeed: 0.0001
+    FollowRange: 30
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 20
+  Skills:
+  - skill{s=light_beam_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=light_beam;n=false;tint=false} @self ~onSpawn
+
+#=====
+deer_healing:
+  Type: parrot
+  Faction: Hana
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    MovementSpeed: 0.2
+    FollowRange: 30
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 20
+  Skills:
+  - skill{s=deer_healing_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=deer_healing;n=false;tint=false} @self ~onSpawn

@@ -1,0 +1,30 @@
+location: 4727db74-7d17-4df7-b429-2e8dad934b2c~-2.5~66.5~599.5
+xn-radius: 3
+xp-radius: 3
+yn-radius: 3
+yp-radius: 3
+zn-radius: 3
+zp-radius: 3
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner
+upkeep-history:
+  '1748940487854': 0
+  '1748941191779': 0
+  '1748977440842': 0
+  '1748979000739': 0
+  '1748936198428': 0
+  '1748939804430': 0
+  '1748938902433': 0
+  '1748978010662': 0
+  '1748937098429': 0
+  '1748935297395': 0
+  '1748938000429': 0
+  '1748977299618': 0
+effects:
+- block_fire
+- block_break
+- block_build
+- block_liquid
+type: purifier
+exp: 0.0
+warehouse-enabled: true

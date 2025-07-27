@@ -1,0 +1,21 @@
+name: sexcity
+type: hamlet
+location: 4727db74-7d17-4df7-b429-2e8dad934b2c~-13.5~65.5~619.5
+devolved-today: false
+has-war-buildings: false
+war-enabled-today: false
+last-active: 1693373423289
+child-locations:
+- 4727db74-7d17-4df7-b429-2e8dad934b2c~-13.5~65.5~619.5
+housing: 16
+population: 6
+villagers: 5
+last-disable: -1
+power: 869
+max-power: 7600
+gov-type: IDIOCRACY
+taxes: 0.0
+bank: 1100.0
+last-vote: 0
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner

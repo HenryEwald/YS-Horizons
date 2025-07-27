@@ -1,0 +1,21 @@
+{
+  "elements": [
+    {
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "sculk_hive:vestige/loot",
+        "processors": "sculk_hive:vestige_decor",
+        "projection": "rigid"
+      },
+      "weight": 2
+    },
+    {
+      "element": {
+          "element_type": "minecraft:empty_pool_element"
+      },
+      "weight": 11
+    }
+  ],
+  "fallback": "sculk_hive:vestige/loot",
+  "name": "sculk_hive:vestige/loot"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "nyctocosm:botanist_tent",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "projection": "rigid",
+        "location": "nyctocosm:botanist_tent",
+        "processors": "minecraft:empty"
+      }
+    }
+  ]
+}

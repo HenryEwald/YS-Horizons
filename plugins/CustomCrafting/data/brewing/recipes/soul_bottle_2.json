@@ -1,0 +1,91 @@
+{
+  "@type" : "customcrafting:brewing_stand",
+  "group" : "",
+  "hidden" : false,
+  "vanillaBook" : true,
+  "priority" : "NORMAL",
+  "checkNBT" : false,
+  "conditions" : {
+    "values" : [ ]
+  },
+  "checkAllNBT" : false,
+  "allowedItems" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "CARROT_ON_A_STICK",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"text\":\"Soul Bottle\",\"italic\":false}",
+          "lore" : [ "{\"italic\":false,\"color\":\"dark_gray\",\"extra\":[{\"italic\":false,\"color\":\"dark_aqua\",\"text\":\"20\"}],\"text\":\"Souls Held: \"}" ],
+          "custom-model-data" : 1,
+          "internal" : "H4sIAAAAAAAA/+NiYGBm4CrOL80pjs9IzUlhYGAQYWbgBgnEJ+WXlOSkAkUYGQBCIjGdJwAAAA=="
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "replaceWithRemains" : true,
+    "allowEmpty" : false
+  },
+  "ingredients" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "PRISMARINE_SHARD",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Spectral Silt\"}],\"text\":\"\"}",
+          "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"blue\",\"text\":\"Crafting component\"}],\"text\":\"\"}" ],
+          "custom-model-data" : 83680,
+          "enchants" : {
+            "DURABILITY" : 1
+          },
+          "ItemFlags" : [ "HIDE_ENCHANTS" ],
+          "PublicBukkitValues" : {
+            "realisticsurvival:rsvitem" : "spectral_silt",
+            "realisticsurvival:rsvmodule" : "Baubles"
+          }
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "replaceWithRemains" : true,
+    "allowEmpty" : false
+  },
+  "fuelCost" : 1,
+  "brewTime" : 80,
+  "durationChange" : 0,
+  "amplifierChange" : 0,
+  "resetEffects" : false,
+  "effectColor" : null,
+  "effectRemovals" : [ ],
+  "result" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "CARROT_ON_A_STICK",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"text\":\"Soul Bottle\",\"italic\":false}",
+          "lore" : [ "{\"italic\":false,\"color\":\"dark_gray\",\"extra\":[{\"italic\":false,\"color\":\"dark_aqua\",\"text\":\"30\"}],\"text\":\"Souls Held: \"}" ],
+          "custom-model-data" : 1,
+          "internal" : "H4sIAAAAAAAA/+NiYGBm4CrOL80pjs9IzUlhYGCQY2bgBgnEJ+WXlOSkAkUYGQB8giTKJwAAAA=="
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "extensions" : [ ]
+  },
+  "effectAdditions" : [ ],
+  "effectUpgrades" : [ ],
+  "requiredEffects" : [ ]
+}

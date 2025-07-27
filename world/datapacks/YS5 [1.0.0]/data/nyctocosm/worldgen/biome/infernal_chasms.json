@@ -1,0 +1,61 @@
+{
+    "temperature": 2,
+    "downfall": 0,
+    "precipitation": "none",
+    "effects": {
+      "music": {
+        "sound": "minecraft:biome.deep.music",
+        "min_delay": 120,
+        "max_delay": 240,
+        "replace_current_music": false
+        },
+      "sky_color": 1052431,
+      "fog_color": 6291713,
+      "water_color": 0,
+      "water_fog_color": 1842204,
+      "grass_color": 2039583,
+      "foliage_color": 3552822,
+      "particle": {
+        "options": {
+          "type": "ash"
+        },
+        "probability": 0.2
+      }
+    },
+    "spawners": {
+
+    },
+    "spawn_costs": {},
+    "carvers": {
+      "air": [
+        "minecraft:cave",
+        "minecraft:canyon",
+        "minecraft:cave_extra_underground"
+      ],
+      "liquid": [
+        "minecraft:cave",
+        "minecraft:cave_extra_underground"
+      ]
+    },
+    "features": [
+      [],
+      [
+        "nyctocosm:infernal_chasms/infernal_lake",
+        "minecraft:lake_lava_surface",
+        "minecraft:lake_lava_underground"
+      ],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [],
+      [
+        "minecraft:spring_lava",
+        "minecraft:spring_lava_frozen"
+      ],
+      [],
+      []
+    ]
+  }
+  

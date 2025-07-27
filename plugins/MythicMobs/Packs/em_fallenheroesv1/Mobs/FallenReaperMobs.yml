@@ -1,0 +1,226 @@
+reaperfallen:
+  Type: skeleton
+  Display: 'Fallen Reaper'
+  AIGoalSelectors:
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction Zombie
+  - 2 attacker
+  - 3 players
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  Faction: FallenHero
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 1.4
+  - PROJECTILE 0.2
+  Damage: 10 #10 is the BASE damage. Setting it to 20 will DOUBLE damage. Setting it to 5 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was killed by the fallen heroes.'
+  - 'The fallen heroes have claimed justice over <target.name>.'
+  - "<target.name> suffered the revenge of the fallen heroes."
+  - "The fallen heroes have claimed <target.name>'s soul."
+  - '<target.name> tried to defy the fallen heroes. Tried.'
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - imbootsfallen:1
+  - iron_axe:0
+  - air:5
+  Drops:
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  Skills:
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=integer} @Self ~onSpawn
+  - model{mid=fallenreaper;n=false} @self ~onSpawn 1
+  - lockmodel{l=true;delay=1} @Self ~onSpawn 1
+  - DefaultState{type=IDLE;state=idlestatic;li=3;lo=2;n=false;frame=0} @self ~onSpawn
+  - CancelEvent{sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+  - state{s=idlestatic;li=0;lo=10;n=false;delay=0} @self ~onSpawn 1
+  - randomskill{s=attack1freaper,attack2freaper,attack3freaper;sync=true} @Target ~onAttack >0% 0
+  - randomskill{s=meleefreapertrigger;sync=true} @Target ~onAttack >0% 1
+  - randomskill{s=meleefreapertrigger;sync=true} @LivingInCone{ignore=samefaction;a=45.0;r=4.5;rot=0.0} ~onTimer:13 0.85
+  - randomskill{s=meleefreapertrigger;sync=true} @LivingInCone{ignore=samefaction;a=45.0;r=2.8;rot=0.0} ~onTimer:10 1
+  - randomskill{s=meleefreapertrigger2;sync=true} @LivingInCone{ignore=samefaction;a=90.0;r=4;rot=0.0} ~onTimer:15 0.6
+  - randomskill{s=attack7freaper;sync=true} @LivingInCone{ignore=samefaction;a=90.0;r=4;rot=0.0;ignore=samefaction} ~onTimer:15 0.6
+  - randomskill{s=attack5freaper,superslashfreaper,attractfreaper;sync=true} @LivingInCone{ignore=samefaction;a=110.0;r=25;rot=0.0} ~onTimer:77 0.6
+  - randomskill{s=leap1freaper,leap2freaper,leap2freaper,leap3freaper,leap3freaper,leap3freaper;sync=true} @target ~onTimer:30 <70% 0.5
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+  
+  - skill{s=leap1freaper} @Trigger ~onSignal:DEBUG_TEST 1
+#============ DISGUISE =================
+  
+  - changepart{m=fallenreaper;pid=rightarm;nm=fallenreaper2;npid=rightarm} @self ~onSpawn
+  - changepart{m=fallenreaper;pid=rightarmbot;nm=fallenreaper2;npid=rightarmbot} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=leftarm;nm=fallenreaper2;npid=leftarm} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=leftarmbot;nm=fallenreaper2;npid=leftarmbot} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=body;nm=fallenreaper2;npid=body} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=odes;nm=fallenreaper2;npid=odes} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=leftleg;nm=fallenreaper2;npid=leftleg} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=leftlegbot;nm=fallenreaper2;npid=leftlegbot} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=rightleg;nm=fallenreaper2;npid=rightleg} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=rightlegbot;nm=fallenreaper2;npid=rightlegbot} @self ~onSpawn
+  - changepart{m=fallenreaper;pid=rightlegbot;nm=fallenreaper2;npid=rightlegbot} @self ~onSpawn 
+  - changepart{m=fallenreaper;pid=head;nm=fallenreaper2;npid=head} @self ~onSpawn 
+#================ RIP IN PEPSI PROTOCOL
+
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=179} @ModelPart{m=fallenreaper3;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=cloud;amount=30;hS=0.1;vS=0.2;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=179} @ModelPart{m=fallenreaper3;p=maske;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=35;hS=0.3;vS=1.3;size=2} @ModelPart{p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenreaper3;p=head;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenreaper3;p=rightarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenreaper3;p=leftarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenreaper3;p=rightlegbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenreaper3;p=leftlegbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenreaper3;p=h_head;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenreaper3;p=rightarm;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenreaper3;p=leftarm;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenreaper3;p=rightleg;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenreaper3;p=leftleg;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.2;size=0.3;repeat=140;repeatinterval=1} @ModelPart{m=fallenreaper3;p=maske;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=1;hS=0.1;vS=0.2;size=0.2;repeat=140;repeatinterval=1} @ModelPart{m=fallenreaper3;p=eye2;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=3;hS=0.1;vS=0.1;size=0.8;repeat=140;repeatinterval=1} @ModelPart{m=fallenreaper3;p=panza;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.1;size=0.6;repeat=140;repeatinterval=1} @ModelPart{m=fallenreaper3;p=odesparticles1;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#fd99f4;amount=2;hS=0.1;vS=0.1;size=0.6;repeat=140;repeatinterval=1} @ModelPart{m=fallenreaper3;p=odesparticles4;offset=LOCAL;y=0} ~onDeath
+#
+  - SwapModel{modelid=fallenreaper;newmodelid=fallenreaper3} @self ~onDeath
+  - randomskill{s=hurt1freaper,hurt2freaper,hurt3freaper;sync=true} @self ~onDamaged 0.85 #Hurtmechanic
+  - velocity{m=set;x=0;y=0;z=0} @self ~onDamaged
+  - setvariable{var=caster.statueform;value="1";t=integer} @Self ~onSpawn #=====================
+  - skill{s=freaperstcheck3;cooldown=99999;sync=true} @self ~onDamaged 1 #=====================
+  - skill{s=hurtgenfreaper;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - skill{s=hurtgenfreaper2;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIMMSkills
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDamaged 1 #Hurtmechanic SOUND
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDeath 1 
+  - setstance{stance=static} @self ~onSpawn
+  - sound{s=emaginationfallenheroes:custom.fallenhero.death;p=1;v=1} @selflocation ~onDeath 1
+  - sound{s=emaginationfallenreaper:custom.fallenreaper.death;p=1;v=1} @selflocation ~onDeath 1
+  - Aura{auraName=staticfreaper;onTick=freaperstcheck;interval=20;duration=99999} @self ~onSpawn
+  Options:
+    Despawn: false
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.22
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.9
+    PreventSunburn: true
+reaperleapmarker2:
+  Type: silverfish
+  Display: ''
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+  Skills:
+   - jump{velocity=1.2} ~onSpawn
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - pull{velocity=3;repeat=900;repeatinterval=1} @Parent ~onSpawn 0
+   - remove @Self ~onSignal:DIERS
+   - remove @Self ~onTimer:13
+   - potion{type=SLOW_FALLING;duration=1;lvl=0;p=true;force=true;cooldown=10} @Parent ~onSignal:DIERS
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+reaperleapmarker1:
+  Type: silverfish
+  Display: ''
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+  Skills:
+   - jump{velocity=0.8} ~onSpawn
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove @Self ~onTimer:22
+   - potion{type=SLOW_FALLING;duration=1;lvl=0;p=true;force=true;cooldown=10} @Parent ~onSignal:DIERS
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+superslashfreaper:
+  Type: silverfish
+  Display: ''
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - 0 clear
+  Health: 1
+  Faction: FallenHero
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  - PROJECTILE 1
+  Damage: 0
+  KillMessages:
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  - air:5
+  Skills:
+  - model{mid=superslashreaper;s=idle;n=false} @self ~onSpawn 1
+  - remove{delay=30} @self ~onSpawn
+  Options:
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0
+    Interactable: false
+    Collidable: false
+    Invincible: true

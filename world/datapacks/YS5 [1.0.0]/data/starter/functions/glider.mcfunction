@@ -1,0 +1,2 @@
+summon minecraft:donkey ~ ~ ~ {NoGravity:1b,Team:"noname",Tags:["glider"],CustomName:'{"text":"Glider"}',Silent:1b,Motion:[0.0,0.0,0.1],Attributes:[{Name:generic.movement_speed,Base:0.75}]}
+say use wheat to tame!

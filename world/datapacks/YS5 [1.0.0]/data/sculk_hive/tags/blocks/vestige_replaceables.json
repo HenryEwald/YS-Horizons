@@ -1,0 +1,20 @@
+{
+    "replace": false,
+    "values": [
+      "minecraft:stone_bricks",
+      "chiseled_stone_bricks",
+      "stripped_jungle_wood",
+      "jungle_fence",
+      "lantern",
+      "#sculk_hive:air",
+      "torch",
+      "wall_torch",
+      "vine",
+      "lava",
+      "stone_brick_slab",
+      "stone_brick_stairs",
+      "polished_andesite_slab",
+      "chest",
+      "spawner"
+    ]
+  }

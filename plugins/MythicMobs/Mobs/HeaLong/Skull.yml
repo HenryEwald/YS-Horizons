@@ -1,0 +1,38 @@
+Skull:
+  Type: BEE
+  Display: '&aSkull'
+  Health: 100
+  Damage: 5
+  Faction: Undead
+  Options:
+    Invincible: true
+    FollowRange: 40
+    MovementSpeed: 0.2
+    Silent: true
+    PreventOtherDrops: true
+    Anger: 500
+    HasNectar: false
+    KnockbackResistance: 1
+  Modules:
+    ThreatTable: true
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  - PROJECTILE 0
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomFlyt
+  AITargetSelectors:
+  - clear
+  - players
+  - golems
+  Skills:
+  - model{mid=Skull;n=false;d=false} @Self ~onSpawn
+  - sound{s=entity.skeleton.step;v=0.5;p=2} @Self ~onTimer:8
+  - state{mid=Skull;s=walk;li=0;lo=0} @Self ~onSpawn
+  - state{mid=Skull;s=walk} @Self ~onAttack
+  - skill{s=Skull_Spawn} @Self ~onSpawn
+  - skill{s=Skull_Effect} @Self ~onTimer:5
+  - skill{s=Skull_Attack_CancelEvent;sync=true} @Self ~onAttack
+  - skill{s=Skull_Attack_sync} @Self ~onTimer:10
+  - skill{s=Skull_Damage} @Self ~onDespawn

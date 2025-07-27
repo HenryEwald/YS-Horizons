@@ -1,0 +1,40 @@
+worlds: world, other_world
+interactive-blocks:
+- BLAST_FURNACE
+- SMOKER
+multiplier-blocks:
+- IRON_BLOCK
+- LAVA
+- MAGMA_BLOCK
+- FIRE
+- TNT
+block:
+  blast_furnace:
+    recipe:
+    - COAL_ORE
+    - IRON_ORE
+    - GOLD_ORE
+    - LAPIS_ORE
+    - REDSTONE_ORE
+    - DIAMOND_ORE
+    - EMERALD_ORE
+    multiplier: 2
+  smoker:
+    recipe:
+    - CHICKEN
+    - BEEF
+    - RABBIT
+    - PORKCHOP
+    - COD
+    - MUTTON
+    - SALMON
+    multiplier: 2
+multiplier:
+  iron_block: 1.5
+  lava: 2
+  magma_block: 1.75
+  fire: 1.25
+  tnt: 2.5
+options:
+  tnt-explode-chance-per-block: 10
+  multiplier-limit: 5

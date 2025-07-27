@@ -1,0 +1,15 @@
+{
+  "name": "gd:cloud_traders_start",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 1,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/main_ship_2",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    }
+  ]
+}

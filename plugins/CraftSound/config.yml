@@ -1,0 +1,26 @@
+# CraftSound 0.0.3
+# You can add more sound mappings to the sound-mappings section using the same format.
+# Just make sure that the material names and sound names are spelled correctly and match the values in the Material and Sound enums in Bukkit.
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Sound.html
+# Set this to true if you want messages to be printed in the console when a player crafts an item
+console-message: false
+
+# Set the master volume of all sounds (from 0 to 1)
+master-volume: 0.5
+
+# Map item material to sound effect (item: sound volume pitch)
+sound-mappings:
+  DIAMOND_SWORD:
+    sound: ENTITY_PLAYER_ATTACK_SWEEP
+    volume: 0.8
+    pitch: 1.2
+  DIAMOND_PICKAXE:
+    sound: BLOCK_ANVIL_USE
+    volume: 0.5
+    pitch: 0.5
+  DIAMOND_AXE:
+    sound: ENTITY_PLAYER_ATTACK_SWEEP
+    volume: 1.0
+    pitch: 0.8
+
+

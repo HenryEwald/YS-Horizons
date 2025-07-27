@@ -1,0 +1,19 @@
+description:
+- '&a+3% &fDamage'
+targets:
+- melee
+stone:
+  item: ''
+  lore: []
+  recipe: []
+  craftable: false
+  enabled: false
+  name: ''
+effects:
+- args:
+    multiplier: 1.03
+  id: damage_multiplier
+  triggers:
+  - melee_attack
+name: <gradient:#f12711>Sharp</gradient:#f5af19>
+conditions: []

@@ -1,0 +1,271 @@
+soulknight_death:
+    Skills:
+        - effect:sound{s=entity.wither.ambient;v=3;p=0.5} @self
+        - delay 70
+        - effect:particles{particle=end_rod;a=100;hs=2;vs=2;s=0.1} @self
+
+soulknight_spawn:
+    Skills:
+        - gcd{ticks=80} @self
+        - potion{t=slow;l=99;d=80;p=false;icon=false} @self
+
+#===stomp===
+soulknight_stomp:
+    Conditions:
+        - incombat true
+        - offgcd
+        - onground{} true
+    TargetConditions:
+        - distance{d=3to10} true
+    Skills:
+        - gcd{ticks=50} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=1.5} @self
+        - potion{t=slow;l=20;d=25;p=false;icon=false} @self
+        - spin{d=25;v=0} @self
+        - state{s=stomp;sp=1.5} @self
+        - setAI{ai=false} @self
+        - delay 8
+        - summon{type=soulknight_stomp_shockwave;radius=0} @self
+        - delay 10
+        - effect:sound{s=torotoro:toro.weapon.stomp;v=3;p=1} @self
+        - skill{s=soulknight_stomp_damage} @LivingInCone{a=120.0;r=11;rot=0.0}
+        - delay 7
+        - skill{s=soulknight_stomp_cont_sword} @target
+        - setAI{ai=true} @self
+
+soulknight_stomp_damage:
+    Skills:
+        - damage{a=6}
+        - delay 2
+        - potion{t=slow;l=1;d=20;p=false;icon=false}
+
+stomp_shockwave_spawn:
+    Skills:
+        - setAI{ai=false} @self
+        - delay 10
+        - particles{p=reddust;color=#52C8DB;a=10;hs=1;vs=0.1;yOffset=-0.5} @ModelPart{mid=stomp_shockwave;part=lightbeam_close}
+        - effect:particles{p=warped_spore;a=10;vs=0.2;hs=1} @self
+        - particles{p=block;m=soul_sand;a=5;hs=2;vs=0.2;yOffset=-2} @ModelPart{mid=stomp_shockwave;part=lightbeam_close}
+        - delay 4
+        - particles{p=reddust;color=#52C8DB;a=10;hs=2;vs=0.1;yOffset=-0.5} @ModelPart{mid=stomp_shockwave;part=lightbeam_med}
+        - effect:particles{p=warped_spore;a=10;vs=0.2;hs=2} @self
+        - particles{p=block;m=soul_sand;a=8;hs=2;vs=0.2;yOffset=-2} @ModelPart{mid=stomp_shockwave;part=lightbeam_close}
+        - delay 4
+        - particles{p=reddust;color=#52C8DB;a=10;hs=3;vs=0.1;yOffset=-0.5} @ModelPart{mid=stomp_shockwave;part=lightbeam_far}
+        - effect:particles{p=warped_spore;a=10;vs=0.2;hs=3} @self
+        - particles{p=block_crack;m=soul_sand;a=10;hs=2;vs=0.2;yOffset=-2} @ModelPart{mid=stomp_shockwave;part=lightbeam_close}
+        - delay 34
+        - remove @self
+#Sword & Spear combo attack followed by the stomp
+soulknight_stomp_cont_sword:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=88} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=1.5} @self
+        - potion{t=slow;l=20;d=20;p=false;icon=false} @self
+        - spin{d=25;v=0} @self
+        - state{s=stomp_cont} @self
+        - delay 21
+        - skill{s=soulknight_stomp_cont_damage} @LivingInCone{a=90.0;r=13;rot=0.0}
+        - particles{p=reddust;color=#52C8DB;a=10;hs=2;vs=2;repeat=5;repeatInterval=1} @ModelPart{mid=soulknight;part=body}
+        - potion{t=speed;l=40;d=5;p=false;icon=false} @self
+        - delay 5
+        - setai{ai=false} @self
+        - effect:sound{s=torotoro:toro.weapon.swing4;v=3;p=1} @self
+        - delay 12
+        - effect:sound{s=torotoro:toro.weapon.swing2;v=3;p=1} @self
+        - delay 4
+        - effect:sound{s=torotoro:toro.weapon.weaponsmash2;v=3;p=1} @self
+        - totem{ch=1;os=soulknight_stomp_cont_damage2;int=1;hR=3;md=1;yOffset=1} @ModelPart{mid=soulknight;part=spear_tip}
+        - particles{p=reddust;color=#52C8DB;a=70;hs=1;vs=3;yOffset=1} @ModelPart{mid=soulknight;part=spear_tip}
+        - delay 46
+        - setai{ai=true} @self
+
+#Sword damage
+soulknight_stomp_cont_damage:
+    Skills:
+        - delay 2
+        - damage{a=10}
+
+#Spear strike damage
+soulknight_stomp_cont_damage2:
+    Skills:
+        - damage{a=15} @ENO{r=5}
+        - effect:particles{p=block;m=dirt;a=30;hs=4;vs=0.5} @origin
+        - effect:particles{p=reddust;color=#52C8DB;a=70;hs=2;vs=0.6;yOffset=1} @origin
+        - effect:particlering{p=block;m=dirt;a=10;r=1;points=16;hs=0.5;vs=0.5} @origin
+
+#====lunge===
+soulknight_lunge:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=10to20} true
+    Skills:
+        - gcd{ticks=60} @self
+        - state{s=lunge} @self
+        - potion{t=SLOW;d=24;l=99;icon=false;p=false} @self
+        - delay 24
+        - spin{d=20;v=0} @self
+        - lunge{v=1.5;repeat=7;repeatInterval=1} @forward
+        - particles{p=reddust;color=#52C8DB;a=20;hs=1;vs=0.6;;repeat=7;repeatInterval=1;yOffset=1} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=0} @self
+        - delay 8
+        - totem{ch=1;os=soulknight_lunge_damage;int=1;hR=3;md=1;yOffset=1} @forward{f=3}
+        - spin{d=18;v=0} @self
+        - delay 8
+        - skill{s=soulknight_lunge_cont} @target
+
+soulknight_lunge_damage:
+    Skills:
+        - damage{a=8} @ENO{r=5}
+
+#default sword swing after lunge
+soulknight_lunge_cont:
+    TargetConditions:
+        - distance{d=6to15} castInstead soulknight_lunge_spear
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=lunge_cont_sword} @self
+        - potion{t=SLOW;d=10;l=9;icon=false;p=false} @self
+        - lunge{v=0.5} @target
+        - delay 10
+        - spin{d=30;v=0} @self
+        - lunge{v=1;repeat=4;repeatInterval=1} @forward{f=1}
+        - particles{p=reddust;color=#52C8DB;a=20;hs=2;vs=0.6;;repeat=4;repeatInterval=1;yOffset=1} @self
+        - effect:sound{s=torotoro:toro.weapon.swing5;v=3;p=1} @self
+        - skill{s=soulknight_lunge_cont_damage} @LivingInCone{a=90.0;r=10;rot=0.0}
+        - delay 4
+        - potion{t=SLOW;d=26;l=99;icon=false;p=false} @self
+
+soulknight_lunge_cont_damage:
+    Skills:
+        - delay 2
+        - damage{a=6}
+
+#If player get too far, knight will use a leap followed by a spear swing
+soulknight_lunge_spear:
+    Skills:
+        - gcd{ticks=80} @self
+        - state{s=lunge_cont_spear} @self
+        - potion{t=SLOW;d=10;l=99;icon=false;p=false} @self
+        - look{headOnly=false;immediately=true;repeat=9;repeatInterval=1} @Target
+        - delay 14
+        - effect:sound{s=torotoro:toro.weapon.cloth;v=3;p=1.5} @self
+        - particles{p=reddust;color=#52C8DB;a=1;repeat=19;repeatInterval=1} @ModelPart{mid=soulknight;part=spear_tip}
+        - potion{t=SPEED;d=20;l=10;icon=false;p=false} @self
+        - delay 20
+        - effect:sound{s=torotoro:toro.weapon.swing2;v=3;p=1} @self
+        - particles{p=reddust;color=#52C8DB;a=70;hs=3;vs=0.6;yOffset=0.5} @ModelPart{mid=soulknight;part=spear_tip}
+        - delay 2
+        - skill{s=soulknight_lunge_spear_damage} @LivingInCone{a=180.0;r=8;rot=0.0}
+        - potion{t=SLOW;d=26;l=99;icon=false;p=false} @self
+
+soulknight_lunge_spear_damage:
+    Skills:
+        - delay 2
+        - damage{a=8}
+
+#====combo=== sword-sword  or sword-spear
+soulknight_combo:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to7} true
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=combo1_1_sword} @self
+        - potion{t=SLOW;d=10;l=9;icon=false;p=false} @self
+        - spin{d=20;v=0} @self
+        - delay 20
+        - potion{t=SPEED;d=4;l=15;icon=false;p=false} @self
+        - delay 4
+        - particles{p=reddust;color=#52C8DB;a=20;hs=2;vs=0.6;;repeat=4;repeatInterval=1;yOffset=1} @self
+        - effect:sound{s=torotoro:toro.weapon.swing4;v=3;p=1} @self
+        - skill{s=soulknight_combo_1_damage} @LivingInCone{a=120.0;r=6;rot=0.0}
+        - delay 10
+        - randomskill{s=soulknight_combo_2_spear,soulknight_combo_2_sword} @target
+        - potion{t=SLOW;d=10;l=99;icon=false;p=false} @self
+
+soulknight_combo_1_damage:
+    Skills:
+        - delay 2
+        - damage{a=6}
+
+#faster but lower damage
+soulknight_combo_2_sword:
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=combo1_2_sword} @self
+        - potion{t=SLOW;d=9;l=9;icon=false;p=false} @self
+        - spin{d=10;v=0} @self
+        - delay 10
+        - potion{t=SPEED;d=4;l=30;icon=false;p=false} @self
+        - skill{s=soulknight_combo_2_sword_damage} @LivingInCone{a=120.0;r=11;rot=0.0}
+        - delay 4
+        - particles{p=reddust;color=#52C8DB;a=20;hs=2;vs=0.6;;repeat=4;repeatInterval=1;yOffset=1} @self
+        - effect:sound{s=torotoro:toro.weapon.swing5;v=3;p=1} @self
+        - setAI{ai=false} @self
+        - delay 40
+        - setAI{ai=true} @self
+
+soulknight_combo_2_sword_damage:
+    Skills:
+        - delay 2
+        - damage{a=6}
+
+#Spear Slower but higher damage
+soulknight_combo_2_spear:
+    Skills:
+        - gcd{ticks=80} @self
+        - state{s=combo1_2_spear} @self
+        - potion{t=SLOW;d=9;l=9;icon=false;p=false} @self
+        - spin{d=10;v=0} @self
+        - delay 24
+        - potion{t=SPEED;d=4;l=40;icon=false;p=false} @self
+        - skill{s=soulknight_combo_2_sword_damage} @LivingInCone{a=270.0;r=12;rot=0.0}
+        - delay 4
+        - particles{p=reddust;color=#52C8DB;a=100;hs=4;vs=0.6;;repeat=4;repeatInterval=1;yOffset=1} @self
+        - effect:sound{s=torotoro:toro.weapon.swing2;v=3;p=1} @self
+        - setAI{ai=false} @self
+        - delay 52
+        - setAI{ai=true} @self
+
+soulknight_combo_2_spear_damage:
+    Skills:
+        - delay 4
+        - damage{a=10}
+
+#===thrust===
+soulknight_thrust:
+    Cooldown: 8
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=8to14} true
+    Skills:
+        - gcd{ticks=70} @self
+        - state{s=thrust} @self
+        - potion{t=SPEED;d=30;l=5;icon=false;p=false} @self
+        - delay 30
+        - spin{d=40;v=0} @self
+        - potion{t=SPEED;d=4;l=35;icon=false;p=false} @self
+        - skill{s=soulknight_combo_1_damage} @LivingInCone{a=30;r=12;rot=0.0}
+        - delay 4
+        - particles{p=reddust;color=#52C8DB;a=20;hs=2;vs=0.6;;repeat=4;repeatInterval=1;yOffset=1} @self
+        - effect:sound{s=torotoro:toro.weapon.skill;v=3;p=2} @self
+        - effect:sound{s=torotoro:toro.weapon.swing3;v=3;p=2} @self
+        - setAI{ai=false} @self
+        - delay 36
+        - setAI{ai=true} @self
+
+soulknight_thrust_damage:
+    Skills:
+        - delay 2
+        - damage{a=8}

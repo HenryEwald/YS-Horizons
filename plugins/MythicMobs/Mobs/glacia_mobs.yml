@@ -1,0 +1,254 @@
+######## created by samus2002 #########
+
+# Frost Bolt #
+
+Frost_Bolt:
+  Type: ARMOR_STAND
+  ItemHead: glacia_icicle
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=glacia_icicle:4} ~onSpawn
+  - look{headOnly=false;immediately=true} @forward{f=5;y=1.5} ~onSpawn
+  
+# Ice Spike #
+  
+Ice_Spike_Small:
+  Type: ARMOR_STAND
+  ItemHead: glacia_spike_small_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=glacia_spike_small_1:4} ~onSpawn
+  - equip{item=glacia_spike_small_2:4;delay=1} ~onSpawn
+  - equip{item=glacia_spike_small_3:4;delay=2} ~onSpawn
+  - equip{item=glacia_spike_small_4:4;delay=3} ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.ice_spike;volume=0.3;pitch=1} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=15;hS=0.3;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.ice_freeze;volume=0.3;pitch=1;delay=62} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=15;hS=0.3;vS=0.3;y=0.6;speed=0;forwardOffset=0;sideOffset=0;delay=62} @self ~onSpawn
+  - skill{s=Ice_Spike_Small_DAMAGE;delay=2} @EIR{r=2} ~onSpawn
+  - remove{delay=62} @self ~onSpawn
+  
+Ice_Spike_Medium:
+  Type: ARMOR_STAND
+  ItemHead: glacia_spike_medium_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=glacia_spike_medium_1:4} ~onSpawn
+  - equip{item=glacia_spike_medium_2:4;delay=1} ~onSpawn
+  - equip{item=glacia_spike_medium_3:4;delay=2} ~onSpawn
+  - equip{item=glacia_spike_medium_4:4;delay=3} ~onSpawn
+  - equip{item=glacia_spike_medium_5:4;delay=4} ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.ice_spike;volume=0.3;pitch=1} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=20;hS=0.4;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.ice_freeze;volume=0.3;pitch=1;delay=63} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=20;hS=0.4;vS=0.4;y=0.8;speed=0;forwardOffset=0;sideOffset=0;delay=63} @self ~onSpawn
+  - skill{s=Ice_Spike_Medium_DAMAGE;delay=3} @EIR{r=3} ~onSpawn
+  - remove{delay=63} @self ~onSpawn
+  
+Ice_Spike_Small_Summoner:
+  Type: ARMOR_STAND
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - projectile{onTick=Ice_Spike_Small_Summon;onEnd=Ice_Spike_Medium_Summoner;v=15;i=1;hR=1;vR=1;mr=4;hnp=false;hO=0;sE=true;sB=true;hs=true;hfs=0;sfo=-2} @Forward{f=10;y=0} ~onSpawn
+  - remove{delay=10} @self ~onSpawn
+  
+Ice_Spike_Medium_Summoner:
+  Type: ARMOR_STAND
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - projectile{onTick=Ice_Spike_Medium_Summon;onEnd=Ice_Spike_Big_Summoner;v=25;i=1;hR=1;vR=1;mr=3;hnp=false;hO=0;sE=true;sB=true;hs=true;hfs=0;sfo=-2} @Forward{f=10;y=0} ~onSpawn
+  - remove{delay=10} @self ~onSpawn
+  
+Ice_Spike_Big_Summoner:
+  Type: ARMOR_STAND
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - projectile{onTick=Ice_Spike_Big_Summon;v=25;i=1;hR=1;vR=1;mr=3;hnp=false;hO=0;sE=true;sB=true;hs=true;hfs=0;sfo=-2} @Forward{f=10;y=0} ~onSpawn
+  - remove{delay=10} @self ~onSpawn
+  
+
+
+Ice_Spike_Big:
+  Type: ARMOR_STAND
+  ItemHead: glacia_spike_big_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=glacia_spike_big_1:4} ~onSpawn
+  - equip{item=glacia_spike_big_2:4;delay=1} ~onSpawn
+  - equip{item=glacia_spike_big_3:4;delay=2} ~onSpawn
+  - equip{item=glacia_spike_big_4:4;delay=3} ~onSpawn
+  - equip{item=glacia_spike_big_5:4;delay=4} ~onSpawn
+  - equip{item=glacia_spike_big_6:4;delay=5} ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.ice_spike;volume=0.3;pitch=1} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.6;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.ice_freeze;volume=0.3;pitch=1;delay=64} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.6;vS=0.6;y=1;speed=0;forwardOffset=0;sideOffset=0;delay=64} @self ~onSpawn
+  - skill{s=Ice_Spike_Big_DAMAGE;delay=4} @EIR{r=3} ~onSpawn
+  - remove{delay=64} @self ~onSpawn
+  
+# Ice Wall #
+
+Ice_Wall:
+  Type: ARMOR_STAND
+  ItemHead: glacia_wall_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - summon{type=Ice_Wall_DUMMY;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0;y=0;sideOffset=1} ~onSpawn
+  - summon{type=Ice_Wall_DUMMY;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0;y=0;sideOffset=-1} ~onSpawn
+  - summon{type=Ice_Wall_DUMMY;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0;y=0;sideOffset=2} ~onSpawn
+  - summon{type=Ice_Wall_DUMMY;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=0;y=0;sideOffset=-2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=0} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=1} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=0;sideOffset=1} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=1;sideOffset=1} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=2;sideOffset=1} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=0;sideOffset=-1} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=1;sideOffset=-1} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=2;sideOffset=-1} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=0;sideOffset=2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=1;sideOffset=2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=2;sideOffset=2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=0;sideOffset=-2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=1;sideOffset=-2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=2;sideOffset=-2} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=0;sideOffset=3} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=1;sideOffset=3} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=2;sideOffset=3} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=0;sideOffset=-3} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=1;sideOffset=-3} ~onSpawn
+  - skill{s=Air_To_Barrier} @forward{f=0;y=2;sideOffset=-3} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=0} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=1} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=2} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=0;sideOffset=1} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=1;sideOffset=1} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=2;sideOffset=1} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=0;sideOffset=-1} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=1;sideOffset=-1} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=2;sideOffset=-1} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=0;sideOffset=2} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=1;sideOffset=2} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=2;sideOffset=2} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=0;sideOffset=-2} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=1;sideOffset=-2} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=2;sideOffset=-2} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=0;sideOffset=3} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=1;sideOffset=3} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=2;sideOffset=3} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=0;sideOffset=-3} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=1;sideOffset=-3} ~onSpawn
+  - skill{s=Barrier_To_Air;delay=103} @forward{f=0;y=2;sideOffset=-3} ~onSpawn
+  - equip{item=glacia_wall_1:4} ~onSpawn
+  - equip{item=glacia_wall_2:4;delay=1} ~onSpawn
+  - equip{item=glacia_wall_3:4;delay=2} ~onSpawn
+  - equip{item=glacia_wall_4:4;delay=3} ~onSpawn
+  - equip{item=glacia_wall_5:4;delay=4} ~onSpawn
+  - equip{item=glacia_wall_6:4;delay=5} ~onSpawn
+  - equip{item=glacia_wall_7:4;delay=6} ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.wall_erode;volume=0.7;pitch=1} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=2} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=-2} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=4} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=0.1;y=0.1;speed=0;forwardOffset=0;sideOffset=-4} @self ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.ice_break;volume=0.7;pitch=1;delay=106} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=1.2;y=0.6;speed=0;forwardOffset=0;sideOffset=0;delay=106} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=1.2;y=0.6;speed=0;forwardOffset=0;sideOffset=2;delay=106} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=1.2;y=0.6;speed=0;forwardOffset=0;sideOffset=-2;delay=106} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=1.2;y=0.6;speed=0;forwardOffset=0;sideOffset=4;delay=106} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=30;hS=0.7;vS=1.2;y=0.6;speed=0;forwardOffset=0;sideOffset=-4;delay=106} @self ~onSpawn
+  - skill{s=Ice_Wall_DAMAGE;delay=4} @EIR{r=4} ~onSpawn
+  - remove{delay=106} @self ~onSpawn
+  
+Ice_Wall_DUMMY:
+  Type: ARMOR_STAND
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - remove{delay=106} @self ~onSpawn
+  
+# Frost Beam #
+
+Frost_Beam:
+  Type: ARMOR_STAND
+  ItemHead: glacia_ice_circle
+  Options:
+    Marker: false
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=glacia_ice_circle:4} ~onSpawn
+  - effect:particles{particle=redstone;color=#94d4ff;amount=12;hS=0.7;vS=0.7;y=0.7;speed=0;forwardOffset=2;sideOffset=0} @self ~onTimer:10
+  - remove{delay=80} @self ~onSpawn
+  
+# Hailstorm #
+
+Hailstone:
+  Type: ARMOR_STAND
+  ItemHead: glacia_hail
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=glacia_hail:4} ~onSpawn
+  - effect:sound{s=glacia_sounds:samus.wall_erode;volume=1;pitch=1} @self ~onSpawn
+  - effect:particles{particle=block_crack;m=ICE;amount=40;hS=0.5;vS=1.3;y=0.6;speed=0;forwardOffset=0;sideOffset=0} @self ~onSpawn
+  
+  
+Hailstorm_Circle:
+  Type: ARMOR_STAND
+  ItemHead: glacia_ice_circle_hail
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=glacia_ice_circle_hail:4} ~onSpawn
+  - effect:particles{particle=redstone;color=#94d4ff;amount=20;hS=0.7;vS=0.2;y=1;speed=0;forwardOffset=0;sideOffset=0} @self ~onTimer:10
+  - skill{s=Hailstorm_PRO} ~onSpawn
+  - remove{delay=80} @self ~onSpawn
+  
+  
+  
+  
+  

@@ -1,0 +1,454 @@
+#_______________________________________________________________________________
+#
+#-------------------------------+ INFORMATION +--------------------------------#
+#_______________________________________________________________________________
+
+# File: DP-SPAWNS
+
+# Created by: Buguser
+# Version: 1.5.0
+# Server Version: Paper - 1.19
+# Hard-Dependencies:
+# - MythicMobs (tested in v5.1.2)
+
+# Join my Discord-Server for support: https://discord.gg/z6A4dk25BC
+
+#_______________________________________________________________________________
+#
+#--------------------------------+ ORC SPAWNS +--------------------------------#
+#_______________________________________________________________________________
+
+### 1. Orcling
+BUG_DP_Orcling:
+  Action: REPLACE
+  Type: BUG_DP_Orcling
+  #Level: x
+  Chance: 0.17
+  Priority: 1
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=ZOMBIE,ZOMBIE_VILLAGER,HUSK,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 2. Orc Knight
+BUG_DP_Orc-Knight:
+  Action: REPLACE
+  Type: BUG_DP_Orc-Knight
+  #Level: x
+  Chance: 0.09
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=ZOMBIE,ZOMBIE_VILLAGER,HUSK,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 3. Orc Archer
+BUG_DP_Orc-Archer:
+  Action: REPLACE
+  Type: BUG_DP_Orc-Archer
+  #Level: x
+  Chance: 0.06
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=ZOMBIE,ZOMBIE_VILLAGER,HUSK,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 4. Orc Drummer
+BUG_DP_Orc-Drummer:
+  Action: REPLACE
+  Type: BUG_DP_Orc-Drummer
+  #Level: x
+  Chance: 0.01
+  Priority: 3
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=ZOMBIE,ZOMBIE_VILLAGER,HUSK,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 5. Orc War Mage
+BUG_DP_Orc-War-Mage:
+  Action: REPLACE
+  Type: BUG_DP_Orc-War-Mage
+  #Level: x
+  Chance: 0.03
+  Priority: 4
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=ZOMBIE,ZOMBIE_VILLAGER,HUSK,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 6. Orc Axe Thrower
+BUG_DP_Orc-Axe-Thrower:
+  Action: REPLACE
+  Type: BUG_DP_Orc-Axe-Thrower
+  #Level: x
+  Chance: 0.05
+  Priority: 3
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=ZOMBIE,ZOMBIE_VILLAGER,HUSK,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+#_______________________________________________________________________________
+#
+#-------------------------------+ WRAITH SPAWNS +------------------------------#
+#_______________________________________________________________________________
+
+### 1. Wraith Servant
+BUG_DP_Wraith-Servant:
+  Action: REPLACE
+  Type: BUG_DP_Wraith-Servant
+  #Level: x
+  Chance: 0.15
+  Priority: 1
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=SKELETON,STRAY,ENDERMAN,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 2. Wraith Warrior
+BUG_DP_Wraith-Warrior:
+  Action: REPLACE
+  Type: BUG_DP_Wraith-Warrior
+  #Level: x
+  Chance: 0.09
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=SKELETON,STRAY,ENDERMAN,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 3. Wraith Archer
+BUG_DP_Wraith-Archer:
+  Action: REPLACE
+  Type: BUG_DP_Wraith-Archer
+  #Level: x
+  Chance: 0.05
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=SKELETON,STRAY,ENDERMAN,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 4. Wraith Sprinter
+BUG_DP_Wraith-Sprinter:
+  Action: REPLACE
+  Type: BUG_DP_Wraith-Sprinter
+  #Level: x
+  Chance: 0.05
+  Priority: 3
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=SKELETON,STRAY,ENDERMAN,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 5. Wraith Interceptor
+BUG_DP_Wraith-Interceptor:
+  Action: REPLACE
+  Type: BUG_DP_Wraith-Interceptor
+  #Level: x
+  Chance: 0.02
+  Priority: 4
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=SKELETON,STRAY,ENDERMAN,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 6. Wraith Exploder
+BUG_DP_Wraith-Exploder:
+  Action: REPLACE
+  Type: BUG_DP_Wraith-Exploder
+  #Level: x
+  Chance: 0.07
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=SKELETON,STRAY,ENDERMAN,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+#_______________________________________________________________________________
+#
+#-------------------------------+ SPIDER SPAWNS +------------------------------#
+#_______________________________________________________________________________
+
+### 1. Spiderling Poison
+BUG_DP_Spiderling-Poison:
+  Action: REPLACE
+  Type: BUG_DP_Spiderling-Poison
+  #Level: x
+  Chance: 0.07
+  Priority: 1
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: BIRCH_FOREST,BIRCH_FOREST_HILLS,DARK_FOREST,DARK_FOREST_HILLS,FLOWER_FOREST,FOREST,GIANT_SPRUCE_TAIGA,GIANT_SPRUCE_TAIGA_HILLS,GIANT_TREE_TAIGA,GIANT_TREE_TAIGA_HILLS,JUNGLE,JUNGLE_EDGE,JUNGLE_HILLS,MODIFIED_JUNGLE,MODIFIED_JUNGLE_EDGE,TAIGA,TAIGA_HILLS,TAIGA_MOUNTAINS,TALL_BIRCH_FOREST,TALL_BIRCH_HILLS,WOODED_BADLANDS_PLATEAU,WOODED_HILLS,WOODED_MOUNTAINS
+  Reason: NATURAL
+
+### 2. Spiderling Wither
+BUG_DP_Spiderling-Wither:
+  Action: REPLACE
+  Type: BUG_DP_Spiderling-Wither
+  #Level: x
+  Chance: 0.07
+  Priority: 1
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 3. Spiderling Frost
+BUG_DP_Spiderling-Frost:
+  Action: REPLACE
+  Type: BUG_DP_Spiderling-Frost
+  #Level: x
+  Chance: 0.07
+  Priority: 1
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: COLD_OCEAN,DEEP_COLD_OCEAN,DEEP_FROZEN_OCEAN,FROZEN_OCEAN,FROZEN_RIVER,ICE_SPIKES,SNOWY_BEACH,SNOWY_MOUNTAINS,SNOWY_TAIGA,SNOWY_TAIGA_HILLS,SNOWY_TAIGA_MOUNTAINS,SNOWY_TUNDRA
+  Reason: NATURAL
+
+### 4. Spiderling Fire
+BUG_DP_Spiderling-Fire:
+  Action: REPLACE
+  Type: BUG_DP_Spiderling-Fire
+  #Level: x
+  Chance: 0.07
+  Priority: 1
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: DESERT,DESERT_HILLS,DESERT_LAKES,SAVANNA,SAVANNA_PLATEAU,SHATTERED_SAVANNA,SHATTERED_SAVANNA_PLATEAU,BADLANDS,BADLANDS_PLATEAU,ERODED_BADLANDS,MODIFIED_BADLANDS_PLATEAU,MODIFIED_WOODED_BADLANDS_PLATEAU,WOODED_BADLANDS_PLATEAU
+  Reason: NATURAL
+
+### 5. Spider Poison
+BUG_DP_Spider-Poison:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Poison
+  #Level: x
+  Chance: 0.07
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: BIRCH_FOREST,BIRCH_FOREST_HILLS,DARK_FOREST,DARK_FOREST_HILLS,FLOWER_FOREST,FOREST,GIANT_SPRUCE_TAIGA,GIANT_SPRUCE_TAIGA_HILLS,GIANT_TREE_TAIGA,GIANT_TREE_TAIGA_HILLS,JUNGLE,JUNGLE_EDGE,JUNGLE_HILLS,MODIFIED_JUNGLE,MODIFIED_JUNGLE_EDGE,TAIGA,TAIGA_HILLS,TAIGA_MOUNTAINS,TALL_BIRCH_FOREST,TALL_BIRCH_HILLS,WOODED_BADLANDS_PLATEAU,WOODED_HILLS,WOODED_MOUNTAINS
+  Reason: NATURAL
+
+### 6. Spider Wither
+BUG_DP_Spider-Wither:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Wither
+  #Level: x
+  Chance: 0.07
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 7. Spider Frost
+BUG_DP_Spider-Frost:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Frost
+  #Level: x
+  Chance: 0.07
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: COLD_OCEAN,DEEP_COLD_OCEAN,DEEP_FROZEN_OCEAN,FROZEN_OCEAN,FROZEN_RIVER,ICE_SPIKES,SNOWY_BEACH,SNOWY_MOUNTAINS,SNOWY_TAIGA,SNOWY_TAIGA_HILLS,SNOWY_TAIGA_MOUNTAINS,SNOWY_TUNDRA
+  Reason: NATURAL
+
+### 8. Spider Fire
+BUG_DP_Spider-Fire:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Fire
+  #Level: x
+  Chance: 0.07
+  Priority: 2
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: DESERT,DESERT_HILLS,DESERT_LAKES,SAVANNA,SAVANNA_PLATEAU,SHATTERED_SAVANNA,SHATTERED_SAVANNA_PLATEAU,BADLANDS,BADLANDS_PLATEAU,ERODED_BADLANDS,MODIFIED_BADLANDS_PLATEAU,MODIFIED_WOODED_BADLANDS_PLATEAU,WOODED_BADLANDS_PLATEAU
+  Reason: NATURAL
+
+### 9. Spider Egg Poison
+BUG_DP_Spider-Egg-Poison:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Egg-Poison
+  #Level: x
+  Chance: 0.01
+  Priority: 3
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: BIRCH_FOREST,BIRCH_FOREST_HILLS,DARK_FOREST,DARK_FOREST_HILLS,FLOWER_FOREST,FOREST,GIANT_SPRUCE_TAIGA,GIANT_SPRUCE_TAIGA_HILLS,GIANT_TREE_TAIGA,GIANT_TREE_TAIGA_HILLS,JUNGLE,JUNGLE_EDGE,JUNGLE_HILLS,MODIFIED_JUNGLE,MODIFIED_JUNGLE_EDGE,TAIGA,TAIGA_HILLS,TAIGA_MOUNTAINS,TALL_BIRCH_FOREST,TALL_BIRCH_HILLS,WOODED_BADLANDS_PLATEAU,WOODED_HILLS,WOODED_MOUNTAINS
+  Reason: NATURAL
+
+### 10. Spider Egg Wither
+BUG_DP_Spider-Egg-Wither:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Egg-Wither
+  #Level: x
+  Chance: 0.01
+  Priority: 3
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  #Biomes:
+  Reason: NATURAL
+
+### 11. Spider Egg Frost
+BUG_DP_Spider-Egg-Frost:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Egg-Frost
+  #Level: x
+  Chance: 0.01
+  Priority: 3
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: COLD_OCEAN,DEEP_COLD_OCEAN,DEEP_FROZEN_OCEAN,FROZEN_OCEAN,FROZEN_RIVER,ICE_SPIKES,SNOWY_BEACH,SNOWY_MOUNTAINS,SNOWY_TAIGA,SNOWY_TAIGA_HILLS,SNOWY_TAIGA_MOUNTAINS,SNOWY_TUNDRA
+  Reason: NATURAL
+
+### 12. Spider Egg Fire
+BUG_DP_Spider-Egg-Fire:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Egg-Fire
+  #Level: x
+  Chance: 0.01
+  Priority: 3
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: DESERT,DESERT_HILLS,DESERT_LAKES,SAVANNA,SAVANNA_PLATEAU,SHATTERED_SAVANNA,SHATTERED_SAVANNA_PLATEAU,BADLANDS,BADLANDS_PLATEAU,ERODED_BADLANDS,MODIFIED_BADLANDS_PLATEAU,MODIFIED_WOODED_BADLANDS_PLATEAU,WOODED_BADLANDS_PLATEAU
+  Reason: NATURAL
+
+### 13. Spider Egg Random
+BUG_DP_Spider-Egg-Random:
+  Action: REPLACE
+  Type: BUG_DP_Spider-Egg-Random
+  #Level: x
+  Chance: 0.01
+  Priority: 4
+  UseWorldScaling: false
+  Conditions:
+  - entitytype{types=CAVE_SPIDER,SPIDER,CREEPER} true
+  - height{h=<63} true
+  - lightlevel{l=0to7}
+  - inside true
+  Worlds: world
+  Biomes: FLOWER_FOREST,ICE_SPIKES,MUSHROOM_FIELD_SHORE,MUSHROOM_FIELDS,SUNFLOWER_PLAINS
+  Reason: NATURAL

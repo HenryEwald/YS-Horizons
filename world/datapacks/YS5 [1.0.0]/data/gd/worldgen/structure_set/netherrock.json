@@ -1,0 +1,15 @@
+{
+  
+  "structures": [
+    {
+      "structure": "gd:netherrock",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 140,
+    "separation": 135,
+    "salt": 491633322
+  }
+}

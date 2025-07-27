@@ -1,0 +1,59 @@
+xiddri_rolling_knockback:
+    Skills:
+        - delay 1
+        - throw{v=5}
+
+xiddri_roll_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=16;vy=4}
+
+xiddri_quick_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=7;vy=3}
+
+xiddri_heavy_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=12;vy=6}
+
+xiddri_jump_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=6;vy=10}
+
+xiddri_origin_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=18;vy=4}
+
+xiddri_roar_knockback:
+    Skills:
+        - delay 1
+        - throw{v=18;vy=4}
+
+xiddri_charge_knockback:
+    Skills:
+        - delay 1
+        - throw{v=12;vy=4}
+
+xiddri_tail_strike_knockback:
+    Skills:
+        - delay 1
+        - throw{v=3;vy=7}
+
+xiddri_tail_shock_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=3;vy=5}
+
+xiddri_tail_shock_knockback:
+    Skills:
+        - delay 1
+        - throw{v=12;vy=4}
+
+xiddri_claw_knockback:
+    Skills:
+        - delay 1
+        - throw{v=7;vy=3}

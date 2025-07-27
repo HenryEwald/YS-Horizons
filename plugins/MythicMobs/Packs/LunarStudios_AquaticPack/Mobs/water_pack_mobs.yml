@@ -1,0 +1,595 @@
+Crab:
+  Type: husk
+  Display: "&6Crab"
+  Health: 7
+  Damage: 0
+  Armor: 0
+  Faction: animals
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  AITargetSelectors:
+  - clear
+  - attacker
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0.2
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+  Drops:
+  - exp 3-8 1
+  Skills:
+  
+  - model{mid=crab;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.as;value=0} @Self ~onSpawn
+  - setVariable{var=caster.dance;value=0} @Self ~onSpawn
+  
+  - skill{s=Crab_Attack} @self ~onAttack
+  - skill{S=Cancel_Attack;sync=true} @self ~onAttack
+  
+  - effect:sound{s=entity.turtle.hurt;v=7.0;pitch=2} @PIR{r=16} ~onDamaged
+  
+  - effect:sound{s=entity.turtle.death;v=7.0;pitch=2} @PIR{r=16} ~onDeath
+  
+  - skill{s=Crab_Dance} @trigger ~onInteract
+  
+  - dropitem{i=crab_claw;delay=30} @self ~onDeath 0.3
+  - dropitem{i=crab_claw;delay=30} @self ~onDeath 0.3
+  
+  
+Piranha:
+  Type: COD
+  Display: "&4Piranha"
+  Health: 12
+  Damage: 4
+  Armor: 0
+  Faction: angry_animals
+  AIGoalSelectors:
+  - meleeattack
+  AITargetSelectors:
+  - players
+  - leapattarget
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 1.4
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.6
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 5-12 1
+  Skills:
+  
+  - model{mid=piranha;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.target;value=1} @Self ~onSpawn
+  - setVariable{var=caster.as;value=0} @Self ~onSpawn
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{S=Piranha_Attack} @self ~onTimer:40
+  
+  - skill{s=Piranha_In_Water} @self ~onTimer:1
+  - skill{s=Piranha_On_Land} @self ~onTimer:1
+  
+  - skill{s=Piranha_Target} @self ~onTimer:5
+  
+  - skill{s=Piranha_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Piranha_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Piranha_On_Land_Death} @self ~onTimer:10
+  
+  - dropitem{i=cod;delay=25} @self ~onDeath
+  
+  - dropitem{i=bone;delay=25} @self ~onDeath 0.5
+  - dropitem{i=bone;delay=25} @self ~onDeath 0.5
+  - dropitem{i=bone;delay=25} @self ~onDeath 0.5
+  
+  - dropitem{i=kelp;delay=25} @self ~onDeath 0.45
+  - dropitem{i=kelp;delay=25} @self ~onDeath 0.25
+  - dropitem{i=kelp;delay=25} @self ~onDeath 0.25
+  
+ 
+
+Rusty_Anchor_Spawn:
+  Type: IRON_GOLEM
+  Display: "&3Anchor"
+  Health: 2000
+  Damage: 0
+  Armor: 0
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.6
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{mid=anchor;n=false;mt=true;ko=true;damagetint=true;lp=true;ly=true} @Self ~onSpawn
+  - setVariable{var=caster.place;value=0} @Self ~onSpawn
+  - skill{s=Spawn_Anchor_AI} @self ~onTimer:3
+  - skill{s=Spawn_Anchor_AI_2} @self ~onTimer:6
+  - skill{s=Anchor_Pickup} @trigger ~onInteract
+
+Rusty_Anchor:
+  Type: IRON_GOLEM
+  Display: "&3Anchor"
+  Health: 2000
+  Damage: 0
+  Armor: 0
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.6
+    Invincible: true
+    Collidable: false
+  Skills:
+  - model{mid=anchor;n=false;mt=true;ko=true;damagetint=true;lp=true;ly=true} @Self ~onSpawn
+  - setVariable{var=caster.place;value=0} @Self ~onSpawn
+  - skill{s=Anchor_AI} @self ~onTimer:3
+  - skill{s=Anchor_AI_2} @self ~onTimer:6
+  
+  - skill{s=Anchor_Pickup} @trigger ~onInteract
+  
+Rusty_Anchor_Throw:
+  Type: HUSK
+  Display: "&3Anchor"
+  Health: 2000
+  Damage: 0
+  Armor: 0
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.6
+    Invincible: true
+    NoAI: true
+    Collidable: false
+  Skills:
+  - model{mid=anchor_throw;n=false;ko=true;damagetint=true} @Self ~onSpawn
+  
+  
+  
+  
+Swordfish:
+  Type: salmon
+  Display: "&9Swordfish"
+  Health: 30
+  Damage: 4
+  Armor: 0
+  Faction: angry_animals
+  AIGoalSelectors:
+  - meleeattack
+  AITargetSelectors:
+  - players
+  - leapattarget
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 2
+    FollowRange: 64
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.7
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 10-20 1
+  Skills:
+  
+  - model{mid=swordfish;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.target;value=1} @Self ~onSpawn
+  - setVariable{var=caster.as;value=0} @Self ~onSpawn
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{S=Swordfish_Attack} @self ~onTimer:40
+  
+  - skill{s=Swordfish_In_Water} @self ~onTimer:1
+  - skill{s=Swordfish_On_Land} @self ~onTimer:1
+  
+  - skill{s=Swordfish_Target} @self ~onTimer:5
+  
+  - skill{s=Swordfish_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Swordfish_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Swordfish_On_Land_Death} @self ~onTimer:10
+  
+  - dropitem{i=cod;delay=25} @self ~onDeath
+  
+  - dropitem{i=swordfish_nose;delay=25} @self ~onDeath 0.2
+
+Seahorse_Blue:
+  Type: cod
+  Display: "&9Blue Seahorse"
+  Health: 4
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0.7
+    FollowRange: 64
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.7
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 1-2 1
+  Skills:
+  
+  - model{mid=seahorse_blue;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Seahorse_Blue_In_Water} @self ~onTimer:1
+  - skill{s=Seahorse_Blue_On_Land} @self ~onTimer:1
+  
+  - skill{s=Seahorse_Blue_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Seahorse_Blue_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Seahorse_Blue_On_Land_Death} @self ~onTimer:7
+  
+  - skill{s=Seahorse_Run_Away} @self ~onDamaged
+  
+  - dropitem{i=kelp;delay=25} @self ~onDeath 0.45
+  
+  
+  
+Seahorse_Pink:
+  Type: cod
+  Display: "&dPink Seahorse"
+  Health: 4
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0.7
+    FollowRange: 64
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.7
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 1-2 1
+  Skills:
+  
+  - model{mid=seahorse_pink;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Seahorse_Pink_In_Water} @self ~onTimer:1
+  - skill{s=Seahorse_Pink_On_Land} @self ~onTimer:1
+  
+  - skill{s=Seahorse_Pink_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Seahorse_Pink_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Seahorse_Pink_On_Land_Death} @self ~onTimer:7
+  
+  - skill{s=Seahorse_Run_Away} @self ~onDamaged
+  
+  - dropitem{i=kelp;delay=25} @self ~onDeath 0.45
+  
+  
+  
+Seahorse_Green:
+  Type: cod
+  Display: "&aGreen Seahorse"
+  Health: 4
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0.7
+    FollowRange: 64
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.7
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 1-2 1
+  Skills:
+  
+  - model{mid=seahorse_green;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Seahorse_Green_In_Water} @self ~onTimer:1
+  - skill{s=Seahorse_Green_On_Land} @self ~onTimer:1
+  
+  - skill{s=Seahorse_Green_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Seahorse_Green_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Seahorse_Green_On_Land_Death} @self ~onTimer:7
+  
+  - skill{s=Seahorse_Run_Away} @self ~onDamaged
+  
+  - dropitem{i=kelp;delay=25} @self ~onDeath 0.45
+  
+  
+Seahorse_Yellow:
+  Type: cod
+  Display: "&eYellow Seahorse"
+  Health: 4
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0.7
+    FollowRange: 64
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.7
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 1-2 1
+  Skills:
+  
+  - model{mid=seahorse_yellow;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Seahorse_Yellow_In_Water} @self ~onTimer:1
+  - skill{s=Seahorse_Yellow_On_Land} @self ~onTimer:1
+  
+  - skill{s=Seahorse_Yellow_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Seahorse_Yellow_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Seahorse_Yellow_On_Land_Death} @self ~onTimer:7
+  
+  - skill{s=Seahorse_Run_Away} @self ~onDamaged
+  
+  - dropitem{i=kelp;delay=25} @self ~onDeath 0.45
+  
+  
+  
+  
+  
+  
+  
+Jellyfish_Blue:
+  Type: SALMON
+  Display: "&bBlue Jellyfish"
+  Health: 10
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.4
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 3-4 1
+  Skills:
+  
+  - model{mid=jellyfish_blue;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Jellyfish_Blue_In_Water} @self ~onTimer:1
+  - skill{s=Jellyfish_Blue_On_Land} @self ~onTimer:1
+  
+  - skill{s=Jellyfish_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Jellyfish_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Jellyfish_On_Land_Death} @self ~onTimer:15
+  
+  - skill{s=Jellyfish_Damaged} @self ~onDamaged
+  - skill{s=Jellyfish_Attack} @self ~onTimer:40
+  
+  - skill{s=Jellyfish_Blue_Move} @self ~onTimer:96
+  
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+  
+  
+  
+  
+Jellyfish_Pink:
+  Type: SALMON
+  Display: "&dPink Jellyfish"
+  Health: 10
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.4
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 3-4 1
+  Skills:
+  
+  - model{mid=jellyfish_pink;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Jellyfish_Pink_In_Water} @self ~onTimer:1
+  - skill{s=Jellyfish_Pink_On_Land} @self ~onTimer:1
+  
+  - skill{s=Jellyfish_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Jellyfish_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Jellyfish_On_Land_Death} @self ~onTimer:15
+  
+  - skill{s=Jellyfish_Damaged} @self ~onDamaged
+  - skill{s=Jellyfish_Attack} @self ~onTimer:40
+  
+  - skill{s=Jellyfish_Pink_Move} @self ~onTimer:96
+  
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+  
+  
+  
+  
+  
+  
+Jellyfish_Green:
+  Type: SALMON
+  Display: "&aGreen Jellyfish"
+  Health: 10
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.4
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 3-4 1
+  Skills:
+  
+  - model{mid=jellyfish_green;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Jellyfish_Green_In_Water} @self ~onTimer:1
+  - skill{s=Jellyfish_Green_On_Land} @self ~onTimer:1
+  
+  - skill{s=Jellyfish_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Jellyfish_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Jellyfish_On_Land_Death} @self ~onTimer:15
+  
+  - skill{s=Jellyfish_Damaged} @self ~onDamaged
+  - skill{s=Jellyfish_Attack} @self ~onTimer:40
+  
+  - skill{s=Jellyfish_Green_Move} @self ~onTimer:96
+  
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+
+  
+  
+Jellyfish_Yellow:
+  Type: SALMON
+  Display: "&eYellow Jellyfish"
+  Health: 10
+  Damage: 0
+  Armor: 0
+  Faction: peace_animals
+  Options:
+    AlwaysShowName: false
+    MovementSpeed: 0
+    FollowRange: 32
+    Silent: true
+    Despawn: true
+    PreventOtherDrops: true
+    PreventMobKillDrops: true
+    KnockbackResistance: 0.4
+  DamageModifiers:
+  - DROWNING -1
+  Modules:
+    ThreatTable: true
+  Drops:
+  - exp 3-4 1
+  Skills:
+  
+  - model{mid=jellyfish_yellow;n=false;mt=true;ko=true;damagetint=true} @Self ~onSpawn
+  
+  - setVariable{var=caster.land;value=0} @Self ~onSpawn
+  - setVariable{var=caster.death;value=0} @Self ~onSpawn
+  
+  - skill{s=Jellyfish_Yellow_In_Water} @self ~onTimer:1
+  - skill{s=Jellyfish_Yellow_On_Land} @self ~onTimer:1
+  
+  - skill{s=Jellyfish_On_Land_Sound} @self ~onTimer:10
+  - skill{s=Jellyfish_On_Land_Death_Count} @self ~onTimer:5
+  - skill{s=Jellyfish_On_Land_Death} @self ~onTimer:15
+  
+  - skill{s=Jellyfish_Damaged} @self ~onDamaged
+  - skill{s=Jellyfish_Attack} @self ~onTimer:40
+  
+  - skill{s=Jellyfish_Yellow_Move} @self ~onTimer:96
+  
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+  - dropitem{i=slime_ball;delay=25} @self ~onDeath 0.45
+  

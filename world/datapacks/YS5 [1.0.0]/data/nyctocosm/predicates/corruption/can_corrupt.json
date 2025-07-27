@@ -1,0 +1,17 @@
+[
+  {
+    "condition": "minecraft:entity_scores",
+    "entity": "this",
+    "scores": {
+      "sculk.corruption.cooldown": 0
+    }
+  },
+  {
+    "condition": "minecraft:reference",
+    "name": "nyctocosm:has_healthbar"
+  },
+  {
+    "condition": "minecraft:reference",
+    "name": "nyctocosm:in_the_otherside"
+  }
+]

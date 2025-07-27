@@ -1,0 +1,59 @@
+######## created by samus2002 #########
+
+# Amethyst Pierce #
+
+Amethyst_Pierce:
+  Skills:
+  - effect:sound{s=amethyst_sounds:samus.spear_pierce;volume=0.8;pitch=1;delay=1} @self
+  - totem{md=2;c=1;oH=Amethyst_Pierce_DAMAGE;hnp=true;hp=true;hR=1;vR=1;i=1} @forward{f=2}
+  - summon{type=Amethyst_Pierce;amount=1;radius=0;yRadius=0;onSurface=true} @forward{f=5;y=0.3}
+
+Amethyst_Pierce_DAMAGE:
+  Skills:
+  - damage{a=3;pkb=false;hnp=false;hp=true}
+  
+# Shooting Star #
+
+Shooting_Star:
+  Cooldown: 0
+  Skills:
+  - effect:sound{s=amethyst_sounds:samus.shooting_star;volume=1;pitch=1} @self
+  - projectile{bulletType=MOB;mob=Shooting_Star;onTick=Shooting_Star_Tick;onEnd=Shooting_Star_End;onHit=Shooting_Star_Hit;v=15;i=1;hR=1;vR=1;mr=20;hnp=true;hO=0;sE=true;hs=false;hfs=0;sfo=0;syo=4;tyo=0;delay=13} @Forward{f=5;y=0}
+
+Shooting_Star_Tick:
+  Skills:
+  - effect:particlesphere{particle=redstone;color=#8d6acc;amount=7;radius=0.5} @origin
+  - effect:particlesphere{particle=redstone;color=#fcedff;amount=7;radius=0.5} @origin
+  - effect:particlesphere{particle=end_rod;amount=10;radius=0.5} @origin
+  
+Shooting_Star_Hit:
+  Skills:
+  - damage{a=5} @EntitiesNearOrigin{r=4}
+  - effect:particles{particle=explosion_huge;amount=1;hS=0;vS=0;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=redstone;color=#8d6acc;amount=25;hS=2;vS=2;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=redstone;color=#fcedff;amount=25;hS=2;vS=2;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=end_rod;amount=10;hS=2;vS=2;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:sound{s=amethyst_sounds:samus.shooting_star_explosion;volume=1;pitch=1.1} @origin
+  
+Shooting_Star_End:
+  Skills:
+  - damage{a=5} @EntitiesNearOrigin{r=4}
+  - effect:particles{particle=explosion_huge;amount=1;hS=0;vS=0;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=redstone;color=#8d6acc;amount=25;hS=2;vS=2;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=redstone;color=#fcedff;amount=25;hS=2;vS=2;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:particles{particle=end_rod;amount=10;hS=2;vS=2;speed=0;forwardOffset=0;sideOffset=0} @origin
+  - effect:sound{s=amethyst_sounds:samus.shooting_star_explosion;volume=1;pitch=1.1} @origin
+  
+# Amethyst Sparkle #
+
+Amethyst_Sparkle:
+  Cooldown: 0
+  Skills:
+  - effect:sound{s=amethyst_sounds:samus.amethyst_sparkle;volume=1;pitch=1} @self
+  - damage{a=3} @EIR{r=6}
+  - potion{type=BLINDNESS;duration=80;level=0;hasParticles=false} @EIR{r=6}
+  - effect:particles{particle=redstone;color=#8d6acc;amount=80;hS=3;vS=2;speed=0;forwardOffset=0;sideOffset=0;repeat=5;repeatinterval=1} @self
+  - effect:particles{particle=redstone;color=#fcedff;amount=80;hS=3;vS=2;speed=0;forwardOffset=0;sideOffset=0;repeat=5;repeatinterval=1} @self
+  - effect:particles{particle=end_rod;amount=10;hS=3;vS=2;speed=0;forwardOffset=0;sideOffset=0;repeat=5;repeatinterval=1} @self
+  
+  

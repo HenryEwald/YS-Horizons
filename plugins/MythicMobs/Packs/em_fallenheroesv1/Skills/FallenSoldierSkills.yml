@@ -1,0 +1,198 @@
+#fsoldierA ________________________________________ ========================================  F A L L E N    H E R O E S
+hurt1fsoldierA:
+  Cooldown: 2
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - variableadd{var=caster.combor;amount=1} @self
+  - setstance{stance=casting} @self
+  - state{state=hurt1;li=2;lo=2;n=false;speed=1} @self
+  - sound{s=emaginationfallensoldier:custom.fallensoldier.hurt;p=1;v=1} @selflocation
+  - potion{type=SLOW;duration=20;level=0;p=false;force=true} @Self
+  - delay 15
+  - setstance{stance=normal} @self
+hurt2fsoldierA:
+  Cooldown: 2
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - variableadd{var=caster.combor;amount=1} @self
+  - setstance{stance=casting} @self
+  - state{state=hurt2;li=2;lo=2;n=false;speed=1} @self
+  - sound{s=emaginationfallensoldier:custom.fallensoldier.hurt;p=1;v=1} @selflocation
+  - potion{type=SLOW;duration=20;level=0;p=false;force=true} @Self
+  - delay 15
+  - setstance{stance=normal} @self
+hurt3fsoldierA:
+  Cooldown: 2
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - variableadd{var=caster.combor;amount=1} @self
+  - setstance{stance=casting} @self
+  - state{state=hurt3;li=2;lo=2;n=false;speed=1} @self
+  - sound{s=emaginationfallensoldier:custom.fallensoldier.hurt;p=1;v=1} @selflocation
+  - potion{type=SLOW;duration=20;level=0;p=false;force=true} @Self
+  - delay 15
+  - setstance{stance=normal} @self
+cancelatackfallen: # ATTACK EVENTS
+  Skills:
+  - CancelEvent
+meleefsoldierAtrigger:
+  Cooldown: 1
+  TargetConditions:
+  - fieldofview{angle=50} true
+  - distance{d=0to2.5} true
+  Conditions:
+  - incombat true
+  - variableEquals{var=caster.comboa;value="1"} castinstead attack2fsoldierA
+  - variableEquals{var=caster.comboa;value="2"} castinstead attack3fsoldierATrigger
+  Skills:
+  - randomskill{s=attack1fsoldierA,attack2fsoldierA;sync=true} @Target
+reducestacksfsoldierA:
+  Cooldown: 3
+  Conditions:
+  - incombat true
+  - stance{s=casting} false
+  - stance{s=normal} true
+  TargetConditions:
+  - distance{d=>3} true
+  Skills:
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self
+attack3fsoldierATrigger:
+  Skills:
+  - randomskill{s=attack3fsoldierA,attack3bfsoldierA;sync=true} @Target
+attack1fsoldierA:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.comboa;value="1"} castinstead attack2fsoldierA
+  - variableEquals{var=caster.comboa;value="2"} castinstead attack3fsoldierATrigger
+  TargetConditions:
+  - distance{d=0to3.6} true
+  Skills:
+  - state{remove=true;s=attack3;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=attack3b;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=land1;lo=1;n=false;frame=0} @self
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack1;li=2;lo=6;n=false;speed=1.4} @self
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0;vS=0;size=0.5;repeat=15;repeatinterval=1} @ModelPart{m=fallensoldier;p=swordparticles1;offset=LOCAL;y=0}
+  - delay 11
+  - delay 3
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - Aura{auraName=tickfsoldierAcomboa;onTick=reducestacksfsoldierA;interval=30;duration=110;mergeSameCaster=true;refreshDuration=true} @self
+  - basedamage{m=1.5;ignorearmor=false} @LivingInCone{ignore=samefaction;a=140.0;r=3;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{ignore=samefaction;a=140.0;r=3;rot=0.0}
+  - delay 15
+  - setstance{stance=normal} @self
+attack2fsoldierA:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.comboa;value="2"} castinstead attack3fsoldierATrigger
+  TargetConditions:
+  - distance{d=0to4} true
+  Skills:
+  - state{remove=true;s=attack3;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=attack3b;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=land1;lo=1;n=false;frame=0} @self
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack2;li=2;lo=10;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - setvariable{var=caster.comboa;value="2";t=integer} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0;vS=0;size=0.5;repeat=15;repeatinterval=1} @ModelPart{m=fallensoldier;p=swordparticles1;offset=LOCAL;y=0}
+  - delay 13
+  - delay 1
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - Aura{auraName=tickfsoldierAcomboa;onTick=reducestacksfsoldierA;interval=30;duration=110;mergeSameCaster=true;refreshDuration=true} @self
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{ignore=samefaction;a=120.0;r=3;rot=0.0}
+  - basedamage{m=1.5;ignorearmor=false} @LivingInCone{ignore=samefaction;a=120.0;r=3;rot=0.0;ignore=samefaction}
+  - delay 15
+  - setstance{stance=normal} @self
+  - skill{s=attack3fsoldierATrigger} @Target
+attack3fsoldierA:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  TargetConditions:
+  - distance{d=0to4.3} true
+  Skills:
+  - state{remove=true;s=land1;lo=1;n=false;frame=0} @self
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack3;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0;vS=0;size=0.5;repeat=15;repeatinterval=1} @ModelPart{m=fallensoldier;p=swordparticles1;offset=LOCAL;y=0}
+  - delay 12
+  - delay 3
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self
+  - basedamage{m=2.2;ignorearmor=false} @LivingInCone{ignore=samefaction;a=25.0;r=3.2;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{ignore=samefaction;a=25.0;r=3.2;rot=0.0}
+  - delay 25
+  - setstance{stance=normal} @self
+attack3bfsoldierA:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  TargetConditions:
+  - distance{d=0to4.3} true
+  Skills:
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack3b;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0;vS=0;size=0.5;repeat=15;repeatinterval=1} @ModelPart{m=fallensoldier;p=swordparticles1;offset=LOCAL;y=0}
+  - delay 11
+  - delay 3
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.6;v=1} @selflocation
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self
+  - basedamage{m=2.4;ignorearmor=false} @LivingInCone{ignore=samefaction;a=50.0;r=3.2;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{ignore=samefaction;a=25.0;r=3.2;rot=0.0}
+  - delay 25
+  - setstance{stance=normal} @self
+attack3xdfsoldierA:
+  Cooldown: 15
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableInRange{var=caster.combor;value=>5} elsecast meleefsoldierAtrigger2
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - setstance{stance=casting} @self
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirechannel;p=1.5;v=1} @selflocation
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0;vS=0;size=0.5;repeat=15;repeatinterval=1} @ModelPart{m=fallensoldier;p=swordparticles1;offset=LOCAL;y=0}
+  - variablesubtract{var=caster.combor;amount=1} @self 0.9
+  - variablesubtract{var=caster.combor;amount=1} @self 0.7
+  - variablesubtract{var=caster.combor;amount=1} @self 0.4
+  - delay 20
+  - state{state=attack8xd;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - delay 11
+  - delay 5
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - basedamage{m=2.4;ignorearmor=false} @LivingInCone{ignore=samefaction;a=50.0;r=4.3;rot=0.0;ignore=samefaction}
+  - projectile{onhit=fsoldierAswatk3dmg;mr=6;v=14;g=0.1;i=1;hR=1.9;vR=1;hp=true;hnp=true;sB=false;sE=false;d=20;syo=1.2;tyo=1.2} @Forward{f=15;y=0.0}
+  - projectile{onhit=fsoldierAswatk3dmg;mr=6;v=14;g=0.1;i=1;hR=1.9;vR=1;hp=true;hnp=true;sB=false;sE=false;d=20;syo=1.2;tyo=1.2;hO=-30} @Forward{f=15;y=0.0}
+  - projectile{onhit=fsoldierAswatk3dmg;mr=6;v=14;g=0.1;i=1;hR=1.9;vR=1;hp=true;hnp=true;sB=false;sE=false;d=20;syo=1.2;tyo=1.2;vO=1;hO=90} @Forward{sideOffset=3;f=5;y=0.0}
+  - potion{type=SLOW;duration=40;level=4;p=false;force=true;delay=4} @LivingInCone{ignore=samefaction;a=80.0;r=6.2;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{ignore=samefaction;a=25.0;r=4.3;rot=0.0}
+  - delay 25
+  - setstance{stance=normal} @self

@@ -1,0 +1,262 @@
+{
+    "__comment": "Made with TheDestruc7i0n's advancements generator: https://advancements.thedestruc7i0n.ca",
+    "display": {
+        "title": {
+            "text": "Peace of mine"
+        },
+        "description": {
+            "text": "Explore all cave biomes",
+            "color": "dark_purple"
+        },
+        "icon": {
+            "item": "minecraft:lantern"
+        },
+        "frame": "challenge",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "criteria": {
+        "cavernous:dense_dripstone_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:dense_dripstone_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:lush_dripstone_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:lush_dripstone_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "minecraft:dripstone_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "minecraft:dripstone_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "minecraft:lush_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "minecraft:lush_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "minecraft:deep_dark": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "minecraft:deep_dark"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:ancient_caverns": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:ancient_caverns"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:crystal_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:crystal_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:desert_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:desert_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:icy_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:icy_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:inactive_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:inactive_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:marshy_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:marshy_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:painted_sandstone_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:painted_sandstone_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:sandstone_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:sandstone_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          },
+          "cavernous:volcanic_caves": {
+            "conditions": {
+              "player": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "location": {
+                      "biome": "cavernous:volcanic_caves"
+                    }
+                  }
+                }
+              ]
+            },
+            "trigger": "minecraft:location"
+          }
+    },
+    "parent": "cavernous:getting_to_the_point"
+}

@@ -1,0 +1,14 @@
+isEnabled: true
+material: TRIDENT
+name: '&8Goblin Poker'
+lore:
+- '&8A treasure among goblins!'
+enchantments:
+- DAMAGE_ALL,1
+- DAMAGE_UNDEAD,1
+- DURABILITY,1
+- KNOCKBACK,1
+- LOOT_BONUS_MOBS,5
+potionEffects:
+- WITHER,0,target,onHit
+itemType: UNIQUE

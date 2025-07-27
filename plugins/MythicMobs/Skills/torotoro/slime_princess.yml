@@ -1,0 +1,547 @@
+slime_princess_startcombo:
+    Conditions:
+        - offgcd
+    Skills:
+        - randomSkill{s=slime_princess_rightsideskill,slime_princess_leftsideskill;sync=true} @target
+slime_princess_rightsideskill:
+    Conditions:
+        - offgcd
+    Skills:
+        - randomskill{s=slime_princess_rightscratch,slime_princess_rightswing,slime_princess_rightsmash,slime_princess_rightlunge,slime_princess_rightuppercut_leftsmash,slime_princess_rightpunch,slime_princess_roundhouse;sync=true} @target
+
+slime_princess_leftsideskill:
+    Conditions:
+        - offgcd
+    Skills:
+        - randomskill{s=slime_princess_leftscratch,slime_princess_leftswing,slime_princess_leftsmash,slime_princess_leftlunge,slime_princess_leftheavysmash,slime_princess_leftjumpsmash,slime_princess_leftsmash_rightuppercut;sync=true} @target
+#====== left scratch =======
+slime_princess_leftscratch:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_leftlunge
+    Skills:
+        - gcd{ticks=27}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=leftscratch} @self
+        - delay 10
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=0} @self
+        - projectile{oT=slime_princess_leftscratch_damage;i=1;d=2;sfo=9;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 7
+        - projectile{oT=toro_slimegirl_leftclaw_vfx;i=1;d=2;sfo=5;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_leftscratch_pulldamage;bulletSpin=100;i=1;d=2;sfo=5;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_leftscratch_pulldamage;bulletSpin=100;i=1;d=2;sfo=2;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1.5} @self
+        - delay 9
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_rightsideskill} @target
+
+slime_princess_leftscratch_damage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 7
+        - pull{v=5} @ENO{r=5}
+
+slime_princess_leftscratch_pulldamage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 1
+        - pull{v=5} @ENO{r=5}
+
+#=======left swing=======
+slime_princess_leftswing:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_leftlunge
+    Skills:
+        - gcd{ticks=14}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=leftswing} @self
+        - delay 6
+        - effect:sound{s=item.armor.equip_leather;v=5;p=0} @self
+        - projectile{oT=slime_princess_leftswing_damage;i=1;d=2;sfo=5;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 6
+        - projectile{oT=slime_princess_leftswing_pulldamage;i=1;d=2;sfo=8;sso=1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 1
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_rightsideskill} @target
+
+slime_princess_leftswing_damage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 6
+        - pull{v=3} @ENO{r=5}
+
+slime_princess_leftswing_pulldamage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 1
+        - pull{v=3} @ENO{r=5}
+
+#===== left smash ====
+slime_princess_leftsmash:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_leftlunge
+    Skills:
+        - gcd{ticks=31}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=leftsmash} @self
+        - delay 16
+        - effect:particles{particle=reddust;color=#59DF75;a=100;hS=1;vs=3;yOffset=1} @forward{f=2}
+        - delay 1
+        - effect:sound{s=entity.generic.explode;v=5;p=2} @self
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=7;points=64;amount=3;hS=0.3;vs=0.5} @forward{f=2}
+        - effect:particlering{particle=block_crack;m=green_concrete;a=5;radius=6;points=64;amount=3;hS=0.3} @forward{f=2}
+        - totem{ch=1;onStart=slime_princess_leftsmash_damage;int=1;hR=3;md=1} @forward{f=2}
+        - delay 13
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_rightsideskill} @target
+
+slime_princess_leftsmash_damage:
+    Skills:
+        - damage{a=5} @ENO{r=7}
+        - delay 1
+        - skill{s=slime_princess_smash_knockback} @ENO{r=5}
+
+#===== left lunge =====
+slime_princess_leftlunge:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=0to12} castinstead slime_princess_leftsideskill
+    Skills:
+        - gcd{ticks=49}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - state{s=leftlunge;sp=1.5} @self
+        - setspeed{s=2;type=WALKING} @self
+        - delay 35
+        - setspeed{s=1;type=WALKING} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.generic.explode;v=5;p=2} @self
+        - projectile{oT=slime_princess_lunge_damage;i=1;d=2;sfo=10;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_lunge_damage;i=1;d=2;sfo=5;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 13
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_rightsideskill} @target
+
+slime_princess_lunge_damage:
+    Skills:
+        - damage{a=5} @ENO{r=7}
+        - potion{t=SLOW;d=40;l=1} @ENO{r=7}
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=7;points=64;hS=0.3;vs=0.5} @origin
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=9;points=64;hS=0.3;vs=0.5} @origin
+        - effect:particlering{particle=block_crack;m=green_concrete;a=15;radius=6;points=64;hS=0.3;hS=0.6;vs=0.5} @origin
+        - effect:particlering{particle=block_crack;m=green_concrete;a=15;radius=8;points=64;hS=0.3;hS=0.6;vs=0.5} @origin
+
+#===== left heavysmash *Finisher =====
+slime_princess_leftheavysmash:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d>12} castinstead slime_princess_leftjumpsmash
+    Skills:
+        - gcd{ticks=47}
+        - lunge{v=0.5} @target
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=leftheavysmash} @self
+        - delay 29
+        - effect:sound{s=entity.generic.explode;v=5;p=0} @self
+        - projectile{oT=slime_princess_leftheavysmash_damage;i=1;d=2;sfo=2;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=7;points=64;hS=0.3;vs=0.5} @forward{f=2}
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=9;points=64;hS=0.3;vs=0.5} @forward{f=2}
+        - effect:particlering{particle=block_crack;m=green_concrete;a=15;radius=6;points=64;hS=0.3;hS=0.6;vs=0.5} @forward{f=2}
+        - effect:particlering{particle=block_crack;m=green_concrete;a=15;radius=8;points=64;hS=0.3;hS=0.6;vs=0.5} @forward{f=2}
+        - delay 17
+        - setAI{ai=true} @self
+        - setstance{stance=comboend} @self
+
+slime_princess_leftheavysmash_damage:
+    Skills:
+        - damage{a=10} @ENO{r=9}
+        - skill{s=slime_princess_smash_knockback} @ENO{r=9}
+
+#===== leftsmash_uppercut *Finisher =====
+slime_princess_leftsmash_rightuppercut:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d>20} castinstead slime_princess_leftjumpsmash
+    Skills:
+        - gcd{ticks=55}
+        - lunge{v=0.5} @target
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=leftsmash_rightuppercut} @self
+        - delay 13
+        - effect:sound{s=entity.generic.explode;v=5;p=1} @self
+        - projectile{oT=slime_princess_lrsmash_damage;i=1;d=2;sfo=2;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=6;points=64;hS=0.3;vs=0.5} @forward{f=2}
+        - effect:particlering{particle=block_crack;m=green_concrete;a=5;radius=5;points=64;hS=0.3} @forward{f=2}
+        - delay 20
+        - projectile{oT=slime_princess_rightuppercut_damage;i=1;d=2;sfo=5;sso=2;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1;repeat=2;repeatInterval=2} @self
+        - delay 8
+        - effect:sound{s=item.armor.equip_leather;v=5;p=0} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=0} @self
+        - effect:particles{p=reddust;color=#25A55D;a=200;hs=1;vs=2;sfo=8;sso=2;syo=0} @self
+        - projectile{oT=slime_princess_rightuppercut_damage;i=1;d=2;sfo=9;sso=2;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_rightuppercut_damage;i=1;d=2;sfo=9;sso=2;syo=4;hs=true;hfs=0.2} @forward
+        - skill{s=slime_princess_rightuppercut_wave} @forward
+        - delay 13
+        - setAI{ai=true} @self
+        - setstance{stance=comboend} @self
+        
+slime_princess_lrsmash_damage:
+    Skills:
+        - damage{a=5} @ENO{r=6}
+        - delay 1
+        - skill{s=slime_princess_smash_knockback} @ENO{r=6}
+        
+slime_princess_rightuppercut_damage:
+    Skills:
+        #- effect:particlering{particle=end_rod;a=5;radius=5;points=64;amount=1} @origin
+        - damage{a=5} @ENO{r=5}
+        - delay 1
+        - skill{s=slime_princess_uppercut_knockback} @ENO{r=5}
+
+slime_princess_rightuppercut_wave:
+    Skills:
+        - projectile{oT=slime_princess_rightuppercutdirt_tick;i=1;d=40;sfo=8;sso=2;syo=0;hs=true;hfs=0.8;v=20;sB=false;hp=false} @forward{f=200}
+        - projectile{oT=slime_princess_rightuppercutwave_tick;i=1;d=40;sfo=8;sso=2;syo=0;hs=true;hfs=0.8;v=20;sB=false;hp=false} @forward{f=200}
+        - projectile{oT=slime_princess_rightuppercutwave_tick;i=1;d=40;sfo=8.5;sso=1.5;syo=0.5;hs=true;hfs=1.6;v=20;sB=false;hp=false} @forward{f=200}
+        - projectile{oT=slime_princess_rightuppercutwave_tick;i=1;d=40;sfo=9;sso=1;syo=1;hs=true;hfs=2.4;v=20;sB=false;hp=false} @forward{f=200}
+        - projectile{oT=slime_princess_rightuppercutwave_tick;i=1;d=40;sfo=9;sso=0.5;syo=1.5;hs=true;hfs=3.2;v=20;sB=false;hp=false} @forward{f=200}
+        - projectile{oT=slime_princess_rightuppercutwave_tick;i=1;d=40;sfo=9;sso=0;syo=2;hs=true;hfs=4;v=20;sB=false;hp=false} @forward{f=200}
+        - projectile{oT=slime_princess_rightuppercutwave_tick;i=1;d=40;sfo=8.5;sso=-0.5;syo=2.5;hs=true;hfs=4.8;v=20;sB=false;hp=false} @forward{f=200}
+        - projectile{oT=slime_princess_rightuppercutwave_tick;i=1;d=40;sfo=8;sso=-1;syo=3;hs=true;hfs=5.6;v=20;sB=false;hp=false} @forward{f=200}
+
+slime_princess_rightuppercutwave_tick:
+    Skills:
+        - effect:particles{p=reddust;color=#59DF75;a=4;hs=0.3;vs=0.6} @origin
+        - effect:particles{p=reddust;color=#25A55D;a=2;hs=0.2;vs=0.4} @origin
+        - damage{a=5} @ENO{r=4}
+
+slime_princess_rightuppercutdirt_tick:
+    Skills:
+        - effect:particles{p=block_crack;m=green_concrete;a=4;hs=0.8;vs=0.3} @origin
+
+#==== left jumpsmash *Finisher======
+slime_princess_leftjumpsmash:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=0to8} castinstead slime_princess_leftheavysmash
+    Skills:
+        - gcd{ticks=61}
+        - lunge{v=0.5} @target
+        - delay 2
+        - state{s=leftjumpsmash} @self
+        - delay 6
+        - setspeed{s=2.2;type=WALKING} @self
+        - effect:sound{s=entity.generic.explode;v=5;p=1} @self
+        - projectile{oT=slime_princess_lrsmash_damage;i=1;d=2;sfo=2;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=6;points=64;amount=3;hS=0.3;vs=0.5} @forward{f=2}
+        - effect:particlering{particle=block_crack;m=green_concrete;a=5;radius=5;points=64;amount=3;hS=0.3} @forward{f=2}
+        - delay 37
+        - setspeed{s=1;type=WALKING} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.generic.explode;v=5;p=0} @self
+        - projectile{oT=slime_princess_leftjumpsmash_damage;i=1;d=2;sfo=2;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:particlering{particle=reddust;color=#59DF75;a=10;radius=7;points=64;hS=0.6;vs=0.5} @self
+        - effect:particlering{particle=reddust;color=#59DF75;a=10;radius=11;points=64;hS=0.6;vs=0.5} @self
+        - effect:particlering{particle=block_crack;m=green_concrete;a=15;radius=6;points=64;hS=0.3;hS=0.6;vs=0.7} @self
+        - effect:particlering{particle=block_crack;m=green_concrete;a=15;radius=10;points=64;hS=0.3;hS=0.6;vs=0.7} @self
+        - effect:particles{particle=reddust;color=#59DF75;a=40;hS=0.3;vs=1} @Ring{radius=10;points=12;yoffset=0.5}
+        - delay 17
+        - setAI{ai=true} @self
+        - setstance{stance=comboend} @self
+
+slime_princess_leftjumpsmash_damage:
+    Skills:
+        - damage{a=10} @ENO{r=10}
+        - skill{s=slime_princess_jumpsmash_knockback} @ENO{r=10}
+
+#====== right scratch
+slime_princess_rightscratch:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_rightlunge
+    Skills:
+        - gcd{ticks=30}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=rightscratch} @self
+        - delay 10
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=0} @self
+        - projectile{oT=slime_princess_rightscratch_damage;i=1;d=2;sfo=10;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 7
+        - projectile{oT=slime_princess_rightclaw_vfx;i=1;d=2;sfo=5;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_rightscratch_pulldamage;bulletSpin=100;i=1;d=2;sfo=5;sso=0;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_rightscratch_pulldamage;bulletSpin=100;i=1;d=2;sfo=2;sso=1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1.5} @self
+        - delay 12
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_leftsideskill} @target
+
+slime_princess_rightscratch_damage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 7
+        - pull{v=5} @ENO{r=5}
+
+slime_princess_rightscratch_pulldamage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 1
+        - pull{v=5} @ENO{r=5}
+
+#=======right swing=======
+slime_princess_rightswing:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_rightlunge
+    Skills:
+        - gcd{ticks=14}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=rightswing} @self
+        - delay 6
+        - effect:sound{s=item.armor.equip_leather;v=5;p=0} @self
+        - projectile{oT=slime_princess_rightswing_damage;i=1;d=2;sfo=5;sso=1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 6
+        - projectile{oT=slime_princess_rightswing_pulldamage;i=1;d=2;sfo=8;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 1
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_leftsideskill} @target
+
+slime_princess_rightswing_damage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 6
+        - pull{v=3} @ENO{r=5}
+
+slime_princess_rightswing_pulldamage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 1
+        - pull{v=3} @ENO{r=5}
+
+#===== right smash ====
+slime_princess_rightsmash:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_rightlunge
+    Skills:
+        - gcd{ticks=32}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=rightsmash} @self
+        - delay 16
+        - projectile{oT=slime_princess_rightsmash_damage;i=1;d=2;sfo=3;sso=2;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 7
+        - totem{ch=1;onStart=slime_princess_rightsmashswipe_damage;int=1;hR=3;md=1} @forward{f=2}
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1.5} @self
+        - effect:particles{particle=reddust;color=#59DF75;a=100;hS=2;vs=1;yOffset=0.5} @forward{f=1}
+        - delay 8
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_leftsideskill} @target
+
+slime_princess_rightsmash_damage:
+    Skills:
+        - effect:particles{particle=reddust;color=#59DF75;a=100;hS=1;vs=3;yOffset=1} @origin
+        - delay 1
+        - effect:sound{s=entity.generic.explode;v=5;p=2} @origin
+        - effect:particlering{particle=reddust;color=#59DF75;a=5;radius=7;points=64;amount=3;hS=0.3;vs=0.5} @origin{y=.7}
+        - effect:particlering{particle=block_crack;m=green_concrete;a=5;radius=6;points=64;amount=3;hS=0.3} @origin{y=.5}
+        - damage{a=5} @ENO{r=7}
+        - delay 1
+        - skill{s=slime_princess_smash_knockback} @ENO{r=5}
+
+slime_princess_rightsmashswipe_damage:
+    Skills:
+        - damage{a=5} @ENO{r=5}
+        - delay 1
+        - skill{s=slime_princess_smashswipe_knockback} @ENO{r=5}
+
+#=======right lunge=====
+slime_princess_rightlunge:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_rightlunge
+    Skills:
+        - gcd{ticks=49}
+        - lunge{v=0.5} @target
+        - setstance{stance=incombo} @self
+        - delay 2
+        - state{s=rightlunge;sp=1.5} @self
+        - setspeed{s=2;type=WALKING} @self
+        - delay 35
+        - setspeed{s=1;type=WALKING} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.generic.explode;v=5;p=2} @self
+        - projectile{oT=slime_princess_lunge_damage;i=1;d=2;sfo=10;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_lunge_damage;i=1;d=2;sfo=5;sso=-1;syo=-0.5;hs=true;hfs=0.2} @forward
+        - delay 13
+        - setAI{ai=true} @self
+        - skill{s=slime_princess_leftsideskill} @target
+
+#===== right roundhouse *Finisher ====
+slime_princess_roundhouse:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=14to40} castinstead slime_princess_rightlunge
+    Skills:
+        - gcd{ticks=42}
+        - lunge{v=0.5} @target
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=rightroundhouse} @self
+        - delay 24
+        - effect:sound{s=item.armor.equip_leather;v=5;p=0} @self
+        - delay 2
+        - damage{a=10} @EIR{r=12}
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1} @self
+        - effect:particlering{particle=reddust;color=#59DF75;a=20;radius=11;points=64;hS=1;vs=1;yOffset=0.5} @self
+        - effect:particlering{particle=reddust;color=#108343;a=20;radius=10;points=64;hS=0.5;vs=0.5;yOffset=0.5} @self
+        - effect:particlering{particle=reddust;color=#C6FADD;a=20;radius=11;points=64;hS=0.3;vs=0.3;yOffset=0.5} @self
+        - delay 15
+        - setAI{ai=true} @self
+        - setstance{stance=comboend} @self
+
+#===== right uppercut leftsmash *Finisher ====
+slime_princess_rightuppercut_leftsmash:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=0to12} true #slime_princess_rightlunge
+    Skills:
+        - gcd{ticks=71}
+        - lunge{v=0.5} @target
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=rightuppercut_leftsmash} @self
+        - delay 27
+        - projectile{oT=slime_princess_rluppercut_damage;i=1;d=2;sfo=5;sso=2;syo=-0.5;hs=true;hfs=0.2} @forward
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1;repeat=2;repeatInterval=2} @self
+        - delay 8
+        - effect:sound{s=item.armor.equip_leather;v=5;p=0} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=0} @self
+        - effect:particles{p=reddust;color=#25A55D;a=200;hs=1;vs=2;sfo=8;sso=2;syo=0} @self
+        - projectile{oT=slime_princess_rightuppercut_damage;i=1;d=2;sfo=9;sso=2;syo=-0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_rightuppercut_damage;i=1;d=2;sfo=5;sso=2;syo=4;hs=true;hfs=0.2} @forward
+        - delay 20
+        - effect:sound{s=entity.generic.explode;v=5;p=0} @self
+        - totem{ch=1;onStart=slime_princess_rlsmash_damage;int=1;hR=3;md=1} @Forward{f=7}
+        - projectile{oT=slime_princess_rlsmash_inair_damage;i=1;d=2;sfo=5;sso=1;syo=3;hs=true;hfs=0.2} @forward
+        - delay 15
+        - setAI{ai=true} @self
+        - setstance{stance=comboend} @self
+        
+slime_princess_rluppercut_damage:
+    Skills:
+        - damage{a=5} @ENO{r=6}
+        - delay 1
+        - skill{s=slime_princess_rluppercut_knockback} @ENO{r=6}
+
+slime_princess_rlsmash_inair_damage:
+    Skills:
+        - damage{a=10} @ENO{r=7}
+        
+slime_princess_rlsmash_damage:
+    Skills:
+        - damage{a=10} @ENO{r=7}
+        - skill{s=slime_princess_jumpsmash_knockback} @ENO{r=6}
+        - effect:particlering{particle=reddust;color=#59DF75;a=10;radius=7;points=64;hS=0.6;vs=0.5} @origin
+        - effect:particlering{particle=block_crack;m=green_concrete;a=15;radius=6;points=64;hS=0.3;hS=0.6;vs=0.7} @origin
+        - effect:particles{particle=reddust;color=#59DF75;a=40;hS=0.3;vs=1} @Ring{radius=6;points=6;yoffset=0.5}
+
+#====== right punch ===========
+slime_princess_rightpunch:
+    Conditions:
+        - offgcd
+    TargetConditions:
+        - distance{d=12to40} castinstead slime_princess_rightlunge
+    Skills:
+        - gcd{ticks=42}
+        - lunge{v=0.5} @target
+        - delay 2
+        - setAI{ai=false} @self
+        - state{s=rightpunch} @self
+        - delay 24
+        - effect:sound{s=entity.generic.explode;v=5;p=2} @self
+        - delay 2
+        - projectile{oT=slime_princess_rightpunch_damage;i=1;d=2;sfo=0;sso=2;syo=0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_rightpunch_damage;i=1;d=2;sfo=3;sso=2;syo=0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_rightpunch_damage;i=1;d=2;sfo=6;sso=2;syo=0.5;hs=true;hfs=0.2} @forward
+        - projectile{oT=slime_princess_rightpunch_damage;i=1;d=2;sfo=9;sso=2;syo=0.5;hs=true;hfs=0.2} @forward
+        - delay 15
+        - setAI{ai=true} @self
+        - setstance{stance=comboend} @self
+
+slime_princess_rightpunch_damage:
+    Skills:
+        - damage{a=10} @ENO{r=6}
+        - effect:particles{particle=reddust;color=#59DF75;a=150;hS=1;vs=1} @origin
+        - delay 1
+        - skill{s=slime_princess_rightpunch_knockback} @ENO{r=6}
+
+#======================
+strangeslime_death:
+    Cooldown: 100
+    Skills:
+        - setspeed{s=0;type=WALKING} @self
+        - projectile{bulletType=ITEM;material=SLIME_BLOCK;onTick=strangeslime_death_tick;v=15;i=1;g=0.7;hR=1;vR=1;sB=true;sE=false;vo=1;ac=0.5;repeat=2;repeatInterval=2} @Ring{radius=12;points=3;yoffset=2}
+        - projectile{bulletType=ITEM;material=SLIME_BLOCK;onTick=strangeslime_death_tick;v=15;i=1;g=0.7;hR=1;vR=1;sB=true;sE=false;ac=0.5;repeat=2;repeatInterval=2} @Ring{radius=12;points=3;yoffset=2}
+        - delay 10
+        - summon{type=slime_princess_spawner;amount=1} @self
+        - delay 10
+        - remove @self
+         
+strangeslime_death_tick:
+    Skills:
+        - effect:particles{particle=reddust;color=#59DF75;a=5;hS=0.5;vs=0.5} @origin
+         
+slime_princess_spawner_spawn:
+    Skills:
+        - totem{ch=1;onStart=slime_princess_spawn;int=1;hR=3;md=1} @origin
+        - damage{a=1000;ia=true} @self
+
+slime_princess_spawn:
+    Skills:
+        - effect:sound{s=block.slime_block.break;v=5;p=0} @origin
+        - delay 128
+        - effect:particles{p=end_rod;s=0.4;a=50;yOffset=1;hs=1;vs=1;repeat=3;repeatInterval=2} @self
+        - effect:particlering{particle=reddust;color=#59DF75;a=20;radius=4;points=16;hS=0.6;vs=0.5;repeat=8;repeatInterval=2} @origin
+        - effect:sound{s=entity.ender_dragon.growl;p=0;v=5} @origin
+        - skill{s=slime_princess_rightpunch_knockback} @ENO{r=6}
+        - delay 43
+        - effect:particles{particle=reddust;color=#59DF75;a=200;yOffset=1;hs=0.5;vs=1} @origin
+        - summon{type=slime_princess;amount=1} @origin
+
+#MXMysmQ3hFUZ12VNJ0S4dDUJZVU5VFVOJzZq10djRUTwkFWkpGM1o3RyEFcKpnTGVnSz0GO

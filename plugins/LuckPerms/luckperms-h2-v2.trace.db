@@ -1,0 +1,32 @@
+2024-03-05 18:01:41 database: flush
+org.h2.message.DbException: OutOfMemoryError
+	at org.h2.message.DbException.<clinit>(DbException.java:64)
+	at org.h2.message.TraceObject.<clinit>(TraceObject.java:108)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at me.lucko.luckperms.common.storage.implementation.sql.connection.file.H2ConnectionFactory.createConnection(H2ConnectionFactory.java:77)
+	at me.lucko.luckperms.common.storage.implementation.sql.connection.file.FlatfileConnectionFactory.getConnection(FlatfileConnectionFactory.java:70)
+	at me.lucko.luckperms.common.storage.implementation.sql.connection.file.H2ConnectionFactory.getConnection(H2ConnectionFactory.java:43)
+	at me.lucko.luckperms.common.storage.implementation.sql.SqlStorage.init(SqlStorage.java:167)
+	at me.lucko.luckperms.common.storage.Storage.init(Storage.java:115)
+	at me.lucko.luckperms.common.storage.StorageFactory.getInstance(StorageFactory.java:87)
+	at me.lucko.luckperms.common.plugin.AbstractLuckPermsPlugin.enable(AbstractLuckPermsPlugin.java:193)
+	at me.lucko.luckperms.bukkit.LPBukkitBootstrap.onEnable(LPBukkitBootstrap.java:175)
+	at LuckPerms-Bukkit-5.4.102.jar//me.lucko.luckperms.bukkit.loader.BukkitLoaderPlugin.onEnable(BukkitLoaderPlugin.java:50)
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:264)
+	at org.bukkit.plugin.java.JavaPluginLoader.enablePlugin(JavaPluginLoader.java:370)
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:542)
+	at org.bukkit.craftbukkit.v1_19_R1.CraftServer.enablePlugin(CraftServer.java:563)
+	at org.bukkit.craftbukkit.v1_19_R1.CraftServer.enablePlugins(CraftServer.java:477)
+	at net.minecraft.server.dedicated.DedicatedServer.e(DedicatedServer.java:279)
+	at net.minecraft.server.MinecraftServer.v(MinecraftServer.java:1124)
+	at net.minecraft.server.MinecraftServer.lambda$spin$0(MinecraftServer.java:305)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+Caused by: java.sql.SQLException: OutOfMemoryError
+	at org.h2.message.DbException.<clinit>(DbException.java:62)
+	... 24 more
+Caused by: java.lang.OutOfMemoryError
+	... 25 more

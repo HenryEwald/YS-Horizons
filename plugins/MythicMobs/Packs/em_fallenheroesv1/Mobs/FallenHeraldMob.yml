@@ -1,0 +1,110 @@
+heraldfallen:
+  Type: skeleton
+  Display: 'Fallen Herald'
+  AIGoalSelectors:
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction Zombie
+  - 2 attacker
+  - 3 players
+  AIGoalSelectors:
+  - 0 clear
+  Health: 100
+  Faction: FallenHero
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 1.4
+  - PROJECTILE 0.2
+  Damage: 10 #10 is the BASE damage. Setting it to 20 will DOUBLE damage. Setting it to 5 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was killed by the fallen heroes.'
+  - 'The fallen heroes have claimed justice over <target.name>.'
+  - "<target.name> suffered the revenge of the fallen heroes."
+  - "The fallen heroes have claimed <target.name>'s soul."
+  - '<target.name> tried to defy the fallen heroes. Tried.'
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - imbootsfallen:1
+  - iron_axe:0
+  - air:5
+  Drops:
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  Skills:
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=integer} @Self ~onSpawn
+  - model{mid=fallenherald;s=idle;n=false} @self ~onSpawn 1
+  - DefaultState{type=IDLE;state=idlestatic;li=3;lo=2;n=false;frame=0} @self ~onSpawn
+  - CancelEvent{sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+  - state{s=idlestatic;li=3;lo=10;n=false;delay=1} @self ~onSpawn 1
+  - lockmodel{l=true;delay=1} @Self ~onSpawn 1
+  
+  - skill{s=attack5bfherald} @Trigger ~onSignal:DEBUG_TEST 1
+
+#============ DISGUISE =================
+  
+  - changepart{m=fallenherald;pid=rightarm;nm=fallenherald2;npid=rightarm} @self ~onSpawn
+  - changepart{m=fallenherald;pid=rightarmbot;nm=fallenherald2;npid=rightarmbot} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=leftarm;nm=fallenherald2;npid=leftarm} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=leftarmbot;nm=fallenherald2;npid=leftarmbot} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=body;nm=fallenherald2;npid=body} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=sword;nm=fallenherald2;npid=sword} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=leftleg;nm=fallenherald2;npid=leftleg} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=leftlegbot;nm=fallenherald2;npid=leftlegbot} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=rightleg;nm=fallenherald2;npid=rightleg} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=rightlegbot;nm=fallenherald2;npid=rightlegbot} @self ~onSpawn
+  - changepart{m=fallenherald;pid=rightlegbot;nm=fallenherald2;npid=rightlegbot} @self ~onSpawn 
+  - changepart{m=fallenherald;pid=head;nm=fallenherald2;npid=head} @self ~onSpawn 
+#
+  - randomskill{s=attack1fherald,attack2fherald,attack3fherald;sync=true} @Target ~onAttack >0% 0
+  - randomskill{s=meleefheraldtrigger;sync=true} @Target ~onAttack >0% 1
+  - randomskill{s=meleefheraldtrigger;sync=true} @LivingInCone{ignore=samefaction;a=45.0;r=4;rot=0.0} ~onTimer:13 0.85
+  - randomskill{s=meleefheraldtrigger;sync=true} @LivingInCone{ignore=samefaction;a=45.0;r=2.8;rot=0.0} ~onTimer:10 1
+  - randomskill{s=meleefheraldtrigger2;sync=true} @LivingInCone{ignore=samefaction;a=90.0;r=4;rot=0.0} ~onTimer:15 0.6
+  - randomskill{s=attack7fherald,attack7fherald,meleefheraldtrigger2;delay=0} @LivingInCone{ignore=samefaction;a=110.0;r=5;rot=0.0;ignore=samefaction} ~onTimer:40 <35% 0.4 
+  - randomskill{s=attack5fherald,attack5bfherald;sync=true} @LivingInCone{ignore=samefaction;a=90.0;r=22;rot=0.0} ~onTimer:46 0.6
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+  - effect:particles{particle=cloud;amount=150;hS=1.1;vS=0.55;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=102} @ModelPart{m=fallenherald3;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=35;hS=0.3;vS=1.3;size=2} @ModelPart{m=fallenherald;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenherald3;p=head;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenherald3;p=rightarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenherald3;p=leftarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenherald3;p=rightlegbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenherald3;p=leftlegbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenherald3;p=h_head;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenherald3;p=rightarm;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenherald3;p=leftarm;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenherald3;p=rightleg;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#ffebab;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenherald3;p=leftleg;offset=LOCAL;y=0} ~onDeath
+  - SwapModel{modelid=fallenherald;newmodelid=fallenherald3} @self ~onDeath
+  - randomskill{s=hurt1fherald,hurt2fherald,hurt3fherald;sync=true} @self ~onDamaged 0.85 #Hurtmechanic
+  - velocity{m=set;x=0;y=0;z=0} @self ~onDamaged
+  - setvariable{var=caster.statueform;value="1";t=integer} @Self ~onSpawn #=====================
+  - skill{s=fheraldstcheck3;cooldown=99999;sync=true} @self ~onDamaged 1 #=====================
+  - skill{s=hurtgenfherald;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - skill{s=hurtgenfherald2;sync=true} @self ~onDamaged 
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDamaged 1 #Hurtmechanic SOUND
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDeath 1 
+  - setstance{stance=static} @self ~onSpawn
+  - sound{s=emaginationfallenheroes:custom.fallenhero.death;p=1;v=1} @selflocation ~onDeath 1
+  - sound{s=emaginationfallenheroes:custom.fallenhero.deathb;p=1;v=1} @selflocation ~onDeath 1
+  - Aura{auraName=staticfherald;onTick=fheraldstcheck;interval=20;duration=99999} @self ~onSpawn
+  Options:
+    Despawn: false
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.19
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.9
+    PreventSunburn: true

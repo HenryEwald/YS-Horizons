@@ -1,0 +1,213 @@
+{
+    "name": "better_pyramid:secondary_side_rooms",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 15,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_1",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 15,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_2",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 15,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_3",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 15,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_4",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 25,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_5",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 25,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_6",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 25,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_7",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 25,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:hallway_rooms/hallway_room_8",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:medium_rooms/medium_room_1",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:medium_rooms/medium_room_2",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:medium_rooms/medium_room_3",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:medium_rooms/medium_room_4",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:medium_rooms/medium_room_5",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_1",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_2",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_3",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_4",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_5",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_6",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_7",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_8",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_9",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:small_rooms/small_room_10",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      }
+    ]
+}

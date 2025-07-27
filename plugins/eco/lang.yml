@@ -1,0 +1,5 @@
+multiple-in-craft: '&l&c! &fThis recipe requires &a%amount%&f of this item.'
+price-display:
+- type: example_type
+  display: '&e%value% Price'
+

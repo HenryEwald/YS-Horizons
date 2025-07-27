@@ -1,0 +1,19 @@
+data:
+  Nether:
+    3af04669-36d3-493e-9bf5-31675278b91c: 0
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 3712
+  Earth:
+    3af04669-36d3-493e-9bf5-31675278b91c: 373
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 8781
+  End:
+    3af04669-36d3-493e-9bf5-31675278b91c: 810
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 471
+  Ocean:
+    3af04669-36d3-493e-9bf5-31675278b91c: 0
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 327
+  Cave:
+    3af04669-36d3-493e-9bf5-31675278b91c: 0
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 3326
+  Sky:
+    3af04669-36d3-493e-9bf5-31675278b91c: 0
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 0

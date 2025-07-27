@@ -1,0 +1,38 @@
+info:
+  namespace: customfishing
+items:
+  common_bait:
+    display_name: "&7Common Bait"
+    nbt: '{CustomFishing:{type: bait, id: common_bait}}'
+    lore:
+    - "&7→ Type &6Bait"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/common_bait
+      model_id: 646
+
+  magnet_bait:
+    display_name: "&7Magnet Bait"
+    nbt: '{CustomFishing:{type: bait, id: magnet_bait}}'
+    lore:
+    - "&7→ Type &6Bait"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/magnet_bait
+      model_id: 695
+
+  wild_bait:
+    display_name: "&7Wild Bait"
+    nbt: '{CustomFishing:{type: bait, id: wild_bait}}'
+    lore:
+    - "&7→ Type &6Bait"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/wild_bait
+      model_id: 696

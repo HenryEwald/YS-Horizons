@@ -1,0 +1,2180 @@
+#####################################################################################################
+#########################************Azgad The Smoldering Shadow************#########################
+#####################################################################################################
+################################################
+####DAMAGE MODIFIERS ###########################
+################################################
+#To lower the damage you can do two things first to rise/lower damage cotroler number or to rise/lower divider
+# In this case lets say Player has 20 HP 
+#We set <damagecontroler> to 100 and <damagecontrolerdivider> to 10
+#That means ((20 - (20 / (100 / 10))) / 100) * 10 = 1.8 damage
+#If you set Divider higher then the Controler then you will basically be getting default damage as i have set 
+#If you have any questions please let me know in the ticket or pm me private 
+#- damage{a="((<target.mhp> - ((<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>)))) / 100) * 10"
+DamageControlersMHPCaster:
+  Cooldown: 0
+  Conditions:
+  #- hasaura Fly true
+  Skills: 
+#############################################################
+##Make sure you dont use lower number than the divider#######
+#############################################################
+  - setvariable{var=skill.damagecontroler;value="100";type=INTEGER} 
+#################################################################################
+##Make sure that value of divider is lower then the number of controler##########
+#################################################################################
+  - setvariable{var=skill.damagecontrolerdivider;value="10";type=INTEGER}
+#########################
+SmolderingShadowHeartSkill:
+  Cooldown: 0
+  Skills: 
+##################################################
+#####This is just an example of your loot#########
+########################################################################
+  - dropitem{i=diamond;repeat=20;repeatInterval=20} @SelfLocation ######
+  - dropitem{i=diamond;repeat=20;repeatInterval=20} @SelfLocation ######
+  - dropitem{i=diamond;repeat=20;repeatInterval=20} @SelfLocation ######
+########################################################################
+  - velocity{m=set;x=0;y=0.20;z=0;repeat=10;repeatInterval=3} @self 
+  - effect:spin{duration=430;velocity=5} @self
+  - effect:particlering{vd=50;p=flame;radius=2;points=50;amount=1;hS=0.1;vS=0;y=2;repeat=5;repeatInterval=1} @self 
+  - effect:particlesphere{vd=50;particle=flame;amount=50;radius=1;y=2;repeat=5;repeatInterval=1} @self
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=3;points=50;amount=1;hS=0.1;vS=0;y=2;repeat=5;repeatInterval=1} @self 
+  - effect:particlesphere{vd=50;particle=flame;amount=50;radius=2;y=2;repeat=5;repeatInterval=1} @self
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=4;points=50;amount=1;hS=0.1;vS=0;y=2;repeat=5;repeatInterval=1} @self 
+  - effect:particlesphere{vd=50;particle=flame;amount=50;radius=3;y=2;repeat=5;repeatInterval=1} @self
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=6;points=50;amount=1;hS=0.1;vS=0;y=2;repeat=42;repeatInterval=10} @self 
+  - effect:particlesphere{vd=50;particle=flame;amount=50;radius=5;y=2;repeat=42;repeatInterval=10} @self
+  - delay 15
+  - velocity{m=set;x=0;y=0;z=0;repeat=400;repeatInterval=1} @self 
+  - delay 400
+  - remove @self
+SmolderingShadowHeartDrop:
+  Cooldown: 0
+  TriggerConditions:
+  - hasaura Looted false
+  Skills: 
+  - Aura{auraName=Looted;interval=3;duration=400} @trigger #this will prevent same player to loot it twice 
+##
+###################################################
+###MMocore EXP
+MobsExpChecker:
+  TargetConditions:
+  - playerwithin{d=100} true 
+  Skills:
+  - command{c="mmocore admin exp give <target.name> main <caster.mhp>"} @trigger
+###################################################
+###Money for killing an animal
+MobsMoneyCheckerPlayer:
+  TriggerConditions:
+  - entitytype{type=PLAYER} true
+  Skills:
+  - command{c="eco give <target.name> <caster.level>"} @Trigger
+###################################################
+##################################################
+#####This is just an example of your loot#########
+##################################################
+  - giveitem{i=diamond;a=128} @trigger #Here is your loot upon interaction
+  - delay 400
+  - remove @self
+#####################################################################################################
+####DO NOT CHANGE ANY VALUES BELLOW ASK US IN THE TICKET ON DISCORD !!!!#############################
+#####################################################################################################  
+DamageTargetMHP:
+  Cooldown: 1
+  Conditions:
+  Skills:    
+  #- sudoskill{s=DamageTargetMHPCasterGround;cat=true} @target
+  #- sudoskill{s=DamageTargetMHPCasterFlying;cat=true} @PlayersInRadius{r=200;limit=1}
+  - skill{s=DamageControlersMHPCaster} @self
+DamageTargetMHPCasterFlying:
+  Cooldown: 0
+  Conditions:
+  - hasaura Fly true
+  Skills: 
+  - setvariable{var=target.mhp;value="<caster.mhp>";duration=20;scope=SKILL} 
+  - setvariable{var=caster.damagecontroler;value="100";duration=20;scope=CASTER} 
+  - setvariable{var=caster.damagecontrolerdivider;value="10";duration=20;scope=CASTER}
+DamageTargetMHPCasterGround:
+  Cooldown: 0
+  Conditions:
+  - hasaura Fly false
+  Skills: 
+  - setvariable{var=target.mhp;value="<caster.mhp>";duration=20;scope=SKILL} 
+  - setvariable{var=caster.damagecontroler;value="100";duration=20;scope=CASTER} 
+  - setvariable{var=caster.damagecontrolerdivider;value="10";duration=20;scope=CASTER}
+#
+SmolderingShadowGroundDeath:
+  Cooldown: 100
+  Conditions:
+  - onground{} true
+  Skills: 
+  - delay 0
+  - summon{type=SmolderingShadowGroundDeath;amount=1;radius=0} @SelfLocation 
+SmolderingShadowGroundDeathDummy:
+  Skills: 
+  - sound{s=custom.fldth;v=10;p=1;sc=voice} @Self
+  - state{mid=smolderingshadow;s=landdeath;li=3;lo=2;Petrify=false} @self
+  - Aura{auraName=Death;interval=3;duration=100} @self
+  - effect:particlesphere{vd=50;particle=flame;amount=20;radius=1;repeat=60;repeatInterval=1} @Forward{f=2;y=3}
+  - delay 60
+  - state{mid=smolderingshadow;s=landlying;li=0;lo=0;Petrify=false;repeat=30;repeatInterval=20} @self
+  - summon{type=SmolderingShadowHeart;amount=1;radius=0} @Forward{f=5;y=0}
+  - sound{s=custom.fldthimp;v=10;p=1;sc=ambient} @Self
+  - delay 600
+  - remove @self
+############
+SmolderingShadowSkyDeath:
+  Cooldown: 100
+  Conditions:
+  - onground{} false
+  Skills: 
+  - summon{type=SmolderingShadowGroundSkyDeath;amount=1;radius=0} @SelfLocation 
+SmolderingShadowSkyDeathDummy:
+  Cooldown: 100
+  Conditions:
+  - onground{} false
+  Skills: 
+  - sound{s=custom.fldth;v=10;p=1;sc=voice} @Self
+  - Aura{auraName=Death;interval=3;duration=100} @self
+  - state{mid=smolderingshadow;s=jhdtyrsd;li=3;lo=3;Petrify=false} @self
+  - lunge{velocity=0.2;velocityY=-0.2;repeat=20;repeatInterval=3} @Self
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=2;repeat=20;repeatInterval=3} @self
+  - delay 80
+  - Aura{auraName=SmolderingShadowAir;onTick=AirSound;interval=17;duration=400} @self
+  - lunge{velocity=0.2;velocityY=-1;repeat=5;repeatInterval=2} @Self
+  - skill{s=SmolderingShadowSkyDeathFall;repeat=200;repeatInterval=20} @Self
+  #- skill{s=SmolderingShadowFallLandChecker;repeat=200;repeatInterval=20} @Self
+  - skill{s=SmolderingShadowSkyDeathGround2;repeat=1000;repeatInterval=1} @Self
+  - skill{s=SmolderingShadowSkyDeathGround;repeat=1000;repeatInterval=1} @Self
+  #- summon{type=SmolderingShadowGroundSky2Death;amount=1;radius=0} @SelfLocation 
+  #- delay 1
+  #- remove @self
+#
+AirSound:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  #- moving{} true
+  Skills:
+  - sound{s=custom.flfll;v=4;p=1;sc=ambient} @Self
+SmolderingShadowSkyDeathFall:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  #- hasaura Dragon1Blocks false
+  #- hasaura FlyDeath false
+  Skills: 
+  - Aura{auraName=FlyDeath;interval=3;duration=600} @self
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=2;repeat=4;repeatInterval=5} @self
+  - lunge{velocity=0.2;velocityY=-1;repeat=4;repeatInterval=5} @Self
+  - state{mid=smolderingshadow;s=kgkhfg;li=0;lo=0;Petrify=false} @self
+#
+SmolderingShadowSkyDeathGround2:
+  Cooldown: 500
+  Conditions:
+  - hasaura FlyDeathGround1 false
+  - hasaura Dragon1Blocks false
+  - onground{} true
+  Skills: 
+  - sound{s=custom.fldthimp;v=10;p=1;sc=ambient} @Self
+  - Aura{auraName=FlyDeathGround2;interval=3;duration=600} @self 
+  - Aura{auraName=FlyDeath;interval=3;duration=600} @self 
+  - state{mid=smolderingshadow;s=crashdeath;li=0;lo=0;Petrify=false} @self
+  - effect:blockmask{m=dirt;r=5;d=100} @selflocation
+  - throw{velocity=20;velocityY=10;repeat=4;repeatInterval=5} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - effect:particlering{p=sweep_attack;radius=4;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=5;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=6;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=7;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=8;points=50;amount=3;hS=0.3;vS=0;y=0.5} @self
+  - state{mid=smolderingshadow;s=skylying;li=0;lo=0;Petrify=false;repeat=30;repeatInterval=20} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=9;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=9;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - summon{type=SmolderingShadowHeart;amount=1;radius=0} @Forward{f=0;y=1}
+  - delay 600
+  - remove @self
+SmolderingShadowSkyDeathGround:
+  Cooldown: 500
+  Conditions:
+  - hasaura FlyDeathGround2 false
+  - hasaura Dragon3Blocks true
+  #- onground{} true
+  Skills: 
+  - sound{s=custom.fldthimp;v=10;p=1;sc=ambient} @Self
+  - Aura{auraName=FlyDeathGround1;interval=3;duration=600} @self 
+  - Aura{auraName=FlyDeath;interval=3;duration=600} @self 
+  - state{mid=smolderingshadow;s=crashdeath;li=0;lo=0;Petrify=false} @self
+  - effect:blockmask{m=dirt;r=5;d=100} @selflocation
+  - throw{velocity=20;velocityY=10;repeat=4;repeatInterval=5} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - effect:particlering{p=sweep_attack;radius=4;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=5;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=6;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=7;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=8;points=50;amount=3;hS=0.3;vS=0;y=0.5} @self
+  - state{mid=smolderingshadow;s=skylying;li=0;lo=0;Petrify=false;repeat=30;repeatInterval=20} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=9;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=9;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - summon{type=SmolderingShadowHeart;amount=1;radius=0} @Forward{f=0;y=1}
+  - delay 600
+  - remove @self
+#################################
+SmolderingShadowIdle:
+  Cooldown: 3
+  Conditions:
+  - hasaura Stomp false
+  #- targetinlineofsight{} false
+  - onground{} true
+  #- moving{} false
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura RunRoar false
+  - hasaura Move false
+  - hasaura Landing false 
+  - hasaura RainOfFire false
+  - hasaura RoarFearSkill false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura GrabFinishEnd false
+  - hasaura BlazingSun false
+  Skills:
+  - Aura{auraName=Idle;interval=3;duration=60} @self
+  #- potion{type=SLOW;duration=75;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=idle;li=3;lo=2;r=false} @self
+SmolderingShadowWalk:
+  Cooldown: 0
+  Conditions:
+  - hasaura Stomp false
+  - onground{} true
+  - moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura RunRoar false
+  - hasaura Move false
+  - hasaura Landing false 
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFearSkill false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura GrabFinishEnd false
+  - hasaura BlazingSun false
+  Skills:
+  - sound{s=custom.mvm;v=2;p=1;sc=ambient} @Self
+  - Aura{auraName=Move;interval=3;duration=34} @self
+  - skill{s=SmolderingShadowWalkSkill;repeat=7;repeatInterval=5} @Self
+  #- leap{velocity=60;repeat=5;repeatInterval=7} @target
+  #- potion{type=SLOW;duration=75;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=movement;li=0;lo=0;r=false} @self
+  #- delay 37
+  #- state{mid=smolderingshadow;s=static;li=3;lo=2;r=false} @self
+SmolderingShadowWalkSkill:
+  Cooldown: 0
+  Conditions:
+  - onground{} true
+  - moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Stomp false
+  - hasaura RunRoar false 
+  - hasaura Landing false 
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura GrabFinishEnd false
+  - hasaura BlazingSun false
+  Skills:
+  - throw{velocity=10;velocityY=3} @LivingEntitiesInRadius{r=4;ignore=samefactio}
+  #- entitygoggle{duration=10} @Target
+  #- entitylookin{duration=10} @Target
+  #- look{headOnly=true;immediately=true} @Target
+  #- lunge{velocity=0.8;velocityY=0.5} @target
+  - leap{velocity=100} @target
+############
+SmolderingShadowSDasddd:
+  Cooldown: 150
+  Conditions:
+  #- hasaura Stomp false
+  #- hasaura FireBreath false
+  - hasaura Fly2 false
+  #- hasaura Move false 
+  Skills:
+  - skill{s=SmolderingShadowFlySkill} @Self
+SmolderingShadowFlySound:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  #- moving{} true
+  #- hasaura FireBreath false
+  - hasaura Dragon5Blocks false
+  - hasaura RoarFlyFear false
+  - hasaura Tornado false
+  - hasaura SkyFireBreath false
+  - hasaura GrabFinishStop false
+  - hasaura GrabThrow false
+  - hasaura LandingGround false
+  Skills:
+  - sound{s=custom.fl;v=4;p=1;sc=hostile} @Self
+SmolderingShadowTurnChecker:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  Skills:
+  - skill{s=SmolderingShadowFlyTurnCheckSkill} @Forward{f=7;y=1}
+ # 
+SmolderingShadowDiveGrab:
+  Cooldown: 0
+  Conditions:
+  #- onground{} false 
+  #- moving{} true
+ # - hasaura FireBreath false 
+  - hasaura LandingDive false
+  - hasaura Landing false
+  - hasaura GrabFinish true
+  - hasaura GrabFinishEnd false
+  #- hasaura Stomp false
+  Skills:
+  - skill{s=SmolderingShadowDiveGrabAura} @LivingEntitiesInRadius{r=80;ignore=samefaction;limit=1;sort=NEAREST}
+  - skill{s=SmolderingShadowDiveGrabLunge} @PlayersInRadius{r=80} 
+  #- leap{velocity=200} @LivingEntitiesInRadius{r=40;ignore=samefaction;limit=1;sort=NEAREST}
+SmolderingShadowDiveGrabAura:
+  Cooldown: 10
+  TargetConditions:
+  - onground{} true 
+  Skills:
+  - Aura{auraName=DeathMark;interval=1;duration=40}
+SmolderingShadowDiveGrabLunge:
+  Cooldown: 0
+  TargetConditions:
+  - onground{} true 
+  - hasaura DeathMark true
+  #- hasaura Stomp false
+  Skills:
+  - lunge{velocity=0.8;velocityY=-0.6} @target
+SmolderingShadowFireGrab:
+  Cooldown: 120
+  Conditions:
+  #- onground{} false 
+  #- moving{} true
+ # - hasaura FireBreath false 
+  - hasaura LandingDive false
+  - hasaura Landing false
+  - hasaura Dragon1Blocks false
+  - hasaura Dragon3Blocks true
+  #- hasaura Stomp false
+  Skills:
+  - Aura{auraName=GrabFinish;interval=10;duration=60} @self
+  - Aura{auraName=Landed;interval=10;duration=400} @self
+  #- lunge{velocity=0.35;velocityY=-1.0;repeat=5;repeatInterval=5} @target
+  - delay 10
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - Aura{auraName=GrabFinishStop;interval=10;duration=100} @self
+  - state{mid=smolderingshadow;s=das6w;li=3;lo=2;r=false} @self
+  #- lunge{velocity=0.3;velocityY=-0.2;repeat=25;repeatInterval=2} @Self
+  - delay 0
+  - effect:blockmask{m=dirt;r=5;d=100;repeat=4;repeatInterval=5} @selflocation
+  - pull{velocity=10;repeat=75;repeatInterval=1} @LivingEntitiesInRadius{r=14;ignore=samefaction}
+  - Aura{auraName=GrabFinishEnd;interval=10;duration=110} @self
+  - lunge{velocity=0.3;velocityY=0.1;repeat=50;repeatInterval=1} @Self
+  - delay 50
+  - projectile{onTick=SmolderingShadowFireBreathSky-Tick;onHit=SmolderingShadowFireBreathSky-Tick;onEnd=SmolderingShadowFireBreathSky-Tick;v=30;i=1;hR=1;vR=1;hnp=true;mr=60;sE=false;sB=true;hs=false;sso=0;syo=-2;sfo=2;repeat=60;repeatInterval=1} @NearestPlayer{r=15}
+  - lunge{velocity=1;velocityY=0.8;repeat=15;repeatInterval=2} @Self
+  - skill{s=SmolderingShadowFlySkill2} @self
+  - delay 26
+  - throw{velocity=10;velocityY=20;repeat=3;repeatInterval=5} @LivingEntitiesInRadius{r=14;ignore=samefaction}
+SmolderingShadowLandingDive:
+  Cooldown: 90
+  Conditions:
+  #- onground{} false
+  #- moving{} true
+  #- hasaura FireBreath false
+  - hasaura Landing false
+  - hasaura Dragon3Blocks true
+  - hasaura GrabFinishEnd false
+  - hasaura GrabFinish false
+  #- hasaura Stomp false
+  Skills: 
+  - sound{s=custom.flsld;v=5;p=1;sc=ambient} @Self
+  - Aura{auraName=LandingGround;interval=10;duration=80} @self
+  - Aura{auraName=Landed;interval=10;duration=400} @self
+  - effect:particlebox{p=block_crack;m=dirt;amount=15;speed=0;hS=0.5;vS=0.5;y=0.5;repeat=12;repeatInterval=5} @self
+  - effect:blockmask{m=dirt;r=3;d=200;repeat=12;repeatInterval=5} @selflocation
+  - runaitargetselector{target=clear} @self
+  - Aura{auraName=LandingDive;interval=60;duration=500} @self
+  - state{mid=smolderingshadow;s=gs678;li=3;lo=2;r=false} @self
+  - lunge{velocity=0.6;velocityY=-1} @Self
+  - lunge{velocity=0.8;velocityY=0.1;repeat=12;repeatInterval=5} @Self
+  - throw{velocity=20;velocityY=10;repeat=12;repeatInterval=5} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  #- skill{s=DamageTargetMHP;repeat=3;repeatInterval=20} @LivingEntitiesInRadius{r=8;ignore=samefaction;limit=1}
+  - delay 1
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 10";ignoreArmor=true;repeat=12;repeatInterval=5} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - delay 59
+  - throw{velocity=20;velocityY=10} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - effect:particlering{p=sweep_attack;radius=4;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=5;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=6;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=7;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=8;points=50;amount=3;hS=0.3;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=9;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - runaitargetselector{target=player} @self
+##################### 
+ ################################### 
+SmolderingShadowDsdpdsaD:
+  Cooldown: 5
+  Conditions:
+  - hasaura AscendUp false
+  - hasaura GoingDown false
+  - hasaura Fly true
+  Skills:
+  - randomskill{skills=SmolderingShadowFireBreathSky,SmolderingShadowFlyRoar,SmolderingShadowTornado} self
+####################################
+SmolderingShadowFlyTakeOffSkills:
+  Cooldown: 0
+  Conditions:
+  Skills:
+  - randomskill{skills=SmolderingShadowTakeOffGrab,SmolderingShadowTakeOff} self
+SmolderingShadowTakeOff:
+  Cooldown: 0
+  Conditions:
+  Skills:
+  - sound{s=custom.fltkf;v=5;p=1;sc=ambient} @Self
+  - state{mid=smolderingshadow;s=jsdda;li=3;lo=3;r=false} @self
+SmolderingShadowTakeOffGrab:
+  Cooldown: 120
+  Conditions:
+  Skills:
+  - Aura{auraName=GrabThrow;interval=1;duration=90} @self
+  #- Aura{auraName=Landed;interval=10;duration=400} @self
+  #- lunge{velocity=0.35;velocityY=-1.0;repeat=5;repeatInterval=5} @target
+  #- delay 10
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - state{mid=smolderingshadow;s=iu548;li=3;lo=2;r=false} @self
+  #- lunge{velocity=0.3;velocityY=-0.2;repeat=25;repeatInterval=2} @Self
+  - delay 0
+  - pull{velocity=10;repeat=75;repeatInterval=1} @LivingEntitiesInRadius{r=10;ignore=samefaction}
+  - delay 20
+  - lunge{velocity=0.6;velocityY=1;repeat=10;repeatInterval=2} @Self
+  - delay 50
+  - throw{velocity=10;velocityY=20;repeat=3;repeatInterval=5} @LivingEntitiesInRadius{r=14;ignore=samefaction}
+#####################,
+SmolderingShadowFireBreathSky:
+  Cooldown: 10
+  Conditions:
+  - hasaura Dragon5Blocks false
+  - hasaura Fly true
+  - hasaura RoarFlyFear false
+  - hasaura Tornado false
+  - hasaura AscendUp false
+  - hasaura SkyCD false
+  - hasaura GrabThrow false  
+  Skills:
+  - Aura{auraName=SkyFireBreath;interval=1;duration=70} @self
+  - sound{s=custom.skrrflm;v=10;p=1;sc=master} @self
+  #- skill{s=AzgadSounds;delay=2} @Self 
+  - Aura{auraName=SkyCD;interval=5;duration=100} @self
+  #- potion{type=SLOW;duration=90;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=jddse;li=3;lo=1;r=false;i=false} @self
+  #- Aura{auraName=Fire_BeamAura;onTick=FireBeamDragonFlyCircle-Tick;interval=1;duration=100} @self
+  - Aura{auraName=SmolderingShadowFireAura;onTick=SmolderingShadowFireBreathSkySkill;interval=1;duration=61} @self
+SmolderingShadowFireBreathSkySkill:
+  Cooldown: 0
+  Skills:
+  - projectile{onTick=SmolderingShadowFireBreathSky-Tick;onHit=SmolderingShadowFireBreathSky-Tick;onEnd=SmolderingShadowFireBreathSky-Tick;v=20;i=1;hR=1;vR=1;hnp=true;mr=60;sE=false;sB=false;hs=false;sso=0;syo=-2;sfo=2} @LivingEntitiesInRadius{r=80;limit=1;sort=NEAREST;ignore=samefaction;target=players} #@NearestPlayer{r=80} #  #@NearestPlayer{r=50} #@EntitiesInCone{angle=100;range=15;rotation=0;limit=1;ignore=samefactio} #@target #@Cone{angle=150;points=10;range=15;rotation=0;ignore=samefaction}   # @Forward{f=7;y=1} #
+SmolderingShadowFireBreathSky-Tick:
+  Cooldown: 0
+  Skills:
+  - effect:particles{vd=50;p=flame;amount=10;speed=0.5;hS=0.1;vS=0.1} @origin
+  - effect:particlesphere{vd=50;particle=flame;amount=15;radius=2} @origin
+  - effect:blockmask{m=MAGMA_BLOCK;r=2;d=100} @origin 
+  - damage{amount="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 10";ignoreArmor=false} @EntitiesNearOrigin{r=3;ignore=samefaction}
+SmolderingShadowFireBreathSky-End:
+  Cooldown: 0
+  Skills:
+  #- Totem{Charges=10000;onTick=SmolderingShadowTotemBurning-Tick;md=211;i=10;hR=1;vR=1;hp=true;hnp=true} @origin
+SmolderingShadowTotemBurning-Tick:
+  Cooldown: 0
+  Skills:
+  #- explosion{yield=0;bd=false;f=true} @origin
+  - ignite{ticks=100} @EntitiesNearOrigin{r=2}
+  #- effect:particlesphere{vd=50;particle=flame;amount=15;radius=0.5} @origin
+  - effect:particlebox{particle=flame;amount=10;radius=1;hs=1;vs=1} @self
+#####################,
+SmolderingShadowFlyRoar:
+  Cooldown: 40
+  Conditions:
+  - hasaura Dragon5Blocks false
+  - onground{} false
+  - hasaura SkyFireBreath false
+  - hasaura Tornado false
+  - hasaura Fly true
+  - hasaura GrabFinishEnd false
+  - hasaura GrabFinish false
+  - hasaura AscendUp false
+  - hasaura SkyCD false
+  - hasaura GrabThrow false
+  Skills:
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - Aura{auraName=SkyCD;interval=5;duration=100} @self
+  - Aura{auraName=RoarFlyFear;interval=1;duration=70} @self
+  #- potion{type=SLOW;duration=90;lvl=5;hasParticles=false} @self
+  #- Aura{auraName=RoarFear2;interval=5;duration=200} @self
+  - state{mid=smolderingshadow;s=jddse;li=3;lo=2;r=false;i=false} @self
+  - sudoskill{s=SmolderingShadowRoarFearAura;cat=true} @PlayersInRadius{r=80} 
+  - delay 10
+  - auraremove{aura=SmolderingShadowFearAura;stacks=1} @self
+#####################
+SmolderingShadowTornado:
+  Cooldown: 20
+  Conditions:
+  - hasaura Dragon5Blocks false
+  - onground{} false
+  - hasaura RoarFlyFear false
+  - hasaura Fly true
+  - hasaura SkyFireBreath false 
+  - hasaura FlyDelay false 
+  - hasaura AscendUp false
+  - hasaura SkyCD false
+  - hasaura GrabThrow false
+  Skills:
+  - Aura{auraName=SkyCD;interval=5;duration=100} @self
+  - Aura{auraName=Tornado;interval=1;duration=110} @self
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - summon{type=SmolderingShadowTornadoDummy;amount=1;radius=0} @PlayersInRadius{r=100;limit=1;sort=NEAREST} #@NearestPlayer{r=100;ignore=creative}
+  #- potion{type=SLOW;duration=110;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=g4s49;li=3;lo=2;r=false;i=false} @self
+  - velocity{m=set;x=0;y=0;z=0;repeat=110;repeatInterval=1} @self 
+  #- skill{s=SmolderingShadowTornadoDummy} @SelfLocation 
+SmolderingShadowTornadoDummy:
+  Cooldown: 0
+  #TargetConditions:
+  #- hasaura EatFinish true
+  Skills:
+  - sound{s=custom.fltrnd;v=5;p=1;sc=master} @Self
+  #- Aura{auraName=Bite;interval=5;duration=88} @LivingEntitiesInRadius{r=30}
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=0.5;repeat=3;repeatInterval=1} @target
+  - skill{s=SmolderingShadowTornadoCenter;repeat=200;repeatInterval=1} @LivingEntitiesInRadius{r=5}
+  - skill{s=SmolderingShadowTornadoPull;repeat=200;repeatInterval=1} @LivingEntitiesInRadius{r=20;ignore=samefaction}
+  - effect:spin{duration=20;velocity=8;repeat=10;repeatInterval=20} @self
+  - lunge{velocity=0.4;velocityY=0.1;repeat=40;repeatInterval=5} @Forward{f=2;y=2}
+  - projectile{onTick=SmolderingShadowTornado-Tick;v=40;d=200;type=METEOR;g=1.5;hs=false;hfs=14;mr=20;i=1;hR=0;vO=0;vR=0;sE=false;sB=true;hnp=true;repeat=200;repeatInterval=1} @selflocation
+  - projectile{onTick=SmolderingShadowTornado-Tick;v=40;d=200;type=METEOR;g=1.5;hs=false;hfs=14;mr=20;i=1;hR=0;vO=0;vR=0;sE=false;sB=true;hnp=true;repeat=200;repeatInterval=1} @Ring{radius=2.5;points=8}
+  #1
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=8;oy=4;hnp=true} @self  
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=7;oy=3.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=6;oy=3;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=5;oy=2.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=3;oy=2;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=2;oy=1.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=1;oy=1;hnp=true} @self 
+  #5
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=8;oy=5;hnp=true} @self  
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=7;oy=5.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=6;oy=6;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=5;oy=6.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=3;oy=7;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=2;oy=7.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=1;oy=8;hnp=true} @self 
+  #10
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=8;oy=9;hnp=true} @self  
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=7;oy=9.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=6;oy=10;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=5;oy=10.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=3;oy=11;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=2;oy=11.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=1;oy=12;hnp=true} @self 
+  #15
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=8;oy=13;hnp=true} @self  
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=7;oy=13.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=6;oy=14;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=5;oy=14.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=3;oy=15;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=2;oy=15.5;hnp=true} @self 
+  - orbital{onTick=SmolderingShadowTornadoEff-Tick;points=50;interval=1;duration=200;charges=1000;ry=1;avy=0.5;r=1;oy=16;hnp=true} @self 
+  - effect:blockmask{m=MAGMA_BLOCK;r=1;d=100;repeat=10;repeatInterval=20} @selflocation  
+  - delay 200
+  - remove @self
+SmolderingShadowTornadoEff-Tick:
+  Cooldown: 0
+  Skills:
+  - effect:particles{p=block_crack;m=magma_block;amount=5;speed=0;hS=0.3;vS=0.3} @origin
+  - effect:particles{vd=50;p=flame;amount=1;speed=0;hS=0.1;vS=0.1} @origin 
+  #- effect:particles{vd=50;p=lava;amount=1;speed=0;hS=0.1;vS=0.1} @origin
+SmolderingShadowTornado-Tick:
+  Skills:
+  - effect:blockmask{m=MAGMA_BLOCK;r=1;d=100} @origin  
+  #- effect:itemspray{item=fire_charge;amount=1;velocity=0.1;d=5} @Origin{yoffset=1} 
+  - effect:particles{vd=50;p=flame;amount=10;speed=0;hS=0.2;vS=0.2} @Origin{yoffset=0.35} 
+  - effect:particles{vd=50;p=lava;amount=1;speed=0;hS=0.2;vS=0.2} @Origin{yoffset=0.35} 
+  - ignite{ticks=100} @EntitiesNearOrigin{r=2}
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 10"} @EntitiesNearOrigin{r=3}
+SmolderingShadowTornadoCenter:
+  Cooldown: 0
+  TargetConditions:
+  #- hasaura TornadoCenter false
+  Skills:
+  #- sudoskill{s=TornadoCenterDamage;cat=true} @PlayersInRadius{r=5}
+  - Aura{auraName=TornadoCenter;onTick=TornadoCenterDamage;interval=1;duration=80} @PlayersInRadius{r=5}
+  #- jump{velocity=10} @PlayersInRadius{r=5}
+TornadoCenterDamage:
+  Cooldown: 0
+  Skills:
+  #- jump{velocity=10} @EntitiesNearOrigin{r=0.5}
+  #- throw{velocity=2;velocityY=3} @EntitiesNearOrigin{r=0.5}
+  - potion{type=LEVITATION;duration=80;lvl=2;hasParticles=false} @PlayersInRadius{r=5}
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 10"} @EntitiesNearOrigin{r=0.5}
+SmolderingShadowTornadoPull:
+  Cooldown: 0
+  TargetConditions:
+  - hasaura TornadoCenter false
+  Skills:
+  - pull{velocity=3} #@target
+###############
+AzgadWaterCheck: 
+  Conditions:
+  - inblock{b=WATER,LAVA} true
+  #- inblock{b=LAVA} true
+  Skills:
+  - skill{s=SmolderingShadowFlySkill3} @Self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=15;repeatInterval=5} @Self
+
+###############
+SmolderingShadow10BChecker:
+  TargetConditions:
+  - inblock{b=AIR} false
+  Skills:
+  - Aura{auraName=Dragon10Blocks;interval=5;duration=200} @self
+SmolderingShadow5BChecker:
+  TargetConditions:
+  - inblock{b=WATER} false
+  - inblock{b=AIR} false
+  Skills:
+  - Aura{auraName=Dragon3Blocks;interval=5;duration=10} @self
+SmolderingShadow1BChecker:
+  TargetConditions:
+  - inblock{b=WATER} false
+  - inblock{b=AIR} false
+  Skills:
+  - Aura{auraName=Dragon1Blocks;interval=1;duration=20} @self
+SmolderingShadowConeChecker:
+  Cooldown: 0
+  Conditions:
+ # - onground{} false
+  #- moving{} true
+  #- hasaura FireBreath false
+  #- hasaura Dragon5Blocks false
+  Skills:
+  - skill{s=SmolderingShadowCone150} @EntitiesInCone{angle=150;range=20;rotation=0}
+  - skill{s=SmolderingShadowCone90} @EntitiesInCone{angle=90;range=20;rotation=0}
+SmolderingShadowCone90:
+  Cooldown: 0
+  Conditions:
+  - targets{a=1to20} true
+  Skills:
+  - Aura{auraName=Cone90Aura;interval=10;duration=80} @self
+SmolderingShadowCone150:
+  Cooldown: 0
+  Conditions:
+  - targets{a=1to20} true
+  Skills:
+  - Aura{auraName=Cone150Aura;interval=10;duration=80} @self
+ ################################### 
+############### 
+SmolderingShadowSDascceee:
+  Cooldown: 0
+  Conditions:
+  - hasaura AscendUp false
+  Skills:
+  - randomskill{skills=SmolderingShadowSDasddd,SmolderingShadowGrillFinish,SmolderingShadowWingAttack,SmolderingShadowTailSwing,SmolderingShadowRoar,SmolderingShadowFireBreath,SmolderingShadowStomp,SmolderingShadowRunRoar,SmolderingShadowEatFinish,SmolderingShadowRainOfFire,SmolderingShadowBite,SmolderingShadowBlazingSun} @self
+####################################
+SmolderingShadowFireBreath:
+  Cooldown: 30
+  Conditions:
+  - targetwithin{d=20} true
+  - hasaura Fly false
+  - onground{} true
+  #- hasaura Cone150Aura true
+  - hasaura Stomp false
+  - hasaura RunRoar false
+  - hasaura Landing false 
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  #- targetinlineofsight{} true
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - Aura{auraName=FireBreath;interval=3;duration=80} @self
+  - potion{type=SLOW;duration=90;lvl=5;hasParticles=false} @self
+  - delay 1
+  - state{mid=smolderingshadow;s=roarflame;li=3;lo=2;r=false} @self
+  - delay 10
+  - stun{d=80;f=true;stopai=true;g=false} @self
+  - delay 20
+  - Aura{auraName=SmolderingShadowAura;onTick=SmolderingShadowRoarFlame;interval=2;duration=61} @self
+  - delay 50
+SmolderingShadowFallLandChecker:
+  Cooldown: 0
+  Conditions:
+  - onground{} true
+  - hasaura Dragon1Blocks false
+  - hasaura FlyDeath false
+  Skills: 
+  - Aura{auraName=FlyDeath;interval=3;duration=600} @self
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=2;repeat=4;repeatInterval=5} @self
+  - lunge{velocity=0.2;velocityY=-1;repeat=4;repeatInterval=5} @Self
+  - state{mid=smolderingshadow;s=skylying;li=0;lo=0;Petrify=false} @self
+###########
+SmolderingShadowRoarFlame:
+  Cooldown: 0
+  Skills:
+  - projectile{onTick=SmolderingShadowRoarFlame-Tick;v=20;i=1;hR=1;vR=1;hnp=true;mr=40;sE=false;sB=true;hs=false;sso=0;syo=2;sfo=2} @targetLocation #@EntitiesInCone{angle=100;range=15;rotation=0;limit=1;ignore=samefactio} #@target #@Cone{angle=150;points=10;range=15;rotation=0;ignore=samefaction}   # @Forward{f=7;y=1} #
+SmolderingShadowRoarFlame-Tick:
+  Cooldown: 0
+  Skills:
+  - skill{s=SmolderingShadowRoarFlameDamage} @EntitiesNearOrigin{r=3;ignore=samefaction}
+  - effect:particles{vd=50;p=flame;amount=5;speed=0.1;hS=0.05;vS=0.05} @origin
+  - effect:particlesphere{vd=50;particle=flame;amount=15;radius=2.5} @origin
+  - effect:blockmask{m=MAGMA_BLOCK;r=2;d=100} @origin 
+SmolderingShadowRoarFlameDamage:
+  TargetConditions:
+  - blocking{} false
+  Cooldown: 0
+  Skills:
+  - damage{amount="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 10";ignoreArmor=false} @EntitiesNearOrigin{r=3;ignore=samefaction}
+######################
+######################
+SmolderingShadowStomp:
+  Cooldown: 30
+  Conditions:
+  - targetwithin{d=15} true
+  - hasaura Fly false
+  - onground{} true
+  - hasaura FireBreath false
+  - hasaura RunRoar false
+  - hasaura Landing false 
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  #- targetinlineofsight{} true
+  #- hasaura Cone90Aura true
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - Aura{auraName=Stomp;interval=3;duration=55} @self
+  - Aura{auraName=Stomp2;interval=3;duration=150} @self
+  #- delay 5
+  #- entitygoggle{duration=90} @target
+  #- state{mid=smolderingshadow;s=walk;li=3;lo=3;r=true} @self
+  #- look{headOnly=false;immediately=true;repeat=90;repeatInterval=1} @target
+  - potion{type=SLOW;duration=65;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=stomp;li=3;lo=2;r=false} @self
+  #- entitygoggle{duration=65} @Target
+  #- entitylookin{duration=65} @Target
+  #- BodyClamp{c=180;repeat=65;repeatInterval=1} @self
+  - delay 10
+  - skill{s=AzgadSounds} @Self 
+  - stun{d=50;f=true;stopai=true;g=false} @self
+  - delay 20
+  - projectile{onTick=SmolderingShadowRoarFlame-Tick;v=10;i=1;hR=1;vR=1;hnp=true;mr=10;sE=false;sB=true;hs=false;syo=2;repeat=10;repeatInterval=2} @Forward{f=5;y=1}
+  - delay 10
+  - throw{velocity=10;velocityY=10} @LivingEntitiesInRadius{r=10}
+  - projectile{onTick=SmolderingShadowStomp-Tick;onHit=SmolderingShadowStomp-Hit;d=100;v=20;mr=20;i=1;hR=1;vR=1;sE=false;sB=false;hnp=true;sso=0;syo=-2;sfo=2} @targetLocation #@RLNTE{a=2;r=3;s=3;minr=5} #@target @RLNTE{a=2;r=3;s=3;minr=5} #@Forward{f=0;y=1.5}
+  - projectile{onTick=SmolderingShadowStomp-Tick;onHit=SmolderingShadowStomp-Hit;d=100;v=20;mr=20;i=1;hR=1;vR=1;sE=false;sB=false;hnp=true;sso=2;syo=-2;sfo=2} @targetLocation  #@RLNTE{a=2;r=3;s=3;minr=5} #@target #@Forward{f=0;y=1.5}
+  - projectile{onTick=SmolderingShadowStomp-Tick;onHit=SmolderingShadowStomp-Hit;d=100;v=20;mr=20;i=1;hR=1;vR=1;sE=false;sB=false;hnp=true;sso=-2;syo=-2;sfo=2} @targetLocation  #@RLNTE{a=2;r=3;s=3;minr=5} #@target #@Forward{f=0;y=1.5}
+  - projectile{onTick=SmolderingShadowStomp-Tick;onHit=SmolderingShadowStomp-Hit;d=100;v=20;mr=20;i=1;hR=1;vR=1;sE=false;sB=false;hnp=true;sso=3;syo=-2;sfo=2} @targetLocation  #@RLNTE{a=2;r=3;s=3;minr=5} #@target #@Forward{f=0;y=1.5}
+  - projectile{onTick=SmolderingShadowStomp-Tick;onHit=SmolderingShadowStomp-Hit;d=100;v=20;mr=20;i=1;hR=1;vR=1;sE=false;sB=false;hnp=true;sso=-3;syo=-2;sfo=2} @targetLocation  #@RLNTE{a=2;r=3;s=3;minr=5} #@target
+SmolderingShadowStomp-Tick:
+  Conditions:
+  #- hasaura DungeonAura false 
+  Skills:  
+  - effect:blockmask{m=MAGMA_BLOCK;r=1;d=50} @origin 
+  - summon{type=SmolderingShadowStomp;amount=1;radius=0} @origin	
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 20";ignoreArmor=false} @EntitiesNearOrigin{r=4} 
+SmolderingShadowStomp-Hit:
+  Conditions:
+  #- hasaura DungeonAura false 
+  Skills:
+  #- effect:particles{particle=redstone;color=#FF0000;amount=20;hS=1.5;vS=1.5;speed=1}
+  #- effect:sound{s=entity.arrow.hit;v=1;p=0}
+  - damage{a="(<target.mhp> / 100) * 30";ignoreArmor=false} @EntitiesNearOrigin{r=3} 
+SmolderingShadowStompPrison:
+    Cooldown: 0
+    Skills:
+    - prison{material=GRANITE;duration=100;breakable=true} @self
+    - delay 30
+    - remove @self
+######################
+SmolderingShadowRunRoar:
+  Cooldown: 20
+  Conditions:
+  - targetnotwithin{d=10} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura Stomp2 false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - sound{s=custom.rnrrim;v=3;p=1;sc=hostile;repeat=5;repeatInterval=20} @Self
+  - Aura{auraName=RunRoar;interval=3;duration=105} @self
+  - skill{s=SmolderingShadowRunRoarSkill} @Self
+  #- leap{velocity=60;repeat=5;repeatInterval=7} @target
+  - potion{type=SLOW;duration=75;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=runandroar;li=3;lo=2;r=false;i=false;repeat=2;repeatInterval=55} @self
+  - delay 10
+  - potion{type=SLOW;duration=60;lvl=5;hasParticles=false} @self
+  #- state{mid=smolderingshadow;s=static;li=3;lo=2;r=false} @self
+SmolderingShadowRunRoarSkill:
+  Cooldown: 0
+  Conditions:
+  #- inblock{b=WATER} false 
+  #- incombat{} true
+  Skills:
+  #- delay 10
+  - effect:blockmask{m=dirt;r=2;d=20;repeat=24;repeatInterval=5} @SelfLocation 
+  - effect:particles{p=block_crack;m=dirt;amount=20;speed=0.5;hS=2;vS=2;y=1;repeat=24;repeatInterval=5} @self
+  - skill{s=SmolderingShadowChargeSkill;repeat=26;repeatInterval=5} @Self
+SmolderingShadowChargeSkill:
+  Conditions:
+  - onground{} true
+  Skills:
+  #- entitygoggle{duration=5} @Target
+  #- entitylookin{duration=5} @Target
+  - potion{type=CONFUSION;duration=150;lvl=0;hasParticles=false} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - lunge{velocity=1.2;velocityY=0.55} @target #@Forward{f=0.5} #@target
+  - throw{velocity=20;velocityY=10} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - damage{amount="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 25";ignoreArmor=false} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+#
+SmolderingShadowFlySkill2:
+  Cooldown: 0
+  Conditions:
+  #- onground{} false
+  #- moving{} true
+ # - hasaura FireBreath false
+  #- hasaura FireBreath false
+  Skills:
+  - Aura{auraName=AscendUp;interval=1;duration=60} @self
+  - delay 1
+  - Aura{auraName=FlyDelay;interval=1;duration=150} @self
+  - Aura{auraName=Fly2;interval=5;duration=530} @self
+  - Aura{auraName=Fly;interval=5;duration=530} @self
+  - clearThreat{} @self
+  - sound{s=custom.fltkf;v=5;p=1;sc=ambient} @Self
+  - runaitargetselector{target=clear;repeat=540;repeatInterval=1} @self
+  - delay 20
+  - lunge{velocity=0.5;velocityY=0.5;repeat=2;repeatInterval=5} @Self
+  - delay 10
+  - Aura{auraName=SmolderingShadowFlySoundAura;onTick=SmolderingShadowFlySound;interval=40;duration=720} @self
+  #- skill{s=SmolderingShadowFlySound;repeat=18;repeatInterval=40} @Self
+  - skill{s=SmolderingShadowFlyAni;repeat=700;repeatInterval=1} @Self
+  #- Aura{auraName=;interval=5;duration=400} @self
+  - lunge{velocity=0.5;velocityY=1;repeat=10;repeatInterval=10} @Self
+  - skill{s=SmolderingShadowLanding2;repeat=100;repeatInterval=10} @Self
+  - effect:spin{duration=10;velocity=4;repeat=2;repeatInterval=50} @self
+  - delay 100
+  - skill{s=SmolderingShadowFlyLunge;repeat=80;repeatInterval=5} @Self
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 50
+  - Aura{auraName=GoingDown;interval=5;duration=150} @self
+  - delay 50
+  - Aura{auraName=GroundCheckAura;onTick=SmolderingShadowGroundCheckSkill;interval=5;duration=600} @self
+  - runaitargetselector{target=player} @self
+SmolderingShadowRainOfFire:
+  Cooldown: 40
+  Conditions:
+  - targets{a=1to20} true
+  - targetwithin{d=20} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  - hasaura BlazingSunCD false
+  Skills:
+  - Aura{auraName=RainOfFire;interval=1;duration=210} @self
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - sound{s=custom.mtrcef;v=5;p=1;sc=ambient} @Self
+  - potion{type=SLOW;duration=210;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=meteorcall;li=3;lo=2;r=false;i=false;repeat=2;repeatInterval=70} @self
+  - Totem{Charges=10000;onTick=SmolderingShadowRain-Tick;md=211;i=10;hR=1;vR=1;hp=true;hnp=true} @targetLocation
+  #- Totem{Charges=10000;onTick=SmolderingShadowRainDummySkill;md=211;i=10;hR=1;vR=1;hp=true;hnp=true} @selflocation
+SmolderingShadowRain-Tick:
+  Cooldown: 0
+  Conditions:
+  Skills:
+  - summon{type=SmolderingShadowRainDummy;amount=8;radius=15} @origin 
+SmolderingShadowRainDummySkill:
+  Skills:
+  - delay 30
+  - projectile{bulletType=ITEM;material=FIRE_CHARGE;onTick=SmolderingShadowFireBall-Tick;onHit=SmolderingShadowFireBall-Hit;onEnd=SmolderingShadowFireBall-End;v=20;d=200;type=METEOR;g=1.5;hs=false;hfs=10;mr=20;i=1;hR=0;vO=0;vR=0;sE=false;sB=true;hnp=true} @selflocation
+  - delay 30
+  - remove @self
+SmolderingShadowFireBall-Tick:
+  Skills:
+  #- effect:itemspray{item=fire_charge;amount=1;velocity=0.1;d=5} @Origin{yoffset=1} 
+  - effect:particles{vd=50;p=flame;amount=15;speed=0;hS=0.2;vS=0.2} @Origin{yoffset=0.35} 
+  - effect:particles{vd=50;p=lava;amount=1;speed=0;hS=0.2;vS=0.2} @Origin{yoffset=0.35} 
+  - ignite{ticks=100} @EntitiesNearOrigin{r=2}
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 20"} @EntitiesNearOrigin{r=3;ignore=samefaction}
+SmolderingShadowFireBall-Hit:
+  Skills: 
+  - effect:blockmask{m=MAGMA_BLOCK;r=1;d=80} @origin
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=2} @origin
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 20"} @EntitiesNearOrigin{r=5;ignore=samefaction}
+  - effect:particles{vd=50;p=explosion_large;amount=5;speed=0;hS=0.2;vS=0.2} @origin
+  #- effect:explosion @origin
+  - ignite{ticks=100} @EntitiesNearOrigin{r=3}
+  #- effect:particles{p=explosion_normal;amount=5;speed=0;hS=0.2;vS=0.2} @origin
+SmolderingShadowFireBall-End:
+  Skills: 
+  - effect:blockmask{m=MAGMA_BLOCK;r=1;d=80} @origin
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=2} @origin
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 20"} @EntitiesNearOrigin{r=5}
+  - effect:particles{vd=50;p=explosion_large;amount=5;speed=0;hS=0.2;vS=0.2} @origin
+  #- effect:explosion @origin
+  - ignite{ticks=100} @EntitiesNearOrigin{r=5}
+######################
+SmolderingShadowGrillFinish:
+  Cooldown: 0
+  Conditions:
+  - targetwithin{d=8} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura RainOfFire false
+  - hasaura RoarFear false
+  - hasaura RoarFear2 false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura EatFinish false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - skill{s=SmolderingShadowGrillFinishSkill} @target
+SmolderingShadowGrillFinishSkill:
+  Cooldown: 50
+  TargetConditions:
+  - health{a=<1000} true
+  Conditions:
+  - targetinlineofsight{} true
+  - targetwithin{d=8} true
+  Skills:
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - entitygoggle{duration=60} @Target
+  - entitylookin{duration=60} @Target
+  #- stun{d=100;f=true;stopai=true;g=false} @self
+  - threat{amount=10000} @target
+  - potion{type=SLOW;duration=80;lvl=5;hasParticles=false} @self
+  - potion{type=SLOW;duration=80;lvl=5;hasParticles=false} @target
+  - Aura{auraName=GrillFinish;interval=1;duration=80} @self
+  - Aura{auraName=GrillFinishTarget;interval=5;duration=80} @target
+  - state{mid=smolderingshadow;s=g4d1s68;li=3;lo=2;r=false;i=false} @self
+  - delay 1
+  - setNoDamageTicks{ticks=60;delay=1} @self
+  #- summon{type=SmolderingShadowEatPullDummy;amount=1;radius=0} @Forward{f=3;y=1}
+  - pull{velocity=10;repeat=10;repeatInterval=1} @target
+  - delay 10
+  - velocity{m=set;x=0;y=0;z=0;repeat=50;repeatInterval=1} @target
+  #- forcepull{spread=0;repeat=1;repeatInterval=1} @Forward{f=5;y=2}
+  - delay 10
+  - projectile{onTick=SmolderingShadowRoarFlame-Tick;v=20;i=1;hR=1;vR=1;hnp=true;mr=40;sE=false;sB=true;hs=false;sso=0;syo=2;sfo=2;repeat=20;repeatInterval=1} @targetLocation
+  - delay 30
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=0.5;repeat=10;repeatInterval=1} @target
+  - delay 10
+  - skill{s=SmolderingShadowGrillDamage} @LivingEntitiesInRadius{r=10}
+SmolderingShadowGrillDamage:
+  Cooldown: 0
+  TargetConditions:
+  - hasaura GrillFinishTarget true
+  Skills:
+  - velocity{m=set;x=0;y=0;z=0;repeat=10;repeatInterval=1} @target
+  - healpercent{m=0.02} @self 
+  - damage{a="<target.mhp> * 200";ignoreArmor=true} @target 
+######################
+SmolderingShadowEatFinish:
+  Cooldown: 0
+  Conditions:
+  - targetwithin{d=10} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura RainOfFire false
+  - hasaura RoarFear false
+  - hasaura RoarFear2 false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - skill{s=SmolderingShadowEatFinishSkill} @target
+SmolderingShadowEatFinishSkill:
+  Cooldown: 50
+  TargetConditions:
+  - health{a=<1000} true
+  Conditions:
+  - targetinlineofsight{} true
+  - targetwithin{d=15} true
+  Skills:
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - entitygoggle{duration=60} @Target
+  - entitylookin{duration=60} @Target
+  #- stun{d=100;f=true;stopai=true;g=false} @self
+  - threat{amount=10000} @target
+  - potion{type=SLOW;duration=110;lvl=5;hasParticles=false} @self
+  - potion{type=SLOW;duration=110;lvl=5;hasParticles=false} @target
+  - Aura{auraName=EatFinish;interval=1;duration=100} @self
+  - Aura{auraName=EatFinishTarget;interval=5;duration=150} @target
+  - delay 1
+  - setNoDamageTicks{ticks=78;delay=1} @self
+  - summon{type=SmolderingShadowEatPullDummy;amount=1;radius=0} @Forward{f=3;y=1}
+  #- pull{velocity=10;repeat=10;repeatInterval=1} @LivingEntitiesInRadius{r=100}
+  - delay 10
+  - pull{velocity=10;repeat=5;repeatInterval=1} @target
+  - state{mid=smolderingshadow;s=poofa56;li=3;lo=2;r=false;i=false} @self
+  #- forcepull{spread=0;repeat=1;repeatInterval=1} @Forward{f=5;y=2}
+  - delay 30
+  - velocity{m=set;x=0;y=0.4;z=0;repeat=5;repeatInterval=1} @target
+  - delay 5
+  - velocity{m=set;x=0;y=1.3;z=0;repeat=7;repeatInterval=1} @target
+  - delay 7
+  - velocity{m=set;x=0;y=-0.2;z=0;repeat=20;repeatInterval=1} @target
+  - delay 20
+  - velocity{m=set;x=0;y=0;z=0;repeat=10;repeatInterval=1} @target
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=0.5;repeat=6;repeatInterval=1} @target
+  - delay 6
+  - skill{s=SmolderingShadowEatDamage} @LivingEntitiesInRadius{r=10}
+  #- throw{velocity=1;velocityY=10} @target
+SmolderingShadowDummy:
+  Cooldown: 0
+  Skills:
+  - skill{s=SmolderingShadowEatPull;repeat=10;repeatInterval=1} @LivingEntitiesInRadius{r=100}
+SmolderingShadowEatPull:
+  Cooldown: 0
+  TargetConditions:
+  - hasaura EatFinishTarget true
+  Skills:
+  - forcepull{spread=0;repeat=1;repeatInterval=1} @target
+  - pull{velocity=10} @target
+SmolderingShadowEatDamage:
+  Cooldown: 0
+  TargetConditions:
+  - hasaura EatFinishTarget true
+  Skills:
+  - healpercent{m=0.02} @self 
+  - damage{a="<target.mhp> * 200";ignoreArmor=true} @target 
+SmolderingShadowGroundCheckSkill:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  - hasaura Landed false
+  Skills:
+  - randomskill{skills=SmolderingShadowFireGrab,SmolderingShadowLanding,SmolderingShadowLandingDive} @self
+  - skill{s=SmolderingShadowDive} @self
+  - skill{s=SmolderingShadow10BChecker} @Forward{f=0;y=-10}
+  - skill{s=SmolderingShadow5BChecker} @Forward{f=0;y=-5}
+  - skill{s=SmolderingShadow1BChecker} @Forward{f=0;y=-2}
+######################
+SmolderingShadowRoar:
+  Cooldown: 45
+  Conditions:
+  #- targetwithin{d=15} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills: 
+  - Aura{auraName=RoarFear;interval=5;duration=159} @self
+  - Aura{auraName=RoarFearSound;interval=1;duration=159} @self
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - delay 60
+  - Aura{auraName=RoarFearSkill;interval=1;duration=90} @self
+  - potion{type=SLOW;duration=90;lvl=5;hasParticles=false} @self
+  - Aura{auraName=RoarFear2;interval=5;duration=200} @self
+  - state{mid=smolderingshadow;s=roar;li=3;lo=2;r=false;i=false} @self
+  - sudoskill{s=SmolderingShadowRoarFearAura;cat=true;delay=10} @LivingEntitiesInRadius{r=30;ignore=samefaction} #@EntitiesNearOrigin{r=40;ignore=samefaction} #@LivingEntitiesInRadius{r=20;ignore=samefaction}
+  - delay 1
+  - auraremove{aura=SmolderingShadowFearAura;stacks=1} @self
+SmolderingShadowRoarFearAura:
+  Conditions:
+  - hasaura SmolderingShadow false
+  Cooldown: 0
+  Skills:
+  - Aura{auraName=SmolderingShadowFearAura;onTick=SmolderingShadowRoarFearAura-Tick;interval=10;duration=201} @self
+SmolderingShadowRoarFearAura-Tick:
+  Conditions:
+  #- hasaura Serpent false
+  Cooldown: 0
+  Skills:
+  - effect:particles{p=villager_angry;amount=5;speed=0.01;hS=0.01;vS=0.01} @Forward{f=0;y=2}
+  #- effect:particleline{particle=villager_angry;amount=1;fromOrigin=true;y=1;ys=0.1;db=0.5;s=10} @self
+  #- effect:particles{particle=mob_appearance;amount=1;hS=1;vS=1;speed=1} @origin
+  - randomskill{skills=SmolderingShadowRoarFearTickZ,SmolderingShadowRoarFearTickZ-,SmolderingShadowRoarFearTickX-,SmolderingShadowRoarFearTickX} @self
+SmolderingShadowRoarFearTickZ:
+  Cooldown: 1
+  Skills:
+  - velocity{m=set;x=0;y=-0.2;z=0.3;repeat=10;repeatInterval=1} @self
+SmolderingShadowRoarFearTickZ-:
+  Cooldown: 1
+  Skills:
+  - velocity{m=set;x=0;y=-0.2;z=-0.3;repeat=10;repeatInterval=1} @self
+SmolderingShadowRoarFearTickX-:
+  Cooldown: 1
+  Conditions:
+  #- fallspeed >1 true
+ # - altitude{h<3} true
+  Skills:
+  - velocity{m=set;x=-0.3;y=-0.2;z=0;repeat=10;repeatInterval=1} @self
+SmolderingShadowRoarFearTickX:
+  Cooldown: 1
+  Conditions:
+  #- fallspeed >1 true
+  #- altitude{h<3} true
+  Skills:
+  - velocity{m=set;x=0.3;y=-0.2;z=0;repeat=10;repeatInterval=1} @self
+
+######################
+SmolderingShadowBite:
+  Cooldown: 8
+  Conditions:
+  - targetwithin{d=5} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura TailSwing false
+  - hasaura WingAttack false
+  - hasaura GrillFinish false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - Aura{auraName=Bite;interval=1;duration=88} @self
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - potion{type=SLOW;duration=90;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=bite;li=3;lo=2;r=false;i=false} @self
+  - delay 20
+  - velocity{m=set;x=0;y=0;z=0;repeat=20;repeatInterval=1} @target
+  - potion{type=SLOW;duration=20;lvl=5;hasParticles=false} @target
+  - delay 10
+  - skill{s=SmolderingShadowBiteDamage} @target
+SmolderingShadowFlyLungeWater:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  #- moving{} true
+  - hasaura Tornado false
+  Skills:
+  - lunge{velocity=0.7;velocityY=0.5} @Self
+SmolderingShadowFlyLunge:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  #- moving{} true
+  - hasaura Tornado false
+  Skills:
+  - lunge{velocity=0.4;velocityY=0.5} @Self
+SmolderingShadowBiteDamage:
+  Cooldown: 0
+  #TargetConditions:
+  #- hasaura EatFinish true
+  Skills:
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=0.5;repeat=3;repeatInterval=1} @target
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 30";ignoreArmor=true} @target 
+  - heal{amount=20}
+#####################
+SmolderingShadowTailSwing:
+  Cooldown: 5
+  Conditions:
+  #- targetwithin{d=5} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura WingAttack false
+  - hasaura TargetBehind true
+  - hasaura GrillFinish false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - Aura{auraName=TailSwing;interval=1;duration=90} @self
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - potion{type=SLOW;duration=90;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=tailswing;li=3;lo=2;r=false;i=false} @self
+  - delay 40
+  - totem{ch=1;onStart=SmolderingShadowTailSwingTotem;int=10;hR=3;md=1} @Forward{f=-6;y=1}
+SmolderingShadowTailSwingTotem:
+  Cooldown: 0
+  #TargetConditions:
+  #- hasaura EatFinish true
+  Skills:
+  - potion{type=SLOW;duration=100;lvl=1;hasParticles=false} @EntitiesNearOrigin{r=7;ignore=samefaction}
+  - potion{type=CONFUSION;duration=150;lvl=0;hasParticles=false} @EntitiesNearOrigin{r=7;ignore=samefaction}
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.8;vS=0.8;y=0.5;repeat=3;repeatInterval=1} @EntitiesNearOrigin{r=7;ignore=samefaction}
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 40"} @EntitiesNearOrigin{r=7;ignore=samefaction}
+  - delay 1
+  - blackscreen{d=40} @EntitiesNearOrigin{r=7;ignore=samefaction}
+  - throw{velocity=8;velocityY=10} @EntitiesNearOrigin{r=7;ignore=samefaction}
+#####################
+SmolderingShadowWingAttack:
+  Cooldown: 5
+  Conditions:
+  - targetwithin{d=15} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura GrillFinish false
+  - hasaura BlazingSun false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - potion{type=SLOW;duration=80;lvl=5;hasParticles=false} @self
+  - Aura{auraName=WingAttack;interval=1;duration=80} @self
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - state{mid=smolderingshadow;s=wingattack;li=3;lo=2;r=false;i=false} @self
+  - delay 40
+  - projectile{onTick=SmolderingShadowWingAttack-Tick;v=30;i=1;hR=1;vR=1;hnp=true;mr=10;sE=false;sB=false;hs=false;sso=-8;syo=2;sfo=0} @target
+  - delay 10
+  - projectile{onTick=SmolderingShadowWingAttack-Tick;v=30;i=1;hR=1;vR=1;hnp=true;mr=10;sE=false;sB=false;hs=false;sso=8;syo=2;sfo=0} @target
+SmolderingShadowWingAttack-Tick:
+  Skills:
+  - potion{type=CONFUSION;duration=150;lvl=0;hasParticles=false} @EntitiesNearOrigin{r=8;ignore=samefaction}
+  - damage{amount="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 30"} @EntitiesNearOrigin{r=8;ignore=samefaction}
+  - throw{velocity=10;velocityY=10} @EntitiesNearOrigin{r=8;ignore=samefaction}
+#####################
+SmolderingShadowBehindChecker:
+  Skills:
+  - totem{ch=2;onStart=SmolderingShadowBehindCheckerTotem;int=10;hR=3;md=1} @Forward{f=-10;y=1}
+SmolderingShadowBehindCheckerTotem:
+  Cooldown: 0
+  Skills:
+  - skill{s=SmolderingShadowBehindCheckerTotemSkill} @EntitiesNearOrigin{r=8;ignore=samefaction}
+SmolderingShadowBehindCheckerTotemSkill:
+  TargetConditions:
+  - targets{a=1to20} true
+  Cooldown: 0
+  Skills:
+  - Aura{auraName=TargetBehind;interval=5;duration=20} @self
+  #- effect:particlering{particle=flame;radius=1;points=10;amount=10;hS=0;vS=0} @origin
+  #- effect:particlering{particle=flame;radius=1;points=10;amount=10;hS=0;vS=0} @EntitiesNearOrigin{r=7;ignore=samefaction}
+TestConeOn:
+  Cooldown: 0
+  Skills:
+  - effect:particlering{p=block_crack;m=redstone_block;radius=2;points=10;amount=10;hS=0;vS=0} @origin
+#####################
+SmolderingShadowBlazingSun:
+  Cooldown: 50
+  Conditions:
+  - targetwithin{d=40} true
+  - hasaura Stomp false
+  - onground{} true
+  #- moving{} true
+  - hasaura FireBreath false
+  - hasaura Fly false
+  - hasaura Landing false 
+  - hasaura RunRoar false
+  - hasaura RainOfFire false
+  - hasaura EatFinish false
+  - hasaura RoarFear false
+  - hasaura Bite false
+  - hasaura TailSwing false
+  - hasaura GrillFinish false
+  - hasaura WingAttack false
+  - hasaura LandingGround false
+  - hasaura GrabFinishStop false 
+  - hasaura GrabThrow false 
+  Skills:
+  - Aura{auraName=BlazingSun;interval=1;duration=90} @self
+  - Aura{auraName=BlazingSunCD;interval=1;duration=200} @self
+  - potion{type=SLOW;duration=90;lvl=5;hasParticles=false} @self
+  - state{mid=smolderingshadow;s=blazingsun;li=3;lo=2;r=false;i=false} @self
+  - skill{s=AzgadSounds;delay=2} @Self 
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=0.5;repeat=10;repeatInterval=1} @Forward{f=3;y=3}
+  - delay 10
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=1;repeat=10;repeatInterval=1} @Forward{f=3;y=3}
+  - delay 10
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=1.5;repeat=10;repeatInterval=1} @Forward{f=3;y=3}
+  - delay 10
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=2;repeat=10;repeatInterval=1} @Forward{f=3;y=3}
+  - delay 10
+  - summon{type=SmolderingShadowBlazingSunDummy;amount=1;radius=0} @Forward{f=5;y=2}
+  - Totem{Charges=10000;onTick=BlazingSunBeam;md=400;i=10;hR=1;vR=1;hp=true;hnp=true} @Forward{f=5;y=2}
+BlazingSunBeam:
+  Skills:
+  - skill{s=BlazingSunBeamSkill} @LivingEntitiesInRadius{r=30}
+BlazingSunBeamSkill:
+  TargetConditions:
+  - hasaura SmolderingShadow false
+  Skills:
+  - ChainMissile{bounces=8;r=15;in=1.25;oT=BlazingSunBeam-Tick;oH=BlazingSunBeam-Hit;i=1;md=200;mr=30;v=10;hnp=true;hp=true;hR=1;vR=1;sB=False;sE=false;tyo=1;syo=3;sfo=5;hs=true;hfs=1} @LivingEntitiesInRadius{r=30}
+BlazingSunBeam-Tick:
+  Skills:
+  - effect:particles{vd=50;p=flame;amount=1;speed=0;hS=0.0;vS=0.0} @Origin{yoffset=1} 
+  #- effect:particles{particle=flame;a=1;hs=0;vs=0;s=0;y=0} @origin
+BlazingSunBeam-Hit:
+  Skills:
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 5";pkb=true;ignore=samefaction}
+  #- projectile{bulletSpin=true;bulletType=MYTHICITEM;material=BlazingSunProjectile;onTick=SmolderingBlazingSun-Tick;onHit=SmolderingBlazingSun-Hit;onEnd=SmolderingBlazingSun-End;v=10;d=300;hs=false;hfs=10;mr=50;i=1;hR=0;vO=0;vR=0;sE=false;sB=false;hnp=true;sso=0;syo=1;sfo=5} @target
+BlazingSunEffect:
+  Skills:
+  - effect:particlering{vd=50;p=flame;radius=2.8;points=25;amount=1;hS=0;vS=0;y=3.0} @Origin
+  - effect:particlering{vd=50;p=flame;radius=3.3;points=30;amount=1;hS=0;vS=0;y=2.5} @Origin
+  - effect:particlering{vd=50;p=flame;radius=3.8;points=35;amount=1;hS=0;vS=0;y=3} @Origin
+  - effect:particlering{vd=50;p=flame;radius=4.3;points=40;amount=1;hS=0;vS=0;y=2.5} @Origin
+  - effect:particlering{vd=50;p=flame;radius=4.5;points=45;amount=1;hS=0;vS=0;y=2} @Origin
+  - effect:particlering{vd=50;p=flame;radius=5;points=50;amount=1;hS=0;vS=0;y=1.5} @Origin
+  - effect:particlering{vd=50;p=flame;radius=4.5;points=45;amount=1;hS=0;vS=0;y=1} @Origin
+  - effect:particlering{vd=50;p=flame;radius=4.3;points=40;amount=1;hS=0;vS=0;y=0.5} @Origin
+  - effect:particlering{vd=50;p=flame;radius=3.8;points=35;amount=1;hS=0;vS=0;y=0} @Origin
+  - effect:particlering{vd=50;p=flame;radius=3.3;points=30;amount=1;hS=0;vS=0;y=-0.5} @Origin
+  - effect:particlering{vd=50;p=flame;radius=2.8;points=25;amount=1;hS=0;vS=0;y=-1} @Origin
+SmolderingShadowBlazingSunDummySpawn:
+  Skills:
+  - sound{s=custom.bzsnef;v=5;p=1;sc=ambient;repeat=20;repeatInterval=20} @Self
+  - velocity{m=set;x=0;y=0.1;z=0;repeat=60;repeatInterval=1} @self
+  - delay 60
+  - velocity{m=set;x=0;y=0;z=0;repeat=550;repeatInterval=1} @self
+  - delay 400
+  - sound{s=custom.bzsnbm;v=5;p=1;sc=ambient} @Self
+  - effect:blockmask{m=MAGMA_BLOCK;r=10;d=80} @origin
+  #- effect:particlesphere{vd=50;particle=flame;amount=30;radius=2} @origin
+  #- effect:particles{vd=50;p=explosion_large;amount=5;speed=0;hS=0.2;vS=0.2} @origin
+  #- effect:explosion @origin
+  - ignite{ticks=100} @EntitiesNearOrigin{r=5}
+  - effect:particlering{vd=50;p=flame;radius=6;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @self
+  - effect:particlesphere{vd=50;particle=flame;amount=50;radius=5;repeat=10;repeatInterval=1} @self
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=5;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @self
+  - effect:particlesphere{vd=50;particle=flame;amount=45;radius=4;repeat=10;repeatInterval=1} @self
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=4;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @self
+  - effect:particlesphere{vd=50;particle=flame;amount=40;radius=3;repeat=10;repeatInterval=1} @self
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=3;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @self
+  - effect:particlesphere{vd=50;particle=flame;amount=35;radius=2;repeat=10;repeatInterval=1} @self
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=2;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @self
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=1;repeat=10;repeatInterval=1} @self
+  - delay 1
+  - effect:particlering{vd=50;p=flame;radius=2;points=50;amount=1;hS=0.1;vS=0} @self
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=3;points=50;amount=1;hS=0.1;vS=0} @self
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=4;points=50;amount=1;hS=0.1;vS=0} @self
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=5;points=50;amount=1;hS=0.1;vS=0} @self
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=6;points=50;amount=1;hS=0.1;vS=0} @self   
+  - remove @self
+SmolderingBlazingSun-Tick:
+  Skills:
+  #- effect:itemspray{item=fire_charge;amount=1;velocity=0.1;d=5} @Origin{yoffset=1} 
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=5} @origin
+  #- effect:particlering{vd=50;p=flame;radius=6;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5} 
+  #- effect:particlering{vd=50;p=flame;radius=5;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5} 
+  #- effect:particlering{vd=50;p=flame;radius=4;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5}
+  #- effect:particlering{vd=50;p=flame;radius=3;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5}   
+  - effect:particles{vd=50;p=flame;amount=15;speed=0;hS=0.2;vS=0.2} @Origin{yoffset=0.5} 
+  - effect:particles{vd=50;p=lava;amount=1;speed=0;hS=0.2;vS=0.2} @Origin{yoffset=0.5} 
+  - ignite{ticks=500} @EntitiesNearOrigin{r=5}
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 100"} @EntitiesNearOrigin{r=5}
+SmolderingBlazingSun-Hit:
+  Skills: 
+  - effect:blockmask{m=MAGMA_BLOCK;r=1;d=80} @origin
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=3} @origin
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 200"} @EntitiesNearOrigin{r=5}
+  - effect:particles{vd=50;p=explosion_large;amount=5;speed=0;hS=0.2;vS=0.2} @origin
+  #- effect:explosion @origin
+  - ignite{ticks=100} @EntitiesNearOrigin{r=5}
+  #- effect:particles{p=explosion_normal;amount=5;speed=0;hS=0.2;vS=0.2} @origin
+SmolderingBlazingSun-End:
+  Skills: 
+  - effect:blockmask{m=MAGMA_BLOCK;r=10;d=80} @origin
+  #- effect:particlesphere{vd=50;particle=flame;amount=30;radius=2} @origin
+  #- effect:particles{vd=50;p=explosion_large;amount=5;speed=0;hS=0.2;vS=0.2} @origin
+  - effect:explosion @origin
+  - ignite{ticks=100} @EntitiesNearOrigin{r=5}
+  - effect:particlering{vd=50;p=flame;radius=6;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @Origin{yoffset=0.5} 
+  - effect:particlesphere{vd=50;particle=flame;amount=50;radius=5;repeat=10;repeatInterval=1} @origin
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=5;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @Origin{yoffset=0.5} 
+  - effect:particlesphere{vd=50;particle=flame;amount=45;radius=4;repeat=10;repeatInterval=1} @origin
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=4;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @Origin{yoffset=0.5}
+  - effect:particlesphere{vd=50;particle=flame;amount=40;radius=3;repeat=10;repeatInterval=1} @origin
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=3;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @Origin{yoffset=0.5} 
+  - effect:particlesphere{vd=50;particle=flame;amount=35;radius=2;repeat=10;repeatInterval=1} @origin
+  - delay 10
+  - effect:particlering{vd=50;p=flame;radius=2;points=50;amount=1;hS=0.1;vS=0;repeat=10;repeatInterval=1} @Origin{yoffset=0.5} 
+  - effect:particlesphere{vd=50;particle=flame;amount=30;radius=1;repeat=10;repeatInterval=1} @origin
+  - delay 1
+  - damage{a="((<target.mhp> - (<target.mhp> / (<skill.var.damagecontroler> / <skill.var.damagecontrolerdivider>))) / 100) * 90"} @EntitiesNearOrigin{r=6}
+  - effect:particlering{vd=50;p=flame;radius=2;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5} 
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=3;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5}
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=4;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5}
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=5;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5}   
+  - delay 5
+  - effect:particlering{vd=50;p=flame;radius=6;points=50;amount=1;hS=0.1;vS=0} @Origin{yoffset=0.5}   
+SmolderingShadowLanding:
+  Cooldown: 30
+  Conditions:
+  #- onground{} false
+  #- moving{} true
+ # - hasaura FireBreath false 
+  - hasaura LandingDive false
+  - hasaura Dragon3Blocks true
+  - hasaura GrabFinishEnd false
+  - hasaura GrabFinish false
+  #- hasaura Stomp false
+  Skills: 
+  - sound{s=custom.flnrm;v=5;p=1;sc=ambient} @Self
+  - Aura{auraName=Landed;interval=10;duration=400} @self
+  - Aura{auraName=LandingGround;interval=10;duration=80} @self
+  - delay 20
+  - lunge{velocity=0.35;velocityY=-0.5;repeat=5;repeatInterval=5} @Self
+  - Aura{auraName=Landing;interval=10;duration=60} @self
+  - state{mid=smolderingshadow;s=sgh57;li=3;lo=2;r=false} @self
+  - delay 30
+  - effect:blockmask{m=dirt;r=5;d=100;repeat=4;repeatInterval=5} @selflocation
+  - throw{velocity=20;velocityY=10;repeat=4;repeatInterval=5} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - effect:particlering{p=sweep_attack;radius=4;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=5;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=6;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=7;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=8;points=50;amount=3;hS=0.3;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=9;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - runaitargetselector{target=player} @self
+SmolderingShadowFlySkill3:
+  Cooldown: 0
+  Conditions:
+  - inblock{b=WATER} true
+  #- onground{} false
+  #- moving{} true
+ # - hasaura FireBreath false
+  #- hasaura FireBreath false
+  Skills:
+  - Aura{auraName=AscendUp;interval=1;duration=60} @self
+  - delay 1
+  - Aura{auraName=FlyDelay;interval=1;duration=150} @self
+  - Aura{auraName=Fly2;interval=5;duration=530} @self
+  - Aura{auraName=Fly;interval=5;duration=530} @self
+  - clearThreat{} @self
+  - sound{s=custom.fltkf;v=5;p=1;sc=ambient} @Self
+  - runaitargetselector{target=clear;repeat=540;repeatInterval=1} @self
+  - delay 20
+  - lunge{velocity=0.8;velocityY=0.5;repeat=2;repeatInterval=5} @Self
+  - delay 10
+  - Aura{auraName=SmolderingShadowFlySoundAura;onTick=SmolderingShadowFlySound;interval=40;duration=720} @self
+  #- skill{s=SmolderingShadowFlySound;repeat=18;repeatInterval=40} @Self
+  - skill{s=SmolderingShadowFlyAni;repeat=1000;repeatInterval=1} @Self
+  - skill{s=SmolderingShadowLanding2;repeat=100;repeatInterval=10} @Self
+  #- Aura{auraName=;interval=5;duration=400} @self
+  - lunge{velocity=0.5;velocityY=1;repeat=10;repeatInterval=10} @Self
+  - effect:spin{duration=5;velocity=4;repeat=2;repeatInterval=50} @self
+  - delay 100
+  - skill{s=SmolderingShadowFlyLungeWater;repeat=80;repeatInterval=5} @Self
+  - effect:spin{duration=5;velocity=2} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=5;velocity=2} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=5;velocity=2} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=5;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 50
+  - Aura{auraName=GoingDown;interval=5;duration=150} @self
+  - delay 50
+  - Aura{auraName=GroundCheckAura;onTick=SmolderingShadowGroundCheckSkill;interval=5;duration=600} @self
+  - runaitargetselector{target=player} @self
+SmolderingShadowLanding2:
+  Cooldown: 30
+  Conditions:
+  - onground{} true
+  #- moving{} true
+  - hasaura Fly false 
+  - hasaura LandingDive false
+  #- hasaura Dragon3Blocks true
+  - hasaura GrabFinishEnd false
+  - hasaura GrabFinish false
+  #- hasaura Stomp false
+  Skills: 
+  - sound{s=custom.flnrm;v=5;p=1;sc=ambient} @Self
+  - Aura{auraName=Landed;interval=10;duration=400} @self
+  - Aura{auraName=LandingGround;interval=10;duration=80} @self
+  - delay 20
+  - lunge{velocity=0.35;velocityY=-0.5;repeat=5;repeatInterval=5} @Self
+  - Aura{auraName=Landing;interval=10;duration=60} @self
+  - state{mid=smolderingshadow;s=sgh57;li=3;lo=2;r=false} @self
+  - delay 30
+  - effect:blockmask{m=dirt;r=5;d=100;repeat=4;repeatInterval=5} @selflocation
+  - throw{velocity=20;velocityY=10;repeat=4;repeatInterval=5} @LivingEntitiesInRadius{r=8;ignore=samefaction}
+  - effect:particlering{p=sweep_attack;radius=4;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=5;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=6;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=7;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=sweep_attack;radius=8;points=50;amount=3;hS=0.3;vS=0;y=0.5} @self
+  - delay 5
+  - effect:particlering{p=block_crack;m=dirt;radius=9;points=50;amount=3;hS=0.1;vS=0;y=0.5} @self
+  - runaitargetselector{target=player} @self  
+#####################
+####Sounds##########
+#####################
+################
+AzgadSounds:
+  Cooldown: 0
+  Conditions:
+  #- hasaura VoiceSoundsOff false orElseCast AzgadSoundsBeast 
+  Skills:
+  - randomskill{skills=AzgadVoiceSounds,AzgadBeastSounds;repeat=2;repeatInterval=5} @self
+AzgadSoundsBeast:
+  Cooldown: 0
+  Conditions:
+  - hasaura VoiceSoundsOff true
+  Skills:
+  - randomskill{skills=AzgadBeastSounds} @self
+AzgadVoiceSounds:
+  Cooldown: 1
+  Conditions:
+  - hasaura VoiceSoundsCD false
+  - hasaura VoiceSoundsOff false
+  Skills:
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- skill{s=SoundAzgadFireBreathVoice} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadRoarFearVoice} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadRunRoarVoice} @PlayersInRadius{r=50}
+  #- skill{s=SoundAzgadStompVoice} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadRainOfFireVoice} @PlayersInRadius{r=50}
+  #- skill{s=SoundAzgadEatFinishVoice} @PlayersInRadius{r=30}
+  #- skill{s=SoundAzgadBiteVoice} @PlayersInRadius{r=10}
+  - skill{s=SoundAzgadTailSwingVoice} @PlayersInRadius{r=30}
+  - skill{s=SoundAzgadWingAttackVoice} @PlayersInRadius{r=40}
+  - skill{s=SoundAzgadGrillFinishVoice} @PlayersInRadius{r=40}
+  #- skill{s=SoundAzgadFireBreathFlyVoice} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadSkyRoarFearVoice} @PlayersInRadius{r=100}
+  - skill{s=SoundAzgadSkyTornadoVoice} @PlayersInRadius{r=100}
+  #- skill{s=SoundAzgadSkyFireBreathVoice} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadSkyGrabFinishVoice} @PlayersInRadius{r=100}
+  - skill{s=SoundAzgadSkyGrabThrowVoice} @PlayersInRadius{r=100}
+SmolderingShadowFlyTurnCheckSkill:
+  Cooldown: 0.5
+  TargetConditions:
+  - inblock{b=AIR} false
+  Conditions:
+  - hasaura Fly true
+  Skills:
+  - lunge{velocity=0.5;velocityY=0.5;repeat=5;repeatInterval=10} @Self
+  - effect:spin{duration=10;velocity=4;repeat=2;repeatInterval=50} @self
+SmolderingShadowDive:
+  Cooldown: 0
+  TargetConditions:
+  - onground{} false
+  #- moving{} true
+  - hasaura LandingDive false
+  - hasaura GrabFinish false
+  #- hasaura Dragon1Blocks false  
+  Skills:
+  - lunge{velocity=0.35;velocityY=-0.25} @Self
+  - skill{s=SmolderingShadowDiveGrab} @self
+AzgadBeastSounds:
+  Cooldown: 1
+  Conditions:
+  - hasaura BeastSoundsCD false
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - skill{s=SoundAzgadFireBreath} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadRoarFear} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadRunRoar} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadStomp} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadRainOfFire} @PlayersInRadius{r=50}
+  - skill{s=SoundAzgadEatFinish} @PlayersInRadius{r=30}
+  - skill{s=SoundAzgadBite} @PlayersInRadius{r=20}
+  - skill{s=SoundAzgadTailSwing} @PlayersInRadius{r=30}
+  - skill{s=SoundAzgadWingAttack} @PlayersInRadius{r=40}
+  - skill{s=SoundAzgadGrillFinish} @PlayersInRadius{r=40}
+  - skill{s=SoundAzgadSkyTornado} @PlayersInRadius{r=100}
+  - skill{s=SoundAzgadSkyRoarFear} @PlayersInRadius{r=100}
+  - skill{s=SoundAzgadSkyFireBreath} @PlayersInRadius{r=100}
+  - skill{s=SoundAzgadSkyGrabFinish} @PlayersInRadius{r=100}
+  - skill{s=SoundAzgadSkyGrabThrow} @PlayersInRadius{r=100}
+  - skill{s=SoundAzgadBlazingSun} @PlayersInRadius{r=100}
+################
+SoundAzgadFireBreathVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura FireBreath true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.rrflm;v=3;p=1;sc=hostile} @Self
+SoundAzgadRoarFearVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura RoarFearSound true
+  - hasaura VoiceSoundsOff false
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vfr;v=5;p=1;sc=hostile} @Self
+SoundAzgadRainOfFireVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura RainOfFire true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vmtrc;v=5;p=1;sc=master} @Self
+
+SoundAzgadRunRoarVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura RunRoar true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vrnw;v=3;p=1;sc=hostile} @Self
+SoundAzgadStompVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura Stomp true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vrnw;v=3;p=1;sc=hostile} @Self
+
+SoundAzgadEatFinishVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura EatFinish true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+ # - sound{s=custom.rrflm;v=3;p=1;sc=hostile} @Self
+SoundAzgadBiteVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura Bite true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.bt;v=2;p=1;sc=hostile} @Self
+SoundAzgadTailSwingVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura TailSwing true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vtswg;v=3;p=1;sc=hostile} @Self
+SoundAzgadWingAttackVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura WingAttack true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vwgtk ;v=3;p=1;sc=hostile} @Self
+SoundAzgadGrillFinishVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura GrillFinish true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vgrllfn;v=3;p=1;sc=hostile} @Self
+SoundAzgadSkyRoarFearVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura RoarFlyFear true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vflfr;v=5;p=1;sc=hostile} @Self
+
+SoundAzgadSkyTornadoVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura Tornado true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vfltrnd;v=5;p=1;sc=hostile} @Self
+SoundAzgadSkyFireBreathVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura SkyFireBreath true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+ # - sound{s=custom.rrflm;v=3;p=1;sc=hostile} @Self
+SmolderingShadowFlySkill:
+  Cooldown: 0
+  Conditions:
+  #- onground{} true
+  #- moving{} true
+  #- hasaura FireBreath false
+  Skills:
+  - Aura{auraName=AscendUp;interval=1;duration=60} @self
+  - delay 1
+  - Aura{auraName=FlyDelay;interval=1;duration=150} @self
+  - Aura{auraName=Fly;interval=5;duration=530} @self
+  - clearThreat{} @self
+  - runaitargetselector{target=clear;repeat=540;repeatInterval=1} @self
+  #- sound{s=custom.fltkf;v=5;p=1;sc=ambient} @Self
+  - skill{s=SmolderingShadowFlyTakeOffSkills} @Self
+  #- state{mid=smolderingshadow;s=takeoff;li=3;lo=3;r=false} @self
+  - delay 20
+  - lunge{velocity=0.5;velocityY=0.5;repeat=2;repeatInterval=5} @Self
+  - delay 10
+  - Aura{auraName=SmolderingShadowFlySoundAura;onTick=SmolderingShadowFlySound;interval=40;duration=720} @self
+  #- skill{s=SmolderingShadowFlySound;repeat=18;repeatInterval=40} @Self
+  - skill{s=SmolderingShadowFlyAni;repeat=1000;repeatInterval=1} @Self
+  - skill{s=SmolderingShadowLanding2;repeat=100;repeatInterval=10} @Self
+  #- Aura{auraName=;interval=5;duration=400} @self
+  - lunge{velocity=0.5;velocityY=1;repeat=10;repeatInterval=10} @Self
+  - effect:spin{duration=10;velocity=4;repeat=2;repeatInterval=50} @self
+  - delay 100
+  - skill{s=SmolderingShadowFlyLunge;repeat=80;repeatInterval=5} @Self
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - effect:spin{duration=10;velocity=4} @self
+  #- lunge{velocity=0.35;velocityY=0.5;repeat=20;repeatInterval=5} @Self
+  - delay 100
+  - Aura{auraName=GroundCheckAura;onTick=SmolderingShadowGroundCheckSkill;interval=5;duration=600} @self
+  - runaitargetselector{target=player} @self
+
+SoundAzgadSkyGrabFinishVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura GrabFinishStop true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills: 
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vflgrbflm;v=5;p=1;sc=hostile} @Self
+SoundAzgadSkyGrabThrowVoice:
+  Cooldown: 5
+  Conditions:
+  - hasaura VoiceSoundsOff false
+  - hasaura GrabThrow true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills: 
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.vflgrb;v=5;p=1;sc=hostile} @Self
+################
+SoundAzgadFireBreath:
+  Cooldown: 5
+  Conditions:
+  - hasaura FireBreath true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.rrflm;v=3;p=1;sc=hostile} @Self
+SoundAzgadRoarFear:
+  Cooldown: 5
+  Conditions:
+  - hasaura RoarFearSound true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  - delay 60
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.fr;v=5;p=1;sc=hostile} @Self
+SoundAzgadRainOfFire:
+  Cooldown: 5
+  Conditions:
+  - hasaura RainOfFire true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.mtrc;v=5;p=1;sc=master;repeat=3;repeatInterval=60} @Self
+
+SoundAzgadRunRoar:
+  Cooldown: 5
+  Conditions:
+  - hasaura RunRoar true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.rnw;v=3;p=1;sc=hostile} @Self
+SoundAzgadStomp:
+  Cooldown: 5
+  Conditions:
+  - hasaura Stomp true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.fsr;v=5;p=1;sc=hostile} @Self
+
+SoundAzgadEatFinish:
+  Cooldown: 5
+  Conditions:
+  - hasaura EatFinish true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.etfn;v=3;p=1;sc=hostile} @Self
+SoundAzgadBite:
+  Cooldown: 5
+  Conditions:
+  - hasaura Bite true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.bt;v=3;p=1;sc=hostile} @Self
+SoundAzgadTailSwing:
+  Cooldown: 5
+  Conditions:
+  - hasaura TailSwing true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.tswg;v=3;p=1;sc=hostile} @Self
+SmolderingShadowFallDeath:
+  Cooldown: 100
+  Conditions:
+  - onground{} false
+  Skills: 
+  - skill{s=SmolderingShadowSkyDeathFall;repeat=20;repeatInterval=20} @Self
+  #- skill{s=SmolderingShadowSkyDeathFallGround;repeat=20;repeatInterval=20} @Self
+ #- skill{s=SmolderingShadowSkyDeathGround;repeat=200;repeatInterval=1} @Self
+SmolderingShadowFallDeathChecker:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  Skills: 
+  - skill{s=SmolderingShadow10BChecker} @Forward{f=0;y=-10}
+  - skill{s=SmolderingShadow5BChecker} @Forward{f=0;y=-5}
+  - skill{s=SmolderingShadow1BChecker} @Forward{f=0;y=-2}
+SoundAzgadWingAttack:
+  Cooldown: 5
+  Conditions:
+  - hasaura WingAttack true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.wgtk;v=3;p=1;sc=hostile} @Self
+SmolderingShadowFlyAni:
+  Cooldown: 0
+  Conditions:
+  - onground{} false
+  #- moving{} true
+  #- hasaura FireBreath false
+  - hasaura Dragon5Blocks false
+  - hasaura RoarFlyFear false
+  - hasaura Tornado false
+  - hasaura SkyFireBreath false
+  - hasaura FlyAni false
+  - hasaura GrabFinishStop false
+  - hasaura GrabThrow false
+  - hasaura LandingGround false
+  Skills:
+  - Aura{auraName=FlyAni;interval=1;duration=40} @self
+  - state{mid=smolderingshadow;s=af318;li=0;lo=0;r=false} @self
+SoundAzgadGrillFinish:
+  Cooldown: 5
+  Conditions:
+  - hasaura GrillFinish true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.grllfnh;v=3;p=1;sc=hostile} @Self
+SoundAzgadBlazingSun:
+  Cooldown: 5
+  Conditions:
+  - hasaura BlazingSun true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.bzsn;v=5;p=1;sc=hostile} @Self
+
+SoundAzgadSkyTornado:
+  Cooldown: 5
+  Conditions:
+  - hasaura Tornado true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.trnd;v=5;p=1;sc=hostile} @Self
+SoundAzgadSkyFireBreath:
+  Cooldown: 5
+  Conditions:
+  - hasaura SkyFireBreath true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.flrrflm;v=10;p=1;sc=hostile} @self
+SoundAzgadSkyGrabFinish:
+  Cooldown: 5
+  Conditions:
+  - hasaura GrabFinishStop true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.grbflm;v=5;p=1;sc=hostile} @Self
+SoundAzgadSkyRoarFear:
+  Cooldown: 5
+  Conditions:
+  - hasaura RoarFlyFear true
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.rr;v=5;p=1;sc=hostile} @Self
+SoundAzgadSkyGrabThrow:
+  Cooldown: 5
+  Conditions:
+  - hasaura GrabThrow true 
+  TargetConditions:
+#- playerwithin{d=100} true 
+  Skills:
+  - Aura{auraName=BeastSoundsCD;interval=1;duration=20} @self
+  - Aura{auraName=VoiceSoundsCD;interval=1;duration=20} @self
+  #- Aura{auraName=SoundsOff;interval=20;duration=30} @LivingEntitiesInRadius{r=4} 
+  - sound{s=custom.grb;v=5;p=1;sc=hostile} @Self
+
+#####################
+SmolderingShadowVelocity:
+  Skills:
+  - throw{velocity=1;velocityY=-0.5} @LivingEntitiesInRadius{r=4;ignore=samefaction}

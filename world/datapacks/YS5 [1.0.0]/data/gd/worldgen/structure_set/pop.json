@@ -1,0 +1,15 @@
+{
+  
+  "structures": [
+    {
+      "structure": "gd:pop",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 50,
+    "separation": 48,
+    "salt": 491633322
+  }
+}

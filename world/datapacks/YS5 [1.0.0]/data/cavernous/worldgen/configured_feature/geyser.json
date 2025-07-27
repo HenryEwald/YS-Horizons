@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:fossil",
+  "config": {
+    "max_empty_corners_allowed": 0,
+    "fossil_structures": [
+      "cavernous:geyser"
+    ],
+    "overlay_structures": [
+      "cavernous:empty"
+    ],
+    "fossil_processors": "minecraft:empty",
+    "overlay_processors": "minecraft:empty"
+  }
+}

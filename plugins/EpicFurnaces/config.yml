@@ -1,0 +1,90 @@
+Main:
+
+  Upgrade By Smelting Materials: true
+
+  # Should you be able to upgrade furnaces with economy?
+  Upgrade With Economy: true
+
+  # Should you be able to upgrade furnaces with experience?
+  Upgrade With XP: true
+
+  # The amount of time in between saving to file.
+  # This is purely a safety function to prevent against unplanned crashes or
+  # restarts. With that said it is advised to keep this enabled.
+  # If however you enjoy living on the edge, feel free to turn it off.
+  Auto Save Interval In Seconds: 15
+
+  # This controls how big a furnace ticking area is.
+  # Higher size means decreased performance, but less chances of overheat
+  # missing a spot. Lower size means better performance, but overheat
+  # might leave a few spots. Minimum value is 16. To disable, just set
+  # this to a very high value, such as your worldborder size.
+  Furnace Area: 1024
+
+  # Should we use protection plugins?
+  Use Protection Plugins: true
+
+  # Should furnace levels be remembered when broken?
+  Remember Furnace Item Levels: true
+
+  # Which hologram plugin should be used?
+  # You can choose from "".
+  Hologram: HolographicDisplays
+
+  Furnaces Have Holograms: true
+
+  Redstone Deactivates Furnaces: true
+
+  Use Custom Recipes: true
+
+  No Rewards From Custom Recipes: true
+
+  # Should normal furnaces not be converted into
+  # Epic Furnaces?
+  Allow Normal Furnaces: false
+
+  # Should we use the epicfurnaces.limit.<amount>
+  # permission? This will limit the amount of Epic Furnaces
+  # a player can place.
+  Use Limit Permission: true
+
+  # The type of particle shown when a furnace is upgraded.
+  Upgrade Particle Type: SPELL_WITCH
+
+  Access Furnaces Remotely: true
+
+  Furnace Tick Speed: 10
+
+  Overheat Particles: true
+
+  # Which economy plugin should be used?
+  # Supported plugins you have installed: "Vault".
+  Economy: Vault
+
+Interfaces:
+
+  Reward Icon: GOLDEN_APPLE
+
+  Performance Icon: REDSTONE
+
+  FuelShare Icon: COAL_BLOCK
+
+  FuelDuration Icon: COAL
+
+  Overheat Icon: FIRE_CHARGE
+
+  Economy Icon: SUNFLOWER
+
+  XP Icon: EXPERIENCE_BOTTLE
+
+  Glass Type 1: GRAY_STAINED_GLASS_PANE
+
+  Glass Type 2: BLUE_STAINED_GLASS_PANE
+
+  Glass Type 3: LIGHT_BLUE_STAINED_GLASS_PANE
+
+System:
+
+  # The enabled language file.
+  # More language files (if available) can be found in the plugins data folder.
+  Language Mode: en_US

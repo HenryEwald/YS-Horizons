@@ -1,0 +1,475 @@
+info:
+  namespace: customfishing
+items:
+  fish_template:
+    display_name: "&7Rubbish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/fish_template
+      model_id: 640
+
+  tuna_fish:
+    display_name: "&7Tuna Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/tuna_fish
+      model_id: 641
+
+  tuna_fish_silver_star:
+    display_name: "&7Tuna Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/tuna_fish_silver_star
+      model_id: 666
+
+  tuna_fish_golden_star:
+    display_name: "&7Tuna Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/tuna_fish_golden_star
+      model_id: 667
+
+  pike_fish:
+    display_name: "&7Pike Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/pike_fish
+      model_id: 642
+
+  pike_fish_silver_star:
+    display_name: "&7Pike Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/pike_fish_silver_star
+      model_id: 664
+
+  pike_fish_golden_star:
+    display_name: "&7Pike Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/pike_fish_golden_star
+      model_id: 665
+
+  golden_fish:
+    display_name: "&7Golden Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/golden_fish
+      model_id: 643
+
+  golden_fish_silver_star:
+    display_name: "&7Golden Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/golden_fish_silver_star
+      model_id: 658
+
+  golden_fish_golden_star:
+    display_name: "&7Golden Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/golden_fish_golden_star
+      model_id: 659
+
+  perch_fish:
+    display_name: "&7Perch Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/perch_fish
+      model_id: 644
+
+  perch_fish_silver_star:
+    display_name: "&7Perch Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/perch_fish_silver_star
+      model_id: 660
+
+  perch_fish_golden_star:
+    display_name: "&7Perch Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/perch_fish_golden_star
+      model_id: 661
+
+  mullet_fish:
+    display_name: "&7Mullet Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/mullet_fish
+      model_id: 645
+
+  mullet_fish_silver_star:
+    display_name: "&7Mullet Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/mullet_fish_silver_star
+      model_id: 662
+
+  mullet_fish_golden_star:
+    display_name: "&7Mullet Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/mullet_fish_golden_star
+      model_id: 663
+
+  sardine_fish:
+    display_name: "&7Sardine Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sardine_fish
+      model_id: 668
+
+  sardine_fish_silver_star:
+    display_name: "&7Sardine Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sardine_fish_silver_star
+      model_id: 669
+
+  sardine_fish_golden_star:
+    display_name: "&7Sardine Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sardine_fish_golden_star
+      model_id: 670
+
+  carp_fish:
+    display_name: "&7Carp Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/carp_fish
+      model_id: 671
+
+  carp_fish_silver_star:
+    display_name: "&7Carp Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/carp_fish_silver_star
+      model_id: 672
+
+  carp_fish_golden_star:
+    display_name: "&7Carp Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/carp_fish_golden_star
+      model_id: 673
+
+  cat_fish:
+    display_name: "&7Cat Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/cat_fish
+      model_id: 674
+
+  cat_fish_silver_star:
+    display_name: "&7Cat Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/cat_fish_silver_star
+      model_id: 675
+
+  cat_fish_golden_star:
+    display_name: "&7Cat Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/cat_fish_golden_star
+      model_id: 676
+
+  octopus_fish:
+    display_name: "&7Octopus Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/octopus_fish
+      model_id: 677
+
+  octopus_fish_silver_star:
+    display_name: "&7Octopus Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/octopus_fish_silver_star
+      model_id: 678
+
+  octopus_fish_golden_star:
+    display_name: "&7Octopus Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/octopus_fish_golden_star
+      model_id: 679
+
+  sunfish_fish:
+    display_name: "&7Sunfish Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sunfish_fish
+      model_id: 680
+
+  sunfish_fish_silver_star:
+    display_name: "&7Sunfish Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sunfish_fish_silver_star
+      model_id: 681
+
+  sunfish_fish_golden_star:
+    display_name: "&7Sunfish Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sunfish_fish_golden_star
+      model_id: 682
+
+  red_spnapper_fish:
+    display_name: "&7Red Snapper Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/red_spnapper_fish
+      model_id: 683
+
+  red_spnapper_silver_star:
+    display_name: "&7Red Snapper Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/red_spnapper_fish_silver_star
+      model_id: 684
+
+  red_spnapper_fish_golden_star:
+    display_name: "&7Red Snapper Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/red_spnapper_fish_golden_star
+      model_id: 685
+
+  salmon_void_fish:
+    display_name: "&7Salmon Void Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/salmon_void_fish
+      model_id: 686
+
+  salmon_void_silver_star:
+    display_name: "&7Salmon Void Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/salmon_void_fish_silver_star
+      model_id: 687
+
+  salmon_void_fish_golden_star:
+    display_name: "&7Salmon Void Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/salmon_void_fish_golden_star
+      model_id: 688
+
+  woodskip_fish:
+    display_name: "&7Woodskip Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/woodskip_fish
+      model_id: 689
+
+  woodskip_silver_star:
+    display_name: "&7Woodskip Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/woodskip_fish_silver_star
+      model_id: 690
+
+  woodskip_fish_golden_star:
+    display_name: "&7Woodskip Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/woodskip_fish_golden_star
+      model_id: 691
+
+  sturgeon_fish:
+    display_name: "&7Sturgeon Fish"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sturgeon_fish
+      model_id: 692
+
+  sturgeon_silver_star:
+    display_name: "&7Sturgeon Fish Silver Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sturgeon_fish_silver_star
+      model_id: 693
+
+  sturgeon_fish_golden_star:
+    display_name: "&7Sturgeon Fish Golden Star"
+    lore:
+    - "&7→ Type &6Fish"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/sturgeon_fish_golden_star
+      model_id: 694

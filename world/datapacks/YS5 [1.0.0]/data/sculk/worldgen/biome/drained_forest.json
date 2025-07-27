@@ -1,0 +1,38 @@
+{
+  "temperature": 0.5,
+  "downfall": 0.9,
+  "precipitation": "none",
+  "effects": {
+    "sky_color": 7570811,
+    "fog_color": 6918512,
+    "water_color": 336939,
+    "water_fog_color": 336929,
+    "particle": {
+      "options": {
+        "type": "spore_blossom_air"
+      },
+      "probability": 0.002
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:sculk_vein"
+    ],
+    [],
+    [
+      "sculk:corrupted_trees",
+      "sculk:withered_trees"
+    ],
+    []
+  ]
+}

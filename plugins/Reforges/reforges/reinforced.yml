@@ -1,0 +1,12 @@
+effects:
+- args:
+    multiplier: 0.96
+  id: damage_multiplier
+  triggers:
+  - take_damage
+name: <gradient:#FBD786>Reinforced</gradient:#f7797d>
+description:
+- '&a+4% &fDamage Resistance'
+conditions: []
+targets:
+- armor

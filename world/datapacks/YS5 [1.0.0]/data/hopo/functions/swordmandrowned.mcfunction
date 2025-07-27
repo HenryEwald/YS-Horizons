@@ -1,0 +1,1 @@
+summon drowned ~ ~1 ~ {PersistenceRequired:1,DeathLootTable:"hopo:entities/swordmandrowned",HandItems:[{Count:1,id:golden_sword,tag:{Enchantments:[{id:knockback,lvl:2}]}},{}],ArmorItems:[{},{},{},{Count:1,id:leather_helmet,tag:{display:{color:1481884},Enchantments:[{id:thorns,lvl:3}]}}]}	

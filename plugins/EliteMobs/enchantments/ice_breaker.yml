@@ -1,0 +1,4 @@
+isEnabled: true
+name: Ice Breaker
+maxLevelV2: 2
+value: 10.0

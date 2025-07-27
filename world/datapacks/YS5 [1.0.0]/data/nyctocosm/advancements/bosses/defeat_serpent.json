@@ -1,0 +1,23 @@
+{
+    "display": {
+      "icon": {
+        "item": "minecraft:warped_fungus_on_a_stick",
+        "nbt": "{CustomModelData:2}"
+      },
+      "title": {
+        "text": "Ataraxy",
+        "color": "dark_red"
+      },
+      "description": {
+        "text": "Banish the Nightmarish Serpent",
+        "color": "gray"
+      }
+    },
+    "parent": "nyctocosm:root",
+    "criteria": {
+      "requirement": {
+        "trigger": "minecraft:impossible"
+      }
+    }
+  }
+  

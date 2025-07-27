@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:dripstone_caves",
+    "minecraft:lush_caves",
+    "minecraft:deep_dark",
+    "cavernous:lush_dripstone_caves",
+    "cavernous:marshy_caves",
+    "cavernous:crystal_caves",
+    "cavernous:ancient_caverns",
+    "cavernous:sandstone_caves",
+    "cavernous:icy_caves",
+    "cavernous:inactive_caves",
+    "cavernous:volcanic_caves",
+    "cavernous:dense_dripstone_caves",
+    "cavernous:painted_sandstone_caves",
+    "cavernous:desert_caves"
+  ]
+}

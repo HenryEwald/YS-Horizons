@@ -1,0 +1,34 @@
+simple_bait:
+  material: paper
+  display:
+    name: '<gray>Common fishing lures'
+    lore:
+      - '<white>Reduce the time spent fishing'
+      - '<white>But make it more difficult to catch fish'
+  custom-model-data: 646
+  # Click here to learn how modifier system works: https://www.yuque.com/docs/share/4842ac5f-b5ea-4568-acef-d510f8bc9064?# 《Modifier System》
+  modifier:
+    time: 0.85
+    difficulty: 2
+
+wild_bait:
+  material: paper
+  display:
+    name: 'Wild Bait'
+    lore:
+      - '<white>Decreases fishing time by 30%.'
+  custom-model-data: 696
+  modifier:
+    time: 0.7
+
+magnet_bait:
+  material: paper
+  display:
+    name: '<gray>Magnet Bait'
+    lore:
+      - '<white>Increases the probability of better loots by 15%.'
+  custom-model-data: 695
+  modifier:
+    weight-multiply:
+      silver: 1.15
+      gold: 1.15

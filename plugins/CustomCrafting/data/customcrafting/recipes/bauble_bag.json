@@ -1,0 +1,160 @@
+{
+  "@type" : "customcrafting:crafting_shaped",
+  "group" : "",
+  "hidden" : false,
+  "vanillaBook" : true,
+  "priority" : "NORMAL",
+  "checkNBT" : false,
+  "conditions" : {
+    "values" : [ ]
+  },
+  "symmetry" : {
+    "horizontal" : false,
+    "vertical" : false,
+    "rotate" : false
+  },
+  "shape" : [ "ABC", "DEF", "GHI" ],
+  "ingredients" : {
+    "E" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "DIAMOND"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "D" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "LEATHER"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "C" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "LEATHER"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "B" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "LEATHER"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "A" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "LEATHER"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "I" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "QUARTZ"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "H" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "BRICK"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "G" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "QUARTZ"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "F" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "LEATHER"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    }
+  },
+  "checkAllNBT" : false,
+  "settings" : { },
+  "result" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "PRISMARINE_SHARD",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Bauble Bag\"}],\"text\":\"\"}",
+          "custom-model-data" : 83738,
+          "PublicBukkitValues" : {
+            "realisticsurvival:rsvitem" : "bauble_bag",
+            "realisticsurvival:rsvmodule" : "Baubles"
+          }
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "extensions" : [ ]
+  }
+}

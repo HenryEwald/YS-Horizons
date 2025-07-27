@@ -1,0 +1,62 @@
+{
+  "temperature": 2,
+  "downfall": 0,
+  "precipitation": "none",
+  "effects": {
+    "music": {
+      "sound": "minecraft:biome.deep.music",
+      "min_delay": 120,
+      "max_delay": 240,
+      "replace_current_music": false
+      },
+    "sky_color": 3881530,
+    "fog_color": 6249821,
+    "water_color": 2697513,
+    "water_fog_color": 1579045,
+    "grass_color": 2500134,
+    "foliage_color": 6908265,
+    "particle": {
+      "options": {
+        "type": "white_ash"
+      },
+      "probability": 0.15
+    }
+  },
+  "spawners": {
+
+  },
+  "spawn_costs": {},
+  "carvers": {
+    "air": [
+      "minecraft:cave",
+      "minecraft:cave_extra_underground",
+      "minecraft:canyon",
+      "nyctocosm:cimmerian_gorge/cimmerian_canyon"
+    ]
+  },
+  "features": [
+    [],
+    [
+      "minecraft:lake_lava_surface",
+      "minecraft:lake_lava_underground"
+    ],
+    [],
+    [],
+    [],
+    [],
+    ["minecraft:sculk_vein",
+    "nyctocosm:sculk_patch"],
+    [],
+    [
+      "minecraft:spring_water",
+      "minecraft:spring_lava"
+    ],
+    [
+      "minecraft:patch_grass_badlands",
+      "minecraft:patch_dead_bush_badlands",
+      "minecraft:brown_mushroom_normal",
+      "minecraft:red_mushroom_normal"
+    ],
+    []
+  ]
+}

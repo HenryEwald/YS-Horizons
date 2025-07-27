@@ -1,0 +1,25 @@
+piranha:
+  Type: DOLPHIN
+  DisplayName: piranha
+  Health: 50
+  Damage: 7
+  Options:
+    MovementSpeed: 1
+    AttackSpeed: 60
+    Silent: true
+    KnockbackResistance: 0.3
+  AITargetSelectors:
+  - clear
+  - players
+  AIGoalSelectors:
+  - clear
+
+  - meleeattack
+  Drops:
+  - exp 20
+  Skills:
+  # 绑定模型
+  - model{mid=piranha;n=false} @self ~onSpawn
+
+  - skill{s=piranhaSwoop} @PIR{r=32;sort=NEAREST;limit=1} ~onSpawn
+  - skill{s=attackEffect} @Target ~onAttack

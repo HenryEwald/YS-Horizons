@@ -1,0 +1,128 @@
+#Enable water on plugin load?
+#It is disabled by default for first start and configure
+#You can enable water mechanincs in server with /water enable
+#Setting this to "true" will allow water mechaincs work when server starts
+Enable on start: true
+
+#The speed plugin will calculate and place water
+#This speed is in ticks (1/20 second)
+#This option doesn't effect the performance!
+#Default: 1 (each tick)
+Water speed: 1
+
+#The max time plugin can take checking the water
+#Higher values can make water go faster
+Max ms to check: 30
+
+#The distance from which water mechanics will stop working
+Distance: 92
+
+#Radius of water to check
+#The higher this number, the flater water will be
+Radius to check: 30
+
+#The speed at which visual updates will happen
+#The lower this number, the more updates will happen
+#This speed is in ticks (1/20 second)
+#Lowest: 1, highest: inf
+#This could effect the performance!
+Visual updates: 1
+
+#Visual effect when water has "waves"
+#Helps disguise realistic water effects
+#Doesn't have impact on performance
+Enable waves: true
+
+#Blocks that can be broken by water
+Destroy:
+- SUGAR_CANE
+- TALL_GRASS
+- GRASS
+- DANDELION
+- CORNFLOWER
+- POPPY
+#- TALL_SEAGRASS
+#- SEAGRASS
+#- KELP_PLANT
+#- KELP
+- TORCH
+- REDSTONE_TORCH
+- REDSTONE_WIRE
+- REDSTONE_WALL_TORCH
+- REDSTONE
+- LEVER
+- STONE_BUTTON
+- ACACIA_BUTTON
+- BIRCH_BUTTON
+- DARK_OAK_BUTTON
+- JUNGLE_BUTTON
+- OAK_BUTTON
+- SPRUCE_BUTTON
+- ACACIA_SAPLING
+- BIRCH_SAPLING
+- DARK_OAK_SAPLING
+- JUNGLE_SAPLING
+- OAK_SAPLING
+- SPRUCE_SAPLING
+- FLOWER_POT
+- SUNFLOWER
+- CHORUS_FLOWER
+- DEAD_BUSH
+- VINE
+- LILAC
+- LILY_PAD
+- ROSE_BUSH
+- ROSE_RED
+- SNOW
+
+#Message to send when player tries to place water
+#When there is no enough space for water
+No enough space message: 'There is no enough space'
+
+#In which worlds will realistic mechanics work
+Enabled worlds:
+- world
+
+#Enable bucket check
+Bucket check: true
+
+#Rain water (puddles) forming on ground
+#Do not enable this. This feature is broken.
+Rain: false
+
+#Forming puddles on normal water
+Rain on water: false
+
+#The radius in wich it will rain
+#Larger radius can begin to load chunks - cause lag
+Rain radius: 64
+
+#The speed at which water will rain
+# Default: 500
+# 0 - fastest
+Rain speed: 500
+
+#If water can rain on lowest water
+#This will enable forming of more water on lakes/holes
+#Will let regenerate water faster
+Rain on lowest water: false
+
+#Blocks on which it will not rain
+#"Destroy" blocks are included
+Dont rain on:
+- SIGN
+- WALL_SIGN
+- FENCE
+
+#Enable hopper water transfer system
+Hopper transfer system: true
+
+#Name of the bucket in hopper
+#This bucket will transfer water trough hoppers
+#Don't use color codes (doesn't work)
+Bucket name: "Water"
+
+#The speed at which blocks will drain
+#It can be from 1 to infinite
+#1 - fastest, default: 1
+Drain speed: 10

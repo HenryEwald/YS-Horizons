@@ -1,0 +1,28 @@
+toro_ender_dragon_brake_knockback:
+    Skills:
+        - delay 1
+        - throw{v=20;vy=4}
+
+toro_ender_dragon_smash_knockback:
+    Skills:
+        - delay 1
+        - throw{v=25;vy=7}
+
+toro_ender_dragon_flydrop_knockback:
+    Skills:
+        - delay 1
+        - throw{v=15;vy=4}
+
+toro_ender_dragon_claw_knockback:
+    Skills:
+        - delay 1
+        - throw{v=10;vy=2}
+
+toro_ender_dragon_tail_knockback:
+    Skills:
+        - delay 1
+        - throw{v=25;vy=2}
+
+toro_enderdragon_push:
+    Skills:
+        - throw{v=3}

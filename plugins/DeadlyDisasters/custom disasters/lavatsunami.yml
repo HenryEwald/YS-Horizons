@@ -1,0 +1,133 @@
+settings:
+    name: 'lavatsunami'
+    title: '&cLava Tsunami'
+    start_delay: 0
+    natural: true
+    min_height: 0
+    frequency: 0.4
+    environments:
+    - nether
+    game_version: 1.14
+    plugin_version: 9.0
+core:
+    level 1:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tsunami
+                    offset: 0
+                    size: 20
+                    height: 3
+                    damage: 1
+                    tickSpeed: 5
+                    liquidMaterial: lava
+                    particleType: falling_lava
+                    minDepth: 7
+                    volume: 0.3
+                    materials:
+                    - netherrack
+                    - soul_sand
+    level 2:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tsunami
+                    offset: 0
+                    size: 30
+                    height: 4
+                    damage: 1
+                    tickSpeed: 5
+                    liquidMaterial: lava
+                    particleType: falling_lava
+                    minDepth: 7
+                    volume: 0.3
+                    materials:
+                    - netherrack
+                    - soul_sand
+    level 3:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tsunami
+                    offset: 0
+                    size: 40
+                    height: 6
+                    damage: 1
+                    tickSpeed: 5
+                    liquidMaterial: lava
+                    particleType: falling_lava
+                    minDepth: 7
+                    volume: 0.3
+                    materials:
+                    - netherrack
+                    - soul_sand
+    level 4:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tsunami
+                    offset: 0
+                    size: 50
+                    height: 8
+                    damage: 1
+                    tickSpeed: 5
+                    liquidMaterial: lava
+                    particleType: falling_lava
+                    minDepth: 7
+                    volume: 0.1
+                    materials:
+                    - netherrack
+                    - soul_sand
+    level 5:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tsunami
+                    offset: 0
+                    size: 60
+                    height: 12
+                    damage: 1
+                    tickSpeed: 5
+                    liquidMaterial: lava
+                    particleType: falling_lava
+                    minDepth: 7
+                    volume: 0.1
+                    materials:
+                    - netherrack
+                    - soul_sand
+    level 6:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tsunami
+                    offset: 0
+                    size: 80
+                    height: 20
+                    damage: 1
+                    tickSpeed: 5
+                    liquidMaterial: lava
+                    particleType: falling_lava
+                    minDepth: 7
+                    volume: 0.1
+                    materials:
+                    - netherrack
+                    - soul_sand
+catalog:
+    item: 'lava_bucket'
+    name: '&c&lLava Tsunami'
+    description: '&bAdds very big lava tsunamis to the nether'
+    author: 'davidclue'
+    version: 1.0
+    id: 1

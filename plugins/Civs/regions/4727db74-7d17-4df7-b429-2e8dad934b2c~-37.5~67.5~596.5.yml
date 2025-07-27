@@ -1,0 +1,35 @@
+location: 4727db74-7d17-4df7-b429-2e8dad934b2c~-37.5~67.5~596.5
+xn-radius: 5
+xp-radius: 5
+yn-radius: 5
+yp-radius: 5
+zn-radius: 5
+zp-radius: 5
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner
+upkeep-history:
+  '1748977295933': 0
+  '1748936197628': 0
+  '1748977441161': 0
+  '1748939805628': 0
+  '1748979001092': 0
+  '1748935297093': 0
+  '1748938903628': 0
+  '1748937099629': 0
+  '1748940488274': 0
+  '1748941191710': 0
+  '1748938001629': 0
+  '1748978010190': 0
+effects:
+- block_fire
+- door_use
+- deny_damage
+- cant_override
+- port:member
+- block_break
+- block_build
+- chest_use
+- block_liquid
+type: embassy
+exp: 0.0
+warehouse-enabled: true

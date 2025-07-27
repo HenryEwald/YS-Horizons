@@ -1,0 +1,30 @@
+#built using mc-build (https://github.com/mc-build/mc-build)
+
+scoreboard players set @s m.global.resistance 0
+scoreboard players set @s m.global.weakness 0
+scoreboard players set @s m.global.power 0
+scoreboard players set @s m.global.speed 0
+scoreboard players set @s m.dream.resistance 0
+scoreboard players set @s m.dream.weakness 0
+scoreboard players set @s m.dream.power 0
+scoreboard players set @s m.dream.speed 0
+scoreboard players set @s m.radiance.resistance 0
+scoreboard players set @s m.radiance.weakness 0
+scoreboard players set @s m.radiance.power 0
+scoreboard players set @s m.radiance.speed 0
+scoreboard players set @s m.resonance.resistance 0
+scoreboard players set @s m.resonance.weakness 0
+scoreboard players set @s m.resonance.power 0
+scoreboard players set @s m.resonance.speed 0
+scoreboard players set @s m.nightmare.resistance 0
+scoreboard players set @s m.nightmare.weakness 0
+scoreboard players set @s m.nightmare.power 0
+scoreboard players set @s m.nightmare.speed 0
+scoreboard players set @s m.void.resistance 0
+scoreboard players set @s m.void.weakness 0
+scoreboard players set @s m.void.power 0
+scoreboard players set @s m.void.speed 0
+scoreboard players set @s m.dissonance.resistance 0
+scoreboard players set @s m.dissonance.weakness 0
+scoreboard players set @s m.dissonance.power 0
+scoreboard players set @s m.dissonance.speed 0

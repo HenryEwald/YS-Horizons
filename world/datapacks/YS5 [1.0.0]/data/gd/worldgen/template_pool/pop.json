@@ -1,0 +1,96 @@
+{
+  "name": "gd:pop",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/base_1",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/base_2",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/base_3",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/base_4",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/pop_1",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/pop_2",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/pop_3",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/pop_4",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/pop_5",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/pop_6",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:pop/pop_7",
+        "projection": "rigid",
+        "processors": "gd:pop"
+      }
+    }
+
+  ]
+}

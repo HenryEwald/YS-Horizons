@@ -1,0 +1,1 @@
+give @s barrel{BlockEntityTag:{LootTable:"better_pyramid:chests/pyramid_barrels"}}

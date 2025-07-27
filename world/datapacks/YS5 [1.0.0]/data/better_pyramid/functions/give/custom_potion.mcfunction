@@ -1,0 +1,1 @@
+give @s minecraft:potion{item:1b, CustomPotionEffects:[{Id:25,Amplifier:4,Duration:200}],CustomPotionColor:0,display:{Name:"\"Potion of Safe Passage\"",Lore:["\"Press [Shift] to cancel levitation\""]}}

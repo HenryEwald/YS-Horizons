@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "packed_mud",
+    "sandstone",
+    "smooth_sandstone",
+    "coarse_dirt",
+    "sand",
+    "#minecraft:stone_ore_replaceables",
+    "#minecraft:deepslate_ore_replaceables",
+    "light_blue_terracotta",
+    "lime_terracotta",
+    "yellow_terracotta",
+    "pink_terracotta",
+    "blue_terracotta",
+    "magenta_terracotta",
+    "white_terracotta",
+    "orange_terracotta"
+  ]
+}

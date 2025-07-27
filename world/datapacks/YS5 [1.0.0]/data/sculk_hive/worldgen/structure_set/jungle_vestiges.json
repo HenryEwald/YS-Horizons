@@ -1,0 +1,14 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 50457311,
+    "separation": 30,
+    "spacing": 60
+  },
+  "structures": [
+    {
+      "structure": "sculk_hive:jungle_vestiges",
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+######## created by samus2002 #########
+  
+amethyst_spear:
+  Id: stone_sword
+  Display: "&5Amethyst Spear"
+  Model: 2001
+  Unbreakable: true
+  Hide:
+  - ATTRIBUTES
+  Skills:
+  - skill{s=Amethyst_Pierce} @self ~onSwing
+  - skill{s=Shooting_Star} @self ~onUse
+  - skill{s=Amethyst_Sparkle} @self ~onUse
+  
+amethyst_helmet:
+  Id: leather_helmet
+  Display: "&aAmethyst Helmet"
+  Options:
+    Color: 141,106,204
+  Model: 2001
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  
+amethyst_chestplate:
+  Id: leather_chestplate
+  Display: "&aAmethyst Chestplate"
+  Options:
+    Color: 141,106,204
+  Model: 2001
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  
+amethyst_leggings:
+  Id: leather_leggings
+  Display: "&aAmethyst Leggings"
+  Options:
+    Color: 141,106,204
+  Model: 2001
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  
+amethyst_boots:
+  Id: leather_boots
+  Display: "&aAmethyst Boots"
+  Options:
+    Color: 141,106,204
+  Model: 2001
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  
+amethyst_pierce_1:
+  Id: paper
+  Display: "&6"
+  Model: 2008
+  Hide:
+  - ATTRIBUTES
+
+amethyst_pierce_2:
+  Id: paper
+  Display: "&6"
+  Model: 2009
+  Hide:
+  - ATTRIBUTES
+ 
+amethyst_pierce_3:
+  Id: paper
+  Display: "&6"
+  Model: 2010
+  Hide:
+  - ATTRIBUTES
+  
+amethyst_pierce_4:
+  Id: paper
+  Display: "&6"
+  Model: 2011
+  Hide:
+  - ATTRIBUTES
+  
+amethyst_pierce_5:
+  Id: paper
+  Display: "&6"
+  Model: 2012
+  Hide:
+  - ATTRIBUTES
+  
+amethyst_pierce_6:
+  Id: paper
+  Display: "&6"
+  Model: 2013
+  Hide:
+  - ATTRIBUTES
+  
+amethyst_pierce_7:
+  Id: paper
+  Display: "&6"
+  Model: 2014
+  Hide:
+  - ATTRIBUTES
+
+amethyst_meteor:
+  Id: paper
+  Display: "&6"
+  Model: 20145
+  Hide:
+  - ATTRIBUTES

@@ -1,0 +1,26 @@
+messages:
+  furnace:
+    place: '&2This server has a modified crafting system!|&3[Shift + Right Click]
+      &2this furnace for more information!'
+    click: All blocks mentioned must be within a 1 x 1 radius of the furnace!
+    hover:
+      block:
+        blast_furnace: Multiplies ore output by 2!
+        smoker: Multiplies food output by 2!
+      multiplier:
+        iron_block: 1.5x Smelting Speed!
+        lava: 2x Smelting Speed!
+        magma_block: 1.75x Smelting Speed!
+        fire: 1.25x Smelting Speed!
+        tnt: 2.5x Smelting Speed, 10% explosion chance!
+  crafting_table:
+    place: '&2This server has a modified crafting system!|&3[Shift + Right Click]
+      &2this crafting table for more information!'
+    click: All blocks mentioned must be within a 3 x 1 radius of the table!
+    hover:
+      anvil: Required to craft Armor!
+      smithing_table: Required to craft Weapons and Tools!
+      loom: Required to craft Dyes and Colored Wool!
+      fletching_table: Required to craft Specialty Arrows!
+      lava: Required to craft Diamond Armor and Tools!
+    blockeditem: You need %block% to craft %item%!

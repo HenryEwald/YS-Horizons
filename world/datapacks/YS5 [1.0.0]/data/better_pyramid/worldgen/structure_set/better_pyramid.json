@@ -1,0 +1,14 @@
+{
+    "structures": [
+      {
+        "structure": "better_pyramid:better_pyramid",
+        "weight": 1
+      }
+    ],
+    "placement": {
+      "type": "minecraft:random_spread",
+      "spacing": 90,
+      "separation": 45,
+      "salt": 1622197840
+    }
+  }

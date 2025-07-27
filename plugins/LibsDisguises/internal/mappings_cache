@@ -1,0 +1,4 @@
+Built for: git-Paper-111 (MC: 1.19.1)	10.0.44
+net.minecraft.EntityPlayer net.minecraft.server.level.EntityPlayer
+net.minecraft.EntityTrackerEntry net.minecraft.server.level.EntityTrackerEntry
+net.minecraft.EntityPose net.minecraft.world.entity.EntityPose

@@ -1,0 +1,501 @@
+#_______________________________________________________________________________
+#
+#-------------------------------+ INFORMATION +--------------------------------#
+#_______________________________________________________________________________
+
+# File: DP-SPIDERS
+
+# Created by: Buguser
+# Version: 1.5.0
+# Server Version: Paper - 1.19
+# Hard-Dependencies:
+# - MythicMobs (tested in v5.1.2)
+
+# Join my Discord-Server for support: https://discord.gg/z6A4dk25BC
+
+#_______________________________________________________________________________
+#
+#----------------------------------+ SPIDERS +---------------------------------#
+#_______________________________________________________________________________
+
+### 1. Spiderling Poison
+BUG_DP_Spiderling-Poison:
+  Type: CAVE_SPIDER
+  Display: '&cPoison Spiderling'
+  Health: 25
+  Damage: 4
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.1
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  Drops:
+  - exp 7 1
+  Skills:
+  - skill{s=BUG_DP_Spiderling_Grow} @self ~onTimer:20
+  - skill{s=BUG_DP_Spiderling_Score} @self ~onTimer:25
+  - summon{type=BUG_DP_Spider-Poison;amount=1;radius=0} @self ~onSignal:GROW
+
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - modifymobscore{objective=grow;action=add;value=20} ~onKillPlayer
+  - modifymobscore{objective=grow;action=add;value=2} ~onAttack
+  - modifymobscore{objective=grow;action=set;value=0} ~onDropCombat
+  - modifymobscore{objective=grow;action=set;value=0} ~onSpawn
+
+  - effect:particles{p=villager_happy;amount=1;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+  - effect:particles{p=crit;amount=6;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+
+### 2. Spiderling Wither
+BUG_DP_Spiderling-Wither:
+  Type: CAVE_SPIDER
+  Display: '&cWither Spiderling'
+  Health: 40
+  Damage: 6
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.1
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  Drops:
+  - exp 7 1
+  Skills:
+  - skill{s=BUG_DP_Spiderling_Grow} @self ~onTimer:20
+  - skill{s=BUG_DP_Spiderling_Score} @self ~onTimer:25
+  - summon{type=BUG_DP_Spider-Wither;amount=1;radius=0} @self ~onSignal:GROW
+
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - modifymobscore{objective=grow;action=add;value=20} ~onKillPlayer
+  - modifymobscore{objective=grow;action=add;value=2} ~onAttack
+  - modifymobscore{objective=grow;action=set;value=0} ~onDropCombat
+  - modifymobscore{objective=grow;action=set;value=0} ~onSpawn
+
+  - effect:particles{p=spell_mob;color=#000000;amount=1;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+  - effect:particles{p=crit;amount=6;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+
+### 3. Spiderling Frost
+BUG_DP_Spiderling-Frost:
+  Type: CAVE_SPIDER
+  Display: '&cFrost Spiderling'
+  Health: 50
+  Damage: 6
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.1
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  Drops:
+  - exp 7 1
+  Skills:
+  - skill{s=BUG_DP_Spiderling_Grow} @self ~onTimer:20
+  - skill{s=BUG_DP_Spiderling_Score} @self ~onTimer:25
+  - summon{type=BUG_DP_Spider-Frost;amount=1;radius=0} @self ~onSignal:GROW
+
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - modifymobscore{objective=grow;action=add;value=20} ~onKillPlayer
+  - modifymobscore{objective=grow;action=add;value=2} ~onAttack
+  - modifymobscore{objective=grow;action=set;value=0} ~onDropCombat
+  - modifymobscore{objective=grow;action=set;value=0} ~onSpawn
+
+  - effect:particles{p=fireworks_spark;amount=1;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+  - effect:particles{p=crit;amount=6;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+
+### 4. Spiderling Fire
+BUG_DP_Spiderling-Fire:
+  Type: CAVE_SPIDER
+  Display: '&cFire Spiderling'
+  Health: 45
+  Damage: 6
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.1
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  DamageModifiers:
+  - FIRE_TICK -1
+  - FIRE -1
+  - HOT_FLOOR 0
+  Drops:
+  - exp 7 1
+  Skills:
+  - skill{s=BUG_DP_Spiderling_Grow} @self ~onTimer:20
+  - skill{s=BUG_DP_Spiderling_Score} @self ~onTimer:25
+  - extinguish @Self ~onDamaged
+  - summon{type=BUG_DP_Spider-Fire;amount=1;radius=0} @self ~onSignal:GROW
+
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - modifymobscore{objective=grow;action=add;value=20} ~onKillPlayer
+  - modifymobscore{objective=grow;action=add;value=2} ~onAttack
+  - modifymobscore{objective=grow;action=set;value=0} ~onDropCombat
+  - modifymobscore{objective=grow;action=set;value=0} ~onSpawn
+
+  - effect:particles{p=flame;amount=2;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+  - effect:particles{p=crit;amount=6;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+
+### 5. Spider Poison
+BUG_DP_Spider-Poison:
+  Type: SPIDER
+  Display: '&cPoison Spider'
+  Health: 60
+  Damage: 8
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.3
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  Drops:
+  - exp 15 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Poison_Web-Bolt-Cast} @target ~onTimer:130 0.8
+  - skill{s=BUG_DP_Spider-Poison_Bite} @Target ~onAttack
+
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - effect:particles{p=villager_happy;amount=6;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+
+### 6. Spider Wither
+BUG_DP_Spider-Wither:
+  Type: SPIDER
+  Display: '&cWither Spider'
+  Health: 80
+  Damage: 10
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.3
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  Drops:
+  - exp 15 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Wither_Mount} @target ~onTimer:110 0.6
+  - skill{s=BUG_DP_Spider-Wither_Mount-Hit} @target ~onAttack
+  - skill{s=BUG_DP_Spider-Wither_Bite} @Target ~onAttack
+
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - effect:particles{p=spell_mob;color=#000000;amount=6;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+
+  - dismount ~onDamaged
+
+### 7. Spider Frost
+BUG_DP_Spider-Frost:
+  Type: SPIDER
+  Display: '&cFrost Spider'
+  Health: 120
+  Damage: 10
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.3
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  Drops:
+  - exp 25 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Frost_Aura} @target ~onTimer:130 0.6
+  - skill{s=BUG_DP_Spider-Frost_Bite} @Target ~onAttack
+
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - effect:particles{p=fireworks_spark;amount=3;hS=0.6;vS=0.6;speed=0} @self ~onTimer:5
+
+### 8. Spider Fire
+BUG_DP_Spider-Fire:
+  Type: SPIDER
+  Display: '&cFire Spider'
+  Health: 100
+  Damage: 8
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.3
+    MaxCombatDistance: 30
+    MovementSpeed: 0.25
+    PreventOtherDrops: true
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 threatholder
+  - 2 players
+  - 3 hurtbytarget
+  DamageModifiers:
+  - FIRE_TICK -1
+  - FIRE -1
+  - HOT_FLOOR 0
+  Drops:
+  - exp 20 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Fire_Breath-Cast} @target ~onTimer:100 0.6
+  - skill{s=BUG_DP_Spider-Fire_Bite} @Target ~onAttack
+  - extinguish @Self ~onDamaged
+
+  - sound{s=block.fire.ambient;p=1.2} @self ~onTimer:120 0.7
+  - effect:particles{p=cloud;amount=12;hS=0.7;vS=0.7;speed=0.02} @self ~onSpawn
+  - effect:particles{p=flame;amount=4;hS=0.6;vS=0.6;speed=0.02} @self ~onTimer:5
+
+### 9. Spider Egg Poison
+BUG_DP_Spider-Egg-Poison:
+  Type: CAVE_SPIDER
+  Display: '&cPoison Spider Eggs'
+  Health: 130
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    KnockbackResistance: 1
+    MovementSpeed: 0
+    PreventOtherDrops: true
+    PreventTeleport: true
+    Silent: true
+  Disguise: Falling_Block DRAGON_EGG
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Drops:
+  - exp 35 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Egg-Poison_Summon} @self ~onTimer:120 0.7
+  - rally{types=BUG_DP_Spiderling-Poison,BUG_DP_Spider-Poison;radius=30} @trigger ~onDamaged
+
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onTimer:400
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onDamaged 0.2
+
+  - effect:particles{p=villager_happy;amount=2;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=crit_magic;amount=4;hS=0.5;vS=0.5;speed=0;y=1} @self ~onTimer:5
+  - sound{s=entity.slime.hurt;p=1.3} @self ~onDamaged
+  - sound{s=entity.slime.death;p=1.3} @self ~onDeath
+
+  - potion{t=SLOW;d=2147483647;l=9;force=true;hasParticles=false} @self ~onSpawn
+
+### 10. Spider Egg Wither
+BUG_DP_Spider-Egg-Wither:
+  Type: CAVE_SPIDER
+  Display: '&cWither Spider Eggs'
+  Health: 160
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    KnockbackResistance: 1
+    MovementSpeed: 0
+    PreventOtherDrops: true
+    PreventTeleport: true
+    Silent: true
+  Disguise: Falling_Block DRAGON_EGG
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Drops:
+  - exp 35 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Egg-Wither_Summon} @self ~onTimer:120 0.7
+  - rally{types=BUG_DP_Spiderling-Wither,BUG_DP_Spider-Wither;radius=30} @trigger ~onDamaged
+
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onTimer:400
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onDamaged 0.2
+
+  - effect:particles{p=spell_mob;color=#000000;amount=2;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=crit_magic;amount=4;hS=0.5;vS=0.5;speed=0;y=1} @self ~onTimer:5
+  - sound{s=entity.slime.hurt;p=1.3} @self ~onDamaged
+  - sound{s=entity.slime.death;p=1.3} @self ~onDeath
+
+  - potion{t=SLOW;d=2147483647;l=9;force=true;hasParticles=false} @self ~onSpawn
+
+### 11. Spider Egg Frost
+BUG_DP_Spider-Egg-Frost:
+  Type: CAVE_SPIDER
+  Display: '&cFrost Spider Eggs'
+  Health: 200
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    KnockbackResistance: 1
+    MovementSpeed: 0
+    PreventOtherDrops: true
+    PreventTeleport: true
+    Silent: true
+  Disguise: Falling_Block DRAGON_EGG
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Drops:
+  - exp 35 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Egg-Frost_Summon} @self ~onTimer:120 0.7
+  - rally{types=BUG_DP_Spiderling-Frost,BUG_DP_Spider-Frost;radius=30} @trigger ~onDamaged
+
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onTimer:400
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onDamaged 0.2
+
+  - effect:particles{p=fireworks_spark;amount=2;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=crit_magic;amount=4;hS=0.5;vS=0.5;speed=0;y=1} @self ~onTimer:5
+  - sound{s=entity.slime.hurt;p=1.3} @self ~onDamaged
+  - sound{s=entity.slime.death;p=1.3} @self ~onDeath
+
+  - potion{t=SLOW;d=2147483647;l=9;force=true;hasParticles=false} @self ~onSpawn
+
+### 12. Spider Egg Fire
+BUG_DP_Spider-Egg-Fire:
+  Type: CAVE_SPIDER
+  Display: '&cFire Spider Eggs'
+  Health: 180
+  DamageModifiers:
+  - FIRE_TICK -1
+  - FIRE -1
+  - HOT_FLOOR 0
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    KnockbackResistance: 1
+    MovementSpeed: 0
+    PreventOtherDrops: true
+    PreventTeleport: true
+    Silent: true
+  Disguise: Falling_Block DRAGON_EGG
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Drops:
+  - exp 35 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Egg-Fire_Summon} @self ~onTimer:120 0.7
+  - rally{types=BUG_DP_Spiderling-Fire,BUG_DP_Spider-Fire;radius=30} @trigger ~onDamaged
+  - extinguish @Self ~onDamaged
+
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onTimer:400
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onDamaged 0.2
+
+  - effect:particles{p=flame;amount=4;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=crit_magic;amount=4;hS=0.5;vS=0.5;speed=0;y=1} @self ~onTimer:5
+  - sound{s=entity.slime.hurt;p=1.3} @self ~onDamaged
+  - sound{s=entity.slime.death;p=1.3} @self ~onDeath
+
+  - potion{t=SLOW;d=2147483647;l=9;force=true;hasParticles=false} @self ~onSpawn
+
+### 13. Spider Egg Random
+BUG_DP_Spider-Egg-Random:
+  Type: CAVE_SPIDER
+  Display: '&cSpider Eggs'
+  Health: 300
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    KnockbackResistance: 1
+    MovementSpeed: 0
+    PreventOtherDrops: true
+    PreventTeleport: true
+    Silent: true
+  Disguise: Falling_Block DRAGON_EGG
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Drops:
+  - exp 40 1
+  Skills:
+  - skill{s=BUG_DP_Spider-Egg-Random_Summon} @self ~onTimer:120 0.7
+  - rally{types=BUG_DP_Spiderling-Poison,BUG_DP_Spider-Poison,BUG_DP_Spiderling-Wither,BUG_DP_Spider-Wither,BUG_DP_Spiderling-Frost,BUG_DP_Spider-Frost,BUG_DP_Spiderling-Fire,BUG_DP_Spider-Fire;radius=30} @trigger ~onDamaged
+
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onTimer:400
+  - skill{s=BUG_DP_Spider-Egg_Score} ~onDamaged 0.2
+
+  - effect:particles{p=villager_happy;amount=1;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=spell_mob;color=#000000;amount=1;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=fireworks_spark;amount=1;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=flame;amount=1;hS=0.3;vS=0.3;speed=0;y=1} @self ~onTimer:5
+  - effect:particles{p=crit_magic;amount=4;hS=0.5;vS=0.5;speed=0;y=1} @self ~onTimer:5
+  - sound{s=entity.slime.hurt;p=1.3} @self ~onDamaged
+  - sound{s=entity.slime.death;p=1.3} @self ~onDeath
+
+  - potion{t=SLOW;d=2147483647;l=9;force=true;hasParticles=false} @self ~onSpawn

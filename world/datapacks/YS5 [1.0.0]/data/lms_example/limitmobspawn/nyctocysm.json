@@ -1,0 +1,56 @@
+{
+  "_comment": "Prevent spawning of mobs that should spawn in the nyctosysm",
+  "conditions": [
+    {
+      "type": "forge:true"
+    }
+  ],
+  "deny": [
+    {
+      "type": "and",
+      "values": [
+        {
+          "type": "dimension",
+          "dim": "minecraft:overworld"
+        },
+        {
+          "type": "dimension",
+          "dim": "minecraft:the_nether"
+        },
+        {
+          "type": "dimension",
+          "dim": "minecraft:the_end"
+        },
+        {
+          "type": "or",
+          "values": [
+            {
+              "type": "entity",
+              "entity": "whisperwoods:hidebehind"
+            },
+            {
+              "type": "entity",
+              "entity": "whisperwoods:hirschgeist"
+            },{
+              "type": "entity",
+              "entity": "whisperwoods:moth"
+            },
+            {
+              "type": "entity",
+              "entity": "whisperwoods:wisp"
+            },
+            {
+              "type": "entity",
+              "entity": "whisperwoods:zotzpyre"
+            },
+            {
+              "type": "entity",
+              "entity": "sculk_worm:sculk_worm_entity"
+            }
+
+            ]
+          }
+        ]
+        }
+      ]
+    }

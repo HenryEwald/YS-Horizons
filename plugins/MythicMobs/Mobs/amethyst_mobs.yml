@@ -1,0 +1,41 @@
+######## created by samus2002 #########
+
+# Amethyst Pierce #
+
+Amethyst_Pierce:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: amethyst_pierce_1
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - effect:particles{particle=redstone;color=#8d6acc;amount=5;hS=0.7;y=0.5;forwardOffset=-0.5;vS=0.1;speed=0} @self ~onSpawn
+  - effect:particles{particle=redstone;color=#fcedff;amount=5;hS=0.7;y=0.5;forwardOffset=-0.5;vS=0.1;speed=0} @self ~onSpawn
+  - equip{item=amethyst_pierce_1:4} ~onSpawn
+  - equip{item=amethyst_pierce_2:4;delay=1} ~onSpawn
+  - equip{item=amethyst_pierce_3:4;delay=2} ~onSpawn
+  - equip{item=amethyst_pierce_4:4;delay=3} ~onSpawn
+  - equip{item=amethyst_pierce_5:4;delay=4} ~onSpawn
+  - equip{item=amethyst_pierce_6:4;delay=5} ~onSpawn
+  - equip{item=amethyst_pierce_7:4;delay=6} ~onSpawn
+  - remove{delay=7} @self ~onSpawn
+  
+  
+# Shooting Star #
+
+Shooting_Star:
+  Type: ARMOR_STAND
+  Pose:
+      Head: 0,0,0
+  ItemHead: amethyst_meteor
+  Options:
+    Marker: true
+    Small: false
+    Invisible: true
+    Invincible: true
+  Skills:
+  - equip{item=amethyst_meteor:4} ~onSpawn

@@ -1,0 +1,52 @@
+double_loot_fishing_totem:
+  # Totem Core Block ID
+  core:
+    - o
+
+  radius: 10
+  # seconds
+  duration: 3600
+  particle: DRIPPING_OBSIDIAN_TEAR
+
+  hologram:
+    enable: true
+    text:
+      - '<#87CEFA>Fishing Totem'
+      - '<white>{time}s <gray>/ <white>{max_time}s'
+    y-offset: 3.8
+
+  # Potion effect type and its amplifier
+  potion-effects:
+    NIGHT_VISION: 1
+
+  # Fishing bonus
+  modifier:
+    double-loot: 1
+
+  # placeholders: {activator} {player} {world} {x} {y} {z}
+  action:
+    #commands-activator: []
+    messages-activator:
+      - You activated a double loot totem!
+    #commands-nearby-players: []
+    messages-nearby-players:
+      - '{activator} activated a fishing totem!'
+      - 'Players inside of the effective range would get fishing buffs!'
+
+
+  # The layout of the totem
+  # The greater the layer number is, the higher the y position is
+  # Totem core can be put anywhere in the layout
+  # “*” represents any type of block is allowed here [example *]
+  # “()“ represents the block is protected and will not be removed when activating [example (a)]
+  # “>“ represents the block would turn into another block after activating [example: a>b]
+  # “|“ represents alternative block choice for this place  [example a|b>c]
+  layer:
+    4:
+      - '(p)   (o)   (p)'
+    3:
+      - 'air   (c)   air'
+    2:
+      - 'air (pillar) air'
+    1:
+      - 'air   (a)   air'

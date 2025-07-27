@@ -1,0 +1,21 @@
+name: steveMorissette
+type: settlement
+location: 4c598f86-cb57-42ca-a931-8eaf82a6eaea~-53.5~80.5~2.5
+devolved-today: false
+has-war-buildings: false
+war-enabled-today: false
+last-active: 1685417930289
+child-locations: []
+housing: 2
+population: 1
+villagers: 0
+last-disable: -1
+power: 248
+max-power: 3800
+gov-type: IDIOCRACY
+taxes: 0.0
+bank: 0.0
+last-vote: 1685404066109
+gov-type-changed-today: true
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner

@@ -1,0 +1,41 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:infested_stone_bricks"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:match_tool",
+          "predicate": {
+            "enchantments": [
+              {
+                "enchantment": "minecraft:silk_touch",
+                "levels": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "__smithed__":{
+    "rules":[
+      {
+        "type":"smithed:merge",
+        "target": "pools[0].entries[0].name",
+        "source": {
+          "type":"smithed:reference",
+          "path": "pools[0].entries[0].name"
+        }
+      }
+    ]
+  }
+}

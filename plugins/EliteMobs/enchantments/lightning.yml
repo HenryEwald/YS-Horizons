@@ -1,0 +1,5 @@
+isEnabled: true
+name: Lightning
+maxLevelV2: 5
+value: 15.0
+minimumCooldownSeconds: 120

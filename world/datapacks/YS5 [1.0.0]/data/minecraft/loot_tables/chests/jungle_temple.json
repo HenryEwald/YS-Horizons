@@ -1,0 +1,324 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 2.0,
+        "max": 6.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:diamond"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 5.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:iron_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 7.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:gold_ingot"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 15,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:bamboo"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 2,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:emerald"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 4.0,
+                "max": 6.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:bone"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 16,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 3.0,
+                "max": 7.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:rotten_flesh"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 3,
+          "name": "minecraft:saddle"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:iron_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:golden_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:diamond_horse_armor"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 30.0,
+              "treasure": true
+            }
+          ],
+          "name": "minecraft:book"
+        }
+      ]
+    },
+	    {
+      "rolls": 3.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+		  "weight": 5,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": 1.0,
+              "add": false
+            }
+          ],
+          "name": "minecraft:lodestone"
+        },
+						{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Golden Chalice\\\"}\"},SkullOwner:{Id:[I;111496894,-1866644041,-1418268745,1013404984],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTc1MWIyYzMxMWFjZDQ4ZTA2ZjcxNTA4YzY4NzM1ZmU5ZjNhNGY0ZDc1YjllZjFhMjRmYTEzMzNkNzcifX19\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Potted Bush\\\"}\"},SkullOwner:{Id:[I;-1225868160,-813741905,-1347941672,-1373997522],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWExZmJlZjNkMGM1MWFkNmM3MTNhYTIwYzQyZGIxODM0MzRjZWM0ZmI2M2E1YTNlYWExMDFhZDNjNWY3NWQxNSJ9fX0=\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Voodoo Doll\\\"}\"},SkullOwner:{Id:[I;2132235447,-1030076827,-1638201038,-969733656],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGM1YWZmNjlhNjk5ODkyOTQ3OTY5YzczNWY3MzA2ZDE4YWNiMDYxNzUxNWNjN2I0NDkxNGNkMTZkODgyMGQ1MiJ9fX0=\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Sack of Herbs\\\"}\"},SkullOwner:{Id:[I;-724669118,-1097185914,-1250273616,-1758182094],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDI3NDIzZDVjY2U0YTQ3MmE3NjBjZTVlODYyY2EzNWY3MDU4ZDU4N2I3ZWFiNjllYmVjOTIwYzc3M2U3MzA3In19fQ==\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Flowerpot\\\"}\"},SkullOwner:{Id:[I;1383019434,1634551509,-1797643298,247843792],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMWZmM2FkOTY1NTQwM2JkNzIxODEzMjA2NDJhMTM5NTM0ZjQ3MWU1YzQyNzk1NjQ0Zjk4MzNiNDI0ZDdmYSJ9fX0=\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Redstone Skull\\\"}\"},SkullOwner:{Id:[I;176356190,723929728,-1626713618,1789490218],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvY2I4NTJiYTE1ODRkYTllNTcxNDg1OTk5NTQ1MWU0Yjk0NzQ4YzRkZDYzYWU0NTQzYzE1ZjlmOGFlYzY1YzgifX19\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Jungle Drum\\\"}\"},SkullOwner:{Id:[I;1268059389,1102660325,-1787904755,1818573391],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTdiZWQ4ZTdhOGNkYjQ2N2ZjZjU5ZmIzYjZjYzZlYzg2ODUzN2VmZGM3MzU2YmQxNGE5NjFiNDhhMDQ3OWFkZiJ9fX0=\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Bamboo Shoots\\\"}\"},SkullOwner:{Id:[I;-1615636732,-1485356528,-1089317040,1326513099],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGVlODRkNmYyZGJkZjdhM2M5MTlmNzdlYzIyZTZlZTI2NjFlMDE3M2E4YTk3MWUxMWM5ODAwMjIzNGU2NDE3ZiJ9fX0=\"}]}}}"
+						}
+					]
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Bamboo\\\"}\"},SkullOwner:{Id:[I;1010338952,-1682616408,-1291782370,-1872320964],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTg3NTAzMDI2NTEyYmUyZTQxN2NkZWUzY2Q3ODMzOWM0Y2FmMDljYWI1MjgyMzY4NjU3MmQwMTJlOWQxOTgwMiJ9fX0=\"}]}}}"
+						}
+					]
+				},
+								{
+					"type": "item",
+					"name": "minecraft:splash_potion",
+					"weight": 5,
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{CustomPotionEffects:[{Id:9,Duration:600},{Id:17,Amplifier:4,Duration:600},{Id:19,Duration:600}],CustomPotionColor:8625180,display:{Name:\"{\\\"text\\\":\\\"Sickness in a Bottle\\\"}\"}}"
+						}
+					]
+				},
+								{
+					"type": "item",
+					"name": "minecraft:sculk_sensor",
+					"weight": 3,
+			          "functions": [
+			            {
+			              "function": "minecraft:set_count",
+			              "count": 1.0,
+			              "add": false
+			            }
+					]
+				}
+      ]
+    },
+				{
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+		  {
+			"type": "minecraft:item",
+			"name": "minecraft:map",
+			"weight": 1,
+			"functions": [{
+					"function": "minecraft:exploration_map",
+					"destination": "monster_room",
+					"decoration": "target_point",
+					"zoom": 2,
+					"search_radius": 50,
+					"skip_existing_chunks": true
+				},
+				{
+					"function": "minecraft:set_name",
+					"name": "Dungeon Explorer Map",
+					"entity": "this"
+				},
+				{
+					"function": "minecraft:set_nbt",
+					"tag": "{display:{MapColor:0111111}}"
+				}
+			]
+		}
+      ]
+    }
+  ]
+}

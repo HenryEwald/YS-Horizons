@@ -1,0 +1,580 @@
+# In this file you can configure all plugin values.
+# To reload this file do /sm update configuration
+
+Debug-errors: true
+Spawners:
+  # Spawner values define spawner upgrade attributes.
+  #   range - required player distance (in blocks)
+  #   delay - spawning delay (in ticks) (1 second = 20 ticks)
+  #   amount - entity amount when spawning
+  values:
+    # Default spawner upgrade values.
+    # For specific entities:
+    #   <entity>:
+    #     range: <value>
+    #     delay: <value>
+    #     amount: <value>
+    # Replace <entity> with the specific entity name, any
+    #   unset upgrade values will use default ones.
+    DEFAULT:
+      range: 16
+      delay: 500
+      amount: 4
+  value-increase:
+    # Default spawner upgrade increase values.
+    # For specific entities:
+    #   <entity>:
+    #     range: <value>
+    #     delay: <value> (should be negative)
+    #     amount: <value>
+    # Replace <entity> with the specific entity name, any
+    #   unset upgrade values will use default ones.
+    DEFAULT:
+      range: 4
+      delay: -75
+      amount: 1
+  # Spawner spawning type.
+  #   SINGLE - spawn entities in a single spot.
+  #   SPREAD - spread entities around spawner.
+  spawning-type: SINGLE
+  # Entity spawning radius.
+  spawning-radius: 3
+  # Is spawner switching enabled.
+  # To switch a spawner on or off players must click
+  #   the stat item in spawner upgrading interface.
+  switching: false
+  empty:
+    # Are empty spawner enabled.
+    # An empty spawner can be changed at any time
+    #   with spawn eggs, when broken they will drop
+    #   the empty spawner and used spawn eggs.
+    enabled: false
+    destroy-eggs:
+      # Are eggs destroyed when a player removes them
+      #   from a filled empty spawner.
+      when-removing: false
+      # Are eggs destroyed when a player breaks
+      #   a filled empty spawner.
+      when-breaking: false
+    # Are eggs kept inside the empty spawner
+    #   when broken.
+    store-eggs-inside: false
+    # Enables players to double verify when
+    #   removing eggs from empty spawners.
+    # Useful if
+    #   destroy-eggs:
+    #     when-removing: true
+    egg-removing-verify: false
+  # List of disabled spawners.
+  # Players will not be able to place, break, change
+  #   interact or do any other modifications
+  #   to disabled spawners.
+  # Disabled spawners do not spawn any entities.
+  disabled-spawners: []
+  # Should there be particles when
+  #   an entity spawns.
+  spawning-particles: true
+  # Are item spawners disabled.
+  disable-item-spawners: false
+  # If spawners can be renamed in an anvil.
+  allow-renaming: true
+  # If there are this amount of entities
+  #   in a 4 block radius of the spawner
+  #   then no entities will be spawned.
+  nearby-entity-limit: 6
+  # Will entities be killed when they spawn.
+  kill-entities-on-spawn: false
+  # Will entities drop xp when killed.
+  # Only applies when kill-entities-on-spawn
+  #   is set to true.
+  drop-xp-when-instant-kill: true
+  # What size slimes and magma cubes spawners will spawn.
+  # If the value is 0 then the size will vary (1-3).
+  default-slime-size: 0
+Events:
+  # Is entity spawning event cancelled.
+  cancel-spawning-event: true
+  # Is entity spawning event sent for each new entity.
+  # This option might be useful for some plugins.
+  send-spawner-event: false
+  # Is spawner break event cancelled.
+  # Useful for other plugins that register spawner locations.
+  cancel-break-event: true
+Items:
+  # Amount of ticks to get back dropped items using
+  #   /spawnerdrops.
+  # Only works if drop-on-ground is disabled.
+  taking-ticks: 1200
+  # Amount of ticks when a player gets a reminder to
+  #   collect their spawner items.
+  taking-remind-ticks: 600
+  # In this section you can change
+  #   the order of item lore and even
+  #   delete lines.
+  # You can delete a line by deleting
+  #   the line in this file or add '!'
+  #   after the line.
+  #   E.g. 'INFO' -> 'INFO!'
+  layout:
+    # Keys:
+    #   HEADER, RANGE, DELAY, AMOUNT
+    #   CHARGES, SPAWNABLE, INFO
+    spawner-item:
+    - '!'
+    - HEADER
+    - RANGE
+    - DELAY
+    - AMOUNT
+    - '!'
+    - CHARGES
+    - SPAWNABLE
+    - '!'
+    - INFO
+    upgrades:
+      # Keys:
+      #   EMPTY, SWITCHING, LOCATION, STACK
+      #   WARNING, SPAWNABLE, INFO
+      stat-item:
+      - EMPTY
+      - SWITCHING
+      - '!'
+      - LOCATION
+      - STACK
+      - SPAWNABLE
+      - '!'
+      - WARNING
+      - '!'
+      - INFO
+      # Keys:
+      #   HELP, INFO, CURRENT, NEXT, PRICE
+      upgrade-item:
+      - HELP
+      - '!'
+      - INFO
+      - '!'
+      - CURRENT
+      - '!'
+      - NEXT
+      - '!'
+      - PRICE
+      # Keys:
+      #   HELP, INFO, CURRENT
+      disabled-upgrade-item:
+      - HELP
+      - '!'
+      - INFO
+      - '!'
+      - CURRENT
+Miscellaneous:
+  explosions:
+    # Breaking options for TNT explosions.
+    TNT:
+      break-spawners: true
+      drop-spawners: true
+      break-natural-spawners: true
+      drop-natural-spawners: true
+    # Breaking options for creeper explosions.
+    CREEPERS:
+      break-spawners: true
+      drop-spawners: true
+      break-natural-spawners: true
+      drop-natural-spawners: true
+    # Breaking options for fireball explosions.
+    FIREBALLS:
+      break-spawners: true
+      drop-spawners: true
+      break-natural-spawners: true
+      drop-natural-spawners: true
+    # Breaking options for end crystal explosions.
+    END_CRYSTALS:
+      break-spawners: true
+      drop-spawners: true
+      break-natural-spawners: true
+      drop-natural-spawners: true
+Spawner-view:
+  # Is spawner view enabled.
+  # Spawner view can be accessed by all players
+  #   using /spawnerview
+  enabled: false
+  # Entities that are excluded from spawner view.
+  ignore-entities:
+  - ARMOR_STAND
+  - BOAT
+  - EXPERIENCE_BOTTLE
+  - EXPERIENCE_ORB
+  - MINECART
+  - MINECART_CHEST
+  - MINECART_COMMAND
+  - MINECART_FURNACE
+  - MINECART_HOPPER
+  - MINECART_SPAWNER
+  - MINECART_TNT
+Commands:
+  # Command label for spawner view.
+  spawner-view: spawnerview
+  # Command label for spawner shop.
+  spawner-shop: spawnershop
+  # Command label for spawner drops.
+  spawner-drops: spawnerdrops
+# Price types:
+#   EXPERIENCE - experience points
+#   LEVELS	- experience levels
+#   ECONOMY - vault economy
+#   MATERIAL - items
+# Item format (only for MATERIAL price type):
+# item:
+#   material: <material>
+#   name: <name> (checks item name, optional)
+#   model: <model> (check item custom model data, optional)
+Prices:
+  # Price type for upgrades.
+  upgrades:
+    price-type: EXPERIENCE
+    item:
+      material: GOLD_INGOT
+  # Price type for charges.
+  charges:
+    price-type: EXPERIENCE
+    item:
+      material: GOLD_INGOT
+  # Price type for shop.
+  shop:
+    price-type: EXPERIENCE
+    item:
+      material: GOLD_INGOT
+  # Price type for placing.
+  placing:
+    price-type: EXPERIENCE
+    item:
+      material: GOLD_INGOT
+  # Price type for stacking.
+  stacking:
+    price-type: EXPERIENCE
+    item:
+      material: GOLD_INGOT
+  # Price type for breaking.
+  breaking:
+    price-type: EXPERIENCE
+    item:
+      material: GOLD_INGOT
+  # Price type for changing.
+  changing:
+    price-type: EXPERIENCE
+    item:
+      material: GOLD_INGOT
+# Version of spawners in the server.
+# By incrementing this value all spawners in the server
+#   will be updated. Can also be done
+#   using /sm update spawners.
+Spawner-version: 0
+# Version of this configuration file.
+# Should not be changed.
+Configuration-version: 2
+Modifiers:
+  holograms:
+    # Are spawner holograms enabled.
+    # Holograms are rendered over spawners, showing
+    #   their entity type and stack size.
+    enabled: false
+    # Are holograms rendered on natural spawners.
+    show-natural: false
+  upgrade-interface:
+    # Is upgrade interface (GUI) enabled.
+    # If disabled, players will not be able to open it.
+    enabled: true
+  upgrades:
+    upgradeable:
+      # Default spawner upgradeable upgrades.
+      # For specific entities:
+      #   <entity>:
+      #     range: <true/false>
+      #     delay: <true/false>
+      #     amount: <true/false>
+      # Replace <entity> with the specific entity name, any
+      #   unset upgrade values will use default ones.
+      DEFAULT:
+        range: true
+        delay: true
+        amount: true
+    levels:
+      # Default spawner upgrade levels.
+      # For specific entities:
+      #   <entity>:
+      #     range: <level>
+      #     delay: <level>
+      #     amount: <level>
+      # Replace <entity> with the specific entity name, any
+      #   unset upgrade values will use default ones.
+      DEFAULT:
+        range: 5
+        delay: 5
+        amount: 5
+    prices:
+      # Default spawner upgrade prices.
+      # For specific entities:
+      #   <entity>:
+      #     range: <price>
+      #     delay: <price>
+      #     amount: <price>
+      # Replace <entity> with the specific entity name, any
+      #   unset upgrade values will use default ones.
+      DEFAULT:
+        range: 100
+        delay: 100
+        amount: 100
+    price-increase:
+      # Default spawner upgrade price increases.
+      # For specific entities:
+      #   <entity>:
+      #     range: <increase>
+      #     delay: <increase>
+      #     amount: <increase>
+      # Replace <entity> with the specific entity name, any
+      #   unset upgrade values will use default ones.
+      DEFAULT:
+        range: 50
+        delay: 50
+        amount: 50
+    # Type of price increase.
+    # ADDITION - added increase to pervious price.
+    #   [ price + increase * level ]
+    # MULTIPLICATION - multuplies pervious price by increase.
+    #   increase value is a percentage (100 = 100%)
+    #   [ price * increase ^ level ]
+    price-increase-type: ADDITION
+  charges:
+    # Are charges enabled.
+    # Charges define how many times a spawner can spawn,
+    #   they are purchased by players in game.
+    enabled: false
+    # Will spawners with different charge amount be stacked.
+    # If true, players will be able stack spawners which
+    #   has different amount of charges.
+    # For example, if one spawner has 10 charges and the other 8
+    #   then the stacked spawner will have 9 charges
+    #   (9 charges for each spawner to keep the balance).
+    # Player might lose charges if the stack size and charges does
+    #   not divide equally.
+    allow-stacking: false
+    # Will natural spawners spawn entities even
+    #   if it has no charges.
+    ignore-natural: true
+    buy-amount:
+      # Amount of charges players can purchase when
+      #   left-clicking.
+      first: 16
+      # Amount of charges players can purchase when
+      #   right-clicking.
+      second: 128
+    prices:
+      # Default price per charge.
+      # For specific entities:
+      #   <entity>: <price>
+      # Replace <entity> with the specific entity name.
+      DEFAULT: 2
+  changing:
+    # Is spawner changing enabled.
+    # To change spawner type a players must shift-right-click
+    #   onto a spawner with a specific spawn egg.
+    enabled: false
+    # Does changing cost.
+    use-price: false
+    prices:
+      # Default changing price.
+      # For specific entities:
+      #   <entity>: <price>
+      # Replace <entity> with the specific entity name.
+      DEFAULT: 100
+  placing:
+    # Is spawner placing enabled.
+    enabled: false
+    # Does placing cost.
+    use-price: false
+    prices:
+      # Default placing price.
+      # For specific entities:
+      #   <entity>: <price>
+      # Replace <entity> with the specific entity name.
+      DEFAULT: 100
+  stacking:
+    # Is spawner stacking enabled.
+    # To stack a spawner players must shift-right-click
+    #   onto a spawner with the same spawner in their hand.
+    enabled: false
+    # Does stacking cost.
+    use-price: false
+    # Ticks between each stacking.
+    ticks-per: 5
+    prices:
+      # Default stacking price.
+      # For specific entities:
+      #   <entity>: <price>
+      # Replace <entity> with the specific entity name.
+      DEFAULT: 100
+    # Maximum stack size a spawner can have.
+    spawner-limit: 16
+    # Is stacking limit ignored.
+    ignore-limit: true
+    when-nearby:
+      # Player will be able to place same-type
+      #   spawners near another spawner and
+      #   it will be stacked to it if this
+      #   is set to true.
+      enabled: false
+      # Radius in which the nearest same-type spawner
+      #   will be searched.
+      # Radius interval: [1; 16]
+      radius: 8
+      particles: true
+  breaking:
+    # Is this spawner unbreakable.
+    # Players only with permission will
+    #   be able to break spawners.
+    #   (spawnermeta.unbreakable.bypass) - this
+    #   permission is set to false by default.
+    unbreakable: false
+    # Will spawner breaking permission be ignored.
+    #   (spawnermeta.break)
+    # Note, this option may be removed in future,
+    #   instead use 'unbreakable' option.
+    ignore-permission: false
+    # Does breaking cost.
+    use-price: false
+    prices:
+      # Default breaking price.
+      # For specific entities:
+      #   <entity>: <price>
+      # Replace <entity> with the specific entity name.
+      DEFAULT: 0
+    # Chance of the spawner to be dropped.
+    dropping-chance: 0
+    # Breaking chance changing.
+    # Chance changers modifies breaking change for
+    #   owned, not owned and natural spawners.
+    # Value must have '+', '-', '*' or '/'
+    #   in front of a number.
+    # (E.g. '+20', '-12.5', '*1.5', '/2'...)
+    chance-changing:
+      # How much will the breaking chance change if
+      #   the player breaks their own spawner.
+      owned: '+0'
+      # How much will the breaking chance change if
+      #   the player breaks other player owned spawner.
+      not-owned: '+0'
+      # How much will the breaking chance change if
+      #   the player breaks a natural spawner.
+      natural: '+0'
+    # Should the spawner be dropped on the ground
+    #   or automatically be teleported into player inventory.
+    drop-on-ground: false
+    silk-requirement:
+      # Is silk touch enchantment required
+      #   to break spawners.
+      enabled: true
+      # Minumum required silk touch enchantment level.
+      level: 1
+      # Can player owned spawners be broken with silk touch.
+      break-owned: true
+      # Can natural spawners be broken with silk touch.
+      break-natural: true
+      # Will the spawner be destroyed if broken
+      #   with a pickaxe that does not have
+      #   silk touch enchantment.
+      destroy-on-fail: true
+    # Is durability loss enabled.
+    enable-durability: false
+    # Durability amount that will be removed
+    #   when a player breaks a spawner.
+    durability-to-remove: 1
+    # Amount of xp that is dropped when a player
+    #   fails to break a spawner.
+    xp-on-failure: 20
+    # Permissions with specific dropping chance can be created.
+    # Permission layout:
+    #   permissions:
+    #     <name>: <chance>
+    # Replace <name> with the specific permission name.
+    #   [ spawnermeta.breaking.permission.<name> ]
+    permissions: []
+    # If set to true then when a player fails
+    #   to break another player's owned spawner
+    #   their name will be shown in the chat.
+    show-owner: false
+  # Does entities target players.
+  # Entities will not attack if this is set to false.
+  entity-target: true
+  # Does entities have movement.
+  # Entities will not move around if this is set to false.
+  entity-movement: true
+  # Are spawned entities aware.
+  # If this option is enable then the value
+  #   is taken from the spigot configuration
+  #   option: nerf-spawner-mobs.
+  check-spawner-nerf: true
+  # Are baby entities spawned.
+  # If false then all entities will be adult age.
+  spawn-babies: true
+  # Are entities spawned with equipment.
+  # If false then all entities will not have any items,
+  #   nor will drop any.
+  spawn-with-equipment: true
+  # Will already existing entities be modified.
+  # Entities, such as, WildStacker entities.
+  modify-stacked-entities: true
+  # Limit of how many entities can spawn at one time.
+  # To prevent any unexpected server lagging and crashing.
+  safety-limit: 128
+  chunk-limits:
+    # Is spawner limit in chunks enabled.
+    # When enabled, each world chunk will have a limit
+    #   of how many spawners it can have.
+    enabled: false
+    # Spawner limit in each chunk.
+    spawner-limit: 16
+    # How many entities can be in a chunk,
+    #   before the spawner stops spawning.
+    # Leave it 0 to ignore this limit.
+    entities-in-chuck: 0
+  players:
+    # Options for player owned spawners.
+    # When a player placed down a spawner, their ID is
+    #   saved on the spawner.
+    owned:
+      # Is owned spawner limit ignored.
+      ignore-limit: true
+      # Player owned spawner limit.
+      spawner-limit: 16
+      # Can players break other player owned spawners.
+      can-break: true
+      # Can players stack other player owned spawners.
+      can-stack: true
+      # Can players change other player owned spawners.
+      can-change: true
+      # Can players open other player owned spawners.
+      can-open: true
+      # Can players upgrade other player owned spawners.
+      can-upgrade: true
+    natural:
+      # Can players break natural spawners.
+      can-break: true
+      # Can players stack natural spawners.
+      can-stack: true
+      # Can players change natural spawners.
+      can-change: true
+      # Can players open natural spawners.
+      can-open: true
+      # Can players upgrade natural spawners.
+      can-upgrade: true
+  spawnable:
+    # Is spawnable entity amount enabled.
+    # If true, each spawner will have an amount of how many
+    #   entity it can spawn.
+    # When spawnable entity amount reaches 0 the spawner
+    #   will be destrayed.
+    enabled: false
+    entity-amount:
+      # Default spawnable entity amount.
+      # For specific entities:
+      #   <entity>: <amount>
+      # Replace <entity> with the specific entity name.
+      DEFAULT: 5000

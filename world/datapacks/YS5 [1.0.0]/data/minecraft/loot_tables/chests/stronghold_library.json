@@ -1,0 +1,151 @@
+{
+  "type": "minecraft:chest",
+  "pools": [
+    {
+      "rolls": {
+        "type": "minecraft:uniform",
+        "min": 2.0,
+        "max": 10.0
+      },
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 1.0,
+                "max": 3.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:book"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 20,
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "count": {
+                "type": "minecraft:uniform",
+                "min": 2.0,
+                "max": 7.0
+              },
+              "add": false
+            }
+          ],
+          "name": "minecraft:paper"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:map"
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:compass"
+        },
+        {
+          "type": "minecraft:item",
+          "weight": 10,
+          "functions": [
+            {
+              "function": "minecraft:enchant_with_levels",
+              "levels": 30.0,
+              "treasure": true
+            }
+          ],
+          "name": "minecraft:book"
+        }
+      ]
+    },
+	    {
+      "rolls": 2.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+			{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Old Books\\\"}\"},SkullOwner:{Id:[I;315155853,1799702966,-1687980107,2066285123],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTM0NGQ4M2U3YzZlY2U5MGQzNGM2ODVhOWEzMzg0ZjhlOGQwMTUxNjMzZmMyZWVhZTRkNGI2MzY4NjJkMzMifX19\"}]}}}"
+						}
+					],
+					"weight": 2
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Books\\\"}\"},SkullOwner:{Id:[I;743924009,-670023481,-1462334552,1436603543],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWVlOGQ2ZjVjYjdhMzVhNGRkYmRhNDZmMDQ3ODkxNWRkOWViYmNlZjkyNGViOGNhMjg4ZTkxZDE5YzhjYiJ9fX0=\"}]}}}"
+						}
+					],
+					"weight": 2
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Enchanted Book\\\"}\"},SkullOwner:{Id:[I;-1098554353,-1427026411,-1331531378,698126497],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzJlYTg1Yzg1ZmUwNDg0YWY2YzgxNWVmYjY1NWQyYjIxZTEwOTg2M2M5NjMzM2I5MjgwYjU5YjgwZDZhYzk4ZiJ9fX0=\"}]}}}"
+						}
+					],
+					"weight": 2
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Books\\\"}\"},SkullOwner:{Id:[I;-650127590,-1795536997,-1920037893,1612353010],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZjQ5MzkzNjU0NGNhMjkxYjlmYzc5Mjg2NjNhZTI3NjNlMTgzNTc1NmFhMWIzOTUyZjk2NWQ1MjVjMzkzN2I1ZCJ9fX0=\"}]}}}"
+						}
+					],
+					"weight": 2
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Books\\\"}\"},SkullOwner:{Id:[I;-531174439,846677972,-1703114785,-1412350253],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODJhZTE5MTA3MDg2ZGQzMTRkYWYzMWQ4NjYxOGU1MTk0OGE2ZTNlMjBkOTZkY2ExN2QyMWIyNWQ0MmQyYjI0In19fQ==\"}]}}}"
+						}
+					],
+					"weight": 2
+				},
+				{
+					"type": "item",
+					"name": "minecraft:player_head",
+					"functions": [
+						{
+							"function": "set_nbt",
+							"tag": "{display:{Name:\"{\\\"text\\\":\\\"Old Manuscript\\\"}\"},SkullOwner:{Id:[I;-2104323468,1488210549,-1912584460,-508918279],Properties:{textures:[{Value:\"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTdhNTMwZjVjNTc0MmJmMTllMTc1YTRkNzhhZDQzNWFjMGY0Mzk2ZDNiNTQ2NGJkNjE4MmFiMzgyYWNhNDE3ZCJ9fX0=\"}]}}}"
+						}
+					],
+					"weight": 2
+				},
+				{
+					"type": "item",
+					"name": "minecraft:sculk_sensor",
+					"weight": 3,
+			          "functions": [
+			            {
+			              "function": "minecraft:set_count",
+			              "count": 1.0,
+			              "add": false
+			            }
+					]
+				}
+      ]
+    }
+  ]
+}

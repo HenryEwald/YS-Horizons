@@ -1,0 +1,574 @@
+debug:
+  replace: false
+  blockstore: false
+  disguises: false
+  equipment-drops: false
+  support-mobs: false
+
+chance:
+  wither-skeleton: 0.8
+
+excluded-entity-types:
+- ARMOR_STAND
+- PLAYER
+zones:
+  world:
+    inherits-blocks: true
+    inherits-replacements: true
+    replaces-spawner-mobs: false
+    children: []
+    mining-drops: {}
+    replacements: {}
+  world_the_end:
+    inherits-blocks: true
+    inherits-replacements: true
+    replaces-spawner-mobs: false
+    children: []
+    mining-drops: {}
+    replacements: {}
+  world_nyctocosm_nyctocosm:
+    inherits-blocks: true
+    inherits-replacements: true
+    replaces-spawner-mobs: false
+    children: []
+    mining-drops: {}
+    replacements: {}
+  world_nether:
+    inherits-blocks: true
+    inherits-replacements: true
+    replaces-spawner-mobs: false
+    children: []
+    mining-drops: {}
+    replacements: {}
+items:
+  AIR:
+    ==: org.bukkit.inventory.ItemStack
+    v: 3117
+    type: AIR
+  df-elytra:
+    ==: org.bukkit.inventory.ItemStack
+    v: 3117
+    type: ELYTRA
+  df-dragon-head:
+    ==: org.bukkit.inventory.ItemStack
+    v: 3117
+    type: DRAGON_HEAD
+  df-placeholder-head:
+    ==: org.bukkit.inventory.ItemStack
+    v: 3117
+    type: PLAYER_HEAD
+    meta:
+      ==: ItemMeta
+      meta-type: SKULL
+      display-name: '{"extra":[{"text":"TODO: add texture"}],"text":""}'
+      skull-owner:
+        ==: PlayerProfile
+        uniqueId: a731e75c-7fa5-4ad6-8d99-0cd8a6a91672
+        properties:
+        - name: textures
+          value: eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTdjOTE0MTE1ODczYzQxZTM2NjliNjllZDIwMmE2ZjAyNjU3Zjc2ZGUyZGY2MjRlYWU4NDVjNDUyZGU1NWVjMiJ9fX0=
+loots:
+  df-dragon-drops:
+    single: false
+    drops:
+      df-elytra:
+        type: ITEM
+        restricted: true
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+      df-dragon-head:
+        type: ITEM
+        restricted: true
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-no-drops:
+    single: false
+    drops:
+      NOTHING:
+        type: NOTHING
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage2:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage1:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage4:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage3:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage6:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage5:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage8:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage7:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage10:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+  df-stage9:
+    single: false
+    drops:
+      df-placeholder-boss:
+        type: MOB
+        restricted: false
+        always-fits: false
+        logged: false
+        chance: 1.0
+        min: 1
+        max: 1
+        experience: 0
+        sound: ''
+        sound-volume: 0.0
+        sound-pitch: 0.0
+        invulnerable: false
+        glowing: false
+        direct-to-inventory: false
+mobs:
+  allay:
+    properties:
+      entity-type: ALLAY
+  axolotl:
+    properties:
+      entity-type: AXOLOTL
+  bat:
+    properties:
+      entity-type: BAT
+  bee:
+    properties:
+      entity-type: BEE
+  blaze:
+    properties:
+      entity-type: BLAZE
+  cat:
+    properties:
+      entity-type: CAT
+  cavespider:
+    properties:
+      entity-type: CAVE_SPIDER
+  chicken:
+    properties:
+      entity-type: CHICKEN
+  cod:
+    properties:
+      entity-type: COD
+  cow:
+    properties:
+      entity-type: COW
+  creeper:
+    properties:
+      entity-type: CREEPER
+  dolphin:
+    properties:
+      entity-type: DOLPHIN
+  donkey:
+    properties:
+      entity-type: DONKEY
+  drowned:
+    properties:
+      entity-type: DROWNED
+  elderguardian:
+    properties:
+      entity-type: ELDER_GUARDIAN
+  enderdragon:
+    properties:
+      entity-type: ENDER_DRAGON
+      friend-groups: df-entity
+  enderman:
+    properties:
+      entity-type: ENDERMAN
+  endermite:
+    properties:
+      entity-type: ENDERMITE
+  evoker:
+    properties:
+      entity-type: EVOKER
+  fox:
+    properties:
+      entity-type: FOX
+  frog:
+    properties:
+      entity-type: FROG
+  ghast:
+    properties:
+      entity-type: GHAST
+  giant:
+    properties:
+      entity-type: GIANT
+  glowsquid:
+    properties:
+      entity-type: GLOW_SQUID
+  goat:
+    properties:
+      entity-type: GOAT
+  guardian:
+    properties:
+      entity-type: GUARDIAN
+  hoglin:
+    properties:
+      entity-type: HOGLIN
+  horse:
+    properties:
+      entity-type: HORSE
+  husk:
+    properties:
+      entity-type: HUSK
+  illusioner:
+    properties:
+      entity-type: ILLUSIONER
+  irongolem:
+    properties:
+      entity-type: IRON_GOLEM
+  llama:
+    properties:
+      entity-type: LLAMA
+  magmacube:
+    properties:
+      entity-type: MAGMA_CUBE
+  mule:
+    properties:
+      entity-type: MULE
+  mushroomcow:
+    properties:
+      entity-type: MUSHROOM_COW
+  ocelot:
+    properties:
+      entity-type: OCELOT
+  panda:
+    properties:
+      entity-type: PANDA
+  parrot:
+    properties:
+      entity-type: PARROT
+  phantom:
+    properties:
+      entity-type: PHANTOM
+  pig:
+    properties:
+      entity-type: PIG
+  piglin:
+    properties:
+      entity-type: PIGLIN
+  piglinbrute:
+    properties:
+      entity-type: PIGLIN_BRUTE
+  pillager:
+    properties:
+      entity-type: PILLAGER
+  polarbear:
+    properties:
+      entity-type: POLAR_BEAR
+  pufferfish:
+    properties:
+      entity-type: PUFFERFISH
+  rabbit:
+    properties:
+      entity-type: RABBIT
+  ravager:
+    properties:
+      entity-type: RAVAGER
+  salmon:
+    properties:
+      entity-type: SALMON
+  sheep:
+    properties:
+      entity-type: SHEEP
+  shulker:
+    properties:
+      entity-type: SHULKER
+  silverfish:
+    properties:
+      entity-type: SILVERFISH
+  skeleton:
+    properties:
+      entity-type: SKELETON
+  skeletonhorse:
+    properties:
+      entity-type: SKELETON_HORSE
+  slime:
+    properties:
+      entity-type: SLIME
+  snowman:
+    properties:
+      entity-type: SNOWMAN
+  spider:
+    properties:
+      entity-type: SPIDER
+  squid:
+    properties:
+      entity-type: SQUID
+  stray:
+    properties:
+      entity-type: STRAY
+  strider:
+    properties:
+      entity-type: STRIDER
+  tadpole:
+    properties:
+      entity-type: TADPOLE
+  traderllama:
+    properties:
+      entity-type: TRADER_LLAMA
+  tropicalfish:
+    properties:
+      entity-type: TROPICAL_FISH
+  turtle:
+    properties:
+      entity-type: TURTLE
+  vex:
+    properties:
+      entity-type: VEX
+  villager:
+    properties:
+      entity-type: VILLAGER
+  vindicator:
+    properties:
+      entity-type: VINDICATOR
+  wanderingtrader:
+    properties:
+      entity-type: WANDERING_TRADER
+  warden:
+    properties:
+      entity-type: WARDEN
+  witch:
+    properties:
+      entity-type: WITCH
+  wither:
+    properties:
+      entity-type: WITHER
+  witherskeleton:
+    properties:
+      entity-type: WITHER_SKELETON
+  wolf:
+    properties:
+      entity-type: WOLF
+  zoglin:
+    properties:
+      entity-type: ZOGLIN
+  zombie:
+    properties:
+      entity-type: ZOMBIE
+  zombiehorse:
+    properties:
+      entity-type: ZOMBIE_HORSE
+  zombievillager:
+    properties:
+      entity-type: ZOMBIE_VILLAGER
+  zombifiedpiglin:
+    properties:
+      entity-type: ZOMBIFIED_PIGLIN
+  df-support:
+    properties:
+      parent-type: skeleton
+      show-name-plate: 'true'
+      pick-up-percent: '0.0'
+      helmet-drop-percent: '0.0'
+      chest-plate-drop-percent: '0.0'
+      leggings-drop-percent: '0.0'
+      boots-drop-percent: '0.0'
+      main-hand-drop-percent: '0.0'
+      drops: df-no-drops
+      groups: df-entity,df-support
+      friend-groups: df-entity
+      can-despawn: 'false'
+  df-boss:
+    properties:
+      parent-type: df-support
+      health: '300.0'
+      potion-buffs: df-boss-potions
+      groups: df-boss,df-entity
+  df-placeholder-boss:
+    properties:
+      parent-type: df-boss
+      entity-type: WITHER_SKELETON
+      name: Test Boss Pls Ignore
+      helmet: df-placeholder-head
+      main-hand: stone_sword
+objectives: {}
+potions:
+  df-boss-potions:
+    FIRE_RESISTANCE:
+      potion:
+        ==: PotionEffect
+        effect: 12
+        duration: 2147483647
+        amplifier: 0
+        ambient: false
+        has-particles: false
+        has-icon: false
+      chance: 1.0

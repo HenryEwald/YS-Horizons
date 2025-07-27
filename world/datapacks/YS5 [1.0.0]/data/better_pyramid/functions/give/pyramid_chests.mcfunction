@@ -1,0 +1,1 @@
+give @s chest{BlockEntityTag:{LootTable:"better_pyramid:chests/custom_pyramid"}}

@@ -1,0 +1,434 @@
+#======Part HP
+xiddri_inrock_parthp_set:
+    Skills:
+        - delay 10
+        - setvariable{var=caster.leftarm_hp;value="50";TYPE=FLOAT} @self
+        - setvariable{var=caster.rightarm_hp;value="50";TYPE=FLOAT} @self
+        - setvariable{var=caster.leftleg_hp;value="50";TYPE=FLOAT} @self
+        - setvariable{var=caster.rightleg_hp;value="50";TYPE=FLOAT} @self
+        - setvariable{var=caster.head_hp;value="60";TYPE=FLOAT} @self
+        - setvariable{var=caster.body_hp;value="60";TYPE=FLOAT} @self
+        - setvariable{var=caster.hip_hp;value="60";TYPE=FLOAT} @self
+        - delay 2
+        - bindhitbox{m=xiddri_inrock;p=b_leftarm_box;t=xiddri_leftarm_box} @self
+        - bindhitbox{m=xiddri_inrock;p=b_rightarm_box;t=xiddri_rightarm_box} @self
+        - bindhitbox{m=xiddri_inrock;p=b_leftleg_box;t=xiddri_leftleg_box} @self
+        - bindhitbox{m=xiddri_inrock;p=b_rightleg_box;t=xiddri_rightleg_box} @self
+        - bindhitbox{m=xiddri_inrock;p=b_head_box;t=xiddri_head_box} @self
+        - bindhitbox{m=xiddri_inrock;p=b_body_box;t=xiddri_body_box} @self
+        - bindhitbox{m=xiddri_inrock;p=b_hip_box;t=xiddri_hip_box} @self
+        - hitboxconfig{m=xiddri_inrock;p=b_leftarm_box;pass=0.3} @self
+        - hitboxconfig{m=xiddri_inrock;p=b_rightarm_box;pass=0.3} @self
+        - hitboxconfig{m=xiddri_inrock;p=b_leftleg_box;pass=0.2} @self
+        - hitboxconfig{m=xiddri_inrock;p=b_rightleg_box;pass=0.2} @self
+        - hitboxconfig{m=xiddri_inrock;p=b_head_box;pass=0.5} @self
+        - hitboxconfig{m=xiddri_inrock;p=b_body_box;pass=0.2} @self
+        - hitboxconfig{m=xiddri_inrock;p=b_hip_box;pass=0.2} @self
+
+xiddri_flying_parthp_set:
+    Skills:
+        - removetag{t=xiddri_dropped} @self
+        - delay 10
+        - setvariable{var=caster.flying_hp;value="200";TYPE=FLOAT} @self
+        - bindhitbox{m=xiddri;p=b_head_box;t=xiddri_head_box} @self
+        - hitboxconfig{m=xiddri;p=b_head_box;pass=1.5} @self
+
+# remove all breaked tags
+xiddri_remove_all_parttag:
+    Skills:
+        - removetag{t=leftarm_break} @self
+        - removetag{t=rightarm_break} @self
+        - removetag{t=leftleg_break} @self
+        - removetag{t=rightleg_break} @self
+        - removetag{t=head_break} @self
+        - removetag{t=body_break} @self
+        - removetag{t=hip_break} @self
+
+#Part Break Skills
+xiddri_gethit:
+    Conditions:
+        - hastag{t=skill_lock} false
+        - hastag{t=flying} castInstead xiddri_flying_gethit
+        - LastHitbox{h=head_box} castInstead xiddri_head_box_hit
+        - LastHitbox{h=leftarm_box} castInstead xiddri_leftarm_box_hit
+        - LastHitbox{h=rightarm_box} castInstead xiddri_rightarm_box_hit
+        - LastHitbox{h=body_box} castInstead xiddri_body_box_hit
+        - LastHitbox{h=leftleg_box} castInstead xiddri_leftleg_box_hit
+        - LastHitbox{h=rightleg_box} castInstead xiddri_rightleg_box_hit
+        - LastHitbox{h=hip_box} castInstead xiddri_hip_box_hit
+
+xiddri_flying_gethit:
+    Conditions:
+        - LastHitbox{h=head_box} castInstead xiddri_flying_head_box_hit
+    Skills:
+        - skill{s=xiddri_flying_general_box_hit} @self
+
+xiddri_leftarm_changepart:
+    Skills:
+        - ChangePart{model=xiddri_inrock;part=left_arm;newmodel=xiddri_inrock_break;newpart=left_arm} @self
+        - ChangePart{model=xiddri_inrock;part=left_forearm;newmodel=xiddri_inrock_break;newpart=left_forearm} @self
+        - ChangePart{model=xiddri_inrock;part=left_claw;newmodel=xiddri_inrock_break;newpart=left_claw} @self
+
+xiddri_rightarm_changepart:
+    Skills:
+        - ChangePart{model=xiddri_inrock;part=right_arm;newmodel=xiddri_inrock_break;newpart=right_arm} @self
+        - ChangePart{model=xiddri_inrock;part=right_forearm;newmodel=xiddri_inrock_break;newpart=right_forearm} @self
+        - ChangePart{model=xiddri_inrock;part=right_claw;newmodel=xiddri_inrock_break;newpart=right_claw} @self
+
+xiddri_leftleg_changepart:
+    Skills:
+        - ChangePart{model=xiddri_inrock;part=left_leg;newmodel=xiddri_inrock_break;newpart=left_leg} @self
+        - ChangePart{model=xiddri_inrock;part=left_foreleg;newmodel=xiddri_inrock_break;newpart=left_foreleg} @self
+        - ChangePart{model=xiddri_inrock;part=left_foot;newmodel=xiddri_inrock_break;newpart=left_foot} @self
+
+xiddri_rightleg_changepart:
+    Skills:
+        - ChangePart{model=xiddri_inrock;part=right_leg;newmodel=xiddri_inrock_break;newpart=left_leg} @self
+        - ChangePart{model=xiddri_inrock;part=right_foreleg;newmodel=xiddri_inrock_break;newpart=left_foreleg} @self
+        - ChangePart{model=xiddri_inrock;part=right_foot;newmodel=xiddri_inrock_break;newpart=left_foot} @self
+
+xiddri_head_changepart:
+    Skills:
+        - ChangePart{model=xiddri_inrock;part=head;newmodel=xiddri_inrock_break;newpart=head} @self
+        - ChangePart{model=xiddri_inrock;part=shoulder;newmodel=xiddri_inrock_break;newpart=shoulder} @self
+        - ChangePart{model=xiddri_inrock;part=jaw;newmodel=xiddri_inrock_break;newpart=jaw} @self
+
+xiddri_body_changepart:
+    Skills:
+        - ChangePart{model=xiddri_inrock;part=chest;newmodel=xiddri_inrock_break;newpart=chest} @self
+        - ChangePart{model=xiddri_inrock;part=belly;newmodel=xiddri_inrock_break;newpart=belly} @self
+
+xiddri_hip_changepart:
+    Skills:
+        - ChangePart{model=xiddri_inrock;part=hip;newmodel=xiddri_inrock_break;newpart=hip} @self
+        - ChangePart{model=xiddri_inrock;part=tail1;newmodel=xiddri_inrock_break;newpart=tail1} @self
+        - ChangePart{model=xiddri_inrock;part=tail3;newmodel=xiddri_inrock_break;newpart=tail3} @self
+
+#Left arm part breaking
+xiddri_leftarmbox_mob_hit:
+    Conditions:
+        - hastag{t=skill_lock} false
+        - variableInRange{var=caster.leftarm_hp;value=<0} castinstead xiddri_leftarm_break
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri_inrock;part=left_forearm}
+        - effect:sound{s=torotoro:toro.xiddri.hit_rock;v=3;p=1} @self
+        #- message{m="left arm got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.leftarm_hp;equation="<caster.var.leftarm_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="left arm hp <caster.var.leftarm_hp>"} @PlayersInRadius{r=30}
+
+xiddri_leftarm_break:
+    Conditions:
+        - hastag{t=leftarm_break} castinstead xiddri_leftarm_broke_hit
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=80;stopai=true;f=true} @self
+        #
+        - state{s=leftsidebreak;lerpout=10} @self
+        - skill{s=xiddri_leftarm_changepart} @self
+        #- message{m="left arm BREAK!"} @PlayersInRadius{r=30}
+        - addtag{t=leftarm_break} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        - summon{t=xiddri_rock_onground;a=3;r=7;yr=0;os=true} @ModelPart{mid=xiddri_inrock;part=left_forearm}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=left_forearm}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=left_forearm}
+        - particles{p=block_crack;m=stone;a=150;hs=3;vs=3;s=0.1} @ModelPart{mid=xiddri_inrock;part=left_forearm}
+        - hitboxconfig{m=xiddri_inrock;p=b_leftarm_box;pass=1} @self
+        #
+        - delay 80
+        - removetag{t=skill_lock} @self
+
+xiddri_leftarm_broke_hit:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        - particles{p=end_rod;a=5;hs=1;vs=1;s=0.4} @ModelPart{mid=xiddri_inrock;part=left_forearm}
+        #- message{m="left arm got hit, but got no armor!"} @PlayersInRadius{r=30}
+
+#Right ARM part breaking
+xiddri_rightarmbox_mob_hit:
+    Conditions:
+        - hastag{t=skill_lock} false
+        - variableInRange{var=caster.rightarm_hp;value=<0} castinstead xiddri_rightarm_break
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri_inrock;part=right_forearm}
+        - effect:sound{s=torotoro:toro.xiddri.hit_rock;v=3;p=1} @self
+        #- message{m="right arm got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.rightarm_hp;equation="<caster.var.rightarm_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="right arm hp <caster.var.rightarm_hp>"} @PlayersInRadius{r=30}
+
+xiddri_rightarm_break:
+    Conditions:
+        - hastag{t=rightarm_break} castinstead xiddri_rightarm_broke_hit
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=80;stopai=true;f=true} @self
+        #
+        - state{s=rightsidebreak;lerpout=10} @self
+        - skill{s=xiddri_rightarm_changepart} @self
+        #- message{m="right arm BREAK!"} @PlayersInRadius{r=30}
+        - addtag{t=rightarm_break} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        - summon{t=xiddri_rock_onground;a=3;r=7;yr=0;os=true} @ModelPart{mid=xiddri_inrock;part=right_forearm}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=right_forearm}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=right_forearm}
+        - particles{p=block_crack;m=stone;a=150;hs=3;vs=3;s=0.1} @ModelPart{mid=xiddri_inrock;part=right_forearm}
+        - hitboxconfig{m=xiddri_inrock;p=b_rightarm_box;pass=1} @self
+        #
+        - delay 80
+        - removetag{t=skill_lock} @self
+
+xiddri_rightarm_broke_hit:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        - particles{p=end_rod;a=5;hs=1;vs=1;s=0.4} @ModelPart{mid=xiddri_inrock;part=right_forearm}
+        #- message{m="right side got hit, but got no armor!"} @PlayersInRadius{r=30}
+
+#Left LEG part breaking
+xiddri_leftlegbox_mob_hit:
+    Conditions:
+        - hastag{t=skill_lock} false
+        - variableInRange{var=caster.leftleg_hp;value=<0} castinstead xiddri_leftleg_break
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri_inrock;part=left_foreleg}
+        - effect:sound{s=torotoro:toro.xiddri.hit_rock;v=3;p=1} @self
+        #- message{m="left leg got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.leftleg_hp;equation="<caster.var.leftleg_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="left leg hp <caster.var.leftleg_hp>"} @PlayersInRadius{r=30}
+
+xiddri_leftleg_break:
+    Conditions:
+        - hastag{t=leftleg_break} castinstead xiddri_leftleg_broke_hit
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=80;stopai=true;f=true} @self
+        #
+        - state{s=leftsidebreak;lerpout=10} @self
+        - skill{s=xiddri_leftleg_changepart} @self
+        #- message{m="left leg BREAK!"} @PlayersInRadius{r=30}
+        - addtag{t=leftleg_break} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        - summon{t=xiddri_rock_onground;a=3;r=7;yr=0;os=true} @ModelPart{mid=xiddri_inrock;part=left_foreleg}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=left_foreleg}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=left_foreleg}
+        - particles{p=block_crack;m=stone;a=150;hs=3;vs=3;s=0.1} @ModelPart{mid=xiddri_inrock;part=left_foreleg}
+        - hitboxconfig{m=xiddri_inrock;p=b_leftleg_box;pass=1} @self
+        #
+        - delay 80
+        - removetag{t=skill_lock} @self
+
+xiddri_leftleg_broke_hit:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        - particles{p=end_rod;a=5;hs=1;vs=1;s=0.4} @ModelPart{mid=xiddri_inrock;part=left_foreleg}
+        #- message{m="left leg got hit, but got no armor!"} @PlayersInRadius{r=30}
+
+#Right LEG part breaking
+xiddri_rightlegbox_mob_hit:
+    Conditions:
+        - hastag{t=skill_lock} false
+        - variableInRange{var=caster.rightleg_hp;value=<0} castinstead xiddri_rightleg_break
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri_inrock;part=right_foreleg}
+        - effect:sound{s=torotoro:toro.xiddri.hit_rock;v=3;p=1} @self
+        #- message{m="right leg got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.rightleg_hp;equation="<caster.var.rightleg_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="right leg hp <caster.var.rightleg_hp>"} @PlayersInRadius{r=30}
+
+xiddri_rightleg_break:
+    Conditions:
+        - hastag{t=rightleg_break} castinstead xiddri_rightleg_broke_hit
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=80;stopai=true;f=true} @self
+        #
+        - state{s=rightsidebreak;lerpout=10} @self
+        - skill{s=xiddri_rightleg_changepart} @self
+        #- message{m="right leg BREAK!"} @PlayersInRadius{r=30}
+        - addtag{t=rightleg_break} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        - summon{t=xiddri_rock_onground;a=3;r=7;yr=0;os=true} @ModelPart{mid=xiddri_inrock;part=right_foreleg}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=right_foreleg}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=right_foreleg}
+        - particles{p=block_crack;m=stone;a=150;hs=3;vs=3;s=0.1} @ModelPart{mid=xiddri_inrock;part=right_foreleg}
+        - hitboxconfig{m=xiddri_inrock;p=b_rightleg_box;pass=1} @self
+        #
+        - delay 80
+        - removetag{t=skill_lock} @self
+
+xiddri_rightleg_broke_hit:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        - particles{p=end_rod;a=5;hs=1;vs=1;s=0.4} @ModelPart{mid=xiddri_inrock;part=right_foreleg}
+        #- message{m="right leg got hit, but got no armor!"} @PlayersInRadius{r=30}
+
+#= body break
+xiddri_headbox_mob_hit:
+    Conditions:
+        - hastag{t=skill_lock} false
+        - variableInRange{var=caster.head_hp;value=<0} castinstead xiddri_head_break
+        - hastag{t=flying} castinstead xiddri_flying_head_box_mob_hit
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri_inrock;part=head}
+        - effect:sound{s=torotoro:toro.xiddri.hit_rock;v=3;p=1} @self
+        #- message{m="head got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.head_hp;equation="<caster.var.head_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="head hp <caster.var.head_hp>"} @PlayersInRadius{r=30}
+
+xiddri_head_break:
+    Conditions:
+        - hastag{t=head_break} castinstead xiddri_head_broke_hit
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=210;stopai=true;f=true} @self
+        #
+        - state{s=fall;lerpout=10} @self
+        - skill{s=xiddri_head_changepart} @self
+        #- message{m="head BREAK!"} @PlayersInRadius{r=30}
+        - addtag{t=head_break} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        - summon{t=xiddri_rock_onground;a=2;r=5;yr=0;os=true} @ModelPart{mid=xiddri_inrock;part=head}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=head}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=head}
+        - particles{p=block_crack;m=stone;a=150;hs=3;vs=3;s=0.1} @ModelPart{mid=xiddri_inrock;part=head}
+        - hitboxconfig{m=xiddri_inrock;p=b_head_box;pass=1.5} @self
+        #
+        - delay 210
+        - removetag{t=skill_lock} @self
+
+xiddri_head_broke_hit:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        - particles{p=end_rod;a=5;hs=1;vs=1;s=0.4} @ModelPart{mid=xiddri_inrock;part=head}
+        #- message{m="head got hit, but got no armor!"} @PlayersInRadius{r=30}
+
+#= body break
+xiddri_bodybox_mob_hit:
+    Conditions:
+        - variableInRange{var=caster.body_hp;value=<0} castinstead xiddri_body_break
+        - hastag{t=flying} castinstead xiddri_flying_head_box_mob_hit
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri_inrock;part=chest}
+        - effect:sound{s=torotoro:toro.xiddri.hit_rock;v=3;p=1} @self
+        #- message{m="body got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.body_hp;equation="<caster.var.body_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="body hp <caster.var.body_hp>"} @PlayersInRadius{r=30}
+
+xiddri_body_break:
+    Conditions:
+        - hastag{t=body_break} castinstead xiddri_body_broke_hit
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=210;stopai=true;f=true} @self
+        #
+        - state{s=fall;lerpout=10} @self
+        - skill{s=xiddri_body_changepart} @self
+        #- message{m="body BREAK!"} @PlayersInRadius{r=30}
+        - addtag{t=body_break} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        - summon{t=xiddri_rock_onground;a=3;r=7;yr=0;os=true} @ModelPart{mid=xiddri_inrock;part=chest}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=chest}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=chest}
+        - particles{p=block_crack;m=stone;a=150;hs=3;vs=3;s=0.1} @ModelPart{mid=xiddri_inrock;part=chest}
+        - hitboxconfig{m=xiddri_inrock;p=b_body_box;pass=1.5} @self
+        #
+        - delay 210
+        - removetag{t=skill_lock} @self
+
+xiddri_body_broke_hit:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        - particles{p=end_rod;a=5;hs=1;vs=1;s=0.4} @ModelPart{mid=xiddri_inrock;part=chest}
+        #- message{m="body got hit, but got no armor!"} @PlayersInRadius{r=30}
+
+#=hip break
+xiddri_hip_box_mob_hit:
+    Conditions:
+        - variableInRange{var=caster.hip_hp;value=<0} castinstead xiddri_hip_break
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri_inrock;part=tail1}
+        - effect:sound{s=torotoro:toro.xiddri.hit_rock;v=3;p=1} @self
+        #- message{m="body got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.hip_hp;equation="<caster.var.hip_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="body hp <caster.var.hip_hp>"} @PlayersInRadius{r=30}
+
+xiddri_hip_break:
+    Conditions:
+        - hastag{t=hip_break} castinstead xiddri_hip_broke_hit
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=80;stopai=true;f=true} @self
+        #
+        - state{s=leftsidebreak;lerpout=10} @self
+        - skill{s=xiddri_hip_changepart} @self
+        #- message{m="hip BREAK!"} @PlayersInRadius{r=30}
+        - addtag{t=hip_break} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        - summon{t=xiddri_rock_onground;a=2;r=6;yr=0;os=true} @ModelPart{mid=xiddri_inrock;part=hip}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=tail1}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=tail1}
+        - particles{p=block_crack;m=stone;a=150;hs=3;vs=3;s=0.1} @ModelPart{mid=xiddri_inrock;part=tail1}
+        - hitboxconfig{m=xiddri_inrock;p=b_hip_box;pass=1.5} @self
+        #
+        - delay 80
+        - removetag{t=skill_lock} @self
+
+xiddri_hip_broke_hit:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        - particles{p=end_rod;a=5;hs=1;vs=1;s=0.4} @ModelPart{mid=xiddri_inrock;part=tail1}
+        #- message{m="hip got hit, but got no armor!"} @PlayersInRadius{r=30}
+
+#=====FLYING HIT
+xiddri_flying_head_box_mob_hit:
+    Conditions:
+        - variableInRange{var=caster.flying_hp;value=<0} castinstead xiddri_drop
+    Skills:
+        - particles{p=crit;a=50;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri;part=head}
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        #- message{m="flying_hp got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.flying_hp;equation="<caster.var.flying_hp>-(3*<skill.var.damage-amount>)"} @self
+        - delay 1
+        #- message{m="flying_hp <caster.var.flying_hp>"} @PlayersInRadius{r=30}
+
+xiddri_flying_general_box_mob_hit:
+    Conditions:
+        - variableInRange{var=caster.flying_hp;value=<0} castinstead xiddri_drop
+    Skills:
+        - particles{p=end_rod;a=5;hs=2;vs=2;s=0.7} @ModelPart{mid=xiddri;part=chest}
+        - effect:sound{s=torotoro:toro.xiddri.hit_body;v=3;p=1} @self
+        #- message{m="flying_hp got hit!"} @PlayersInRadius{r=30}
+        - variableMath{var=caster.flying_hp;equation="<caster.var.flying_hp>-<skill.var.damage-amount>"} @self
+        - delay 1
+        #- message{m="flying_hp <caster.var.flying_hp>"} @PlayersInRadius{r=30}
+
+xiddri_drop:
+    Conditions:
+        - hastag{t=xiddri_dropped} false
+    Skills:
+        - addtag{t=skill_lock} @self
+        - stun{d=210;stopai=true;f=true} @self
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=3;p=0} @self
+        - effect:sound{s=torotoro:toro.xiddri.little_roar;v=5;p=1} @self
+        - particles{p=dustColorTransition;color1=#FFD956;color2=#86F8FF;size=2;a=50;hs=4;vs=4} @ModelPart{mid=xiddri;part=chest;y=5}
+        - particles{p=endrod;a=30;hs=1;vs=1;s=0.1} @ModelPart{mid=xiddri;part=chest;y=5}
+        - particles{p=fireworks_spark;a=50;hs=0.5;vs=2;s=1} @ModelPart{mid=xiddri;part=chest;y=5}
+        #
+        - state{s=fall;lerpout=10} @self
+        - addtag{t=xiddri_dropped} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=3} @self
+        #
+        - delay 210
+        - removetag{t=skill_lock} @self

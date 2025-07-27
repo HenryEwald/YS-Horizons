@@ -1,0 +1,175 @@
+wardenfallen:
+  Type: skeleton
+  Display: 'Fallen Warden'
+  AIGoalSelectors:
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction Zombie
+  - 2 attacker
+  - 3 players
+  AIGoalSelectors:
+  - 0 clear
+  Health: 80
+  Faction: FallenHero
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 1.4
+  - PROJECTILE 0.3
+  Damage: 10 #10 is the BASE damage. Setting it to 20 will DOUBLE damage. Setting it to 5 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was killed by the fallen heroes.'
+  - 'The fallen heroes have claimed justice over <target.name>.'
+  - "<target.name> suffered the revenge of the fallen heroes."
+  - "The fallen heroes have claimed <target.name>'s soul."
+  - '<target.name> tried to defy the fallen heroes. Tried.'
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - imbootsfallen:1
+  - iron_axe:0
+  - air:5
+  Drops:
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  Skills:
+  - setvariable{var=caster.eichpee;value="<caster.mhp>";t=integer} @Self ~onSpawn
+  - model{mid=fallenwarden;s=idle;n=false} @self ~onSpawn 1
+  - DefaultState{type=IDLE;state=idlestatic;li=3;lo=2;n=false;frame=0} @self ~onSpawn
+  - lockmodel{l=true;delay=1} @Self ~onSpawn 1
+  - skill{s=cancelatackfallen;sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+  - state{s=idlestatic;li=3;lo=10;n=false;delay=1} @self ~onSpawn 1
+  - randomskill{s=attack1fwarden,attack2fwarden,attack3fwarden;sync=true} @Target ~onAttack >0% 0
+  - randomskill{s=meleefwardentrigger;sync=true} @Target ~onAttack >0% 1
+  - randomskill{s=meleefwardentrigger;sync=true} @LivingInCone{ignore=samefaction;a=45.0;r=3.5;rot=0.0} ~onTimer:10 1
+  - randomskill{s=meleefwardentrigger2;sync=true} @LivingInCone{ignore=samefaction;a=90.0;r=4;rot=0.0} ~onTimer:5 1
+  - randomskill{s=attack7fwarden,attack7bfwarden;sync=true} @LivingInCone{ignore=samefaction;a=90.0;r=22;rot=0.0} ~onTimer:46 0.6
+  - randomskill{s=leap1fwarden,leap1fwarden,leap2fwarden;sync=true} @target ~onTimer:30 <70% 0.5
+
+  - skill{s=leap1fwarden} @Trigger ~onSignal:DEBUG_TEST 1
+
+#============ DISGUISE =================
+  
+  - changepart{m=fallenwarden;pid=rightarm;nm=fallenwarden2;npid=rightarm} @self ~onSpawn
+  - changepart{m=fallenwarden;pid=rightarmbot;nm=fallenwarden2;npid=rightarmbot} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=leftarm;nm=fallenwarden2;npid=leftarm} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=leftarmbot;nm=fallenwarden2;npid=leftarmbot} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=body;nm=fallenwarden2;npid=body} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=lanceaxe;nm=fallenwarden2;npid=lanceaxe} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=leftleg;nm=fallenwarden2;npid=leftleg} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=leftlegbot;nm=fallenwarden2;npid=leftlegbot} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=rightleg;nm=fallenwarden2;npid=rightleg} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=rightlegbot;nm=fallenwarden2;npid=rightlegbot} @self ~onSpawn
+  - changepart{m=fallenwarden;pid=rightlegbot;nm=fallenwarden2;npid=rightlegbot} @self ~onSpawn 
+  - changepart{m=fallenwarden;pid=head;nm=fallenwarden2;npid=head} @self ~onSpawn 
+#
+
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+  - effect:particles{particle=cloud;amount=90;hS=1.1;vS=0.55;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=119} @ModelPart{m=fallenwarden3;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#cbfbff;amount=35;hS=0.3;vS=1.3;size=2} @ModelPart{m=fallenwarden;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#cbfbff;amount=2;hS=0.1;vS=0.2;size=1;repeat=75;repeatinterval=1} @ModelPart{m=fallenwarden3;p=rightarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#cbfbff;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenwarden3;p=leftarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#cbfbff;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenwarden3;p=rightlegbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#cbfbff;amount=2;hS=0.1;vS=0.2;size=1;repeat=69;repeatinterval=1} @ModelPart{m=fallenwarden3;p=leftlegbot;offset=LOCAL;y=0} ~onDeath
+  - SwapModel{modelid=fallenwarden;newmodelid=fallenwarden3} @self ~onDeath
+  - randomskill{s=hurt1fwarden,hurt2fwarden;sync=true} @self ~onDamaged 0.85 #Hurtmechanic
+  - setvariable{var=caster.statueform;value="1";t=integer} @Self ~onSpawn #=====================
+  - skill{s=fwardenstcheck3;cooldown=99999;sync=true} @self ~onDamaged 1 #=====================
+  - skill{s=hurtgenfwarden;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - skill{s=hurtgenfwarden2;sync=true} @self ~onDamaged 1 #Hurtmechanic ANTIARROW
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDamaged 1 #Hurtmechanic SOUND
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hitmetal;p=1;v=1} @selflocation ~onDeath 1 
+  - setstance{stance=static} @self ~onSpawn
+  - sound{s=emaginationfallenwarden:custom.fallenwarden.death;p=1;v=1} @selflocation ~onDeath 1
+  - Aura{auraName=staticfwarden;onTick=fwardenstcheck;interval=20;duration=99999} @self ~onSpawn
+  Options:
+    Silent: true
+    PreventSunburn: true
+    AlwaysShowName: false
+    MovementSpeed: 0.23
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.8
+wardenleapmarker1:
+  Type: silverfish
+  Display: ''
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+  Skills:
+   - jump{velocity=1.3} ~onSpawn
+   - potion{type=INVISIBILITY;duration=99999;level=1;p=false} @Self ~onSpawn 1
+   - cancelEvent{sync=true} ~onAttack
+   - remove @Self ~onTimer:15
+   - potion{type=SLOW_FALLING;duration=1;lvl=0;p=true;force=true;cooldown=10} @Parent ~onSignal:DIERS 0
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: true
+    Interactable: true
+    KnockbackResistance: 0
+# ----  LEAPMARKERS, DO NOT MODIFY --------#
+wardenleapmarker2:
+  Type: silverfish
+  Display: ''
+  AITargetSelectors:
+  - 0 clear
+  AIGoalSelectors:
+  - 0 clear
+  Health: 150
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 2.7
+  Damage: 0
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - air:1
+  - air:0
+  Drops:
+  Skills:
+   - jump{velocity=1.3} ~onSpawn
+   - cancelEvent{sync=true} ~onAttack
+   - remove @Self ~onTimer:10
+   - potion{type=SLOW_FALLING;duration=1;lvl=0;p=true;force=true;cooldown=10} @Parent ~onSignal:DIERS 0
+  Options:
+    ApplyInvisibility: true
+    Silent: true
+    AlwaysShowName: false
+    MovementSpeed: 0.56
+    MaxCombatDistance: 5
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    FollowRange: 50
+    Despawn: false
+    Interactable: true
+    KnockbackResistance: 0

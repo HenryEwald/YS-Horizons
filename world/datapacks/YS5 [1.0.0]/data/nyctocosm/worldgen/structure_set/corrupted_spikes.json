@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "nyctocosm:corrupted_spikes",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 4,
+    "separation": 2,
+    "salt": 8735793
+  }
+}

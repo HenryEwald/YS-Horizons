@@ -1,0 +1,31 @@
+# Only edit this file if you 10000% sure you know what you are doing. 
+# You can set everything via the plugin commands, no need to edit this file manully.
+
+value:
+  ==: CustomOreGenerator#OreConfig
+  name: irridium_ore
+  material: NOTE_BLOCK
+  ore-generator: VANILLA_MINABLE_GENERATOR
+  block-selector: COUNT_RANGE
+  activated: true
+  generated-all: false
+  biomes:
+  - SMALL_END_ISLANDS
+  - END_BARRENS
+  - CUSTOM
+  - THE_END
+  - END_MIDLANDS
+  - END_HIGHLANDS
+  replace-materials:
+  - END_STONE
+  custom-data:
+    ORAXEN: amethyst_ore
+  ore-generator-settings:
+    ==: CustomOreGenerator#OreSettingsContainer
+    ore-settings:
+      VEIN_SIZE: 3.0
+  block-selector-settings:
+    ==: CustomOreGenerator#OreSettingsContainer
+    ore-settings:
+      HEIGHT_RANGE: 300.0
+      VEINS_PER_CHUNK: 100.0

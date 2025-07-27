@@ -1,0 +1,285 @@
+######## created by samus2002 #########
+  
+glacia_scepter:
+  Id: stone_sword
+  Display: "<gradient:#e6f9fc:#5cd1ff:#e6f9fc>Scepter of Glacia"
+  Model: 2005
+  Lore:
+  - '<gradient:#e6f9fc:#5cd1ff:#e6f9fc>A frigid scepter used by Glacia'
+  Unbreakable: true
+  Hide:
+  - ATTRIBUTES
+  Skills:
+  - skill{s=Frost_Bolt} @self ~onSwing
+  - skill{s=Ice_Spike} @self ~onUse
+  - skill{s=Frost_Beam} @self ~onUse
+  - skill{s=Ice_Wall} @self ~onCrouch
+  - skill{s=Hailstorm} @self ~onSwing
+  
+glacia_scepter_shiny:
+  Id: stone_sword
+  Display: "<gradient:#ffef99:#5cd1ff:#ffef99>Shiny Scepter of Glacia"
+  Model: 2006
+  Lore:
+  - '<gradient:#ffef99:#5cd1ff:#ffef99>A frigid scepter used by Glacia'
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  Skills:
+  - skill{s=Frost_Bolt} @self ~onSwing
+  - skill{s=Ice_Spike} @self ~onUse
+  - skill{s=Frost_Beam} @self ~onUse
+  - skill{s=Ice_Wall} @self ~onCrouch
+  - skill{s=Hailstorm} @self ~onSwing
+  
+glacia_head:
+  Id: paper
+  Display: "<gradient:#e6f9fc:#5cd1ff:#e6f9fc>Head of Glacia"
+  Model: 2036
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  Skills:
+  - skill{s=Frigid_Path_Crucible_Head} @self ~onTimer:5
+  
+glacia_helmet:
+  Id: leather_helmet
+  Display: "<gradient:#e6f9fc:#5cd1ff:#e6f9fc>Helmet of Glacia"
+  Options:
+    Color: 140,214,235
+  Model: 2005
+  Lore:
+  - '<gradient:#e6f9fc:#5cd1ff:#e6f9fc>A frigid helmet worn by Glacia'
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  Skills:
+  - skill{s=Frigid_Path_Crucible_Helmet} @self ~onTimer:5
+  
+glacia_chestplate:
+  Id: leather_chestplate
+  Display: "<gradient:#e6f9fc:#5cd1ff:#e6f9fc>Chestplate of Glacia"
+  Options:
+    Color: 140,214,235
+  Model: 2005
+  Lore:
+  - '<gradient:#e6f9fc:#5cd1ff:#e6f9fc>A frigid chestplate worn by Glacia'
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  Skills:
+  - skill{s=Frigid_Path_Crucible_Head} @self ~onTimer:5
+  - skill{s=Frigid_Path_Crucible_Helmet} @self ~onTimer:5
+  
+glacia_leggings:
+  Id: leather_leggings
+  Display: "<gradient:#e6f9fc:#5cd1ff:#e6f9fc>Leggings of Glacia"
+  Options:
+    Color: 140,214,235
+  Model: 2005
+  Lore:
+  - '<gradient:#e6f9fc:#5cd1ff:#e6f9fc>A frigid leggings worn by Glacia'
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  Skills:
+  - skill{s=Frigid_Path_Crucible_Head} @self ~onTimer:5
+  - skill{s=Frigid_Path_Crucible_Helmet} @self ~onTimer:5
+  
+glacia_boots:
+  Id: leather_boots
+  Display: "<gradient:#e6f9fc:#5cd1ff:#e6f9fc>Boots of Glacia"
+  Options:
+    Color: 140,214,235
+  Model: 2005
+  Lore:
+  - '<gradient:#e6f9fc:#5cd1ff:#e6f9fc>Frigid boots worn by Glacia'
+  Hide:
+  - ATTRIBUTES
+  Unbreakable: true
+  Skills:
+  - skill{s=Frigid_Path_Crucible_Head} @self ~onTimer:5
+  - skill{s=Frigid_Path_Crucible_Helmet} @self ~onTimer:5
+  
+glacia_hail:
+  Id: paper
+  Display: "&6"
+  Model: 2035
+  Hide:
+  - ATTRIBUTES
+
+glacia_ice_circle:
+  Id: paper
+  Display: "&6"
+  Model: 2037
+  Hide:
+  - ATTRIBUTES
+ 
+glacia_ice_circle_hail:
+  Id: paper
+  Display: "&6"
+  Model: 2038
+  Hide:
+  - ATTRIBUTES
+  
+glacia_icicle:
+  Id: paper
+  Display: "&6"
+  Model: 2039
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_big_1:
+  Id: paper
+  Display: "&6"
+  Model: 2040
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_big_2:
+  Id: paper
+  Display: "&6"
+  Model: 2041
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_big_3:
+  Id: paper
+  Display: "&6"
+  Model: 2042
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_big_4:
+  Id: paper
+  Display: "&6"
+  Model: 2043
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_big_5:
+  Id: paper
+  Display: "&6"
+  Model: 2044
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_big_6:
+  Id: paper
+  Display: "&6"
+  Model: 2045
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_medium_1:
+  Id: paper
+  Display: "&6"
+  Model: 2046
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_medium_2:
+  Id: paper
+  Display: "&6"
+  Model: 2047
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_medium_3:
+  Id: paper
+  Display: "&6"
+  Model: 2048
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_medium_4:
+  Id: paper
+  Display: "&6"
+  Model: 2049
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_medium_5:
+  Id: paper
+  Display: "&6"
+  Model: 2050
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_small_1:
+  Id: paper
+  Display: "&6"
+  Model: 2051
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_small_2:
+  Id: paper
+  Display: "&6"
+  Model: 2052
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_small_3:
+  Id: paper
+  Display: "&6"
+  Model: 2053
+  Hide:
+  - ATTRIBUTES
+  
+glacia_spike_small_4:
+  Id: paper
+  Display: "&6"
+  Model: 2054
+  Hide:
+  - ATTRIBUTES
+  
+glacia_wall_1:
+  Id: paper
+  Display: "&6"
+  Model: 2055
+  Hide:
+  - ATTRIBUTES
+  
+glacia_wall_2:
+  Id: paper
+  Display: "&6"
+  Model: 2056
+  Hide:
+  - ATTRIBUTES
+  
+glacia_wall_3:
+  Id: paper
+  Display: "&6"
+  Model: 2057
+  Hide:
+  - ATTRIBUTES
+  
+glacia_wall_4:
+  Id: paper
+  Display: "&6"
+  Model: 2058
+  Hide:
+  - ATTRIBUTES
+  
+glacia_wall_5:
+  Id: paper
+  Display: "&6"
+  Model: 2059
+  Hide:
+  - ATTRIBUTES
+  
+glacia_wall_6:
+  Id: paper
+  Display: "&6"
+  Model: 2060
+  Hide:
+  - ATTRIBUTES
+  
+glacia_wall_7:
+  Id: paper
+  Display: "&6"
+  Model: 2061
+  Hide:
+  - ATTRIBUTES
+  

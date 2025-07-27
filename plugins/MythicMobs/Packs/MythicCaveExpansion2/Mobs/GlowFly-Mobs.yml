@@ -1,0 +1,34 @@
+MSO_GlowFly:
+  Type: BEE
+  Display: 'Glow Fly'
+  Damage: 8
+  Health: 32
+  Drops:
+  - POINTED_DRIPSTONE 1-3 1
+  Faction: glowfly
+  Options:
+    Despawn: true
+    Silent: true
+    ShowName: false
+    MovementSpeed: 0.46
+    KnockbackResistance: 1
+    FollowRange: 32
+    MaxCombatDistance: 64
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+  ThreatTable:
+    Enabled: true
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - randomfly
+  AITargetSelectors:
+  - clear
+  - attacker
+  Skills:
+  - skill:MSO_GlowFlySpawn @self ~onSpawn
+  - skill:MSO_GlowFlyDamaged @self ~onDamaged
+  - skill:MSO_GlowFlyTick @self ~onTimer:20
+  - skill:MSO_GlowFlyMelee @trigger ~onAttack
+  

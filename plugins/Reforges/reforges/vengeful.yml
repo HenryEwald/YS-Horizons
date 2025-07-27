@@ -1,0 +1,41 @@
+description:
+- '&a+10% &fDamage'
+- '&ax2 &fCrit Damage'
+- '&ax2.5 &fKnockback Multiplier'
+targets:
+- melee
+stone:
+  item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjAyYTExNjkzMDlmMDVlZjJmMDYxYjFmYTBmZTIyNWYyOWQ3M2EyNGY4ZjA3Y2NjMmE3MDVkZWVhY2EwNjlkMSJ9fX0=
+  lore:
+  - '&7Place on the right of the'
+  - '&7reforge menu to apply the'
+  - <gradient:#bb1b1b>Vengeful</gradient:#3a3737>&7 reforge!
+  recipe:
+  - fire_charge
+  - air
+  - fire_charge
+  - iron_axe
+  - ecoitems:blank_reforge_stone
+  - iron_sword
+  - fire_charge
+  - air
+  - fire_charge
+  craftable: true
+  enabled: true
+  price:
+    display: '&6$%value%'
+    type: coins
+    value: 8500
+  name: <gradient:#bb1b1b>Vengeful</gradient:#3a3737>&f Reforge Stone
+effects:
+- args:
+    damage: 10
+  id: add_damage
+- args:
+    multiplier: 2
+  id: crit_multiplier
+- args:
+    multiplier: 2.5
+  id: knockback_multiplier
+name: <gradient:#bb1b1b>Vengeful</gradient:#3a3737>
+conditions: []

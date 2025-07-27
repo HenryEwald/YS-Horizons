@@ -1,0 +1,9 @@
+MSO_AmethystGolem:
+  Display: '&dAmethyst Golem'
+  Type: IRON_GOLEM
+  Health: 60
+  Damage: 0
+  Skills:
+  - model{mid=mso_amethyst_golem;n=false} @Self ~onSpawn
+  - skill:AmethystGolemAttack{sync=true} @Self ~onAttack
+  - skill:AmethystGolemAttackSlam @Self ~onTimer:100 0.5

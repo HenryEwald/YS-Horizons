@@ -1,0 +1,567 @@
+toro_enderdragon_CancelEventSkill:
+    Skills:
+        - CancelEvent
+        - randomskill{s=toro_enderdragon_standup,toro_enderdragon_fly_fire,toro_enderdragon_fly_drop} @target
+toro_enderdragon_AITrue_skill:
+    Conditions:
+        - offgcd
+    Skills:
+        - setAI{ai=true} @self
+
+toro_enderdragon_death:
+    Skills:
+        - effect:sound{s=torotoro:toro.ender_dragon.boss_kill;v=6;p=0.6} @self
+        - effect:sound{s=torotoro:toro.ender_dragon.roar;v=6;p=1.6} @self
+        - delay 70
+        - particles{p=end_rod;a=10;hs=6;vs=1;s=0.3;repeat=17;repeatInterval=4} @ModelPart{mid=toro_ender_dragon;part=belly}
+        - delay 70
+        - particles{p=electric_spark;a=100;size=2;hs=6;vs=3;s=1} @ModelPart{mid=toro_ender_dragon;part=belly}
+        - particles{p=end_rod;a=200;size=2;hs=6;vs=1;s=1} @ModelPart{mid=toro_ender_dragon;part=belly}
+        - sendtitle{title="&6&lDRAGON SLAIN";subtitle="";d=50;fi=60;fo=60} @PlayersInRadius{r=50}
+#The enderman will "summon" the enderdragon
+toro_enderdragon_summon:
+    Conditions:
+        - offgcd
+        - playersinradius{a=>0;r=20} true
+    Skills:
+        - gcd{ticks=200} @self
+        - delay 60
+        - summon{t=toro_enderdragon} @self
+        - delay 40
+        - damage{a=100;i=true} @self
+
+#the enderdragon dive. followed by a roar
+toro_enderdragon_spawn:
+    Skills:
+        - gcd{ticks=190} @self
+        - setAI{ai=false} @self
+        - potion{t=DAMAGE_RESISTANCE;d=190;l=99;p=false} @self
+        - effect:sound{s=torotoro:toro.ender_dragon.deep_woosh;v=16;p=1} @self
+        - delay 20
+        - effect:sound{s=torotoro:toro.ender_dragon.smash;v=16;p=1.3} @self
+        - totem{ch=1;onStart=toro_enderdragon_brake_damage;int=1;hR=3;md=1;repeat=5;repeatInterval=3} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - totem{ch=1;onStart=toro_enderdragon_brake_damage;int=1;hR=3;md=1;repeat=5;repeatInterval=3} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 90
+        - effect:sound{s=torotoro:toro.ender_dragon.roar;v=6;p=1.1} @self
+        - delay 6
+        #- stun{d=60} @PlayersNearOrigin{r=40}
+        - particles{p=flash;a=1;s=0.9;hs=0.2;vs=0.2;repeat=12;repeatInterval=5} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - delay 74
+        - model{mid=toro_ender_dragon;n=false;tint=false} @self
+        - setAI{ai=true} @self
+
+
+toro_enderdragon_brake_damage:
+    Skills:
+        - damage{a=40} @ENO{r=10}
+        - skill{s=toro_ender_dragon_brake_knockback}  @ENO{r=10}
+        - particles{p=block_crack;m=dirt;a=50;hs=3;vs=3} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=10;s=0.2;hs=3;vs=3} @origin
+
+#===check player locations:
+toro_enderdragon_checkplayer:
+    Skills:
+        - totem{ch=1;onStart=toro_enderdragon_backcheck;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=tail3}
+        - totem{ch=1;onStart=toro_enderdragon_footcheck;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_foot}
+        - totem{ch=1;onStart=toro_enderdragon_footcheck;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_foot}
+        - delay 2
+        - totem{ch=1;onStart=toro_enderdragon_leftcheck;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - totem{ch=1;onStart=toro_enderdragon_rightcheck;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+
+#Back
+toro_enderdragon_backcheck:
+    Skills:
+        #- particlering{p=end_rod;a=1;points=32;r=10} @origin
+        - sudoskill{s=toro_enderdragon_backsignal} @PlayersNearOrigin{r=10}
+
+toro_enderdragon_backsignal:
+    Skills:
+        - signal{s=BACK} @MobsInRadius{r=50;types=toro_enderdragon}
+#Around Foot
+toro_enderdragon_footcheck:
+    Skills:
+        #- particlering{p=end_rod;a=1;points=32;r=7} @origin
+        - sudoskill{s=toro_enderdragon_footsignal} @PlayersNearOrigin{r=7}
+        - skill{s=toro_enderdragon_push} @PlayersNearOrigin{r=3}
+
+toro_enderdragon_footsignal:
+    Skills:
+        - signal{s=FOOT} @MobsInRadius{r=50;types=toro_enderdragon}
+#left claw
+toro_enderdragon_leftcheck:
+    Skills:
+        #- particlering{p=end_rod;a=1;points=32;r=7} @origin
+        - sudoskill{s=toro_enderdragon_leftsignal} @PlayersNearOrigin{r=7}
+        - skill{s=toro_enderdragon_push} @PlayersNearOrigin{r=3}
+
+toro_enderdragon_leftsignal:
+    Skills:
+        - signal{s=LEFT} @MobsInRadius{r=50;types=toro_enderdragon}
+#right claw
+toro_enderdragon_rightcheck:
+    Skills:
+        #- particlering{p=end_rod;a=1;points=32;r=7} @origin
+        - sudoskill{s=toro_enderdragon_rightsignal} @PlayersNearOrigin{r=7}
+        - skill{s=toro_enderdragon_push} @PlayersNearOrigin{r=3}
+
+toro_enderdragon_rightsignal:
+    Skills:
+        - signal{s=RIGHT} @MobsInRadius{r=50;types=toro_enderdragon}
+
+#=====Fly====
+toro_enderdragon_fly:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - gcd{ticks=40} @self
+        - state{s=fly;lerpin=10} @self
+        - defaultstate{m=toro_ender_dragon;t=idle;s=fly_idle} @self
+        - defaultstate{m=toro_ender_dragon;t=walk;s=fly_walk} @self
+        - setspeed{speed=2;type=walking} @self
+        - setAI{ai=false} @self
+        - addtag{t=flying} @self
+        - delay 40
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=40;s=0.1;hs=5;vs=3} @origin
+        - effect:sound{s=entity.ender_dragon.flap;v=6;p=0} @self
+        - skill{s=toro_ender_dragon_brake_knockback} @PlayersNearOrigin{r=15}
+        - setAI{ai=true} @self
+
+#The enderdragon roar when flying
+toro_enderdragon_flyroar:
+    Cooldown: 30
+    Conditions:
+        - hastag{t=flying} true
+        - offgcd
+        - incombat true
+    Skills:
+        - gcd{ticks=55} @self
+        - state{s=fly_roar} @self
+        - delay 25
+        - effect:sound{s=torotoro:toro.ender_dragon.roar;v=6;p=1} @self
+        - delay 4
+        - stun{d=20} @PlayersNearOrigin{r=40}
+        - particles{p=flash;a=1;s=0.9;hs=0.2;vs=0.2;repeat=4;repeatInterval=5} @ModelPart{mid=toro_ender_dragon;part=jaw}
+
+#the enderdragon drops to the ground
+toro_enderdragon_fly_drop:
+    Conditions:
+        - hastag{t=flying} true
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=40} @self
+        - removetag{t=flying} @self
+        - state{s=fly_drop} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=torotoro:toro.ender_dragon.swing;v=16;p=1.2} @self
+        - delay 12
+        - effect:sound{s=entity.generic.explode;v=6;p=0} @self
+        - totem{ch=1;onStart=toro_enderdragon_flydrop_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - totem{ch=1;onStart=toro_enderdragon_flydrop_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - totem{ch=1;onStart=toro_enderdragon_flydrop_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_foot}
+        - totem{ch=1;onStart=toro_enderdragon_flydrop_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_foot}
+        - delay 28
+        - defaultstate{m=toro_ender_dragon;t=idle;s=idle} @self
+        - defaultstate{m=toro_ender_dragon;t=walk;s=walk} @self
+        - setspeed{speed=1.25;type=walking} @self
+        - setAI{ai=true} @self
+
+toro_enderdragon_flydrop_damage:
+    Skills:
+        - damage{a=20} @PlayersNearOrigin{r=14}
+        - skill{s=toro_ender_dragon_flydrop_knockback} @PlayersNearOrigin{r=14}
+        - particles{p=block_crack;m=dirt;a=150;hs=5;vs=2} @origin
+        - particlering{p=block_crack;m=soul_soil;a=20;r=4;points=36;hs=1;vs=1} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=40;s=0.1;hs=3;vs=3} @origin
+
+#===fire when flying
+toro_enderdragon_fly_fire:
+    Conditions:
+        - hastag{t=flying} true
+        - offgcd
+        - incombat true
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=fly_spit;lerpin=5;lerpout=20} @self
+        - delay 20
+        - effect:sound{s=entity.wither.ambient;v=10;p=0} @self
+        - particles{p=reddust;color=#FF88F2;size=2;a=20;hs=0.5;vs=0.5;repeat=22;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - effect:sound{s=entity.blaze.shoot;v=10;p=0;repeat=4;repeatInterval=4} @self
+        - totem{ch=1;onStart=toro_enderdragon_fly_fire_projectile;int=1;hR=3;md=1;repeat=15;repeatInterval=1} @ModelPart{mid=toro_ender_dragon;part=jaw}
+
+toro_enderdragon_fly_fire_projectile:
+    Skills:
+        - missile{oT=toro_enderdragon_fly_fire_tick;oE=toro_enderdragon_fly_fire_end;v=10;md=150;in=50;i=1;g=0;fromorigin=true;vO=-1;sB=true;sE=false} @forward{f=1;y=-10}
+
+toro_enderdragon_fly_fire_tick:
+    Skills:
+        - damage{a=4} @PlayersNearOrigin{r=5}
+        - particles{p=dragon_breath;a=2;hs=0.5;vs=1} @origin
+        - particles{p=reddust;color=#D749C8;size=3;a=2;hs=0.5;vs=1} @origin
+
+toro_enderdragon_fly_fire_end:
+    Skills:
+        - totem{onTick=toro_enderdragon_fire_burn_tick;md=120;i=10} @origin 0.2
+
+#A dive drop, only occurs when lower than 500hp
+toro_enderdragon_fly_rushdrop:
+    Conditions:
+        - hastag{t=flying} true
+        - offgcd
+        - incombat true
+        - health{h=<500} true
+    Skills:
+        - gcd{ticks=186} @self
+        - potion{t=SPEED;d=6;l=3;p=false} @self
+        - removetag{t=flying} @self
+        - delay 6
+        - state{s=fly_rushdrop;lerpin=5;speed=0.7} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.ender_dragon.flap;v=6;p=0} @self
+        - delay 21
+        - effect:sound{s=entity.illusioner.prepare_mirror;v=6;p=0} @self
+        - effect:sound{s=entity.ender_dragon.growl;v=6;p=1.2} @self
+        - particles{p=flash;a=1;;hs=0.2;vs=0.2;repeatinterval=1;repeat=20} @ModelPart{mid=toro_ender_dragon;part=head}
+        - delay 21
+        # teleport
+        - totem{ch=1;onStart=toro_enderdragon_teleport_pathvfx;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=chest}
+        - skill{s=toro_enderdragon_teleport_vfx} @self
+        - effect:sound{s=entity.enderman.teleport;p=0;v=15} @self
+        - setAI{ai=true} @self
+        - teleport{} @target
+        - setAI{ai=false} @self
+        - delay 1
+        - jump{v=-100} @self
+        - effect:sound{s=entity.illusioner.mirror_move;p=0;v=15} @self
+        - delay 2
+        - skill{s=toro_enderdragon_teleport_vfx} @self
+        #
+        - effect:sound{s=torotoro:toro.ender_dragon.deep_woosh;v=16;p=1} @self
+        - delay 18
+        - effect:sound{s=torotoro:toro.ender_dragon.smash;v=16;p=1} @self
+        - totem{ch=1;onStart=toro_enderdragon_fly_rushdrop_damage;int=1;hR=3;md=1;repeat=8;repeatInterval=3} @ModelPart{mid=toro_ender_dragon;part=right_forearm}
+        - delay 70
+        - defaultstate{m=toro_ender_dragon;t=idle;s=idle} @self
+        - defaultstate{m=toro_ender_dragon;t=walk;s=walk} @self
+        - setspeed{speed=1.25;type=walking} @self
+        - setAI{ai=true} @self
+
+toro_enderdragon_fly_rushdrop_damage:
+    Skills:
+        - damage{a=40} @PlayersNearOrigin{r=12}
+        - skill{s=toro_ender_dragon_brake_knockback} @PlayersNearOrigin{r=12}
+        - particles{p=dragon_breath;a=50;hs=4;vs=2} @ModelPart{mid=toro_ender_dragon;part=right_forearm}
+        - particles{p=block_crack;m=dirt;a=80;hs=5;vs=1} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=15;s=0.2;hs=3;vs=3} @origin
+
+toro_enderdragon_teleport_vfx:
+    Skills:
+        - particles{p=reddust;color=#FF88F2;size=5;a=150;hs=5;vs=8;yOffset=-3} @ModelPart{mid=toro_ender_dragon;part=chest}
+        - particles{p=reddust;color=#6F586C;size=5;a=50;hs=5;vs=8;yOffset=-3} @ModelPart{mid=toro_ender_dragon;part=chest}
+        - particles{p=reddust;color=#FF88F2;size=5;a=50;hs=8;vs=8;yOffset=-3} @ModelPart{mid=toro_ender_dragon;part=left_wing_claw_two}
+        - particles{p=reddust;color=#FF88F2;size=5;a=50;hs=8;vs=8;yOffset=-3} @ModelPart{mid=toro_ender_dragon;part=right_wing_claw_two}
+
+toro_enderdragon_teleport_pathvfx:
+    Skills:
+        - delay 5
+        - particleline{p=reddust;color=#FF88F2;size=3;db=1;a=1;xs=2;zs=2;ys=2;zz=true;zs=10;fromorigin=true} @ModelPart{mid=toro_ender_dragon;part=chest}
+
+#=====Standing up======
+toro_enderdragon_standup:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=60} @self
+        - setAI{ai=false} @self
+        - state{s=stand;lerpin=20} @self
+        - delay 28
+        - randomskill{s=toro_enderdragon_two_claw_smash,toro_enderdragon_claw_swipe} @selff
+
+#smash with whole body |standing up followed moves
+toro_enderdragon_two_claw_smash:
+    Skills:
+        - gcd{ticks=84} @self
+        - state{s=two_claw_smash;lerpin=5;lerpout=20} @self
+        - delay 34
+        - totem{ch=1;onStart=toro_enderdragon_claw_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - totem{ch=1;onStart=toro_enderdragon_claw_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 50
+        - setAI{ai=true} @self
+
+toro_enderdragon_claw_smash_damage:
+    Skills:
+        - damage{a=30} @PlayersNearOrigin{r=13}
+        - effect:sound{s=entity.generic.explode;v=6;p=0} @self
+        - skill{s=toro_ender_dragon_smash_knockback} @PlayersNearOrigin{r=13}
+        - particles{p=block_crack;m=dirt;a=150;hs=5;vs=2} @origin
+        - particlering{p=block_crack;m=soul_soil;a=20;r=4;points=36;hs=1;vs=1} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=40;s=0.1;hs=3;vs=3} @origin
+
+#huge claw swipe
+toro_enderdragon_claw_swipe:
+    Skills:
+        - gcd{ticks=36} @self
+        - state{s=claw_swipe;lerpin=5} @self
+        - delay 25
+        - setAI{ai=true} @self
+        - spin{d=8;v=0} @self
+        - lunge{v=2;repeat=6;repeatInterval=1} @forward
+        - jump{v=-10;repeat=7;repeatInterval=1} @self
+        - delay 8
+        - setAI{ai=false} @self
+        - effect:sound{s=torotoro:toro.ender_dragon.swing;v=16;p=0.7} @self
+        - totem{ch=1;onStart=toro_enderdragon_clawswipe_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 4
+        - totem{ch=1;onStart=toro_enderdragon_clawswipe_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 7
+        - totem{ch=1;onStart=toro_enderdragon_clawswipe_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        #- delay 42
+        #- setAI{ai=true} @self
+
+
+toro_enderdragon_clawswipe_damage:
+    Skills:
+        - damage{a=30} @PlayersNearOrigin{r=13}
+        - skill{s=toro_ender_dragon_smash_knockback} @PlayersNearOrigin{r=13}
+        - particles{p=block_crack;m=dirt;a=50;hs=5;vs=2} @origin
+        - particles{p=reddust;color=#5B2C56;a=50;hs=5;vs=2} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=40;s=0.1;hs=3;vs=3} @origin
+
+#====Standing up (moveback a little)=====
+toro_enderdragon_standup_moveback:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - gcd{ticks=60} @self
+        - spin{d=70;v=0} @self
+        - setAI{ai=false} @self
+        - state{s=stand_moveback;lerpin=20} @self
+        - delay 48
+        - randomskill{s=toro_enderdragon_moveback_fire,toro_enderdragon_moveback_smash} @self
+        - setAI{ai=false} @self
+
+#Similar to stand up smash, but has a hitting point closer to belly
+toro_enderdragon_moveback_smash:
+    Skills:
+        - gcd{ticks=84} @self
+        - state{s=moveback_smash;lerpin=5;lerpout=20} @self
+        - delay 34
+        - totem{ch=1;onStart=toro_enderdragon_claw_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - totem{ch=1;onStart=toro_enderdragon_claw_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 50
+        - setAI{ai=true} @self
+
+#Move back a bit and spit fire
+toro_enderdragon_moveback_fire:
+    Skills:
+        - gcd{ticks=100} @self
+        - state{s=moveback_spit;lerpin=5;lerpout=20} @self
+        - delay 15
+        - effect:sound{s=entity.wither.ambient;v=10;p=0} @self
+        - particles{p=reddust;color=#FF88F2;size=2;a=10;hs=0.5;vs=0.5;repeat=22;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - delay 20
+        - skill{s=toro_enderdragon_moveback_fire_skill} @self
+        - delay 65
+        - setAI{ai=true} @self
+
+toro_enderdragon_moveback_fire_skill:
+    Skills:
+        - particles{p=reddust;color=#D749C8;size=3;a=20;hs=0.5;vs=4;yOffset=-7;repeat=13;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - particles{p=reddust;color=#D749C8;size=3;a=20;hs=1;vs=4;yOffset=-13;repeat=13;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - particlering{p=reddust;color=#D749C8;size=3;a=5;points=32;r=6;hs=0.5;vs=0.5;yOffset=-6;repeat=4;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - totem{onTick=toro_enderdragon_fire_burn_tick;md=120;i=10;yOffset=-12} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - effect:sound{s=entity.blaze.shoot;p=0;v=10} @self
+        - delay 8
+        - particlering{p=reddust;color=#D749C8;size=3;a=5;points=32;r=8;hs=1;vs=1;yOffset=-8;repeat=6;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - totem{onTick=toro_enderdragon_fire_burn_tick;md=120;i=10;yOffset=-12} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - effect:sound{s=entity.blaze.shoot;p=0;v=10} @self
+        - delay 4
+        - particlering{p=reddust;color=#D749C8;size=3;a=5;points=32;r=10;hs=1;vs=1;yOffset=-10;repeat=9;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - totem{onTick=toro_enderdragon_fire_burn_tick;md=120;i=10;yOffset=-12} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - effect:sound{s=entity.blaze.shoot;p=0;v=10} @self
+
+toro_enderdragon_fire_burn_tick:
+    Skills:
+        - damage{a=4} @PlayersNearOrigin{r=13}
+        - particles{p=dragon_breath;a=50;hs=5;vs=0.5} @origin
+
+#====Ground Skills====
+#Left claw strike
+toro_enderdragon_left_claw:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - gcd{ticks=100} @self
+        - state{s=left_claw;lerpin=25;lerpout=20} @self
+        - setAI{ai=false} @self
+        - delay 59
+        - effect:sound{s=torotoro:toro.ender_dragon.swing;v=16;p=1} @self
+        - totem{ch=1;onStart=toro_enderdragon_claw_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - delay 4
+        - totem{ch=1;onStart=toro_enderdragon_claw_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - delay 4
+        - totem{ch=1;onStart=toro_enderdragon_claw_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - delay 13
+        - setAI{ai=true} @self
+
+
+toro_enderdragon_claw_damage:
+    Skills:
+        - damage{a=25} @PlayersNearOrigin{r=11}
+        - skill{s=toro_ender_dragon_claw_knockback} @PlayersNearOrigin{r=11}
+        - particles{p=block_crack;m=dirt;a=50;hs=5;vs=2} @origin
+        - particles{p=reddust;color=#5B2C56;a=50;hs=5;vs=2} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=40;s=0.1;hs=3;vs=3} @origin
+
+#left smash
+toro_enderdragon_left_smash:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - gcd{ticks=70} @self
+        - state{s=left_smash;lerpin=15;lerpout=20} @self
+        - setAI{ai=false} @self
+        - delay 39
+        - totem{ch=1;onStart=toro_enderdragon_claw_smash_small_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=left_claw}
+        - delay 31
+        - setAI{ai=true} @self
+
+#===right side
+toro_enderdragon_right_claw:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - gcd{ticks=100} @self
+        - state{s=right_claw;lerpin=25;lerpout=20} @self
+        - setAI{ai=false} @self
+        - delay 59
+        - effect:sound{s=torotoro:toro.ender_dragon.swing;v=16;p=1} @self
+        - totem{ch=1;onStart=toro_enderdragon_claw_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 4
+        - totem{ch=1;onStart=toro_enderdragon_claw_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 4
+        - totem{ch=1;onStart=toro_enderdragon_claw_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 13
+        - setAI{ai=true} @self
+
+#right smash
+toro_enderdragon_right_smash:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - gcd{ticks=70} @self
+        - state{s=right_smash;lerpin=15;lerpout=20} @self
+        - setAI{ai=false} @self
+        - delay 39
+        - totem{ch=1;onStart=toro_enderdragon_claw_smash_small_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=right_claw}
+        - delay 31
+        - setAI{ai=true} @self
+
+toro_enderdragon_claw_smash_small_damage:
+    Skills:
+        - damage{a=30} @PlayersNearOrigin{r=10}
+        - effect:sound{s=entity.generic.explode;v=6;p=0} @self
+        - skill{s=toro_ender_dragon_smash_knockback} @PlayersNearOrigin{r=10}
+        - particles{p=block_crack;m=dirt;a=150;hs=5;vs=2} @origin
+        - particlering{p=block_crack;m=soul_soil;a=20;r=4;points=36;hs=1;vs=1} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=40;s=0.1;hs=3;vs=3} @origin
+
+#tail swipe
+toro_enderdragon_tailswipe:
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - gcd{ticks=90} @self
+        - state{s=tail_swipe;lerpin=20;lerpout=20} @self
+        - setAI{ai=false} @self
+        - delay 56
+        - effect:sound{s=torotoro:toro.ender_dragon.swing;v=16;p=0.4} @self
+        - totem{ch=1;onStart=toro_enderdragon_tailswipe_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=tail3}
+        - delay 4
+        - totem{ch=1;onStart=toro_enderdragon_tailswipe_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=tail3}
+        - delay 4
+        - totem{ch=1;onStart=toro_enderdragon_tailswipe_damage;int=1;hR=3;md=1} @ModelPart{mid=toro_ender_dragon;part=tail3}
+        - delay 26
+        - setAI{ai=true} @self
+
+toro_enderdragon_tailswipe_damage:
+    Skills:
+        - damage{a=35} @PlayersNearOrigin{r=15}
+        - skill{s=toro_ender_dragon_tail_knockback} @PlayersNearOrigin{r=15}
+        - particles{p=block_crack;m=dirt;a=50;hs=12;vs=2} @origin
+        - particles{p=reddust;color=#5B2C56;a=50;hs=12;vs=2} @origin
+        - particles{p=CAMPFIRE_COSY_SMOKE;a=40;s=0.1;hs=3;vs=3} @origin
+
+#fire (on ground)
+toro_enderdragon_fire_ground:
+    Cooldown: 30
+    Conditions:
+        - hastag{t=flying} false
+        - offgcd
+        - incombat true
+        - onground true
+    TargetConditions:
+        - distance{d=18to40} true
+    Skills:
+        - gcd{ticks=100} @self
+        - state{s=fire;lerpin=20;lerpout=20} @self
+        - setAI{ai=false} @self
+        - delay 20
+        - effect:sound{s=entity.wither.ambient;v=10;p=0} @self
+        - particles{p=reddust;color=#FF88F2;size=2;a=20;hs=0.5;vs=0.5;repeat=22;repeatInterval=2} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - delay 18
+        - effect:sound{s=entity.blaze.shoot;v=10;p=0;repeat=9;repeatInterval=5} @self
+        - totem{ch=1;onStart=toro_enderdragon_fire_projectile;int=1;hR=3;md=1;repeat=8;repeatInterval=6} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - particles{p=dragon_breath;a=15;hs=0.5;vs=2;repeat=8;repeatInterval=6} @ModelPart{mid=toro_ender_dragon;part=jaw}
+        - delay 62
+        - setAI{ai=true} @self
+
+toro_enderdragon_fire_projectile:
+    Skills:
+        - projectile{oT=toro_enderdragon_fire_tick;v=9;md=60;i=1;g=0;hfs=1;hs=true;fromorigin=true;a=0;hO=20} @forward{f=200}
+        - delay 2
+        - projectile{oT=toro_enderdragon_fire_tick;v=9;md=60;i=1;g=0;hfs=1;hs=true;fromorigin=true;a=0} @forward{f=200}
+        - delay 2
+        - projectile{oT=toro_enderdragon_fire_tick;v=9;md=60;i=1;g=0;hfs=1;hs=true;fromorigin=true;a=0;hO=-20} @forward{f=200}
+
+toro_enderdragon_fire_tick:
+    Skills:
+        - damage{a=4} @PlayersNearOrigin{r=5}
+        - particles{p=dragon_breath;a=3;hs=1.5;vs=0.5} @origin
+        - delay 2
+        - damage{a=4} @PlayersNearOrigin{r=5}
+        - particles{p=reddust;color=#D749C8;size=3;a=1;hs=1.5;vs=0.5} @origin
+        - delay 2
+        - damage{a=4} @PlayersNearOrigin{r=5}
+        - particles{p=reddust;color=#D749C8;size=3;a=1;hs=1.5;vs=0.5} @origin
+        - delay 2
+        - damage{a=4} @PlayersNearOrigin{r=5}
+        - particles{p=reddust;color=#D749C8;size=3;a=1;hs=1.5;vs=0.5} @origin

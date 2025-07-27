@@ -1,0 +1,192 @@
+world:
+  general:
+    natural_disasters: true
+    min_timer: 2400
+    level_six: true
+    event_broadcast: true
+    disaster_offset: 10
+    admin_override: true
+    pet_warning_time: 30
+    difficulty: CUSTOM
+    minDistanceRadius: 50
+    regenDelay: 120
+    custom_mob_spawning: true
+  disasters:
+    SINKHOLE: false
+    CAVEIN: true
+    TORNADO: false
+    GEYSER: false
+    PLAGUE: false
+    ACIDSTORM: false
+    EXTREMEWINDS: true
+    SOULSTORM: false
+    BLIZZARD: true
+    SANDSTORM: true
+    EARTHQUAKE: false
+    TSUNAMI: true
+    METEORSHOWERS: false
+    ENDSTORM: false
+    SUPERNOVA: false
+    HURRICANE: false
+    PURGE: true
+    SOLARSTORM: true
+    MONSOON: true
+    INFESTEDCAVES: true
+    CUSTOM: false
+  external:
+    region_plugins:
+      region_protection: true
+      ignore_weather_effects_in_regions: true
+      cure_plague_in_regions: true
+  custom_table:
+    level_1: 30
+    level_2: 25
+    level_3: 20
+    level_4: 15
+    level_5: 9
+    level_6: 1
+  whitelist: []
+world_nether:
+  general:
+    natural_disasters: true
+    min_timer: 2400
+    level_six: true
+    event_broadcast: true
+    disaster_offset: 10
+    admin_override: true
+    pet_warning_time: 30
+    difficulty: CUSTOM
+    minDistanceRadius: 50
+    regenDelay: 120
+    custom_mob_spawning: true
+  disasters:
+    SINKHOLE: false
+    CAVEIN: false
+    TORNADO: false
+    GEYSER: true
+    PLAGUE: false
+    ACIDSTORM: false
+    EXTREMEWINDS: false
+    SOULSTORM: true
+    BLIZZARD: false
+    SANDSTORM: false
+    EARTHQUAKE: false
+    TSUNAMI: false
+    METEORSHOWERS: false
+    ENDSTORM: false
+    SUPERNOVA: false
+    HURRICANE: false
+    PURGE: false
+    SOLARSTORM: false
+    MONSOON: false
+    INFESTEDCAVES: false
+    CUSTOM: false
+  external:
+    region_plugins:
+      region_protection: true
+      ignore_weather_effects_in_regions: true
+      cure_plague_in_regions: true
+  custom_table:
+    level_1: 30
+    level_2: 25
+    level_3: 20
+    level_4: 15
+    level_5: 9
+    level_6: 1
+  whitelist: []
+world_the_end:
+  general:
+    natural_disasters: true
+    min_timer: 2400
+    level_six: true
+    event_broadcast: true
+    disaster_offset: 10
+    admin_override: true
+    pet_warning_time: 30
+    difficulty: CUSTOM
+    minDistanceRadius: 50
+    regenDelay: 120
+    custom_mob_spawning: true
+  disasters:
+    SINKHOLE: false
+    CAVEIN: false
+    TORNADO: true
+    GEYSER: false
+    PLAGUE: false
+    ACIDSTORM: false
+    EXTREMEWINDS: false
+    SOULSTORM: false
+    BLIZZARD: false
+    SANDSTORM: false
+    EARTHQUAKE: false
+    TSUNAMI: false
+    METEORSHOWERS: true
+    ENDSTORM: true
+    SUPERNOVA: false
+    HURRICANE: false
+    PURGE: false
+    SOLARSTORM: true
+    MONSOON: false
+    INFESTEDCAVES: false
+    CUSTOM: false
+  external:
+    region_plugins:
+      region_protection: true
+      ignore_weather_effects_in_regions: true
+      cure_plague_in_regions: true
+  custom_table:
+    level_1: 30
+    level_2: 25
+    level_3: 20
+    level_4: 15
+    level_5: 9
+    level_6: 1
+  whitelist: []
+world_nyctocosm_nyctocosm:
+  general:
+    natural_disasters: true
+    min_timer: 90
+    level_six: true
+    event_broadcast: true
+    disaster_offset: 10
+    admin_override: true
+    pet_warning_time: 30
+    difficulty: NORMAL
+    minDistanceRadius: 50
+    regenDelay: 120
+    custom_mob_spawning: true
+  disasters:
+    SINKHOLE: true
+    CAVEIN: true
+    TORNADO: true
+    GEYSER: true
+    PLAGUE: true
+    ACIDSTORM: true
+    EXTREMEWINDS: true
+    SOULSTORM: true
+    BLIZZARD: true
+    SANDSTORM: true
+    EARTHQUAKE: true
+    TSUNAMI: true
+    METEORSHOWERS: true
+    ENDSTORM: true
+    SUPERNOVA: true
+    HURRICANE: true
+    PURGE: true
+    SOLARSTORM: true
+    MONSOON: true
+    INFESTEDCAVES: true
+    CUSTOM: true
+  external:
+    region_plugins:
+      region_protection: true
+      ignore_weather_effects_in_regions: true
+      cure_plague_in_regions: true
+  custom_table:
+    level_1: 30
+    level_2: 25
+    level_3: 20
+    level_4: 15
+    level_5: 9
+    level_6: 1
+  whitelist: []

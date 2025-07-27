@@ -1,0 +1,110 @@
+settings:
+    name: 'firetornado'
+    title: '&cFire Tornado'
+    start_delay: 0
+    natural: true
+    min_height: 60
+    frequency: 0.4
+    environments:
+    - normal
+    - nether
+    game_version: 1.16
+    plugin_version: 9.0
+core:
+    level 1:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tornado
+                    level: 1
+                    yVelocity: 0.45
+                    particleType: flame
+                    width: 150
+                    materials:
+                    - fire
+                    - netherrack
+                    - magma_block
+    level 2:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tornado
+                    level: 2
+                    yVelocity: 0.45
+                    particleType: flame
+                    width: 150
+                    materials:
+                    - fire
+                    - netherrack
+                    - magma_block
+    level 3:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tornado
+                    level: 3
+                    yVelocity: 0.45
+                    particleType: flame
+                    width: 150
+                    materials:
+                    - fire
+                    - netherrack
+                    - magma_block
+    level 4:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tornado
+                    level: 4
+                    yVelocity: 0.45
+                    particleType: flame
+                    width: 150
+                    materials:
+                    - fire
+                    - netherrack
+                    - magma_block
+    level 5:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tornado
+                    level: 5
+                    yVelocity: 0.45
+                    particleType: flame
+                    width: 150
+                    materials:
+                    - fire
+                    - netherrack
+                    - magma_block
+    level 6:
+        operation: 'ordered'
+        interval_seconds: 0
+        events:
+            event 1:
+                disaster 1:
+                    type: tornado
+                    level: 6
+                    yVelocity: 0.45
+                    particleType: flame
+                    width: 150
+                    materials:
+                    - fire
+                    - netherrack
+                    - magma_block
+catalog:
+    item: 'hopper'
+    name: '&l&cFire Tornado'
+    description: '&bAdds fire tornados to the overworld and nether'
+    author: 'davidclue'
+    version: 1.0
+    id: 3

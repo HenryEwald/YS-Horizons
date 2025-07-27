@@ -1,0 +1,14 @@
+{
+  "structures": [
+    {
+      "structure": "hopo:deepslate_portal",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 40,
+    "separation": 20,
+    "salt": 5272004
+  }
+}

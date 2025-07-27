@@ -1,0 +1,372 @@
+xiddri:
+  Type: HUSK
+  Display: '&6&lXiddri'
+  Faction: monster
+  Health: 1600
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.25
+    FollowRange: 64
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  BossBar:
+    Enabled: true
+    Title: '&6&lXiddri'
+    Range: 60
+    Color: PURPLE
+    Style: SEGMENTED_10
+  Skills:
+  - skill{s=CancelEventSkill;sync=true} @target ~onAttack
+  # VFX
+  - effect:blockmask{m=light;r=0;d=30;oa=true} @ModelPart{mid=xiddri;part=shoulder} ~onTimer:5 #Comment this line to Turn off light effect (save RAM)
+  # On Spawn
+  - model{mid=xiddri_inrock;n=false;tint=false} @self ~onSpawn
+  - skill{s=xiddri_inrock_parthp_set} @self ~onSpawn
+  # On Timer
+  - skill{s=xiddri_tick} @self ~onTimer:80
+  - randomskill{s=xiddri_quick_smash,xiddri_heavy_smash,xiddri_backstep,xiddri_roll_smash,xiddri_jump_smash,xiddri_onground_roar,xiddri_origin_smash,xiddri_smash_swipe} @target ~onTimer:20
+  - randomskill{s=xiddri_charge,xiddri_tail_strike,xiddri_tail_shock,xiddri_lightning_target,xiddri_claw,xiddri_lightning_ult} @target ~onTimer:40
+  - skill{s=xiddri_rock_cover} @self ~onTimer:40 #This skill only activate when flying
+  - skill{s=xiddri_death} @self ~onDeath
+
+xiddri_thunderstrike:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_thunderstrike_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_thunder_strike_vfx;n=false;tint=false} @self ~onSpawn
+
+xiddri_thunderstrike_small:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_thunderstrike_small_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_thunder_strike_small_vfx;n=false;tint=false} @self ~onSpawn
+
+xiddri_smallrock_vfx:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_smallrock_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_rockvfx_small;n=false;tint=false} @self ~onSpawn
+
+xiddri_groundshatter_vfx:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_groundshatter_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_groundshatter_vfx;n=false;tint=false} @self ~onSpawn
+
+xiddri_groundshatter_large_vfx:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_groundshatter_vfx_large_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_groundshatter_large_vfx;n=false;tint=false} @self ~onSpawn
+
+xiddri_debris_smash_vfx:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_debris_smash_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_debris_vfx;n=false;tint=false} @self ~onSpawn
+
+xiddri_debris_fast_vfx:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_debris_fast_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_debris_fast_vfx;n=false;tint=false} @self ~onSpawn
+
+xiddri_electricity_small_vfx:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_electricity_small_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_electricity_small;n=false;tint=false} @self ~onSpawn
+
+xiddri_rock_fly_vfx:
+  Type: CAT
+  Faction: monster
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    KnockbackResistance: 1
+    noAI: true
+    Silent: true
+    Despawn: true
+    Invincible: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=xiddri_rock_fly_vfx_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=xiddri_rock_fly_vfx;n=false;tint=false} @self ~onSpawn
+
+xiddri_rock_onground:
+  Type: CAT
+  Display: '&7&lFerrous Rock'
+  Faction: monster
+  Health: 50
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    gravity: true
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  Skills:
+  - setAI{ai=false;delay=40} @self ~onSpawn
+  - remove{delay=2400} @self ~onSpawn
+  - skill{s=xiddri_pickup_rock} @self ~onDamaged
+  - skill{s=xiddri_thunder_strike} @origin ~onSignal:LIGHTNING
+  - model{mid=xiddri_rock_onground;n=false;tint=false} @self ~onSpawn
+
+xiddri_leftarm_box:
+  Type: vex
+  Faction: monster
+  Display: '&6&lXiddri'
+  Health: 100
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    KnockbackResistance: 1
+    Silent: true
+  Skills:
+    - sudoskill{s=xiddri_leftarmbox_mob_hit;sync=true} @Parent ~onDamaged
+    - skill{s=CancelEventSkill;sync=true} @target ~onAttack
+
+xiddri_rightarm_box:
+  Type: vex
+  Faction: monster
+  Display: '&6&lXiddri'
+  Health: 100
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    KnockbackResistance: 1
+    Silent: true
+  Skills:
+    - sudoskill{s=xiddri_rightarmbox_mob_hit;sync=true} @Parent ~onDamaged
+    - skill{s=CancelEventSkill;sync=true} @target ~onAttack
+
+xiddri_leftleg_box:
+  Type: vex
+  Faction: monster
+  Display: '&6&lXiddri'
+  Health: 100
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    KnockbackResistance: 1
+    Silent: true
+  Skills:
+    - sudoskill{s=xiddri_leftlegbox_mob_hit;sync=true} @Parent ~onDamaged
+    - skill{s=CancelEventSkill;sync=true} @target ~onAttack
+
+xiddri_rightleg_box:
+  Type: vex
+  Faction: monster
+  Display: '&6&lXiddri'
+  Health: 100
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    KnockbackResistance: 1
+    Silent: true
+  Skills:
+    - sudoskill{s=xiddri_rightlegbox_mob_hit;sync=true} @Parent ~onDamaged
+    - skill{s=CancelEventSkill;sync=true} @target ~onAttack
+
+xiddri_head_box:
+  Type: vex
+  Faction: monster
+  Display: '&6&lXiddri'
+  Health: 100
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    KnockbackResistance: 1
+    Silent: true
+  Skills:
+    - sudoskill{s=xiddri_headbox_mob_hit;sync=true} @Parent ~onDamaged
+    - skill{s=CancelEventSkill;sync=true} @target ~onAttack
+
+xiddri_body_box:
+  Type: vex
+  Faction: monster
+  Display: '&6&lXiddri'
+  Health: 100
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    KnockbackResistance: 1
+    Silent: true
+  Skills:
+    - sudoskill{s=xiddri_bodybox_mob_hit;sync=true} @Parent ~onDamaged
+    - skill{s=CancelEventSkill;sync=true} @target ~onAttack
+
+xiddri_hip_box:
+  Type: vex
+  Faction: monster
+  Display: '&6&lXiddri'
+  Health: 100
+  Options:
+    MovementSpeed: 0.0001
+    noAI: true
+    KnockbackResistance: 1
+    Silent: true
+  Skills:
+    - sudoskill{s=xiddri_hipbox_mob_hit;sync=true} @Parent ~onDamaged
+    - skill{s=CancelEventSkill;sync=true} @target ~onAttack

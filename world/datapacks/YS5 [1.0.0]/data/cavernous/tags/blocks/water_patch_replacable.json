@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "values": [
+        "mud",
+        "clay",
+        "#minecraft:base_stone_overworld"
+    ]
+  }

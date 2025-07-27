@@ -1,0 +1,27 @@
+MSO_MinerDwarf:
+  Type: VILLAGER
+  Options:
+    Profession: BLACKSMITH
+    TradingLevel: 1
+  Display: '&bMining Dwarf'
+  Health: 30
+  Damage: 0
+  Skills:
+  - model{mid=mso_miner_dwarf;n=false} @Self ~onSpawn
+  - skill:MinerDwarfMine @Self ~onTimer:80 0.5
+  - skill:MinerDwarfTrade @Self ~onInteract
+  Trades:
+    1:
+      Item1: 16 GOLD_NUGGET
+      Result: 2 GUNPOWDER
+      MaxUses: 5
+  DynamicTrades: 
+    0:
+      Item1: MinerCostDropTable
+      Result: MinerDropTable
+    1:
+      Item1: MinerCostDropTable
+      Result: MinerDropTable
+    2:
+      Item1: MinerCostDropTable
+      Result: MinerDropTable

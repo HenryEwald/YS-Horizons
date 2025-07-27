@@ -1,0 +1,540 @@
+CancelEventSkill:
+    Skills:
+        - CancelEvent
+toro_deep_creature_setAItrue:
+    Skills:
+        - setAI{ai=true} @self
+
+#=== Summon base skills
+deep_creature_still_spawn:
+    Skills:
+        - delay 10
+        - partvisibility{m=deep_creature_still;p=heart;v=false} @self
+        
+deep_creature_putinheart:
+    Cooldown: 2
+    TriggerConditions:
+        - wearing{slot=HAND;m=deep_creature_heart}
+    Skills:
+        - takeitem{m=deep_creature_heart;a=1} @trigger
+        - potion{t=BLINDNESS;d=20;l=1;p=false;i=false} @PIR{r=30}
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - effect:sound{s=block.grass.break;v=5;p=0} @self
+        - summon{t=toro_deep_creature;a=1;os=true} @origin
+        - delay 2
+        - remove{} @self
+
+#====
+toro_deep_creature_death:
+    Skills:
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=1;vs=0.5}  @ModelPart{mid=deep_creature;part=heart}
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=1;vs=0.5}  @ModelPart{mid=deep_creature;part=heart}
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - effect:sound{s=block.gravel.break;v=5;p=0.1} @self
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1} @self
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - effect:sound{s=block.gravel.break;v=5;p=0.1} @self
+        - delay 120
+        - particles{p=end_rod;a=30;s=0.3;hs=1;vs=1} @self
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=70;hs=2.5;vs=1.5}
+        - remove{} @self
+toro_deep_creature_spawn:
+    Skills:
+        - gcd{ticks=220} @self
+        - setAI{ai=false} @self
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=1;vs=0.5}  @ModelPart{mid=deep_creature;part=heart}
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=1;vs=0.5}  @ModelPart{mid=deep_creature;part=heart}
+        - delay 42
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0} @self
+        - effect:sound{s=block.gravel.break;v=5;p=0.1} @self
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=1.5;vs=1.5}  @ModelPart{mid=deep_creature;part=head}
+        - delay 18
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.1} @self
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=1.5;vs=1.5}  @ModelPart{mid=deep_creature;part=right_arm}
+        - delay 10
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=1.5;vs=1.5}  @ModelPart{mid=deep_creature;part=body}
+        - delay 80
+        - skill{s=toro_deep_creature_roar_damage} @self
+        - delay 68
+        - setAI{ai=true} @self
+
+toro_deep_creature_roar_damage:
+    Skills:
+        - skill{s=deep_creature_roar_knockback} @PIR{r=10}
+        - particles{p=crit_magic;a=50;speed=2;hs=1;vs=1;repeat=6;repeatInterval=3} @ModelPart{mid=deep_creature;part=head}
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.9} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.8} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 1
+        - effect:sound{s=entity.ender_dragon.growl;v=5;p=1} @self
+        - effect:sound{s=entity.ender_dragon.growl;v=5;p=0.9} @self
+        - effect:sound{s=entity.ender_dragon.growl;v=5;p=0.8} @self
+        - effect:sound{s=entity.ender_dragon.growl;v=5;p=0.7} @self
+        - particlering{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=10;r=8;points=16;hs=1;vs=1;repeat=1;repeatInterval=5} @self
+        - summon{t=toro_deep_creature_dust_ring;a=1;os=true} @self
+#===Smash
+toro_deep_creature_smash:
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=2to8} true
+    Skills:
+        - randomskill{s=toro_deep_creature_leftsmash,toro_deep_creature_rightsmash} @target
+
+toro_deep_creature_leftsmash:
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=left_smash;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 21
+        - totem{ch=1;onStart=toro_deep_creature_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - delay 20
+        - skill{s=toro_deep_creature_leftsmash_cont} @target
+
+toro_deep_creature_leftsmash_cont:
+    TargetConditions:
+        - distance{d=0to10} orElseCast toro_deep_creature_setAItrue
+    Skills:
+        - gcd{ticks=70} @self
+        - state{s=left_smash_cont} @self
+        - summon{t=toro_deep_shine;a=1;repeat=1;repeatInterval=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - totem{ch=1;onStart=toro_deep_creature_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - totem{ch=1;onStart=toro_deep_creature_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand;o=MODEL;x=3;z=-3}
+        - totem{ch=1;onStart=toro_deep_creature_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand;o=MODEL;x=4;z=-5}
+        - delay 10
+        - setAI{ai=true} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.5} @self
+        - delay 10
+        - setAI{ai=false} @self
+        - delay 4
+        - totem{ch=1;onStart=toro_deep_creature_heavysmash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=right_hand}
+        - delay 30
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=right_hand}
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=right_hand}
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - delay 4
+        - setAI{ai=true} @self
+
+toro_deep_creature_rightsmash:
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=right_smash;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 21
+        - totem{ch=1;onStart=toro_deep_creature_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=right_hand}
+        - delay 20
+        - skill{s=toro_deep_creature_rightsmash_cont} @target
+
+toro_deep_creature_rightsmash_cont:
+    TargetConditions:
+        - distance{d=0to10} orElseCast toro_deep_creature_setAItrue
+    Skills:
+        - gcd{ticks=70} @self
+        - state{s=right_smash_cont} @self
+        - summon{t=toro_deep_shine;a=1;repeat=1;repeatInterval=1} @ModelPart{mid=deep_creature;part=right_hand}
+        - totem{ch=1;onStart=toro_deep_creature_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=right_hand}
+        - totem{ch=1;onStart=toro_deep_creature_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=right_hand;o=MODEL;x=-3;z=-3}
+        - totem{ch=1;onStart=toro_deep_creature_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=right_hand;o=MODEL;x=-4;z=-5}
+        - delay 10
+        - setAI{ai=true} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.5} @self
+        - delay 10
+        - setAI{ai=false} @self
+        - delay 4
+        - totem{ch=1;onStart=toro_deep_creature_heavysmash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - delay 30
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=left_hand}
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=left_hand}
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - delay 4
+        - setAI{ai=true} @self
+
+
+toro_deep_creature_smash_damage:
+    Skills:
+        - summon{t=toro_deep_creature_debris_small;a=1;os=true} @origin  
+        - summon{t=toro_deep_shine;a=1;os=true} @origin
+        - damage{a=15} @PlayersNearOrigin{r=5;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_smash_knockback} @PlayersNearOrigin{r=5;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=5;p=1} @origin
+
+toro_deep_creature_swipe_damage:
+    Skills:
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=20;hs=1.5;vs=0.5}
+        - damage{a=10} @PlayersNearOrigin{r=6;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - pull{v=5;to=true} @PlayersNearOrigin{r=6;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=1} @origin 
+        
+toro_deep_creature_heavysmash_damage:
+    Skills:
+        - summon{t=toro_deep_creature_debris_large;a=1;os=true} @origin 
+        - damage{a=20} @PlayersNearOrigin{r=5;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_heavysmash_knockback} @PlayersNearOrigin{r=5;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#49DEEA;size=2;a=100;hs=3;vs=0.5} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.6} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.5} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.4} @origin 
+
+
+#===Charge
+toro_deep_creature_charge:
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=10to30} true
+    Skills:
+        - gcd{ticks=140} @self
+        - state{s=charge;learpin=10} @self
+        - setAI{ai=false} @self
+        - delay 12
+        - skill{s=toro_deep_creature_roar_damage} @self
+        - delay 20
+        - setAI{ai=true} @self
+        - spin{d=40;v=0} @self
+        - skill{s=toro_deep_creature_charge_skill;repeat=40;repeatInterval=1} @target
+        - summon{t=toro_deep_creature_dust_double;a=1;os=true;repeat=5;repeatInterval=8} @self
+        - delay 60
+        - setAI{ai=false} @self
+        - skill{s=toro_deep_creature_megasmash_damage} @origin
+        - delay 40
+        - setAI{ai=true} @self
+
+
+toro_deep_creature_charge_skill:
+    Skills:
+        - leap{velocity=200;noise=10} @target
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=5;hs=1.5;vs=0.5} @self
+        - damage{a=10} @PIR{r=8;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_charge_knockback} @PIR{r=8;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+
+toro_deep_creature_megasmash_damage:
+    Skills:
+        - summon{t=toro_deep_creature_debris_large;a=1;os=true} @RING{r=7;points=6}  
+        - summon{t=toro_blue_explosion_large;a=1;os=true} @RING{r=16;points=6}
+        - summon{t=toro_blue_explosion_small;a=5;r=16os=true} @self
+        - damage{a=25} @PIR{r=18;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_megasmash_knockback} @PIR{r=18;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=5;p=1} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.5} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0} @origin
+
+#===catch
+toro_deep_creature_catch: 
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to6} true
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=catch;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.5} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 24
+        - setAI{ai=true} @self
+        - delay 6
+        - setAI{ai=false} @self
+        - totem{ch=1;onStart=toro_deep_creature_catch_skill;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=right_hand}
+        - delay 20
+        - skill{s=toro_deep_creature_catch_check} @target 
+
+toro_deep_creature_catch_skill:
+    Skills:
+        - mountmodel{driver=false;mode=force;pbone=catch;dmg=false} @PlayersNearOrigin{r=6;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ];limit=1}
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=20;hs=1.5;vs=0.5} @origin
+
+toro_deep_creature_catch_check:
+    Conditions:
+        - ModelHasPassenger orElseCast toro_deep_creature_setAItrue
+    Skills:
+        - gcd{ticks=120} @self
+        - state{s=catch_shout;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 54
+        - skill{s=toro_deep_creature_roar_damage} @self
+        - effect:sound{s=entity.donkey.death;v=5;p=0.3} @self
+        - effect:sound{s=entity.donkey.death;v=5;p=0.4} @self
+        - effect:sound{s=entity.donkey.death;v=5;p=0.5} @self
+        - damage{a=1.5;ia=true;pi=true;repeat=9;repeatInterval=2} @ModelPassengers
+        - potion{t=CONFUSION;d=150;l=1;p=false;icon=false} @ModelPassengers
+        - delay 10
+        - potion{t=BLINDNESS;d=5;l=1;p=false;icon=false} @ModelPassengers
+        - delay 38
+        - dismountall{p=catch} @self
+        - setAI{ai=true} @self
+     
+#Sonic shot
+toro_deep_creature_sonic:
+    Cooldown: 10
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=8to20} true
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=sonic_shot;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 16
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - effect:sound{s=entity.wither.shoot;v=5;p=0} @self
+        - projectile{oT=toro_deep_creature_sonic_ticks_quick;i=1;v=20;g=0;sB=false;sE=false;hs=true;hfs=1.5} @target
+        - projectile{oT=toro_deep_creature_sonic_ticks;i=5;v=20;g=0;sB=false;sE=false;hs=true;hfs=0.5} @target
+        - delay 20
+        - setAI{ai=true} @self
+        
+toro_deep_creature_sonic_ticks_quick:
+    Skills:
+        - particles{p=crit_magic;a=20;hs=1;vs=1} @origin
+        
+toro_deep_creature_sonic_ticks:
+    Skills:
+        - summon{t=toro_deep_creature_dust_double;a=1} @origin
+        - damage{a=3;ia=true} @PlayersNearOrigin{r=2;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_sonic_knockback} @PlayersNearOrigin{r=2;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+
+#== roar
+toro_deep_creature_roar:
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to8} true
+    Skills:
+        - gcd{ticks=60} @self
+        - state{s=roar;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 22
+        - damage{a=15} @PlayersNearOrigin{r=10;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=toro_deep_creature_roar_damage} @self
+        - delay 34
+        - setAI{ai=true} @self
+
+#=== jump smash
+toro_deep_creature_jumpsmash:
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=8to15} true
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=jump_smash;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 13
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - setAI{ai=true} @self
+        - potion{t=speed;d=10;l=10;p=false} @self
+        - delay 10
+        - setAI{ai=false} @self
+        - delay 4
+        - totem{ch=1;onStart=toro_deep_creature_jumpsmash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - totem{ch=1;onStart=toro_deep_creature_jumpsmash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - delay 15
+        - randomskill{s=toro_deep_creature_jumpsmash_cont} @target
+
+toro_deep_creature_jumpsmash_cont:
+    Conditions:
+        - onground orElseCast toro_deep_creature_setAItrue
+        - incombat orElseCast toro_deep_creature_setAItrue
+    TargetConditions:
+        - distance{d=5to15} orElseCast toro_deep_creature_setAItrue
+    Skills:
+        - gcd{ticks=50} @self
+        - state{s=jump_smash_cont;lerpin=3} @self
+        - setAI{ai=false} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 4
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - setAI{ai=true} @self
+        - potion{t=speed;d=10;l=10;p=false} @self
+        - delay 10
+        - setAI{ai=false} @self
+        - delay 7
+        - totem{ch=1;onStart=toro_deep_creature_jumpsmash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - totem{ch=1;onStart=toro_deep_creature_jumpsmash_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - delay 20
+        - randomskill{s=toro_deep_creature_jumpsmash_cont,toro_deep_creature_setAItrue} @target
+
+toro_deep_creature_jumpsmash_damage:
+    Skills:
+        - summon{t=toro_deep_creature_debris_large;a=1;os=true} @origin 
+        - damage{a=15} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_jumpsmash_knockback} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#49DEEA;size=2;a=50;hs=3;vs=0.5} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.9} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.8} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.7} @origin  
+
+#=== side strike
+toro_deep_creature_side_strike:
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to8} true
+    Skills:
+        - randomskill{s=toro_deep_creature_leftstrike,toro_deep_creature_rightstrike} @target
+
+toro_deep_creature_leftstrike:
+    Skills:
+        - gcd{ticks=90} @self
+        - state{s=left_side_strike;lerpin=3} @self
+        - setAI{ai=false} @self
+        - delay 30
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 16
+        - effect:sound{s=item.armor.equip_leather;v=5;p=0;repeat=6;repeatInterval=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0} @self
+        - totem{ch=1;onStart=toro_deep_creature_side_strike_damage;int=1;hR=3;md=1;repeat=8;repeatInterval=1} @ModelPart{mid=deep_creature;part=left_hand}
+        - delay 5
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=30;hs=1.5;vs=0.8} @Ring{radius=12;points=12;yRotation=30}
+        - totem{ch=1;onStart=toro_deep_creature_side_strike_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=left_hand;x=-1;z=-1}
+        - delay 26
+        - setAI{ai=true} @self
+
+toro_deep_creature_rightstrike:
+    Skills:
+        - gcd{ticks=90} @self
+        - state{s=right_side_strike;lerpin=3} @self
+        - setAI{ai=false} @self
+        - delay 30
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.7} @self
+        - delay 16
+        - effect:sound{s=item.armor.equip_leather;v=5;p=0;repeat=6;repeatInterval=1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0.1} @self
+        - effect:sound{s=entity.polar_bear.warning;v=5;p=0} @self
+        - totem{ch=1;onStart=toro_deep_creature_side_strike_damage;int=1;hR=3;md=1;repeat=8;repeatInterval=1} @ModelPart{mid=deep_creature;part=right_hand}
+        - delay 5
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=30;hs=1.5;vs=0.8} @Ring{radius=12;points=12;yRotation=30}
+        - totem{ch=1;onStart=toro_deep_creature_side_strike_damage;int=1;hR=3;md=1} @ModelPart{mid=deep_creature;part=right;x=1;z=1}
+        - delay 26
+        - setAI{ai=true} @self
+
+toro_deep_creature_side_strike_damage:
+    Skills:
+        - damage{a=15} @PlayersNearOrigin{r=8;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_sidestrike_knockback} @PlayersNearOrigin{r=8;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=30;hs=2;vs=0.8} @origin
+        
+toro_deep_creature_earthquake:
+    Cooldown: 40
+    Conditions:
+        - incombat true
+        - onground true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to16} true
+    Skills:
+        - gcd{ticks=120} @self
+        - state{s=earthquake;lerpin=3} @self
+        - setAI{ai=false} @self
+        - delay 14
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=left_hand}
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=left_hand}
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - delay 6
+        - particles{p=block_crack;m=cyan_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=right_hand}
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=0.5;vs=1}  @ModelPart{mid=deep_creature;part=right_hand}
+        - effect:sound{s=block.gravel.break;v=5;p=0} @self
+        - delay 4
+        - skill{s=toro_deep_creature_roar_damage} @self
+        - delay 54
+        #==== earthquake explode damage section ====
+        - effect:sound{s=entity.generic.explode;v=5;p=1} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0.5} @origin
+        - effect:sound{s=entity.generic.explode;v=5;p=0} @origin
+        #
+        - damage{a=15} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_earthquake_knockback} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - summon{t=toro_blue_explosion_large;a=1;os=true} @RING{r=5;points=3}
+        - delay 4
+        - damage{a=15} @PlayersNearOrigin{r=14;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_earthquake_knockback} @PlayersNearOrigin{r=14;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - summon{t=toro_blue_explosion_large;a=1;os=true} @RING{r=12;points=4}
+        - delay 4
+        - damage{a=15} @PlayersNearOrigin{r=21;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=deep_creature_earthquake_knockback} @PlayersNearOrigin{r=21;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - summon{t=toro_blue_explosion_large;a=1;os=true} @RING{r=18;points=6}
+        - summon{t=toro_blue_explosion_small;a=5;r=16;os=true} @self
+        - summon{t=toro_deep_creature_debris_large;a=3;r=16;os=true} @self
+        #================
+        - delay 40
+        - setAI{ai=true} @self
+ 
+#===VFX model skills
+toro_deep_creature_debris_large_spawn:
+    Skills:
+        - delay 2
+        - particles{p=block_crack;m=black_concrete_powder;a=100;hs=2.5;vs=1} @origin{y=0.5}
+        - delay 5
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=2.5;vs=1} @origin{y=0.5}
+        - delay 13
+        - remove{} @self
+
+toro_deep_creature_debris_small_spawn:
+    Skills:
+        - delay 2
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=1.5;vs=0.5} @origin{y=0.5}
+        - delay 18
+        - remove{} @self
+
+toro_blue_explosion_large_spawn:
+    Skills:
+        - delay 2
+        - summon{t=toro_deep_creature_debris_small;a=1;os=true} @self 
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=50;hs=2;vs=1} @self
+        - delay 18
+        - remove{} @self
+
+toro_blue_explosion_small_spawn:
+    Skills:
+        - delay 2
+        - particles{p=dustColorTransition;color1=#49DEEA;color2=#A559F7;size=2;a=20;hs=1.5;vs=0.5} @self
+        - particles{p=block_crack;m=black_concrete_powder;a=50;hs=1.5;vs=0.5} @origin{y=0.5}
+        - delay 14
+        - remove{} @self
+
+toro_deep_creature_dust_ring_spawn:
+    Skills:
+        - setAI{ai=false} @self
+        - delay 2
+        - particles{p=falling_dust;a=60;hs=4;vs=1} @self
+        - delay 48
+        - remove{} @self
+
+toro_deep_creature_dust_double_spawn:
+    Skills:
+        - delay 2
+        - particles{p=falling_dust;a=20;hs=1.5;vs=0.5} @self
+        - delay 8
+        - remove{} @self
+
+toro_deep_shine_spawn:
+    Skills:
+        - delay 28
+        - remove{} @self

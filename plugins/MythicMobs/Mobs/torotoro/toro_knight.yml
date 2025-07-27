@@ -1,0 +1,117 @@
+#If Encountering error spam using mmoitem weapons, swap the models with the models in the "single_hitbox_model" folder
+toro_knight_horse:
+  Type: IRON_GOLEM
+  Display: '&3&lSoul Knight'
+  Faction: soul
+  Health: 1500
+  KillMessages:
+  - '&7&l<target.name> is killed by soul knight'
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.2
+    FollowRange: 64
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  BossBar:
+    Enabled: true
+    Title: '&3&lForsaken Soul Knight'
+    Range: 60
+    Color: RED
+    Style: SEGMENTED_10
+  Skills:
+  - skill{s=soulknight_horsedeath} @self ~onDeath
+  - skill{s=soulknight_horse_vfx} @self ~onTimer:10
+  - randomskill{s=soulknight_horse_chargeuppercut,soulknight_horse_sidestrike,soulknight_horse_sideswing,soulknight_horse_leapstrike,soulknight_horse_rearingstomp,soulknight_horse_downswing,soulknight_horse_charging;sync=true} @target ~onTimer:10
+  - skill{s=soulknight_rush} @self ~onTimer:60
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=soulknight_withhorse;n=false;tint=false} @self ~onSpawn
+  - bodyclamp{m=soulknight_withhorse;c=60} @self ~onSpawn
+  Drops:
+    - toro_deep_creatureDrops
+
+#========knight on ground=====
+toro_knight:
+  Type: IRON_GOLEM
+  Display: '&3&lSoul Knight'
+  Faction: soul
+  Health: 1000
+  KillMessages:
+  - '&7&l<target.name> is killed by soul knight'
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.15
+    FollowRange: 30
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 20
+  BossBar:
+    Enabled: true
+    Title: '&3&lSoul Knight'
+    Range: 40
+    Color: RED
+    Style: SEGMENTED_10
+  Skills:
+  - skill{s=soulknight_death} @self ~onDeath
+  - effect:particles{p=warped_spore;a=15;s=0.1;vs=1;hs=1} @self ~onTimer:20
+  - randomskill{s=soulknight_thrust,soulknight_combo,soulknight_lunge,soulknight_stomp;sync=true} @target ~onTimer:5
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - skill{s=soulknight_spawn} @self ~onSpawn
+  - model{mid=soulknight;n=false;tint=false} @self ~onSpawn
+
+#===stomp shockwave Mob ====
+soulknight_stomp_shockwave:
+  Type: cat
+  Faction: soul
+  Health: 1000
+  KillMessages:
+  - '&7&l<target.name> is killed by soul knight'
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Options:
+    MovementSpeed: 0.0001
+    FollowRange: 30
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 20
+  Skills:
+  - skill{s=stomp_shockwave_spawn} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=stomp_shockwave;n=false;tint=false} @self ~onSpawn
+  - bodyclamp{m=soulknight_withhorse;c=0} @self ~onSpawn

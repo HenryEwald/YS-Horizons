@@ -1,0 +1,10 @@
+isEnabled: true
+entityType: ZOMBIE
+name: $reinforcementLevel &7Zombie Friend
+level: dynamic
+healthMultiplier: 0.5
+damageMultiplier: 0.5
+dropsEliteMobsLoot: false
+dropsVanillaLoot: false
+onSpawnBlockStates: []
+onRemoveBlockStates: []

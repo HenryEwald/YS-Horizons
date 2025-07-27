@@ -1,0 +1,1 @@
+give @s leather_boots{Tags:["dune_strider"],AttributeModifiers:[{AttributeName:"generic.armor",Amount:2,Slot:feet,Name:"generic.armor",UUID:[I;-12314,20860,191426,-41720]}],display:{color:16750106, Name:'[{"text":"Dune Strider Boots","italic":false,"color":"gold"}]',Lore:['[{"text":"Run faster on sand","italic":false,"color":"white"}]']}} 1

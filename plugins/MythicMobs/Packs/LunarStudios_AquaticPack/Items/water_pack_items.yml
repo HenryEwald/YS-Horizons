@@ -1,0 +1,95 @@
+crab_claw:
+  Id: FEATHER
+  Model: 45238
+  Display: "<#ff9966>Crab's Claw"
+  Options:
+    Unbreakable: true
+    HideFlags: true
+  Lore:
+  - " "
+  - "&7Drops with a 30% chance from a crab."
+  - "&7Put a crab's claw in your right hand"
+  - "&7and a stick in your left hand, then"
+  - "&7right-click to craft the crab tool."
+  - " "
+  Skills:
+  - skill{s=Craft_Crab_Tool} @self ~onUse
+  - modifytargetscore{obj=crab_craft_cd;a=SET;v=0} @self ~onTimer:40
+  
+crab_tool:
+  Id: IRON_AXE
+  Model: 5143
+  Display: "<#ff9966>C<#ff8f57>r<#ff8649>a<#ff7c3a>b <#ff722c>T<#ff681d>o<#ff5f0f>o<#ff5500>l"
+  Attributes:
+    MainHand:
+      Damage: 5
+      AttackSpeed: -0.444
+  Options:
+    Unbreakable: true
+    HideFlags: true
+  Lore:
+  - " "
+  - "&7Click on crab to make it..."
+  - " "
+  
+  
+  
+rusty_anchor:
+  Id: IRON_AXE
+  Model: 5144
+  Display: "<#3e756c>R<#3d7269>u<#3b7066>s<#3a6d64>t<#386b61>y <#37685e>S<#35665b>e<#346359>a <#326156>A<#315e53>n<#2f5c50>c<#2e594e>h<#2c574b>o<#2b5448>r"
+  Attributes:
+    MainHand:
+      Damage: 10
+      AttackSpeed: -0.74
+  Options:
+    Unbreakable: true
+    HideFlags: true
+  Lore:
+  - " "
+  - "&7A large rusty sea anchor covered in seaweed."
+  - "&7It has long been corroded from old age."
+  - "&7Right click to throw it at the enemy."
+  - " "
+  Skills:
+  - skill{s=Anchor_Throw} @self ~onUse
+  
+  
+  
+swordfish_nose:
+  Id: FEATHER
+  Model: 45239
+  Display: "<#006699>Swordfish's Nose"
+  Options:
+    Unbreakable: true
+    HideFlags: true
+  Lore:
+  - " "
+  - "&7Drops with a 30% chance from a swordfish."
+  - "&7Put a swordfish nose in your right hand"
+  - "&7and a stick in your left hand, then"
+  - "&7right-click to craft the swordfish sword."
+  - " "
+  Skills:
+  - skill{s=Craft_Swordfish_Sword} @self ~onUse
+  - modifytargetscore{obj=swordfish_craft_cd;a=SET;v=0} @self ~onTimer:40
+  
+swordfish_sword:
+  Id: IRON_SWORD
+  Model: 265234
+  Display: "<#009999>S<#009599>w<#009199>o<#008d99>r<#008999>d<#008599>f<#008199>i<#007e99>s<#007a99>h <#007699>S<#007299>w<#006e99>o<#006a99>r<#006699>d"
+  Attributes:
+    MainHand:
+      Damage: 10
+      AttackSpeed: -0.5
+  Options:
+    Unbreakable: true
+    HideFlags: true
+  Lore:
+  - " "
+  - "&7A sword made from the nose of a swordfish. Very"
+  - "&7Sharp and dangerous. Weakens enemies when attacked."
+  - " "
+  Skills:
+  - skill{s=Swordfish_Sword_Attack} @target ~onAttack
+#cnWOR3UHRVTJZTVGlHZVNVMJR0YxUFVOhXVU9keRRlT5lFblt2bshVdvdHO4MnavN1bBRVN

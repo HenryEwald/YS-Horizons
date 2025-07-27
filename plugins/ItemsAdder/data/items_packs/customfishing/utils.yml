@@ -1,0 +1,28 @@
+info:
+  namespace: customfishing
+items:
+  fish_compass:
+    display_name: "&7Fish Compass"
+    nbt: '{CustomFishing:{type: util, id: fishfinder}}'
+    lore:
+    - "&7→ Type &6Util"
+    resource:
+      material: PAPER
+      generate: true
+      textures:
+      - items/fish_compass
+      model_id: 647
+  water_effect:
+    display_name: " "
+    resource:
+      material: PAPER
+      generate: false
+      model_path: items/splash_water
+      model_id: 888
+  lava_effect:
+    display_name: " "
+    resource:
+      material: PAPER
+      generate: false
+      model_path: items/splash_lava
+      model_id: 889

@@ -1,0 +1,453 @@
+﻿#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+#            FPV2 - Ghoul pack             #
+#                  ---                     #
+#                by Nocsy                  #
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+
+############################################
+#                 Ghoul                    #
+############################################
+
+Nocsy_FPV2-Ghoul:
+  Type: HUSK
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - attacker
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_ghoul;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Ghoul-Spawn} @self ~onSpawn
+   
+   - skill{s=Nocsy_FPV2-Ghoul-Attack} ~onAttack
+   
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bGhoul"
+  Health: 50
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.9
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.28
+
+Nocsy_FPV2-Ghoul-Tombstone:
+  Type: HUSK
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - attacker
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_ghoul_grave;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Ghoul-Spawn} @self ~onSpawn
+   
+   - skill{s=Nocsy_FPV2-Ghoul-Attack} ~onAttack
+   
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bGhoul"
+  Health: 50
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.9
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.28
+
+Nocsy_FPV2-Ghoul-Crash:
+  Type: HUSK
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - attacker
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_ghoul_crash;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Ghoul-Spawn-Crash} @self ~onSpawn
+   
+   - skill{s=Nocsy_FPV2-Ghoul-Attack} ~onAttack
+   
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Ghoul-Sound-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bGhoul"
+  Health: 50
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.9
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.28
+
+Nocsy_FPV2-Ghoul-Projectile:
+  Type: HUSK
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  - lookatplayers
+  AITargetSelectors:
+  - clear
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_ghoul_projectile;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bGhoul"
+  Health: 50
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.9
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.28
+    
+############################################
+#               Tombstone                  #
+############################################
+
+Nocsy_FPV2-Tombstone:
+  Type: ARMOR_STAND
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - skill{s=Nocsy_FPV2-Tombstone-Model} ~onSpawn
+   - skill{s=Nocsy_FPV2-Tombstone-Spawn} ~onSpawn
+   - skill{s=Nocsy_FPV2-Tombstone-Summon} ~onSpawn
+  Display: "&7Grave"
+  Options:
+    Invincible: true
+    Invisible: true
+    Collidable: false
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 1
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+
+Nocsy_FPV2-Tombstone-Trigger:
+  Type: ARMOR_STAND
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - skill{s=Nocsy_FPV2-Tombstone-Model} ~onSpawn
+   - skill{s=Nocsy_FPV2-Tombstone-Spawn} ~onSpawn
+   - skill{s=Nocsy_FPV2-Tombstone-Summon-WaitingPlayer} ~onTimer:10
+  Display: "&7Grave"
+  Options:
+    Invincible: true
+    Invisible: true
+    Collidable: false
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 1
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+
+############################################
+#                Doghoul                   #
+############################################
+
+Nocsy_FPV2-Doghoul:
+  Type: WOLF
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - attacker
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_dog;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Doghoul-Spawn} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Doghoul-AI} @self ~onTimer:10
+   
+   - skill{s=Nocsy_FPV2-Doghoul-Attack} ~onTimer:20
+   
+   - skill{s=Nocsy_FPV2-Doghoul-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Doghoul-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Doghoul-Sound-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bDoghoul"
+  Health: 20
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.3
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.27
+    
+Nocsy_FPV2-Doghoul-Pet:
+  Type: WOLF
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - monsters
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_dog;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Doghoul-Spawn} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Doghoul-AI-Pet} @self ~onTimer:13
+   - skill{s=Nocsy_FPV2-Doghoul-Despawn} @self ~onDespawn
+   
+   - skill{s=Nocsy_FPV2-Doghoul-Attack-Pet} ~onTimer:20
+   
+   - skill{s=Nocsy_FPV2-Doghoul-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Doghoul-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Doghoul-Sound-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bDoghoul"
+  Health: 20
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 0.3
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.27
+
+############################################
+#                Slender                   #
+############################################
+
+Nocsy_FPV2-Slender:
+  Type: HUSK
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - attacker
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_slender;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Slender-Spawn} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Slender-AI} @self ~onTimer:60
+   - skill{s=Nocsy_FPV2-Slender-Effect} ~onTimer:10
+   
+   - skill{s=Nocsy_FPV2-Slender-Attack} ~onTimer:20
+   - skill{s=Nocsy_FPV2-Slender-AI-Teleport-Damaged} ~onDamaged
+   
+   - skill{s=Nocsy_FPV2-Slender-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Slender-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Slender-Sound-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bSlender"
+  Health: 50
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 1
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.27
+
+############################################
+#                 Ghost                    #
+############################################
+
+Nocsy_FPV2-Ghost:
+  Type: VEX
+  Faction: FPV2_Ghoul
+  Drops: []
+  Equipment: []
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_ghost;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Ghost-Spawn} @self ~onSpawn
+   
+   - skill{s=Nocsy_FPV2-Ghost-Attack} ~onTimer:20
+   
+   - skill{s=Nocsy_FPV2-Ghost-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Ghost-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Ghost-Sound-Death} ~onDeath
+   - skill{s=Nocsy_FPV2-Ghost-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bGhost"
+  Health: 30
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 1
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.27
+
+############################################
+#              Gravekeeper                 #
+############################################
+
+Nocsy_FPV2-Gravekeeper:
+  Type: HUSK
+  Faction: FPV2_Ghoul
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  - randomstroll
+  AITargetSelectors:
+  - clear
+  - players
+  - attacker
+  Drops: []
+  Equipment: []
+  BossBar:
+    Enabled: true
+    Title: '&f☠ &bThe Gravekeeper &f☠'
+    Range: 60
+    Color: PURPLE
+    Style: SOLID
+  Modules:
+    ThreatTable: true
+  Skills:
+   - model{mid=nocsy_fpv2_boss;n=false} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Gravekeeper-Spawn} @self ~onSpawn
+   - skill{s=Nocsy_FPV2-Gravekeeper-Cycle} ~onTimer:10
+   - skill{s=Nocsy_FPV2-Gravekeeper-PreventWeirdMoves} ~onTimer:5
+   
+   - skill{s=Nocsy_FPV2-Gravekeeper-MeleeAttack} ~onTimer:10
+   - skill{s=Nocsy_FPV2-Gravekeeper-Projectile} ~onTimer:80
+   - skill{s=Nocsy_FPV2-Gravekeeper-Summon} ~onTimer:20
+   - skill{s=Nocsy_FPV2-Gravekeeper-Antibow} ~onDamaged <=90% 0.3
+   - skill{s=Nocsy_FPV2-Gravekeeper-Summon-Tag} ~onDamaged =80% 1
+   - skill{s=Nocsy_FPV2-Gravekeeper-Summon-Tag} ~onDamaged =50% 1
+   - skill{s=Nocsy_FPV2-Gravekeeper-Summon-Tag} ~onDamaged =20% 1
+   
+   - skill{s=Nocsy_FPV2-Gravekeeper-Sound-Hurt} ~onDamaged
+   - skill{s=Nocsy_FPV2-Gravekeeper-Sound-Ambient} ~onTimer:600
+   - skill{s=Nocsy_FPV2-Gravekeeper-Sound-Death} ~onDeath
+   
+   - skill{s=Nocsy_FPV2_CancelAttack;sync=true} ~onAttack
+  Display: "&bThe Gravekeeper"
+  Health: 500
+  Damage: 0
+  Options:
+    Despawn: false
+    AlwaysShowName: false
+    PreventOtherDrops: true
+    Silent: true
+    KnockbackResistance: 1
+    FollowRange: 40
+    PreventItemPickup: true
+    PreventRandomEquipment: true
+    MovementSpeed: 0.27
+#glQ1AVTrxWRphzSIlkUSJjQVpXYxUFVOhXVU9keRRlT5VUbSNHVoRWQwYFVTZGV5onb5lVN

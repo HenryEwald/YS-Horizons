@@ -1,0 +1,35 @@
+location: 4727db74-7d17-4df7-b429-2e8dad934b2c~-13.5~64.5~618.5
+xn-radius: 5
+xp-radius: 5
+yn-radius: 5
+yp-radius: 5
+zn-radius: 5
+zp-radius: 5
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner
+upkeep-history:
+  '1748936198428': 0
+  '1748938902432': 0
+  '1748939804430': 0
+  '1748979002484': 0
+  '1748977441714': 0
+  '1748978009579': 0
+  '1748937098429': 0
+  '1748935297395': 0
+  '1748938000429': 0
+  '1748941190365': 0
+  '1748940489234': 0
+  '1748977297507': 0
+effects:
+- block_fire
+- door_use
+- cant_override
+- port:town
+- housing:2
+- block_break
+- block_build
+- chest_use
+- block_liquid
+type: council_room
+exp: 0.0
+warehouse-enabled: true

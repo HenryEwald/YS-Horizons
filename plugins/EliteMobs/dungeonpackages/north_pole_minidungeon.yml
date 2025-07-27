@@ -1,0 +1,22 @@
+isEnabled: false
+name: '&2[lvl 055-060] &9The North Pole'
+dungeonLocationType: WORLD
+customInfo:
+- '&fThe Christmas minidungeon!'
+- '&6Credits: MagmaGuy & 69OzCanOfBepis'
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: MINIDUNGEON
+worldName: em_north_pole
+environment: NORMAL
+protect: true
+playerInfo: |-
+  Difficulty: &6Medium
+  $bossCount bosses, from level $lowestTier to $highestTier
+  &6Christmas in a snow globe!
+regionEnterMessage: '&8[EM] &7You have reached the North Pole! &fHave you been naughty
+  this year?'
+regionLeaveMessage: '&8[EM] &7Come back and visit. &fThere are plenty of sweets and
+  treats for next time!'
+teleportLocation: em_north_pole,-265,42,-504,44,0
+contentType: OPEN_DUNGEON
+dungeonConfigFolderName: the_north_pole

@@ -1,0 +1,25 @@
+location: 6a828306-aff0-497b-be22-41a1a754f66c~144.5~65.5~-232.5
+xn-radius: 5
+xp-radius: 5
+yn-radius: 5
+yp-radius: 5
+zn-radius: 5
+zp-radius: 5
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner
+effects:
+- door_use
+- block_fire
+- bed
+- deny_damage
+- port:owner
+- block_break
+- block_build
+- active:1209600
+- chest_use
+- block_explosion
+- block_liquid
+type: shelter
+exp: 0.0
+warehouse-enabled: true
+last-active: 1686018678567

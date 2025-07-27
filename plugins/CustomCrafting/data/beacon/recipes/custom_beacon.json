@@ -1,0 +1,158 @@
+{
+  "@type" : "customcrafting:crafting_shaped",
+  "group" : "",
+  "hidden" : false,
+  "vanillaBook" : true,
+  "priority" : "HIGHEST",
+  "checkNBT" : false,
+  "conditions" : {
+    "values" : [ ]
+  },
+  "symmetry" : {
+    "horizontal" : false,
+    "vertical" : false,
+    "rotate" : false
+  },
+  "shape" : [ "ABC", "DEF", "GHI" ],
+  "ingredients" : {
+    "E" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "NETHER_STAR"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "D" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GLASS"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "C" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GLASS"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "B" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GLASS"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "A" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GLASS"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "I" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "OBSIDIAN"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "H" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "OBSIDIAN"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "G" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "OBSIDIAN"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "F" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GLASS"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    }
+  },
+  "checkAllNBT" : false,
+  "settings" : { },
+  "result" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "BEACON",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "TILE_ENTITY",
+          "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"green\",\"text\":\"Beacon\"}],\"text\":\"\"}",
+          "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"gray\",\"text\":\"\"}],\"text\":\"\"}", "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"dark_gray\",\"text\":\"   [\"},{\"bold\":true,\"italic\":false,\"color\":\"aqua\",\"text\":\"+\"},{\"bold\":false,\"italic\":false,\"color\":\"dark_gray\",\"text\":\"] \"},{\"italic\":false,\"color\":\"gray\",\"text\":\"Effects:\"}],\"text\":\"\"}", "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"dark_gray\",\"text\":\"        ▶ \"},{\"italic\":false,\"color\":\"red\",\"text\":\"- No Effect -\"}],\"text\":\"\"}", "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"gray\",\"text\":\"\"}],\"text\":\"\"}" ],
+          "internal" : "H4sIAAAAAAAA/+NiYGBn4HMKMI539Q0IiYz3DHH1ZWBgYCkpKk1lAAABetZsHQAAAA==",
+          "blockMaterial" : "BEACON"
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "extensions" : [ ]
+  }
+}

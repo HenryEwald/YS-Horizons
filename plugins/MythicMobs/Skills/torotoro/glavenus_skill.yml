@@ -1,0 +1,243 @@
+CancelEventSkill:
+    Skills:
+        - CancelEvent
+
+#===== swingtail=====
+glavenus_swingtail:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=146}
+        - setAI{ai=false} @self
+        - state{s=swingtail} @self
+        - delay 33
+        - effect:sound{s=minecraft:entity.ender_dragon.shoot;v=2;p=0} @self
+        - delay 5
+        - effect:sound{s=entity.zombie.break_wooden_door;v=4;p=0} @origin
+        - effect:particles{p=reddust;color=#F56A31;amount=80;hs=0.5;vs=0.5;repeat=5;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=80;hs=0.5;vs=0.5;repeat=5;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 4
+        - effect:particles{p=lava;amount=100;hs=1;vs=1} @ModelPart{mid=glavenus;part=tailblade}
+        - totem{ch=1;onStart=glavenus_swingtail_damage;int=1;hR=3;md=1} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 100
+        - setAI{ai=true} @self
+glavenus_swingtail_damage:
+    Skills:
+        - effect:particles{particle=reddust;color=#F56A31;amount=100;speed=0.25;hs=1.5;vs=1} @origin
+        - damage{a=15} @ENO{r=8}
+        
+        
+#===== bite =====
+glavenus_bite:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to10} true
+    Skills:
+        - gcd{ticks=70}
+        - setAI{ai=false} @self
+        - state{s=bite} @self
+        - delay 17
+        - setAI{ai=true} @self
+        - delay 1 
+        - lunge{v=1} @target
+        - effect:sound{s=entity.evoker_fangs.attack;v=2;p=0} @origin
+        - delay 5
+        - setAI{ai=false} @self
+        - totem{ch=1;onStart=glavenus_bite_damage;int=1;hR=3;md=1} @Forward{f=6.0}
+        - delay 50
+        - setAI{ai=true} @self
+        
+glavenus_bite_damage:
+    Skills:
+        - delay 2
+        - effect:particles{particle=reddust;color=#F56A31;amount=100;speed=0.25;hs=1.5;vs=1} @origin
+        - damage{a=10} @ENO{r=6}
+
+
+#===== rightslash ====
+glavenus_rightslash:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=70}
+        - setAI{ai=false} @self
+        - state{s=rightslash} @self
+        - delay 20
+        - effect:particles{p=reddust;color=#F56A31;amount=20;hs=0.5;vs=0.5;repeat=10;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=20;hs=0.5;vs=0.5;repeat=15;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 4
+        - effect:sound{s=item.armor.equip_leather;v=2;p=0} @origin
+        - damage{a=15} @LivingInCone{a=120.0;r=15;rot=30}
+        - delay 5
+        - effect:particles{p=reddust;color=#F56A31;amount=100;hs=2;vs=2;yOffset=-0.5} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 46
+        - setAI{ai=true} @self
+
+#===== leftsmash ====
+glavenus_leftsmash:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=70}
+        - setAI{ai=false} @self
+        - state{s=leftsmash} @self
+        - delay 17
+        - setAI{ai=true} @self
+        - delay 1 
+        - lunge{v=1} @target
+        - effect:particles{p=reddust;color=#F56A31;amount=20;hs=0.5;vs=0.5;repeat=15;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=20;hs=0.5;vs=0.5;repeat=15;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:sound{s=minecraft:entity.ender_dragon.shoot;v=2;p=0} @self
+        - delay 8
+        - setAI{ai=false} @self
+        - delay 4
+        - totem{ch=1;onStart=glavenus_leftsmash_damage;int=1;hR=3;md=1} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 10
+        - randomskill{s=glavenus_leftsmash_end,glavenus_rightsmash;sync=true} @self
+
+glavenus_leftsmash_damage:
+    Skills:
+        - effect:particles{particle=reddust;color=#F56A31;amount=100;speed=0.25;hs=1.5;vs=1} @origin
+        - effect:particles{p=lava;amount=100;hs=1;vs=2} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:sound{s=entity.generic.explode;v=2;p=0} @self
+        - damage{a=18} @ENO{r=8}
+
+glavenus_leftsmash_end:
+    Skills:
+        - delay 40
+        - setAI{ai=true} @self
+
+glavenus_rightsmash:
+    Skills:
+        - delay 10
+        - gcd{ticks=70}
+        - state{s=rightsmash} @self
+        - delay 10
+        - setAI{ai=true} @self
+        - delay 1 
+        - lunge{v=1} @target
+        - effect:particles{p=reddust;color=#F56A31;amount=20;hs=0.5;vs=0.5;repeat=15;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=20;hs=0.5;vs=0.5;repeat=15;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:sound{s=item.armor.equip_leather;v=2;p=0} @origin
+        - effect:sound{s=minecraft:entity.ender_dragon.shoot;v=2;p=0} @self
+        - delay 4
+        - setAI{ai=false} @self
+        - delay 2
+        - totem{ch=1;onStart=glavenus_rightsmash_damage;int=1;hR=3;md=1} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 50
+        - setAI{ai=true} @self
+
+glavenus_rightsmash_damage:
+    Skills:
+        - effect:particles{p=lava;amount=100;hs=1;vs=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{particle=reddust;color=#F56A31;amount=100;speed=0.25;hs=1.5;vs=1} @origin
+        - effect:sound{s=entity.generic.explode;v=2;p=0} @self
+        - damage{a=18} @ENO{r=8}
+
+#==== jumpsmash ====
+glavenus_jumpsmash:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to25} true
+    Skills:
+        - gcd{ticks=140}
+        - setAI{ai=false} @self
+        - state{s=jumpsmash;sp=1.1} @self
+        - delay 10
+        - setAI{ai=true} @self
+        - effect:particles{p=reddust;color=#F56A31;amount=20;hs=0.5;vs=0.5;repeat=40;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=20;hs=0.5;vs=0.5;repeat=15;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:sound{s=item.armor.equip_leather;v=2;p=0} @origin
+        - lunge{velocity=0.75;velocityY=0.0;repeat=13;repeatInterval=2} @target
+        - delay 26
+        - effect:sound{s=minecraft:entity.ender_dragon.shoot;v=2;p=0} @self
+        - delay 5
+        - totem{ch=1;onStart=glavenus_jumpsmash_damage;int=1;hR=3;md=1} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 5
+        - setAI{ai=false} @self
+        - delay 10
+        - randomskill{s=glavenus_jumpsmash_end,glavenus_rightsmash;sync=true} @self
+
+        
+glavenus_jumpsmash_damage:
+    Skills:
+        - effect:particles{particle=reddust;color=#F56A31 ;amount=200;speed=0.25;hs=4;vs=2;yOffset=-1} @origin
+        - effect:particles{p=lava;amount=100;hs=1;vs=2} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:sound{s=entity.generic.explode;v=2;p=0} @self
+        - damage{a=20} @ENO{r=8}
+
+glavenus_jumpsmash_end:
+    Skills:
+        - delay 30
+        - effect:sound{s=entity.ender_dragon.growl;v=10;p=1} @self
+        - delay 25
+        - setAI{ai=true} @self
+
+#===roundhouse=====
+glavenus_roundhouse:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=110}
+        - setAI{ai=false} @self
+        - state{s=roundhouse;sp=0.8} @self
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=20;hs=1;vs=1;repeat=25;repeatInterval=3} @ModelPart{mid=glavenus;part=tailblade}
+        - delay 84
+        - setAI{ai=true} @self
+        - effect:particles{p=reddust;color=#F56A31;amount=20;hs=0.5;vs=0.5;repeat=25;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=20;hs=0.5;vs=0.5;repeat=25;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=20;hs=0.5;vs=0.5;repeat=25;repeatInterval=1} @ModelPart{mid=glavenus;part=tailblade}
+        - effect:sound{s=minecraft:entity.ender_dragon.shoot;v=2;p=0} @self
+        - effect:sound{s=entity.ravager.attack;v=2;p=0} @origin
+        - lunge{velocity=3;velocityY=0.0;repeat=2;repeatInterval=1} @Forward
+        - delay 2
+        - damage{a=20} @EIR{r=16}
+        - effect:particlering{p=reddust;color=#F56A31;radius=13;points=64;amount=30;hS=0.7;vS=0.7;yOffset=0.5} @self
+        - effect:particlering{p=reddust;color=#F96A27 ;radius=11;points=64;amount=30;hS=0.7;vS=0.7;yOffset=1} @self
+        - delay 3
+        - setAI{ai=false} @self
+        - delay 30
+        - setAI{ai=true} @self
+
+#==========roar=====
+glavenus_roar:
+    Conditions:
+        - incombat true
+        - offgcd
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=60}
+        - setAI{ai=false} @self
+        - state{s=roar} @self
+        - delay 26
+        - stun{d=30} @EIR{r=25}
+        - effect:particles{p=crit;amount=40;hs=0.5;vs=0.5;s=2;repeat=7;repeatInterval=2} @ModelPart{mid=glavenus;part=head}
+        - effect:sound{s=entity.ender_dragon.growl;v=10;p=1} @self
+        - delay 30
+        - setAI{ai=true} @self
+
+
+#==========
+glavenus_death:
+    Skills:
+        - state{s=death} @self
+        - delay 64
+        - effect:particles{particle=end_rod;amount=40;speed=0.25;hs=2;vs=2} @origin
+        - remove @self

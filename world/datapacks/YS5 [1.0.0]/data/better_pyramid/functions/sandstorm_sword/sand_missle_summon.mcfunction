@@ -1,0 +1,1 @@
+summon armor_stand ~ ~ ~ {Tags:[sandMissle], NoGravity:1,Invulnerable:1,Small:1, Marker:1b, Invisible:1b, ArmorItems:[{id:diamond_boots,Count:0},{id:diamond_leggings,Count:0},{id:iron_chestplate,Count:0},{id:"sand",Count:1}]}

@@ -1,0 +1,980 @@
+Cancel_Attack:
+  Skills:
+  - CancelEvent
+  
+Crab_Attack:
+  Cooldown: 3
+  Conditions:
+  - variableEquals{var=caster.as;value=0} true
+  - playersinradius{a=>0;r=2.5}
+  Skills:
+  
+  - setVariable{var=caster.as;value=1}
+
+  - potion{type=SLOW;duration=20;level=200;p=false}
+  
+  - state{mid=crab;s=attack;li=3;lo=3;speed=2.3}
+  - delay 10
+  - damage{a=2} @LivingInCone{a=110.0;r=4.5;rot=-20.0}
+  
+  - effect:sound{s=entity.evoker_fangs.attack;v=7.0;pitch=2}
+
+  - delay 5
+  
+  - runaitargetselector{target=clear}
+
+  - runaigoalselector{goal=panic}
+  
+  - setspeed{speed=1.5;type=walking}
+  
+  - delay 50
+  
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=meleeattack}
+  
+  - runaitargetselector{target=clear}
+  - runaitargetselector{target=attacker}
+  
+  - setVariable{var=caster.as;value=0}
+  
+  - setspeed{speed=1;type=walking}
+  
+  
+Crab_Dance:
+  Conditions:
+  - variableEquals{var=caster.dance;value=0} true
+  TriggerConditions:
+  - holding{m=crab_tool} true
+  Skills:
+  - setVariable{var=caster.dance;value=1} @self
+  
+  - effect:sound{s=entity.experience_orb.pickup;v=7.0;pitch=2}
+  - setAI{ai=false} @self
+  - defaultstate{m=crab;t=idle;s=dance} @self
+  
+  - delay 60
+  
+  - setAI{ai=true} @self
+  - defaultstate{m=crab;t=idle;s=idle} @self
+  
+  - setVariable{var=caster.dance;value=0} @self
+  
+  
+  
+Craft_Crab_Tool:
+  Conditions:
+  - wearing{slot=OFFHAND;m=stick} true
+  - wearing{slot=HAND;m=crab_claw} true
+  - score{obj=crab_craft_cd;v=<1} true
+  Skills:
+  
+  - modifytargetscore{obj=crab_craft_cd;a=SET;v=3}
+  
+  - effect:sound{s=entity.experience_orb.pickup;v=7.0;pitch=2}
+  - effect:sound{s=block.anvil.use;v=7.0;pitch=1.5}
+  
+  - takeitem{i=stick;a=1}
+  - takeitem{i=crab_claw;a=1}
+  - giveitem{i=crab_tool}
+
+  
+  - delay 35
+  
+  - modifytargetscore{obj=crab_craft_cd;a=SET;v=0}
+  
+  
+Piranha_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - defaultstate{m=piranha;t=IDLE;s=walk2}
+  - defaultstate{m=piranha;t=WALK;s=walk2}
+  
+  - state{mid=piranha;s=walk2;li=3;lo=3}
+
+  
+
+Piranha_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.5;type=walking}
+  
+  - defaultstate{m=piranha;t=IDLE;s=idle}
+  - defaultstate{m=piranha;t=WALK;s=walk}
+  
+  - state{mid=piranha;s=walk2;li=3;lo=3;r=true}
+  
+Piranha_On_Land_Sound:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - effect:particles{particle=splash;amount=6;hS=0.4;vS=0.4;speed=0.1}
+  - effect:sound{s=entity.salmon.flop;v=7.0;pitch=1.2}
+  
+Piranha_On_Land_Death_Count:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} false
+  Skills:
+  
+  - variableadd{var=caster.death;amount=1}
+  
+Piranha_On_Land_Death:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} true
+  Skills:
+  
+  - damage{a=1.5}
+  
+  
+Piranha_Target:
+  Conditions:
+  - variableEquals{var=caster.target;value=1} true
+  - playersinradius{a=>0;r=23}
+  Skills:
+  - goto{speedModifier=2;sh=1;sv=1} @PlayersInRadius{r=23;limit=1;sort=NEAREST}
+  
+  
+Piranha_Attack:
+  Cooldown: 3
+  Conditions:
+  - variableEquals{var=caster.as;value=0} true
+  - variableEquals{var=caster.land;value=0} true
+  - variableEquals{var=caster.death;value=0} true
+  - playersinradius{a=>0;r=2}
+  Skills:
+  
+  - setVariable{var=caster.as;value=1}
+  - setVariable{var=caster.target;value=0}
+  
+  - state{mid=piranha;s=walk;li=0;lo=0;r=true}
+  - state{mid=piranha;s=attack;li=3;lo=3}
+  - delay 14
+  
+  - damage{a=6} @LivingInCone{a=100.0;r=2;rot=0.0;target=players}
+  - effect:particles{p=reddust;color=#cc0000;amount=14;hS=0.3;vS=0.3} @LivingInCone{a=100.0;r=2;rot=0.0;target=players}
+  
+  - effect:sound{s=entity.player.swim;v=7.0;pitch=2}
+  - effect:sound{s=entity.player.attack.crit;v=7.0;pitch=1.6}
+
+  - delay 15
+  
+  - state{mid=piranha;s=walk;li=0;lo=0}
+
+  - goto{speedModifier=4;sh=5;sv=3} @RandomLocationsNearOrigin{a=1;r=30;s=1;minr=15}
+  
+
+  - delay 100
+  
+  - setVariable{var=caster.as;value=0}
+  - setVariable{var=caster.target;value=1}
+  
+  
+  
+  
+Anchor_Throw:
+
+  Skills:
+  
+  - potion{type=SLOW;duration=15;level=2}
+  
+  - takeitem{i=rusty_anchor;a=1}
+ 
+  
+  - effect:sound{s=entity.ender_dragon.flap;volume=10.0;pitch=0.1}
+  - effect:sound{s=entity.player.attack.crit;volume=10.0;pitch=0.1}
+  - throw{velocity=-1;velocityY=0}
+  
+  
+  - projectile{
+    bulletType=MOB;
+    mob=Rusty_Anchor_Throw;
+    onTick=Anchor-Projectile-Tick;
+    onEnd=Anchor-Projectile-End;
+    i=0.05;
+    v=16;
+    hnp=true;
+    hO=0;
+    syo=2;
+    hp=true;
+    sE=true;
+    gravity=0.4;
+    mr=25;
+    sB=true} @targetlocation
+  
+  - delay 55
+  
+  
+
+  
+  
+Anchor-Projectile-Tick:
+  Skills:
+  - effect:particles{particle=waterwake;amount=4;speed=0;hS=0.4;vS=0.4} @origin{yoffset=-1}
+  - effect:particles{particle=dripwater;amount=1;speed=0;hS=0.2;vS=0.2} @origin{yoffset=-1}
+  
+Anchor-Projectile-End:
+  Skills:
+ 
+  - summon{t=Rusty_Anchor} @origin{yoffset=0.5}
+
+
+Anchor_AI:
+  Conditions:
+  - variableEquals{var=caster.place;value=0} true
+  - motiony{v=0} true
+  Skills:
+  
+  - setVariable{var=caster.place;value=1}
+  
+  - effect:particles{p=explosionlarge;amount=1;hS=0.0;vS=0.0} 
+  
+  - damage{amount=15} @EIR{r=1.5}
+  
+  - effect:sound{s=block.anvil.land;v=4.0;pitch=0.5}
+  
+  
+Anchor_AI_2:
+  Conditions:
+  - variableEquals{var=caster.place;value=0} true
+  - onblock{m=AIR} false
+  - onblock{m=WATER} false
+  - onblock{m=SEAGRASS} false
+  Skills:
+  
+  - setVariable{var=caster.place;value=1}
+  
+  - effect:particles{p=explosionlarge;amount=1;hS=0.0;vS=0.0} 
+  
+  - damage{amount=15} @EIR{r=1.5}
+  
+  - effect:sound{s=block.anvil.land;v=4.0;pitch=0.5}
+  
+  
+Spawn_Anchor_AI:
+  Conditions:
+  - variableEquals{var=caster.place;value=0} true
+  - motiony{v=0} true
+  Skills:
+  - setVariable{var=caster.place;value=1}
+  - delay 20
+  - setAI{ai=false}
+  
+  
+Spawn_Anchor_AI_2:
+  Conditions:
+  - variableEquals{var=caster.place;value=0} true
+  - onblock{m=AIR} false
+  - onblock{m=WATER} false
+  - onblock{m=SEAGRASS} false
+  Skills:
+  - setVariable{var=caster.place;value=1}
+  - delay 20
+  - setAI{ai=false}
+  
+  
+  
+Anchor_Pickup:
+  Conditions:
+  - variableEquals{var=caster.place;value=1} true
+  TriggerConditions:
+  - wearing{slot=HAND;m=AIR} true
+  Skills:
+  
+  - effect:particles{p=happyvillager;amount=10;hS=0.7;vS=1.3} @self
+  
+  - effect:sound{s=entity.experience_orb.pickup;v=4.0;pitch=0.5}
+  
+  - giveitem{i=rusty_anchor}
+  
+  - remove @self
+
+  
+  
+  
+  
+  
+  
+Swordfish_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=swordfish;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=swordfish;t=IDLE;s=walk2}
+  - defaultstate{m=swordfish;t=WALK;s=walk2}
+
+  
+
+Swordfish_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.5;type=walking}
+  
+  - defaultstate{m=swordfish;t=IDLE;s=idle}
+  - defaultstate{m=swordfish;t=WALK;s=walk}
+  
+  - state{mid=swordfish;s=walk2;li=3;lo=3;r=true}
+  - state{mid=swordfish;s=walk;li=3;lo=3}
+  
+Swordfish_On_Land_Sound:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - effect:particles{particle=splash;amount=6;hS=0.4;vS=0.4;speed=0.1}
+  - effect:sound{s=entity.salmon.flop;v=7.0;pitch=1.2}
+  
+Swordfish_On_Land_Death_Count:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} false
+  Skills:
+  
+  - variableadd{var=caster.death;amount=1}
+  
+Swordfish_On_Land_Death:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} true
+  Skills:
+  
+  - damage{a=3}
+  
+  
+Swordfish_Target:
+  Conditions:
+  - variableEquals{var=caster.target;value=1} true
+  - playersinradius{a=>0;r=60}
+  Skills:
+  - goto{speedModifier=2;sh=1;sv=1} @PlayersInRadius{r=23;limit=1;sort=NEAREST}
+  
+  
+Swordfish_Attack:
+  Cooldown: 3
+  Conditions:
+  - variableEquals{var=caster.as;value=0} true
+  - variableEquals{var=caster.land;value=0} true
+  - variableEquals{var=caster.death;value=0} true
+  - playersinradius{a=>0;r=5}
+  Skills:
+  
+  - setVariable{var=caster.as;value=1}
+  - setVariable{var=caster.target;value=0}
+  
+  - state{mid=swordfish;s=walk;li=0;lo=0;r=true}
+  - state{mid=swordfish;s=attack;li=3;lo=3}
+  - delay 14
+  
+  - effect:particles{p=waterwake;amount=40;hS=1;vS=1} @MobsInRadius{r=3;types=BOAT}
+  - remove @MobsInRadius{r=3;types=BOAT}
+  
+  - dismount @LivingInCone{a=130.0;r=4;rot=0.0}
+  - damage{a=10} @LivingInCone{a=130.0;r=4;rot=0.0;target=players}
+  - effect:particles{p=reddust;color=#cc0000;amount=14;hS=0.3;vS=0.3} @LivingInCone{a=130.0;r=4;rot=0.0;target=players}
+  
+  
+  - effect:sound{s=entity.player.swim;v=7.0;pitch=2}
+  - effect:sound{s=entity.player.attack.crit;v=7.0;pitch=1.6}
+
+  - delay 17
+  - state{mid=swordfish;s=walk;li=0;lo=0}
+  
+  - setVariable{var=caster.as;value=0}
+  - setVariable{var=caster.target;value=1}
+  
+  
+  
+  
+  
+Craft_Swordfish_Sword:
+  Conditions:
+  - wearing{slot=OFFHAND;m=stick} true
+  - wearing{slot=HAND;m=swordfish_nose} true
+  - score{obj=swordfish_craft_cd;v=<1} true
+  Skills:
+  
+  - modifytargetscore{obj=swordfish_craft_cd;a=SET;v=3}
+  
+  
+  - effect:sound{s=entity.experience_orb.pickup;v=7.0;pitch=2}
+  - effect:sound{s=block.anvil.use;v=7.0;pitch=1.5}
+  
+  - takeitem{i=stick;a=1}
+  - takeitem{i=swordfish_nose;a=1}
+  - giveitem{i=swordfish_sword}
+
+  
+  - delay 35
+  
+  - modifytargetscore{obj=swordfish_craft_cd;a=SET;v=0}
+  
+  
+Swordfish_Sword_Attack:
+  Skills:
+  - potion{type=WEAKNESS;duration=65;level=1}
+  
+  
+  
+  
+  
+
+
+
+
+
+
+  
+Seahorse_Run_Away:
+  Cooldown: 7
+  Skills:
+
+  - goto{speedModifier=3;sh=5;sv=3} @RandomLocationsNearOrigin{a=1;r=30;s=1;minr=15}
+  - potion{type=SPEED;duration=80;level=2;p=false}
+  
+  
+  
+Seahorse_Blue_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=seahorse_blue;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=seahorse_blue;t=IDLE;s=walk2}
+  - defaultstate{m=seahorse_blue;t=WALK;s=walk2}
+
+Seahorse_Blue_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=seahorse_blue;t=IDLE;s=idle}
+  - defaultstate{m=seahorse_blue;t=WALK;s=walk}
+  
+  - state{mid=seahorse_blue;s=walk2;li=3;lo=3;r=true}
+  - state{mid=seahorse_blue;s=walk;li=3;lo=3}
+  
+Seahorse_Blue_On_Land_Sound:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - effect:particles{particle=splash;amount=3;hS=0.3;vS=0.3;speed=0.1}
+  - effect:sound{s=entity.cod.flop;v=7.0;pitch=1.2}
+  
+Seahorse_Blue_On_Land_Death_Count:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} false
+  Skills:
+  
+  - variableadd{var=caster.death;amount=1}
+  
+Seahorse_Blue_On_Land_Death:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} true
+  Skills:
+  
+  - damage{a=1}
+  
+  
+  
+  
+  
+  
+Seahorse_Pink_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=seahorse_pink;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=seahorse_pink;t=IDLE;s=walk2}
+  - defaultstate{m=seahorse_pink;t=WALK;s=walk2}
+  
+  
+Seahorse_Pink_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=seahorse_pink;t=IDLE;s=idle}
+  - defaultstate{m=seahorse_pink;t=WALK;s=walk}
+  
+  - state{mid=seahorse_pink;s=walk2;li=3;lo=3;r=true}
+  - state{mid=seahorse_pink;s=walk;li=3;lo=3}
+  
+Seahorse_Pink_On_Land_Sound:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - effect:particles{particle=splash;amount=3;hS=0.3;vS=0.3;speed=0.1}
+  - effect:sound{s=entity.cod.flop;v=7.0;pitch=1.2}
+  
+Seahorse_Pink_On_Land_Death_Count:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} false
+  Skills:
+  
+  - variableadd{var=caster.death;amount=1}
+  
+Seahorse_Pink_On_Land_Death:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} true
+  Skills:
+  
+  - damage{a=1}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+Seahorse_Green_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=seahorse_green;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=seahorse_green;t=IDLE;s=walk2}
+  - defaultstate{m=seahorse_green;t=WALK;s=walk2}
+  
+  
+Seahorse_Green_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=seahorse_green;t=IDLE;s=idle}
+  - defaultstate{m=seahorse_green;t=WALK;s=walk}
+  
+  - state{mid=seahorse_green;s=walk2;li=3;lo=3;r=true}
+  - state{mid=seahorse_green;s=walk;li=3;lo=3}
+  
+Seahorse_Green_On_Land_Sound:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - effect:particles{particle=splash;amount=3;hS=0.3;vS=0.3;speed=0.1}
+  - effect:sound{s=entity.cod.flop;v=7.0;pitch=1.2}
+  
+Seahorse_Green_On_Land_Death_Count:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} false
+  Skills:
+  
+  - variableadd{var=caster.death;amount=1}
+  
+Seahorse_Green_On_Land_Death:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} true
+  Skills:
+  
+  - damage{a=1}
+  
+  
+  
+  
+  
+  
+  
+Seahorse_Yellow_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=seahorse_yellow;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=seahorse_yellow;t=IDLE;s=walk2}
+  - defaultstate{m=seahorse_yellow;t=WALK;s=walk2}
+  
+  
+Seahorse_Yellow_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=seahorse_yellow;t=IDLE;s=idle}
+  - defaultstate{m=seahorse_yellow;t=WALK;s=walk}
+  
+  - state{mid=seahorse_yellow;s=walk2;li=3;lo=3;r=true}
+  - state{mid=seahorse_yellow;s=walk;li=3;lo=3}
+  
+Seahorse_Yellow_On_Land_Sound:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - effect:particles{particle=splash;amount=3;hS=0.3;vS=0.3;speed=0.1}
+  - effect:sound{s=entity.cod.flop;v=7.0;pitch=1.2}
+  
+Seahorse_Yellow_On_Land_Death_Count:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} false
+  Skills:
+  
+  - variableadd{var=caster.death;amount=1}
+  
+Seahorse_Yellow_On_Land_Death:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=16} true
+  Skills:
+  
+  - damage{a=1}
+  
+  
+  
+  
+  
+  
+Jellyfish_Attack:
+  Cooldown: 14
+  Conditions:
+  - playersinradius{a=>0;r=2}
+  Skills:
+  
+  - effect:particles{particle=scrape;amount=6;hS=0.6;vS=0.6;speed=0.1}
+  
+  - effect:sound{s=entity.squid.ambient;v=7.0;pitch=1.2}
+  
+  - effect:sound{s=entity.player.swim;v=7.0;pitch=2}
+  - effect:sound{s=entity.player.attack.crit;v=7.0;pitch=1.6}
+  
+  - potion{type=POISON;duration=80;level=2;p=false} @PIR{r=2}
+  - potion{type=SLOW;duration=20;level=2;p=false} @PIR{r=2}
+  
+  
+Jellyfish_Damaged:
+  Skills:
+  - skill{s=Jellyfish_Attack}
+  - goto{speedModifier=3;sh=5;sv=3} @RandomLocationsNearOrigin{a=1;r=30;s=1;minr=15}
+  - potion{type=SPEED;duration=80;level=2;p=false}
+ 
+  
+Jellyfish_On_Land_Sound:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - effect:particles{particle=splash;amount=4;hS=0.3;vS=0.3;speed=0.1}
+  - effect:sound{s=entity.squid.ambient;v=7.0;pitch=1.2}
+  
+Jellyfish_On_Land_Death_Count:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=25} false
+  Skills:
+  
+  - variableadd{var=caster.death;amount=1}
+  
+Jellyfish_On_Land_Death:
+  Conditions:
+  - variableEquals{var=caster.land;value=1} true
+  - variableEquals{var=caster.death;value=25} true
+  Skills:
+  
+  - effect:sound{s=entity.squid.hurt;v=7.0;pitch=1.2}
+  - damage{a=1}
+  
+  
+Jellyfish_Blue_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=jellyfish_blue;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=jellyfish_blue;t=IDLE;s=walk2}
+  - defaultstate{m=jellyfish_blue;t=WALK;s=walk2}
+
+Jellyfish_Blue_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=jellyfish_blue;t=IDLE;s=idle}
+  - defaultstate{m=jellyfish_blue;t=WALK;s=walk}
+  
+  - state{mid=jellyfish_blue;s=walk2;li=3;lo=3;r=true}
+  - state{mid=jellyfish_blue;s=idle;li=3;lo=3}
+  
+Jellyfish_Blue_Move:
+  Conditions:
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  - state{mid=jellyfish_blue;s=idle;li=0;lo=0;r=true}
+  - state{mid=jellyfish_blue;s=lunge;li=0;lo=3}
+  - delay 35
+  - lunge{velocity=0.4;velocityY=0} @Self
+  - delay 34
+  - state{mid=jellyfish_blue;s=idle;li=0;lo=0}
+  
+  
+  
+  
+  
+  
+  
+  
+Jellyfish_Pink_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=jellyfish_pink;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=jellyfish_pink;t=IDLE;s=walk2}
+  - defaultstate{m=jellyfish_pink;t=WALK;s=walk2}
+
+Jellyfish_Pink_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=jellyfish_pink;t=IDLE;s=idle}
+  - defaultstate{m=jellyfish_pink;t=WALK;s=walk}
+  
+  - state{mid=jellyfish_pink;s=walk2;li=3;lo=3;r=true}
+  - state{mid=jellyfish_pink;s=idle;li=3;lo=3}
+  
+Jellyfish_Pink_Move:
+  Conditions:
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  - state{mid=jellyfish_pink;s=idle;li=0;lo=0;r=true}
+  - state{mid=jellyfish_pink;s=lunge;li=0;lo=3}
+  - delay 35
+  - lunge{velocity=0.4;velocityY=0} @Self
+  - delay 34
+  - state{mid=jellyfish_pink;s=idle;li=0;lo=0}
+  
+  
+  
+  
+  
+  
+  
+Jellyfish_Green_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=jellyfish_green;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=jellyfish_green;t=IDLE;s=walk2}
+  - defaultstate{m=jellyfish_green;t=WALK;s=walk2}
+
+Jellyfish_Green_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=jellyfish_green;t=IDLE;s=idle}
+  - defaultstate{m=jellyfish_green;t=WALK;s=walk}
+  
+  - state{mid=jellyfish_green;s=walk2;li=3;lo=3;r=true}
+  - state{mid=jellyfish_green;s=idle;li=3;lo=3}
+  
+Jellyfish_Green_Move:
+  Conditions:
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  - state{mid=jellyfish_green;s=idle;li=0;lo=0;r=true}
+  - state{mid=jellyfish_green;s=lunge;li=0;lo=3}
+  - delay 35
+  - lunge{velocity=0.4;velocityY=0} @Self
+  - delay 34
+  - state{mid=jellyfish_green;s=idle;li=0;lo=0}
+  
+  
+  
+  
+  
+  
+Jellyfish_Yellow_On_Land:
+  Conditions:
+  - inblock{b=WATER} false
+  - outside{} true
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=1}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=0.5;type=walking}
+  
+  - state{mid=jellyfish_yellow;s=walk2;li=3;lo=3}
+  
+  - defaultstate{m=jellyfish_yellow;t=IDLE;s=walk2}
+  - defaultstate{m=jellyfish_yellow;t=WALK;s=walk2}
+
+Jellyfish_Yellow_In_Water:
+  Conditions:
+  - inblock{b=WATER} true
+  - variableEquals{var=caster.land;value=1} true
+  Skills:
+  
+  - setVariable{var=caster.land;value=0}
+  - setVariable{var=caster.death;value=0}
+  
+  - setspeed{speed=2.3;type=walking}
+  
+  - defaultstate{m=jellyfish_yellow;t=IDLE;s=idle}
+  - defaultstate{m=jellyfish_yellow;t=WALK;s=walk}
+  
+  - state{mid=jellyfish_yellow;s=walk2;li=3;lo=3;r=true}
+  - state{mid=jellyfish_yellow;s=idle;li=3;lo=3}
+  
+Jellyfish_Yellow_Move:
+  Conditions:
+  - variableEquals{var=caster.land;value=0} true
+  Skills:
+  - state{mid=jellyfish_yellow;s=idle;li=0;lo=0;r=true}
+  - state{mid=jellyfish_yellow;s=lunge;li=0;lo=3}
+  - delay 35
+  - lunge{velocity=0.4;velocityY=0} @Self
+  - delay 34
+  - state{mid=jellyfish_yellow;s=idle;li=0;lo=0}
+  
+  
+  
+  
+  

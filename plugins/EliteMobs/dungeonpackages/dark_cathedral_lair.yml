@@ -1,0 +1,26 @@
+isEnabled: false
+name: '&2[lvl 040] &8The Dark Cathedral'
+dungeonLocationType: WORLD
+customInfo:
+- '&fThe first ever EliteMobs Lair!'
+- '&fA classic that all servers need!'
+- '&6Credits: MagmaGuy & 69OzCanOfBepis'
+relativeBossLocations:
+- dark_cathedral_tier_75_boss.yml:0.5,0.5,24.5
+relativeTreasureChestLocations: []
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: LAIR
+schematicName: em_dark_cathedral.schem
+environment: NORMAL
+protect: true
+defaultSchematicRotation: SOUTH
+playerInfo: |-
+  Difficulty: &cHard
+  $bossCount level $highestTier Big Boss!
+  &cThe original minidungeon, a challenge for
+  &ca group of players or for veterans!
+regionEnterMessage: '&8[EM] &8Welcome to the Dark Cathedral. &4Death awaits inside...'
+regionLeaveMessage: '&8[EM] &8Now leaving the Dark Cathedral. &4It awaits your return...'
+teleportLocationOffset: 0,0,0,0,0
+contentType: SCHEMATIC_DUNGEON
+dungeonConfigFolderName: the_dark_cathedral

@@ -1,0 +1,23 @@
+{
+    "function": "minecraft:set_lore",
+    "entity": "this",
+    "lore": [
+      {
+        "text": "Souls Held: ",
+        "color": "dark_gray",
+        "italic": false,
+        "extra": [
+          {
+            "score": {
+              "name": "SoulCount",
+              "objective": "value"
+            },
+            "color": "dark_aqua",
+            "italic": false
+          }
+        ]
+      }
+    ],
+    "replace": true
+  }
+  

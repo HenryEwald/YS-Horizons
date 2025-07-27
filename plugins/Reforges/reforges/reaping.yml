@@ -1,0 +1,44 @@
+description:
+- '&ax3 &fDamage From Mob Spawners'
+- '&ax2 &fXP From Mob Spawners'
+targets:
+- melee
+stone:
+  item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZWIzMDg2OTRjNWIwMWU4MTVkNDk4NTM1ZjRjM2RiNTgyN2I0Y2M0NWYxMmEzMzcxN2FkMGNhOWZlMjQ1MDljMCJ9fX0=
+  lore:
+  - '&7Place on the right of the'
+  - '&7reforge menu to apply the'
+  - <gradient:#bb1b4f>Reaping</gradient:#9e070a>&7 reforge!
+  recipe:
+  - rotten_flesh
+  - air
+  - spider_eye
+  - amethyst_shard
+  - ecoitems:blank_reforge_stone
+  - amethyst_shard
+  - gunpowder
+  - air
+  - string
+  craftable: true
+  enabled: true
+  price:
+    display: '&6$%value%'
+    type: coins
+    value: 6000
+  name: <gradient:#bb1b4f>Reaping</gradient:#9e070a>&f Reforge Stone
+effects:
+- args:
+    multiplier: 3
+  id: damage_multiplier
+  filters:
+    from_spawner: true
+  triggers:
+  - melee_attack
+- args:
+    multiplier: 2
+  id: xp_multiplier
+  filters:
+    from_spawner: true
+  triggers: []
+name: <gradient:#bb1b4f>Reaping</gradient:#9e070a>
+conditions: []

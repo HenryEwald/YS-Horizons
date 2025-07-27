@@ -1,0 +1,5 @@
+isEnabled: true
+name: Hunter
+maxLevelV2: 3
+value: 10.0
+hunterSpawnBonus: 0.05

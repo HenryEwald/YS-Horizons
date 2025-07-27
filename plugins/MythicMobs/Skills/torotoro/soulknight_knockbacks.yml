@@ -1,0 +1,9 @@
+soulknight_charge_knockback:
+    Skills:
+        - delay 1
+        - throw{v=3;vy=-1}
+
+soulknight_uppercut_knockback:
+    Skills:
+        - delay 1
+        - throw{v=-2;vy=10}

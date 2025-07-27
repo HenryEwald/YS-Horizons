@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:soul_sand_valley",
+    "far_end:the_nest",
+    "far_end:ashfall_delta",
+	  "incendium:weeping_valley",
+    "incendium:quartz_flats"
+  ]
+}

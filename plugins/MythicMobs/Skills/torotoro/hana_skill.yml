@@ -1,0 +1,339 @@
+hana_gethit:
+    Conditions:
+        - offgcd true
+    Skills:
+        - CancelEvent
+        - skill{s=hana_dodge_attack} @self 
+
+hana_dodge_attack:
+    Skills:
+        - gcd{ticks=10} @self
+        - CancelEvent
+        - state{s=dodge_attack} @self
+        - effect:particles{p=cloud;a=4;hs=0.3;vs=0.1} @self
+        - effect:sound{s=entity.player.attack.sweep;v=1;p=0.5} @self
+        - delay 2
+        - potion{t=SLOW;l=99;d=8} @self
+        - lunge{v=1} @forward{f=-1}
+
+#====healing
+hana_heal:
+    Cooldown: 25
+    Conditions:
+        - offgcd
+        - incombat true
+    Skills:
+        - gcd{ticks=82} @self
+        - state{s=heal} @self
+        - spin{d=80;v=0} @self
+        - potion{type=SLOW;l=99;d=80;p=false} @self
+        - delay 10
+        - effect:particles{p=reddust;color=#FBF67F;a=100;hs=0.5;vs=5;yOffset=3} @self
+        - effect:particles{p=reddust;color=#FDD7FF;a=100;hs=0.2;vs=5;yOffset=3} @self
+        - effect:sound{s=block.bell.resonate;v=3;p=1.5} @self
+        - summon{type=light_beam;amount=3;radius=5;yu=true} @self
+        - delay 25
+        - summon{type=deer_healing;a=1;r=0} @self
+        - delay 20
+        - heal{a=50} @self
+        - effect:particles{p=reddust;color=#FFD4FC;a=100;vs=1;hs=0.8} @self
+        
+deer_healing_spawn:
+    Skills:
+        - delay 20
+        - setAI{ai=false} @self
+        - effect:sound{s=block.amethyst_block.break;v=3;p=0} @origin
+        - effect:particles{p=reddust;color=#FFFF93;a=100;hs=3;vs=1;yOffset=0.5} @origin
+        - effect:particlering{p=reddust;color=#FFFF93;a=20;r=3;points=16;hs=0.3;vs=0.3;yOffset=0.1} @origin
+        - delay 2
+        - effect:particlering{p=reddust;color=#FFFF93;a=20;r=5;points=16;hs=0.3;vs=0.3;yOffset=0.1} @origin
+        - delay 2
+        - effect:particlering{p=reddust;color=#FFFF93;a=20;r=7;points=16;hs=0.3;vs=0.3;yOffset=0.1} @origin
+        - delay 16
+        - remove @self 
+
+#===light_beam
+light_beam_spawn:
+    Skills:
+        - setAI{ai=false} @self
+        - effect:particles{p=reddust;color=#FFFF93;a=100;hs=0.6;vs=2;yOffset=1} @origin
+        - delay 40
+        - remove @self
+#===deer spirit====
+deer_spirit_spawn:
+    Skills:
+        - delay 20
+        - effect:sound{s=minecraft:entity.evoker.cast_spell ;v=3;p=0} @origin
+        - effect:particles{p=reddust;color=#FFFF93;a=100;hs=3;vs=3;yOffset=1} @origin
+        - effect:particles{p=end_rod;a=70;hs=3;vs=3;yOffset=1} @origin
+        - effect:particles{p=reddust;color=#FEFECF;a=10;hs=1;vs=1;yOffset=1} @origin
+        - delay 10
+        - setAI{ai=false} @self
+        - delay 18
+        - totem{ch=1;os=deer_spirit_damage;int=1;hR=3;md=1} @ModelPart{mid=deer_spirit;part=left_frontarm}
+        - delay 15
+        - remove @self
+
+deer_spirit_damage:
+    Skills:
+        - damage{a=12} @ENO{r=7}
+        - effect:sound{s=entity.generic.explode;v=3;p=1} @origin
+        - effect:sound{s=block.amethyst_block.break;v=3;p=0} @origin
+        - effect:sound{s=block.amethyst_block.break;v=3;p=0} @origin
+        - effect:sound{s=block.amethyst_block.chime;v=3;p=0} @origin
+        - effect:particles{p=reddust;color=#FEE85E;a=100;hs=2;vs=1;yOffset=-0.5} @origin
+        - effect:particles{p=reddust;color=#FFD4FC;a=50;hs=1;vs=0.5;yOffset=-0.5} @origin
+        - effect:particlering{p=reddust;color=#FEFECF;r=6;points=16;a=10;hs=0.5;vs=0.5;yOffset=-0.5} @origin
+#===block leap
+hana_block_leap:
+    Cooldown: 5
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=5to10} true
+    Skills:
+        - gcd{ticks=42} @self
+        - ChangePart{model=hana;part=wood;newmodel=hana;newpart=wood} @self ~onSpawn
+        - delay 5
+        - state{s=place} @self
+        - delay 15
+        - ChangePart{model=hana;part=wood;newmodel=hana;newpart=magic} @self ~onSpawn
+        - spin{d=30;v=0} @self
+        - state{s=block_leap} @self
+        - totem{ch=1;os=hana_place_block;int=1;hR=3;md=1} @ForwardWall{f=1;y=0;width=0;height=0}
+        - potion{t=SLOW;l=99;d=9} @self
+        - delay 10
+        - effect:sound{s=item.armor.equip_leather;v=2;p=0} @origin 
+        - lunge{v=1.5} @target
+        - delay 10
+        - damage{a=6} @EIR{r=4}
+        - effect:sound{s=entity.player.attack.sweep;v=2;p=1} @origin 
+        - potion{t=SLOW;l=99;d=20} @self
+
+hana_place_block:
+    Conditions:
+        - onground{} true
+        - blocktype{type=air} true
+    Skills:
+        - effect:sound{s=block.wood.place;v=2} @origin
+        - setblock{m=OAK_PLANKS;md=0} @origin
+        - teleport{} @origin{y=1}
+        - delay 30
+        - setblock{m=AIR;md=0} @origin
+        - effect:sound{s=block.wood.break;v=2} @origin
+        - effect:particles{p=block_crack;m=OAK_PLANKS;a=25;hs=0.5;vs=0.3} @origin
+
+#===hana summon deer==
+hana_deer_spirit:
+    Cooldown: 15
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=0to10} true
+    Skills:
+        - gcd{ticks=52} @self
+        - state{s=summon} @self
+        - spin{d=50;v=0} @self
+        - potion{type=SLOW;l=99;d=50;p=false} @self
+        - effect:sound{s=block.beacon.ambient;v=3;p=2} @origin 
+        - summon{type=deer_spirit;amount=1;r=0} @origin
+        - delay 20
+        - summon{type=light_beam;amount=7;radius=10;yu=true} @self
+
+#===hana sword===
+
+hana_sword:
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=0to6} true
+    Skills:
+        - gcd{ticks=30} @self
+        - state{s=left_slash} @self
+        - potion{t=SLOW;d=2;l=99;p=false} @self
+        - delay 3
+        - lunge{v=0.5} @target
+        - delay 2
+        - effect:sound{s=entity.player.attack.sweep;p=1} @self
+        - damage{a=2} @LivingInCone{a=180;r=4;rot=0.0}
+        - effect:particles{p=SWEEP_ATTACK;a=1} @ModelPart{mid=hana;part=stone_sword}
+        - potion{t=SLOW;d=6;l=99;p=false} @self
+        - delay 6
+        - randomskill{s=hana_rightheavy,hana_sword2} @target
+
+hana_sword2:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to6} true
+    Skills:
+        - gcd{ticks=30} @self
+        - state{s=right_slash} @self
+        - potion{t=SLOW;d=2;l=99;p=false} @self
+        - delay 3
+        - lunge{v=0.5} @target
+        - delay 2
+        - effect:sound{s=entity.player.attack.sweep;p=0.8} @self
+        - damage{a=2} @LivingInCone{a=180;r=4;rot=0.0}
+        - effect:particles{p=SWEEP_ATTACK;a=1} @ModelPart{mid=hana;part=stone_sword}
+        - potion{t=SLOW;d=6;l=99;p=false} @self
+        - delay 6
+        - skill{s=hana_sword3} @target
+
+hana_sword3:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to6} true
+    Skills:
+        - gcd{ticks=30} @self
+        - state{s=left_slash2} @self
+        - potion{t=SLOW;d=2;l=99;p=false} @self
+        - delay 3
+        - lunge{v=0.5} @target
+        - delay 2
+        - effect:sound{s=entity.player.attack.sweep;p=1.1} @self
+        - damage{a=2} @LivingInCone{a=180;r=4;rot=0.0}
+        - effect:particles{p=SWEEP_ATTACK;a=1} @ModelPart{mid=hana;part=stone_sword}
+        - potion{t=SLOW;d=6;l=99;p=false} @self
+        - delay 6
+        - skill{s=hana_sword_finisher} @target
+
+hana_sword_finisher:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to10} true
+    Skills:
+        - gcd{ticks=32} @self
+        - state{s=finisher} @self
+        - lunge{v=0.4;repeat=6;repeatInterval=2}
+        - delay 4
+        - effect:sound{s=entity.player.attack.sweep;p=1.4} @self
+        - effect:particles{p=SWEEP_ATTACK;a=1} @ModelPart{mid=hana;part=stone_sword}
+        - damage{a=1} @EIR{r=4}
+        - delay 10
+        - effect:sound{s=entity.player.attack.sweep;p=0.5} @self
+        - effect:particles{p=SWEEP_ATTACK;a=1} @forward{f=1}
+        - damage{a=3} @LivingInCone{a=180;r=4;rot=0.0}
+        - skill{s=hana_finisher_knockback} @LivingInCone{a=180;r=4;rot=0.0}
+        - potion{t=SLOW;d=14;l=99;p=false} @self
+
+#==right heavy combo
+hana_rightheavy:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to7} true
+    Skills:
+        - gcd{ticks=30} @self
+        - state{s=right_heavyslash} @self
+        - potion{t=SLOW;d=10;l=99;p=false} @self
+        - effect:sound{s=item.armor.equip_leather;v=1;p=0} @self
+        - delay 10
+        - spin{d=5;v=0} @self
+        - lunge{v=1;repeat=1;repeatInterval=1} @target
+        - delay 2
+        - effect:sound{s=entity.player.attack.sweep;p=0} @self
+        - effect:particles{p=SWEEP_ATTACK;a=1} @forward{f=1}
+        - damage{a=2} @LivingInCone{a=180;r=5;rot=0.0}
+        - potion{t=SLOW;d=14;l=99;p=false} @self
+        - delay 6
+        - skill{s=hana_sword_uppercut} @target
+
+hana_sword_uppercut:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to5} true
+    Skills:
+        - gcd{ticks=30} @self
+        - state{s=uppercut} @self
+        - potion{t=SLOW;d=2;l=99;p=false} @self
+        - delay 4
+        - lunge{v=0.3} @target
+        - delay 2
+        - effect:sound{s=entity.player.attack.sweep;p=0.8} @self
+        - damage{a=2} @LivingInCone{a=180;r=4;rot=0.0}
+        - skill{s=hana_uppercut_knockback} @LivingInCone{a=180;r=4;rot=0.0}
+        - effect:particles{p=SWEEP_ATTACK;a=1} @ModelPart{mid=hana;part=stone_sword}
+        - potion{t=SLOW;d=6;l=99;p=false} @self
+        - delay 6
+        - skill{s=hana_magicsmash} @target
+
+hana_magicsmash:
+    Conditions:
+        - incombat true
+    TargetConditions:
+        - distance{d=0to7} true
+    Skills:        
+        - gcd{ticks=42} @self
+        - state{s=magic_smash} @self
+        - potion{t=SLOW;d=40;l=99;p=false} @self
+        - delay 24
+        - effect:sound{s=entity.generic.explode;v=3;p=1} @self
+        - effect:particles{p=reddust;color=#FAF4B6;a=100;hs=3;vs=0.5} @self
+        - effect:particles{p=reddust;color=#FEC6F7;a=100;hs=2;vs=0.5} @self
+        - effect:particles{p=end_rod;a=10;hs=3;vs=0.5} @origin
+        - damage{a=6} @EIR{r=5}
+        - skill{s=hana_magicsmash_knockback} @EIR{r=5}
+        - delay 2
+        - projectile{oT=hana_magicsmash_tick;i=5;v=10;md=20;hs=true;hfs=0.5;sB=false;sE=false} @target
+
+hana_magicsmash_tick:
+    Skills:
+        - effect:particles{p=reddust;color=#FAF4B6;a=50;hs=0.5;vs=1.5} @origin
+        - effect:particles{p=reddust;color=#FEC6F7;a=50;hs=0.2;vs=1} @origin
+        - effect:particles{p=end_rod;a=5;hs=0.5;vs=0.5} @origin
+        - effect:sound{s=entity.generic.explode;v=3;p=2} @origin
+        - damage{a=4} @ENO{r=3}
+
+#====magic explode
+hana_magicexplode:
+    Cooldown: 5
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetConditions:
+        - distance{d=0to15} true
+    Skills:
+        - gcd{ticks=42} @self
+        - state{s=magic_explode} @self
+        - potion{t=SLOW;d=40;l=99;p=false} @self 
+        - totem{oS=hana_magicexplode_totem;md=2} @targetlocation
+
+
+hana_magicexplode_totem:
+    Skills:
+        - delay 12
+        - damage{a=1} @ENO{r=4}
+        - skill{s=hana_magicexplode_knockback} @ENO{r=4}
+        - potion{t=SLOW;d=40;l=2;p=false;icon=false} @ENO{r=4} 
+        - effect:sound{s=entity.illusioner.mirror_move;v=3;p=0} @origin
+        - effect:particles{p=reddust;color=#FAF4B6;a=150;hs=0.5;vs=2.5} @origin
+        - effect:particles{p=reddust;color=#FEC6F7;a=50;hs=0.2;vs=2} @origin
+        - effect:particles{p=end_rod;a=15;hs=1;vs=0.5} @origin
+
+#=== leap attack===
+hana_leapattack:
+    Conditions:
+        - offgcd
+        - incombat true
+    TargetCondtions:
+        - distance{d=0to6} true
+    Skills:
+        - gcd{ticks=30} @self
+        - state{s=leap_attack} @self
+        - potion{t=SLOW;d=6;l=99;p=false;icon=false} @self
+        - delay 6
+        - lunge{v=0.6} @target
+        - delay 6
+        - effect:sound{s=entity.player.attack.crit;v=3;p=1} @self
+        - effect:particles{p=crit;a=15;hs=0.2;vs=1} @forward{f=2}
+        - damage{a=6} @LivingInCone{a=180;r=4;rot=0.0}
+        - potion{t=SLOW;d=18;l=99;p=false;icon=false} @self
+        
+        

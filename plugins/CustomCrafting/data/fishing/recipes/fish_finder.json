@@ -1,0 +1,73 @@
+{
+  "@type" : "customcrafting:crafting_shapeless",
+  "group" : "",
+  "hidden" : false,
+  "vanillaBook" : true,
+  "priority" : "NORMAL",
+  "checkNBT" : false,
+  "conditions" : {
+    "values" : [ ]
+  },
+  "checkAllNBT" : false,
+  "settings" : { },
+  "result" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "PAPER",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"italic\":false,\"color\":\"gray\",\"text\":\"Fish Finder\"}",
+          "lore" : [ "{\"italic\":false,\"color\":\"white\",\"text\":\"Right click to see what fish can be caught in this place!\"}" ],
+          "custom-model-data" : 647,
+          "internal" : "H4sIAAAAAAAA/+NiYOBi4HUuLS7Jz3XLLM7IzEvnYGApqSxIZWApLcnM4WBgykxh4EoDSqVl5qWkFjEwAACZlmwlMwAAAA=="
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "extensions" : [ ]
+  },
+  "ingredients" : [ {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "COMPASS"
+      }
+    } ],
+    "tags" : [ ],
+    "replaceWithRemains" : true,
+    "allowEmpty" : false
+  }, {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "PRISMARINE_SHARD",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Spectral Silt\"}],\"text\":\"\"}",
+          "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"blue\",\"text\":\"Crafting component\"}],\"text\":\"\"}" ],
+          "custom-model-data" : 83680,
+          "enchants" : {
+            "DURABILITY" : 1
+          },
+          "ItemFlags" : [ "HIDE_ENCHANTS" ],
+          "PublicBukkitValues" : {
+            "realisticsurvival:rsvitem" : "spectral_silt",
+            "realisticsurvival:rsvmodule" : "Baubles"
+          }
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "replaceWithRemains" : true,
+    "allowEmpty" : false
+  } ]
+}

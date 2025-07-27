@@ -1,0 +1,18 @@
+true_scale:
+  Id: PRISMARINE_SHARD
+  Display: §dTrue Scale
+  Lore:
+  - '§5Void clad, still warm...'
+  Options:
+    HideFlags: true
+  CustomModelData: 83670
+witherbone:
+  Id: PRISMARINE_SHARD
+  Display: Reduced Witherbone
+  Lore:
+  - '§5Repair with irridium'
+  Options:
+    HideFlags: true
+  CustomModelData: 83785
+
+

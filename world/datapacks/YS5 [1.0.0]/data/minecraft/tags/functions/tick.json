@@ -1,0 +1,18 @@
+{
+	"replace": false,
+	"values": [
+		"terralith:tick",
+		"items:tick",
+		"magic:tick",
+		"effects:tick",
+		"effects:shockwave/tick",
+		"effects:nightmare_vein/tick",
+		"effects:elements/tick",
+		"effects:screen_shake/tick",
+		"effects:soul_swirl/tick",
+		"nyctocosm:tick",
+		"nyctocosm:portal/tick",
+		"spells:tick",
+		"spells:casting/tick"
+	]
+}

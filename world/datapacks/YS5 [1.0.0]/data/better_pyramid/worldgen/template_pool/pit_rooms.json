@@ -1,0 +1,15 @@
+{
+    "name": "better_pyramid:pit_rooms",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:large_rooms/large_room_1",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      }
+    ]
+}

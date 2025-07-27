@@ -1,0 +1,64 @@
+type: region
+icon: CHEST
+shop-icon: IRON_CHESTPLATE
+name: Altar
+price: 100
+max: 1
+groups:
+ - offense
+level: 1
+
+build-reqs:
+ - DIAMOND_BLOCK
+ - IRON_BLOCK
+ - REDSTONE_BLOCK
+
+build-radius: 1
+
+effects:
+ - block_break
+ - block_build
+ - block_liquid
+ - block_fire
+ - chest_use
+
+period: 3600 #1 hour
+upkeep:
+ 0:
+   tools:
+     - WOODEN_SWORD
+   output:
+     - IRON_SWORD
+   payout: -200
+ 1:
+   input:
+     - STICK
+   output:
+     - BOW
+     - ARROW*32
+   payout: -100
+ 2:
+   tools:
+     - WOODEN_AXE
+   output:
+     - IRON_AXE
+   payout: -200
+ 3:
+   input:
+     - LEATHER
+   output:
+     - IRON_HELMET
+     - IRON_CHESTPLATE
+     - IRON_LEGGINGS
+     - IRON_BOOTS
+   payout: -400
+ 4:
+   input:
+     - LEATHER
+   output:
+     - IRON_HELMET
+     - IRON_CHESTPLATE
+     - IRON_LEGGINGS
+     - IRON_BOOTS
+   payout: -400
+

@@ -1,0 +1,21 @@
+isEnabled: false
+name: '&2[lvl 020-055] &6The Oasis'
+dungeonLocationType: WORLD
+customInfo:
+- '&fA massive adventure for beginners!'
+- '&6Credits: 69OzCanOfBepis'
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: ADVENTURE
+worldName: em_oasis
+environment: NORMAL
+protect: true
+dungeonVersion: 2
+playerInfo: |-
+  Difficulty: &2Solo-able
+  $bossCount bosses, from level $lowestTier to $highestTier
+  &6A big adventure for people who know the ropes!
+regionEnterMessage: '&8[EM] &6You have arrived at the Oasis!'
+regionLeaveMessage: '&8[EM] &6You have left the Oasis!'
+teleportLocation: em_oasis,261,20,284,-65,0
+contentType: OPEN_DUNGEON
+dungeonConfigFolderName: oasis

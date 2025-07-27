@@ -1,0 +1,51 @@
+{
+    "name": "better_pyramid:secondary_top_rooms",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:top_rooms/top_room_1",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:top_rooms/top_room_2",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:top_rooms/top_room_3",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:top_rooms/top_room_4",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      },
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:top_rooms/top_room_5",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      }
+    ]
+}

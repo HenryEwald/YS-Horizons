@@ -1,0 +1,9 @@
+isEnabled: true
+validWorlds: []
+validWorldEnvironments:
+- NORMAL
+- CUSTOM
+validBiomes: []
+earliestTime: 12000
+moonPhase: FULL_MOON
+isSurfaceSpawn: true

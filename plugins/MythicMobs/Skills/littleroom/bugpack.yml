@@ -1,0 +1,589 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+bugcatcherHUNT:
+  Conditions:
+  - stance{s=alone} true
+  Skills:
+  - defaultstate{m=bug_catcher;t=walk;s=hunt_walk} @self
+  - defaultstate{m=bug_catcher;t=idle;s=hunt_idle} @self
+  - setspeed{speed=.75;type=walking} @self
+  
+bugcatcherDROPHUNT:
+  Skills:
+  - defaultstate{m=bug_catcher;t=walk;s=walk} @self
+  - defaultstate{m=bug_catcher;t=idle;s=idle} @self
+  - setspeed{speed=.75;type=walking} @self
+  
+bugcatcherCATCHsync:
+  Skills:
+  - CancelEvent
+  - delay 20
+  - skill{s=bugcatcherCATCH} @self
+  
+bugcatcherCATCH:
+  Cooldown: 3
+  Conditions:
+  - playerwithin{d=3} false
+  Skills:
+  - setspeed{speed=0;type=walking} @self
+  - state{s=catch} @self
+  - delay 5
+  - skill{s=bugcatcherREMOVE} @target
+  - delay 20
+  - setspeed{speed=1;type=walking} @self
+  
+bugcatcherREMOVE:
+  Conditions:
+  - targetwithin{d=2} true
+  Skills:
+  - remove @target
+
+bugcatcherGREET:
+  Cooldown: 5
+  Conditions:
+  - stance{s=alone} true
+  - playerwithin{d=4}
+  Skills:
+  - clearThreat{} @self
+  - runaigoalselector{goal=clear}
+  - defaultstate{m=bug_catcher;t=walk;s=walk} @self
+  - defaultstate{m=bug_catcher;t=idle;s=idle} @self
+  - state{s=greet} @self
+  - delay 1
+  - setstance{stance=player} @self
+  
+bugcatcherPLAYER:
+  Conditions:
+  - playerwithin{d=4}
+  - stance{s=player} true
+  Skills:  
+  #- message{m="<mob.name>&f<&co> Theres a player here!"} @PlayersInRadius{r=30}
+  - runaigoalselector{goal=lookatplayers}
+  #- look{headOnly=false;immediately=true;repeat=20;repeatInterval=1} @PIR{r=3;limit=1;sort=nearest}
+  
+bugcatcherALONE:
+  Conditions:
+  - stance{s=player} true
+  - playerwithin{d=4} false
+  Skills:
+  #- message{m="<mob.name>&f<&co> NO PLAYER!"} @PlayersInRadius{r=30}
+  - setstance{stance=alone} @self  
+  - runaigoalselector{goal=clear}
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=lookatplayers}
+  - runaitargetselector{target=SpecificFactionMonsters BUG}
+  
+
+bugcatcherTRADE:
+  Skills:
+  - message{m="<mob.name>&f<&co> This is where you add a command for interaction!"} @trigger
+  - effect:particles{particle=heart;amount=1;y=2} @self
+  
+
+
+
+
+BUGPACKNET:
+  Cooldown: 1
+  TriggerConditions:
+  - holding{m=bugnet_red} true
+  Skills:
+  - skill{s=BUGESCAPED}
+  - randomskill{skills=BUGPACKCATCH,BUGPACKCATCH,BUGPACKMISS} @self
+  
+BUGPACKMISS:
+  Skills:
+  - actionmessage{m="MISSED!";d=40} @trigger
+  - effect:particles{particle=sweep_attack;amount=1;y=.25} @self
+  
+BUGPACKCATCH:
+  Skills:
+  - skill{s=antcatch} @self
+  - skill{s=butterflycatch} @self
+  - skill{s=mantiscatch} @self
+  - skill{s=fireflycatch} @self
+  - skill{s=dungbeetlecatch} @self
+  - skill{s=snailcatch} @self
+  - skill{s=mothatlascatch} @self
+  - skill{s=ladybugcatch} @self
+  - skill{s=tarantulacatch} @self
+  - actionmessage{m="You caught a<caster.name>!";d=40} @trigger
+  - effect:particles{particle=sweep_attack;amount=1;y=.25} @self
+  - effect:particles{particle=villager_happy;amount=5;hS=.5;vS=.5;y=.25} @self
+  - delay 1
+  - model{mid=<caster.name>;r=true} @self
+  
+BUGESCAPED:
+  Skills:
+  - delay 120
+  - actionmessage{m="A<caster.name> Got Away!";d=40} @trigger
+  - effect:particles{particle=poof;amount=5;y=.25;hS=.25;vS=.2} @self
+  - model{mid=<caster.name>;r=true} @self
+  
+
+fireflySPAWN:
+  Skills:
+  - delay 1
+  - potion{type=INVISIBILITY;duration=130;level=0;p=false} @self
+
+insectAIR:
+  Conditions:
+  - stance{s=flying} false
+  - onground false
+  Skills:
+  - setstance{stance=flying} @self
+  - ChangePart{model=praying_mantis;part=body;newmodel=praying_mantis_parts;newpart=body} @self
+  - ChangePart{model=ladybug;part=body;newmodel=ladybug_parts;newpart=body} @self
+  
+insectLAND:
+  Conditions:
+  - stance{s=ground} false
+  - onground true
+  Skills:
+  - setstance{stance=ground} @self
+  - ChangePart{model=praying_mantis;part=body;newmodel=praying_mantis;newpart=body} @self
+  - ChangePart{model=ladybug;part=body;newmodel=ladybug;newpart=body} @self
+
+
+insectFLY:
+  Cooldown: 2
+  TargetConditions:
+  - crouching false
+  Conditions:
+  - onground true
+  Skills:
+  - lunge{velocity=1;velocityY=.5} @forward{f=4}
+
+dungbeetlecatch:
+  Conditions:
+  - mythicmobtype{t=dung_beetle} true
+  Skills:
+  - dropitem{i=dungbeetlerarity} @trigger
+
+snailcatch:
+  Conditions:
+  - mythicmobtype{t=snail} true
+  Skills:
+  - dropitem{i=snailrarity} @trigger
+  
+ 
+antcatch:
+  Conditions:
+  - mythicmobtype{t=ant} true
+  Skills:
+  - dropitem{i=antrarity} @trigger
+  
+tarantulacatch:
+  Conditions:
+  - mythicmobtype{t=tarantula} true
+  Skills:
+  - dropitem{i=tarantulararity} @trigger
+
+  
+mantiscatch:
+  Conditions:
+  - mythicmobtype{t=praying_mantis} true
+  Skills:
+  - dropitem{i=mantisrarity} @trigger
+  
+  
+fireflycatch:
+  Conditions:
+  - mythicmobtype{t=firefly} true
+  Skills:
+  - dropitem{i=fireflyrarity} @trigger
+
+  
+mothatlascatch:
+  Conditions:
+  - mythicmobtype{t=moth_atlas} true
+  Skills:
+  - dropitem{i=mothatlasrarity} @trigger
+  
+ladybugcatch:
+  Conditions:
+  - mythicmobtype{t=ladybug} true
+  Skills:
+  - dropitem{i=ladybugrarity} @trigger
+  
+butterflycatch:
+  Conditions:
+  - mythicmobtype{t=butterfly} true
+  Skills:
+  - skill{s=redbutterflycatch} @trigger
+  - skill{s=whitebutterflycatch} @trigger
+  - skill{s=yellowbutterflycatch} @trigger
+  - skill{s=bluebutterflycatch} @trigger
+  - skill{s=indigobutterflycatch} @trigger
+  - skill{s=violetbutterflycatch} @trigger
+  
+redbutterflycatch:
+  Conditions:
+  - stance{s=red} true
+  Skills:
+  - dropitem{i=butterfly_redrarity} @trigger
+  
+whitebutterflycatch:
+  Conditions:
+  - stance{s=white} true
+  Skills:
+  - dropitem{i=butterfly_whiterarity} @trigger
+  
+yellowbutterflycatch:
+  Conditions:
+  - stance{s=yellow} true
+  Skills:
+  - dropitem{i=butterfly_yellowrarity} @trigger
+  
+bluebutterflycatch:
+  Conditions:
+  - stance{s=blue} true
+  Skills:
+  - dropitem{i=butterfly_bluerarity} @trigger
+  
+indigobutterflycatch:
+  Conditions:
+  - stance{s=indigo} true
+  Skills:
+  - dropitem{i=butterfly_indigorarity} @trigger
+
+  
+violetbutterflycatch:
+  Conditions:
+  - stance{s=violet} true
+  Skills:
+  - dropitem{i=butterfly_indigorarity} @trigger
+
+
+display_butterflyspawn:
+  Skills:
+  - skill{s=setredbutterfly} @self
+  - skill{s=setyellowbutterfly} @self
+  - skill{s=setwhitebutterfly} @self
+  - skill{s=setbluebutterfly} @self
+  - skill{s=setindigobutterfly} @self
+  - skill{s=setvioletbutterfly} @self
+  
+setredbutterfly:
+  Conditions:
+  - mythicmobtype{t=display_redbutterfly} true
+  Skills:
+  - delay 1
+  - tint{m=butterfly_display;c=ff0000;p=bug} @self
+  
+setyellowbutterfly:
+  Conditions:
+  - mythicmobtype{t=display_yellowbutterfly} true
+  Skills:
+  - delay 1
+  - tint{m=butterfly_display;c=ffff00;p=bug} @self
+  
+setwhitebutterfly:
+  Conditions:
+  - mythicmobtype{t=display_whitebutterfly} true
+  Skills:
+  - delay 1
+  - tint{m=butterfly_display;c=d6dfdf;p=bug} @self
+  
+setbluebutterfly:
+  Conditions:
+  - mythicmobtype{t=display_bluebutterfly} true
+  Skills:
+  - delay 1
+  - tint{m=butterfly_display;c=0000ff;p=bug} @self
+  
+setindigobutterfly:
+  Conditions:
+  - mythicmobtype{t=display_indigobutterfly} true
+  Skills:
+  - delay 1
+  - tint{m=butterfly_display;c=4b0082;p=bug} @self
+  
+setvioletbutterfly:
+  Conditions:
+  - mythicmobtype{t=display_violetbutterfly} true
+  Skills:
+  - delay 1
+  - tint{m=butterfly_display;c=ee82ee;p=bug} @self
+
+antpilebreak_noblock:
+  TargetConditions:
+  - blocktype{m=AIR} true
+  Skills:
+  - summon{t=ant;a=5} @self
+  - throw{velocity=1;velocityY=1} @LivingEntitiesInRadius{r=2}
+  - effect:particles{particle=block;m=dirt;amount=50;y=.5;hS=.5;vS=.5} @self
+  - delay 1
+  - remove @self
+  
+antpilebreak_prox:
+  Conditions:
+  - playerwithin{d=1}
+  Skills:
+  - summon{t=ant;a=5} @self
+  - throw{velocity=1;velocityY=1} @LivingEntitiesInRadius{r=2}
+  - effect:particles{particle=block;m=dirt;amount=50;y=.5;hS=.5;vS=.5} @self
+  - delay 1
+  - remove @self
+  
+antpilebreak_damaged:
+  Skills:
+  - summon{t=ant;a=5} @self
+  - throw{velocity=1;velocityY=1} @LivingEntitiesInRadius{r=2}
+  - effect:particles{particle=block;m=dirt;amount=50;y=.5;hS=.5;vS=.5} @self
+  - delay 1
+  - remove @self
+  
+displayROT:
+  TriggerConditions:
+  - holding{m=air} true
+  - crouching true
+  Skills:
+  - setrotation{relative=true;yaw=-10;pitch=0} @Self
+
+displayFEEDcarn:
+  LegacyConditions:
+  - mobscore hunger;>0
+  Skills:
+  - skill{s=fireflyFEED} @self
+  - skill{s=butterflyblueFEED} @self
+  - skill{s=butterflyindigoFEED} @self
+  - skill{s=butterflyredFEED} @self
+  - skill{s=butterflyvioletFEED} @self
+  - skill{s=butterflywhiteFEED} @self
+  - skill{s=butterflyyellowFEED} @self
+  - skill{s=antFEED} @self
+  - skill{s=snailFEED} @self
+  - skill{s=ladybugFEED} @self
+  - skill{s=mothatlasFEED} @self
+  - skill{s=dungbeetleFEED} @self
+  
+fireflyFEED:
+  TriggerConditions:
+  - holding{m=firefly} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=firefly} @trigger
+  
+butterflyblueFEED:
+  TriggerConditions:
+  - holding{m=butterfly_blue} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=butterfly_blue} @trigger
+  
+butterflyindigoFEED:
+  TriggerConditions:
+  - holding{m=butterfly_indigo} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=butterfly_indigo} @trigger
+  
+butterflyredFEED:
+  TriggerConditions:
+  - holding{m=butterfly_red} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=butterfly_red} @trigger
+  
+butterflyvioletFEED:
+  TriggerConditions:
+  - holding{m=butterfly_violet} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=butterfly_violet} @trigger
+  
+butterflywhiteFEED:
+  TriggerConditions:
+  - holding{m=butterfly_white} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=butterfly_white} @trigger
+  
+butterflyyellowFEED:
+  TriggerConditions:
+  - holding{m=butterfly_yellow} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=butterfly_yellow} @trigger
+  
+antFEED:
+  TriggerConditions:
+  - holding{m=ant} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=ant} @trigger
+  
+snailFEED:
+  TriggerConditions:
+  - holding{m=snail} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=snail} @trigger
+  
+ladybugFEED:
+  TriggerConditions:
+  - holding{m=ladybug} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=ladybug} @trigger
+  
+atlasmothFEED:
+  TriggerConditions:
+  - holding{m=atlasmoth} true
+  Skills:
+  - state{s=feed} @self
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=atlasmoth} @trigger
+  
+displayFEEDherb:
+  LegacyConditions:
+  - mobscore hunger;>0
+  Skills:
+  - skill{s=oakleavesFEED} @self
+  - skill{s=spruceleavesFEED} @self
+  - skill{s=birchleavesFEED} @self
+  - skill{s=jungleleavesFEED} @self
+  - skill{s=dark_oakleavesFEED} @self
+  
+oakleavesFEED:
+  TriggerConditions:
+  - holding{m=oak_leaves} true
+  Skills:
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=oak_leaves} @trigger
+  
+spruceleavesFEED:
+  TriggerConditions:
+  - holding{m=spruce_leaves} true
+  Skills:
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=spruce_leaves} @trigger
+  
+birchleavesFEED:
+  TriggerConditions:
+  - holding{m=birch_leaves} true
+  Skills:
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=birch_leaves} @trigger
+  
+jungleleavesFEED:
+  TriggerConditions:
+  - holding{m=jungle_leaves} true
+  Skills:
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=jungle_leaves} @trigger
+  
+dark_oakleavesFEED:
+  TriggerConditions:
+  - holding{m=dark_oak_leaves} true
+  Skills:
+  - effect:particles{particle=heart;amount=1;y=1} @self
+  - modifymobscore{o=hunger;a=SUBTRACT;v=1} @self
+  - takeitem{i=dark_oak_leaves} @trigger
+  
+displayMOOD:
+  Cooldown: 2400
+  LegacyConditions:
+  - mobscore hunger;<1
+  Skills:
+  - modifymobscore{o=hunger;a=ADD;v=1} @self
+
+displayFIDGET:
+  Skills:
+  - state{s=fidget} @self
+  
+displayHUNGRY:
+  Cooldown: 5
+  LegacyConditions:
+  - mobscore hunger;=1
+  Skills:
+  - effect:particles{particle=villager_angry;amount=1;y=.5} @self
+
+
+butterflyrandomflap:
+  Skills:
+  - ChangePart{model=butterfly;part=flutterby;newmodel=butterfly_2;newpart=flutterby} @self
+  - ChangePart{model=butterfly_display;part=bug;newmodel=butterfly_2;newpart=flutterby} @self
+  - delay 3
+  - ChangePart{model=butterfly;part=flutterby;newmodel=butterfly;newpart=flutterby} @self
+  - ChangePart{model=butterfly_display;part=bug;newmodel=butterfly;newpart=flutterby} @self
+  
+  
+butterflyred:
+  Skills:
+  - delay 1
+  - setstance{stance=red} @self
+  - setname{name=' Red<caster.name>'} @self
+  - tint{m=butterfly;c=ff0000} @self
+  
+butterflywhite:
+  Skills:
+  - delay 1
+  - setstance{stance=white} @self
+  - setname{name=' White<caster.name>'} @self
+  - tint{m=butterfly;c=d6dfdf} @self
+  
+butterflyyellow:
+  Skills:
+  - delay 1
+  - setstance{stance=yellow} @self
+  - setname{name=' Yellow<caster.name>'} @self
+  - tint{m=butterfly;c=ffff00} @self
+  
+butterflyblue:
+  Skills:
+  - delay 1
+  - setstance{stance=blue} @self
+  - setname{name=' Blue<caster.name>'} @self
+  - tint{m=butterfly;c=0000ff} @self
+  
+butterflyindigo:
+  Skills:
+  - delay 1
+  - setstance{stance=indigo} @self
+  - setname{name=' Indigo<caster.name>'} @self
+  - tint{m=butterfly;c=4b0082} @self
+  
+butterflyviolet:
+  Skills:
+  - delay 1
+  - setstance{stance=violet} @self
+  - setname{name=' Violet<caster.name>'} @self
+  - tint{m=butterfly;c=ee82ee} @self
+  
+
+blockcheckDISPLAY:
+  Conditions:
+  - blocktype{type=air} false
+  Skills:
+  - delay 5
+  - dropitem{i=<caster.name>Egg} @self
+  - remove @self

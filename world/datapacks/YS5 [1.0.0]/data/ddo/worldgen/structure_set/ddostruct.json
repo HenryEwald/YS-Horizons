@@ -1,0 +1,18 @@
+{
+  "placement": {
+    "type": "minecraft:random_spread",
+    "salt": 20073331,
+    "separation": 15,
+    "spacing": 20
+  },
+  "structures": [
+    {
+      "structure": "ddo:outpost",
+      "weight": 5
+    },
+    {
+      "structure": "ddo:ancientcity",
+      "weight": 1
+    }
+  ]
+}

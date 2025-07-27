@@ -1,0 +1,1014 @@
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+#            FPV2 - Ghoul pack             #
+#                  ---                     #
+#                by Nocsy                  #
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-#
+
+############################################
+#                 Ghoul                    #
+############################################
+
+#----------- Spawn -----------#
+Nocsy_FPV2-Ghoul-Spawn:
+  Skills:
+  - delay 10
+  - skill{s=Nocsy_FPV2-Ghoul-Sound-Ambient}
+
+Nocsy_FPV2-Ghoul-Spawn-Tombstone:
+  Skills:
+  - delay 10
+  - skill{s=Nocsy_FPV2-Ghoul-Sound-Ambient}
+  - state{s=grave_spawn;li=0;lo=0} @self
+  - setAI{ai=false} @self
+  - addtag{t=animating} @self
+  - delay 20
+  - setAI{ai=true} @self
+  - removetag{t=animating} @self
+  
+Nocsy_FPV2-Ghoul-Spawn-Crash:
+  Skills:
+  - delay 10
+  - skill{s=Nocsy_FPV2-Ghoul-Sound-Ambient}
+  - state{s=crash;li=0;lo=0} @self
+  - setAI{ai=false} @self
+  - addtag{t=animating} @self
+  - delay 40
+  - setAI{ai=true} @self
+  - removetag{t=animating} @self
+
+#----------- Attack -----------#
+Nocsy_FPV2-Ghoul-Attack:
+  Conditions:
+  - hastag{t=animating} false
+  - hastag{t=attack} false
+  Skills:
+  - addtag{t=attack} @self
+  - state{s=attack;li=0;lo=0} @self
+  - delay 10
+  - skill{s=Nocsy_FPV2-Ghoul-Sound-Attack}
+  - potion{type=SLOW;duration=8;lvl=126;hasParticles=false;force=true} @self
+  - damage{a=8} @target
+  - delay 15
+  - removetag{t=attack} @self
+
+#----------- Sounds -----------#
+
+Nocsy_FPV2-Ghoul-Sound-Ambient:
+  Conditions:
+  - hastag{t=sound} false
+  - hastag{t=ambient_sound} false
+  Skills:
+  - addtag{t=ambient_sound} @self
+  - sound{s=entity.husk.ambient;v=1;p=1.7} @self
+  - delay 300
+  - removetag{t=ambient_sound} @self
+
+Nocsy_FPV2-Ghoul-Sound-Attack:
+  Skills:
+  - sound{s=entity.player.attack.weak;v=1;p=0.1} @self
+
+Nocsy_FPV2-Ghoul-Sound-Hurt:
+  Conditions:
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=sound} @self
+  - sound{s=entity.husk.hurt;v=1;p=1.7} @self
+  - delay 40
+  - removetag{t=sound} @self
+
+Nocsy_FPV2-Ghoul-Sound-Death:
+  Skills:
+  - addtag{t=sound} @self
+  - sound{s=entity.husk.death;v=1;p=1.7} @self
+  - delay 80
+  - removetag{t=sound} @self
+
+############################################
+#               Tombstone                  #
+############################################
+
+#----------- Model -----------#
+Nocsy_FPV2-Tombstone-Model:
+  Skills:
+  - randomskill{skills=Nocsy_FPV2-Tombstone-Model-Grave,Nocsy_FPV2-Tombstone-Model-Cross} @self
+  
+Nocsy_FPV2-Tombstone-Model-Grave:
+  Skills:
+  - model{mid=nocsy_fpv2_tombstone;n=false} @self
+Nocsy_FPV2-Tombstone-Model-Cross:
+  Skills:
+  - model{mid=nocsy_fpv2_tombstone2;n=false} @self
+
+#----------- Spawn -----------#
+Nocsy_FPV2-Tombstone-Spawn:
+  Skills:
+  - skill{s=Nocsy_FPV2-Tombstone-Sound-Spawn}
+  - delay 5
+  - particle{
+              a=7;
+              s=0.1;
+              particle=SOUL;
+              amount=1;
+             } @Ring{r=1.5;points=10;yOffset=0.1}
+  - delay 10
+  - skill{s=Nocsy_FPV2-Tombstone-Sound-Spawn}
+
+#----------- Summon -----------#
+
+Nocsy_FPV2-Tombstone-Summon-WaitingPlayer:
+  Conditions:
+  - playerwithin{d=3} true
+  - hastag{t=summoned} false
+  Skills:
+  - addtag{t=summoned} @self
+  - summon{type=Nocsy_FPV2-Ghoul-Tombstone;amount=1;radius=0} @Forward{f=1.1;y=0.0}
+  - delay 40
+  - remove @self
+
+Nocsy_FPV2-Tombstone-Summon:
+  Skills:
+  - delay 40
+  - delay 40
+  - randomskill{skills=Nocsy_FPV2-Tombstone-Summon-Forward}
+  - delay 40
+  - skill{s=Nocsy_FPV2-Tombstone-Sound-Death}
+  - remove @self
+
+Nocsy_FPV2-Tombstone-Summon-Forward:
+  Skills:
+  - randomskill{skills=
+                        Nocsy_FPV2-Tombstone-Summon-Ghoul,
+                        Nocsy_FPV2-Tombstone-Summon-Ghost,
+                        Nocsy_FPV2-Tombstone-Summon-Doghoul
+                } @Forward{f=1.1;y=0.0}
+Nocsy_FPV2-Tombstone-Summon-Backward:
+  Skills:
+  - randomskill{skills=
+                        Nocsy_FPV2-Tombstone-Summon-Ghoul,
+                        Nocsy_FPV2-Tombstone-Summon-Ghost,
+                        Nocsy_FPV2-Tombstone-Summon-Doghoul
+                } @Forward{f=-1.1;y=0.0}
+
+Nocsy_FPV2-Tombstone-Summon-Ghoul:
+  Skills:
+  - summon{type=Nocsy_FPV2-Ghoul-Tombstone;amount=1;radius=0}
+Nocsy_FPV2-Tombstone-Summon-Ghost:
+  Skills:
+  - summon{type=Nocsy_FPV2-Ghost;amount=1;radius=0}
+Nocsy_FPV2-Tombstone-Summon-Doghoul:
+  Skills:
+  - summon{type=Nocsy_FPV2-Doghoul;amount=1;radius=0}
+  
+#----------- Sound -----------#
+Nocsy_FPV2-Tombstone-Sound-Spawn:
+  Skills:
+  - sound{s=block.sculk_sensor.step;v=1;p=0.1} @self
+
+Nocsy_FPV2-Tombstone-Sound-Death:
+  Skills:
+  - sound{s=block.sculk_sensor.hit;v=0.5;p=0.1} @self
+
+############################################
+#                Doghoul                   #
+############################################
+
+#----------- Spawn -----------#
+Nocsy_FPV2-Doghoul-Spawn:
+  Skills:
+  - particle{
+             a=1;
+             s=0.1;
+             particle=SOUL;
+             amount=1;
+             d=true;
+            } @Sphere{r=0.5;points=20;yOffset=0.1;}
+  - delay 10
+  - skill{s=Nocsy_FPV2-Doghoul-Sound-Ambient}
+
+#----------- AI -----------#
+Nocsy_FPV2-Doghoul-AI:
+  Conditions:
+  - hastag{t=attack} castInstead Nocsy_FPV2-Doghoul-AI-StopEffect
+  - targetnotwithin{d=8} orElseCast Nocsy_FPV2-Doghoul-AI-Stop
+  - hastag{t=walk} false
+  Skills:
+  - addtag{t=walk} @self
+  - removetag{t=idle} @self
+  - state{s=idle_loop;remove=true} @self
+  - state{s=walk_loop;li=0;lo=0} @self 
+
+Nocsy_FPV2-Doghoul-AI-Pet:
+  Conditions:
+  - incombat{} castInstead Nocsy_FPV2-Doghoul-AI
+  - moving{} orElseCast Nocsy_FPV2-Doghoul-AI-Stop
+  - hastag{t=walk} false
+  Skills:
+  - addtag{t=walk} @self
+  - removetag{t=idle} @self
+  - state{s=idle_loop;remove=true} @self
+  - state{s=walk_loop;li=0;lo=0} @self 
+
+Nocsy_FPV2-Doghoul-AI-Stop:
+  Conditions:
+  - hastag{t=idle} castInstead Nocsy_FPV2-Doghoul-AI-StopEffect
+  Skills:
+  - addtag{t=idle} @self
+  - removetag{t=walk} @self
+  - state{s=walk_loop;remove=true} @self
+  - state{s=idle_loop;li=0;lo=0} @self
+  - skill{s=Nocsy_FPV2-Doghoul-AI-StopEffect}
+
+Nocsy_FPV2-Doghoul-AI-StopEffect:
+  Skills:
+  - potion{type=SLOW;duration=13;lvl=126;hasParticles=false;force=true} @self
+
+#----------- Attack -----------#
+Nocsy_FPV2-Doghoul-Attack:
+  Conditions:
+  - incombat{} true
+  - hastag{t=idle} true
+  - hastag{t=attack} false
+  - hastag{t=waitingAttack} false
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=waitingAttack} @self
+  - state{s=spit;li=0;lo=0} @self
+  - delay 7
+  - skill{s=Nocsy_FPV2-Doghoul-Attack-Projectile}
+  - delay 14
+  - removetag{t=attack} @self
+  - delay 40
+  - removetag{t=waitingAttack} @self
+  
+Nocsy_FPV2-Doghoul-Attack-Projectile:
+  Skills:
+  - sound{s=entity.axolotl.attack;v=1;p=0.1} @self
+  - projectile{i=1;maxRange=20;v=12;md=300;hitRadius=0.1;sE=false;sb=true;hfs=0.01;syo=0.8;g=0.9;vO=0.7;
+      onTick=[
+              - potion{type=WITHER;duration=80;lvl=1;hasParticles=false;force=true} @ENO{r=2;ignore=samefaction}
+              - particle{
+                         a=1;
+                         s=0.01;
+                         particle=GLOW_SQUID_INK;
+                         amount=1;
+                         d=true;
+                        } @origin
+              - particle{
+                         particle=GLOW_SQUID_INK;
+                         amount=1;
+                        } @origin
+             ];
+      onHit=[
+            - potion{type=WITHER;duration=80;lvl=1;hasParticles=false;force=true} @ENO{r=2;ignore=samefaction}
+            ];
+      onEnd=[
+              - particle{
+                         a=1;
+                         s=0.4;
+                         particle=GLOW_SQUID_INK;
+                         amount=1;
+                         d=true;
+                        } @RingAroundOrigin{r=4;points=20;yOffset=0.1;}
+              - sound{s=block.sculk_sensor.fall;v=0.8;p=0.1}
+              - potion{type=WITHER;duration=80;lvl=1;hasParticles=false;force=true} @ENO{r=3;ignore=samefaction}
+              - damage{r=4} @ENO{r=3;ignore=samefaction}
+            ];} @TargetLocation
+
+#----------- Attack Pet version -----------#
+Nocsy_FPV2-Doghoul-Attack-Pet:
+  Conditions:
+  - incombat{} true
+  - hastag{t=idle} true
+  - hastag{t=attack} false
+  - hastag{t=waitingAttack} false
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=waitingAttack} @self
+  - state{s=spit;li=0;lo=0} @self
+  - delay 7
+  - skill{s=Nocsy_FPV2-Doghoul-Attack-Projectile-Pet}
+  - delay 14
+  - removetag{t=attack} @self
+  - delay 40
+  - removetag{t=waitingAttack} @self
+  
+Nocsy_FPV2-Doghoul-Attack-Projectile-Pet:
+  Skills:
+  - sound{s=entity.axolotl.attack;v=1;p=0.1} @self
+  - projectile{i=1;maxRange=20;v=12;md=300;hitRadius=0.1;sE=false;sb=true;hfs=0.01;syo=0.8;g=0.9;vO=0.7;
+      onTick=[
+              - damage{a=5} @ENO{r=2;ignore=players}
+              - particle{
+                         a=1;
+                         s=0.01;
+                         particle=GLOW_SQUID_INK;
+                         amount=1;
+                         d=true;
+                        } @origin
+              - particle{
+                         particle=GLOW_SQUID_INK;
+                         amount=1;
+                        } @origin
+             ];
+      onHit=[
+            - potion{type=WITHER;duration=80;lvl=1;hasParticles=false;force=true} @ENO{r=2;ignore=samefaction}
+            ];
+      onEnd=[
+              - particle{
+                         a=1;
+                         s=0.4;
+                         particle=GLOW_SQUID_INK;
+                         amount=1;
+                         d=true;
+                        } @RingAroundOrigin{r=4;points=20;yOffset=0.1;}
+              - sound{s=block.sculk_sensor.fall;v=0.8;p=0.1}
+              - potion{type=WITHER;duration=80;lvl=1;hasParticles=false;force=true} @ENO{r=3;ignore=samefaction}
+              - damage{r=4} @ENO{r=3;ignore=samefaction}
+            ];} @TargetLocation
+
+Nocsy_FPV2-Doghoul-Despawn:
+  Skills:
+  - submodel{mid=nocsy_fpv2_dog;subpart=body;remove=true} @self
+  - particle{
+             a=1;
+             s=0.1;
+             particle=SOUL;
+             amount=1;
+             d=true;
+            } @Sphere{r=0.5;points=20;yOffset=0.1;}
+            
+#----------- Sounds -----------#
+Nocsy_FPV2-Doghoul-Sound-Hurt:
+  Conditions:
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=sound} @self
+  - sound{s=entity.axolotl.hurt;v=1;p=0.1} @self
+  - delay 40
+  - removetag{t=sound} @self
+  
+Nocsy_FPV2-Doghoul-Sound-Ambient:
+  Conditions:
+  - hastag{t=ambient} false
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=ambient} @self
+  - addtag{t=sound} @self
+  - sound{s=entity.drowned.ambient;v=0.5;p=2} @self
+  - delay 40
+  - removetag{t=sound} @self
+  - delay 120
+  - removetag{t=ambient} @self
+  
+Nocsy_FPV2-Doghoul-Sound-Death:
+  Skills:
+  - sound{s=entity.axolotl.death;v=1;p=0.1} @self
+
+############################################
+#                Slender                   #
+############################################
+
+#----------- VFX -----------#
+Nocsy_FPV2-Slender-Effect:
+  Skills:
+  - particle{
+              a=1;
+              hs=0.1;
+              s=0.001;
+              particle=SPELL_WITCH;
+              amount=1;
+              d=true;
+             } @RingAroundOrigin{r=1.5;points=20;yOffset=0.1;}
+
+#----------- Spawn -----------#
+Nocsy_FPV2-Slender-Spawn:
+  Skills:
+  - addtag{t=animating} @self
+  - state{s=apparition;li=0;lo=0} @self
+  - potion{type=SLOW;duration=2147483646;lvl=126;hasParticles=false;force=true} @self
+  - delay 30
+  - removetag{t=animating} @self
+  - skill{s=Nocsy_FPV2-Slender-Sound-Ambient}
+
+#----------- AI -----------#
+Nocsy_FPV2-Slender-AI:
+  Conditions:
+  - hastag{t=animating} false
+  - targetnotwithin{d=2.5} castInstead Nocsy_FPV2-Slender-AI-Teleport
+  Skills: []
+  
+Nocsy_FPV2-Slender-AI-Teleport:
+  Conditions:
+  - hastag{t=teleport} false
+  - hastag{t=attack} false
+  Skills:
+  - addtag{t=animating} @self
+  - addtag{t=teleport} @self
+  - potion{type=DAMAGE_RESISTANCE;duration=40;lvl=126;hasParticles=false;force=true} @self
+  - state{s=teleport;li=0;lo=0} @self
+  - sound{s=entity.phantom.swoop;v=1;p=0.1} @self
+  - delay 40
+  - state{s=wait} @self
+  - delay 40
+  - teleport{spreadh=1;spreadv=0} @target
+  - state{s=wait;remove=true} @self
+  - state{s=apparition;li=0;lo=0;speed=1.4} @self
+  - delay 20
+  - removetag{t=animating} @self
+  - delay 80
+  - removetag{t=teleport} @self
+  
+Nocsy_FPV2-Slender-AI-Teleport-Damaged:
+  Conditions:
+  - damagecause{cause=PROJECTILE} true
+  Skills:
+  - skill{s=Nocsy_FPV2-Slender-AI-Teleport}
+  
+#----------- Attack -----------#
+Nocsy_FPV2-Slender-Attack:
+  Conditions:
+  - hastag{t=animating} false
+  - hastag{t=attack} false
+  - hastag{t=waitingAttack} false
+  - targetwithin{d=2.5} true
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=waitingAttack} @self
+  - state{s=attack;li=0;lo=0;speed=1.2} @self
+  - delay 11
+  - sound{s=entity.phantom.bite;v=1;p=0.1} @self
+  - damage{a=15} @LivingInCone{a=90.0;r=3.0;rot=0.0}
+  - delay 12
+  - removetag{t=attack} @self
+  - delay 20
+  - removetag{t=waitingAttack} @self
+
+#----------- Sounds -----------#
+Nocsy_FPV2-Slender-Sound-Hurt:
+  Conditions:
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=sound} @self
+  - sound{s=entity.phantom.hurt;v=1;p=0.1} @self
+  - delay 40
+  - removetag{t=sound} @self
+  
+Nocsy_FPV2-Slender-Sound-Ambient:
+  Conditions:
+  - hastag{t=ambient} false
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=ambient} @self
+  - addtag{t=sound} @self
+  - sound{s=entity.phantom.ambient;v=1;p=0.1} @self
+  - delay 40
+  - removetag{t=sound} @self
+  - delay 120
+  - removetag{t=ambient} @self
+  
+Nocsy_FPV2-Slender-Sound-Death:
+  Skills:
+  - sound{s=entity.phantom.death;v=1;p=0.1} @self
+
+############################################
+#                 Ghost                    #
+############################################
+
+#----------- Spawn -----------#
+Nocsy_FPV2-Ghost-Spawn:
+  Skills:
+  - particle{
+             a=1;
+             s=0.1;
+             particle=SOUL;
+             amount=1;
+             d=true;
+            } @Sphere{r=0.5;points=20;yOffset=0.1;}
+  - delay 10
+  - skill{s=Nocsy_FPV2-Ghost-Sound-Ambient}
+
+#----------- Attack -----------#
+Nocsy_FPV2-Ghost-Attack:
+  Conditions:
+  - incombat{} true
+  - hastag{t=attack} false
+  - hastag{t=waitingAttack} false
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=waitingAttack} @self
+  - state{s=idle;remove=true} @self
+  - state{s=attack_start;li=0;lo=0} @self
+  - potion{type=SLOW;duration=21;lvl=126;hasParticles=false;force=true} @self
+  - delay 21
+  - state{s=attack_loop;li=0;lo=0} @self
+  - missile{in=12;i=1;maxRange=11;v=11;md=70;hitRadius=1.5;sE=false;sb=true;hp=false;hfs=0.01;
+      onTick=[
+                - damage{a=4} @ENO{r=1.5;ignore=samefaction}
+                - pull{velocity=7;to=true} @Self
+                - skill{s=Nocsy_FPV2-Ghost-Sound-Attack}
+      ];
+      onEnd=[
+                - state{s=attack_loop;remove=true} @self
+                - state{s=attack_end;li=0;lo=0} @self
+                - potion{type=SLOW;duration=21;lvl=126;hasParticles=false;force=true} @self
+                - delay 10
+                - removetag{t=attack} @self
+                - delay 40
+                - removetag{t=waitingAttack} @self
+      ]} @target
+
+#----------- Death -----------#
+
+Nocsy_FPV2-Ghost-Death:
+  Skills:
+  - delay 10
+  - particle{
+             a=1;
+             s=0.1;
+             particle=CLOUD;
+             amount=1;
+             d=true;
+            } @Sphere{r=2;points=30;yOffset=3.5;}
+            
+#----------- Sounds -----------#
+
+Nocsy_FPV2-Ghost-Sound-Attack:
+  Conditions:
+  - hastag{t=soundAttack} false
+  Skills:
+  - addtag{t=soundAttack} @self
+  - sound{s=entity.vex.charge;v=1;p=1.1} @self
+  - delay 40
+  - removetag{t=soundAttack} @self
+
+Nocsy_FPV2-Ghost-Sound-Hurt:
+  Conditions:
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=sound} @self
+  - sound{s=entity.vex.hurt;v=1;p=0.3} @self
+  - delay 40
+  - removetag{t=sound} @self
+  
+Nocsy_FPV2-Ghost-Sound-Ambient:
+  Conditions:
+  - hastag{t=ambient} false
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=ambient} @self
+  - addtag{t=sound} @self
+  - sound{s=entity.vex.ambient;v=1;p=0.8} @self
+  - delay 40
+  - removetag{t=sound} @self
+  - delay 120
+  - removetag{t=ambient} @self
+  
+Nocsy_FPV2-Ghost-Sound-Death:
+  Skills:
+  - sound{s=entity.vex.death;v=1;p=0.8} @self
+
+  
+############################################
+#              Gravekeeper                 #
+############################################
+
+#----------- Anti-bow -----------#
+Nocsy_FPV2-Gravekeeper-Antibow:
+  Conditions:
+  - damagecause{cause=PROJECTILE} true
+  - hastag{t=antibow} false
+  Skills:
+  - addtag{t=antibow} @self
+  - summon{type=Nocsy_FPV2-Slender;amount=1;radius=2;} @target
+  - delay 60
+  - removetag{t=antibow} @self
+
+#----------- Spawn -----------#
+Nocsy_FPV2-Gravekeeper-Spawn:
+  Skills:
+  - skill{s=Nocsy_FPV2-Gravekeeper-Projectile-HideGhoul}
+  - sound{s=entity.ravager.ambient;v=1;p=0.1;} @self
+  
+#----------- Walk Cycle -----------#
+
+Nocsy_FPV2-Gravekeeper-ForceIdle:
+  Conditions:
+  - hastag{t=attack} false
+  - hastag{t=walkAnim} false
+  - hastag{t=nomove} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  - hastag{t=idle} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  Skills:
+  - removetag{t=walk} @self
+  - addtag{t=nomove} @self
+  - state{s=walk_loop;remove=true} @self
+  - state{s=walk_end;li=0;lo=0} @self 
+  - setAI{ai=false} @self
+  - delay 22
+  - state{s=idle_loop;li=0;lo=0} @self
+  - setAI{ai=true} @self
+  - skill{s=Nocsy_FPV2-Gravekeeper-Stop}
+  - addtag{t=idle} @self
+  - delay 140
+  - removetag{t=nomove} @self
+  
+Nocsy_FPV2-Gravekeeper-Cycle:
+  Conditions:
+  - hastag{t=attack} false
+  - hastag{t=summon} false
+  - hastag{t=nomove} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  - targetwithin{d=4.5} orElseCast Nocsy_FPV2-Gravekeeper-Cycle-Walk
+  - hastag{t=idle} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  - hastag{t=walkAnim} false
+  Skills:
+  - skill{s=Nocsy_FPV2-Gravekeeper-ForceIdle}
+
+Nocsy_FPV2-Gravekeeper-Cycle-Walk:
+  Conditions:
+  - hastag{t=attack} false
+  - hastag{t=walk} false
+  - hastag{t=walkAnim} false
+  - hastag{t=nomove} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  - incombat{} orElseCast Nocsy_FPV2-Gravekeeper-Stop
+  Skills:
+  - removetag{t=idle} @self
+  - addtag{t=walkAnim} @self
+  - state{s=idle_loop;remove=true} @self
+  - state{s=walk_start;li=0;lo=0} @self 
+  - setAI{ai=false} @self
+  - delay 23
+  - state{s=walk_loop;li=0;lo=0} @self
+  - addtag{t=walk} @self
+  - removetag{t=walkAnim} @self
+  - setAI{ai=true} @self
+
+Nocsy_FPV2-Gravekeeper-PreventWeirdMoves:
+  Conditions:
+  - moving{} true
+  - hastag{t=idle} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  - hastag{t=nomove} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  - hastag{t=walkAnim} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  - hastag{t=attack} castInstead Nocsy_FPV2-Gravekeeper-Stop
+  Skills: []
+
+Nocsy_FPV2-Gravekeeper-Stop:
+  Skills:
+  - potion{type=SLOW;duration=12;lvl=126;hasParticles=false;force=true} @self
+
+#----------- Melee Attack -----------#
+Nocsy_FPV2-Gravekeeper-MeleeAttack:
+  Conditions:
+  - hastag{t=attack} false
+  - targetwithin{d=4.5} true
+  - hastag{t=idle} orElseCast Nocsy_FPV2-Gravekeeper-ForceIdle
+  - hastag{t=waitingAttack} false
+  Skills:
+  - addtag{t=waitingAttack} @self
+  - randomskill{skills=
+                   Nocsy_FPV2-Gravekeeper-MeleeAttack-Peak,
+                   Nocsy_FPV2-Gravekeeper-MeleeAttack-Slash,
+                   Nocsy_FPV2-Gravekeeper-MeleeAttack-Smash
+                }
+  - delay 80
+  - removetag{t=waitingAttack} @self
+
+Nocsy_FPV2-Gravekeeper-MeleeAttack-Peak:
+  Conditions:
+  - hastag{t=peak} false
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=peak} @self
+  - state{s=attack_peak;li=0;lo=0;} @self 
+  - potion{type=SLOW;duration=30;lvl=126;hasParticles=false;force=true} @self
+  - sound{s=entity.ravager.attack;v=1;p=0.3;} @self
+  - delay 21
+  - damage{a=15} @LivingInCone{a=90.0;r=4.5;rot=0.0;ignore=samefaction}
+  - sound{s=entity.ravager.step;v=1;p=1.5;} @self
+  - delay 9
+  - removetag{t=attack} @self
+  - delay 20
+  - removetag{t=peak} @self
+
+Nocsy_FPV2-Gravekeeper-MeleeAttack-Slash:
+  Conditions:
+  - hastag{t=circle} false
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=circle} @self
+  - state{s=attack_shovel_circle;li=0;lo=0;} @self 
+  - setAI{ai=false} @self
+  - sound{s=entity.ravager.attack;v=1;p=0.3;} @self
+  - delay 17
+  - skill{s=[
+              - particles{
+                    particle=CAMPFIRE_COSY_SMOKE;
+                    amount=1;
+                    speed=0;
+                    } @ModelPart{mid=nocsy_fpv2_boss;pid=shovel_tip}
+              - particles{
+                    particle=SOUL;
+                    amount=2;
+                    speed=0.1;
+                    } @ModelPart{mid=nocsy_fpv2_boss;pid=shovel_tip}
+              - particles{
+                    particle=cloud;
+                    amount=2;
+                    speed=0.01;
+                    } @ModelPart{mid=nocsy_fpv2_boss;pid=shovel_tip}
+            ];repeat=17;repeatInterval=1;
+         }
+  - skill{s=Nocsy_FPV2-Gravekeeper-MeleeAttack-Slash-Damage}
+  - delay 5
+  - skill{s=Nocsy_FPV2-Gravekeeper-MeleeAttack-Slash-Damage}
+  - delay 5
+  - skill{s=Nocsy_FPV2-Gravekeeper-MeleeAttack-Slash-Damage}
+  - delay 24
+  - setAI{ai=true} @self
+  - removetag{t=attack} @self
+  - delay 60
+  - removetag{t=circle} @self
+  
+Nocsy_FPV2-Gravekeeper-MeleeAttack-Slash-Damage:
+  Skills:
+  - sound{s=entity.player.attack.sweep;v=1;p=0.1} @self
+  - damage{a=15} @ENO{r=6.5;ignore=samefaction}
+  - throw{velocity=10;velocityY=5} @ENO{r=6.5;ignore=samefaction}
+  - skill{s=[
+            - particle{
+                         particle=CAMPFIRE_COSY_SMOKE;
+                         amount=1;
+                      }
+            ];repeat=8;repeatInterval=2} @ENO{r=6.5;ignore=samefaction}
+  
+Nocsy_FPV2-Gravekeeper-MeleeAttack-Smash:
+  Conditions:
+  - hastag{t=smash} false
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=smash} @self
+  - state{s=attack_smash;li=0;lo=0;} @self 
+  - setAI{ai=false} @self
+  - delay 10
+  - sound{s=entity.ravager.attack;v=1;p=0.1;} @self
+  - delay 13
+  - damage{a=11} @ENO{r=6.5;ignore=samefaction}
+  - throw{velocity=0.1;velocityY=7} @ENO{r=6.5;ignore=samefaction}
+  - sound{s=entity.generic.explode;v=0.5;p=0.6;} @self
+  - particle{
+              a=2;
+              s=0.6;
+              particle=cloud;
+              amount=1;
+              d=true;
+            } @Ring{r=2;points=20;yOffset=0.1;}
+  - particle{
+              a=2;
+              s=0.2;
+              particle=cloud;
+              amount=1;
+              d=true;
+            } @Ring{r=2;points=20;yOffset=0.1;}
+  - particle{
+              a=2;
+              s=0.2;
+              particle=CAMPFIRE_COSY_SMOKE;
+              amount=1;
+              d=true;
+            } @Ring{r=2;points=20;yOffset=0.1;}
+  - particle{
+              a=2;
+              s=0.2;
+              particle=CAMPFIRE_SIGNAL_SMOKE;
+              amount=1;
+              d=true;
+            } @Ring{r=3;points=20;yOffset=0.1;}
+  - particle{
+              a=2;
+              s=0.1;
+              particle=CAMPFIRE_COSY_SMOKE;
+              amount=1;
+              d=true;
+            } @Ring{r=2;points=20;yOffset=0.1;}
+  - delay 17
+  - setAI{ai=true} @self
+  - removetag{t=attack} @self
+  - delay 40
+  - removetag{t=smash} @self
+
+#----------- Throwing ghouls -----------#
+Nocsy_FPV2-Gravekeeper-Projectile-Force:
+  Conditions:
+  - hastag{t=forcingProjectile} false
+  - hastag{t=walk} true
+  Skills:
+  - addtag{t=forcingProjectile} @self
+  - skill{s=Nocsy_FPV2-Gravekeeper-ForceIdle}
+  - delay 22
+  - skill{s=Nocsy_FPV2-Gravekeeper-Projectile}
+  - delay 1
+  - removetag{t=forcingProjectile} @self
+  - removetag{t=nomove} @self
+
+Nocsy_FPV2-Gravekeeper-Projectile:
+  Conditions:
+  - hastag{t=attack} false
+  - targetnotwithin{d=5} true
+  - hastag{t=projectile} false
+  - hastag{t=idle} orElseCast Nocsy_FPV2-Gravekeeper-Projectile-Force
+  Skills:
+  - addtag{t=attack} @self
+  - addtag{t=projectile} @self
+  - state{s=throw_ghoul;li=0;lo=0;} @self 
+  - setAI{ai=false} @self
+  - sound{s=entity.creeper.death;v=1;p=0.1;} @self
+  - particles{
+        particle=CAMPFIRE_COSY_SMOKE;
+        amount=2;
+        speed=0.05;
+        repeat=5;
+        repeatInterval=6;
+        delay=10;
+        } @ModelPart{mid=nocsy_fpv2_boss;pid=left_forearm;y=-0.6}
+  - particles{
+        particle=SOUL;
+        amount=3;
+        speed=0.1;
+        repeat=10;
+        repeatInterval=3;
+        delay=10;
+        } @ModelPart{mid=nocsy_fpv2_boss;pid=left_forearm;y=-0.6}
+  - delay 32
+  - skill{s=Nocsy_FPV2-Gravekeeper-Projectile-ShowGhoul}
+  - delay 17
+  - sound{s=entity.phantom.flap;v=1;p=0.1} @self
+  - skill{s=Nocsy_FPV2-Gravekeeper-Projectile-Launch}
+  - skill{s=Nocsy_FPV2-Gravekeeper-Projectile-HideGhoul}
+  - delay 10
+  - setAI{ai=true} @self
+  - removetag{t=attack} @self
+  - delay 160
+  - removetag{t=projectile} @self
+
+Nocsy_FPV2-Gravekeeper-Projectile-Launch:
+  Skills:
+  - projectile{
+    bulletType=MOB;
+    mob=Nocsy_FPV2-Ghoul-Projectile;
+    onTick=[
+      - skill{s=Nocsy_FPV2-Gravekeeper-Projectile-Launch-Effect}
+    ];
+    onHit=[
+          - throw{v=4;vy=3;fromOrigin=true} @ENO{r=3;ignore=players,samefaction} 
+          - damage{a=10} @ENO{r=3;ignore=players,samefaction}
+          - skill{s=[
+                  - particle{
+                            a=1;
+                            s=0.1;
+                            particle=CAMPFIRE_COSY_SMOKE;
+                            amount=1;
+                            repeat=10;
+                            repeatInterval=3;
+                            } 
+                  ]
+                 } @ENO{r=3;ignore=players,samefaction}
+          ];
+    onEnd=[
+          - summon{type=Nocsy_FPV2-Ghoul-Crash;amount=1;radius=0;}
+          ];
+    i=1;
+    hRadius=2.5;
+    vRadius=4.5;
+    v=21;
+    vO=0.8;
+    g=1.3;
+    syo=3.5;
+    sfo=1.5;
+    hp=false;
+    hnp=true;
+    sE=false;
+    } @target
+
+Nocsy_FPV2-Gravekeeper-Projectile-Launch-Effect:
+  Conditions:
+  - hastag{t=projectile_effect} false
+  Skills:
+  - addtag{t=projectile_effect} @self
+  - particles{
+        particle=SOUL;
+        amount=2;
+        speed=0.01;
+        d=true;
+        fromOrigin=true;
+        } @RingAroundOrigin{r=2;points=4;yOffset=0;rx=3.14159}
+  - particles{
+        particle=SOUL_FIRE_FLAME;
+        amount=2;
+        speed=0.05;
+        d=true;
+        fromOrigin=true;
+        } @RingAroundOrigin{r=2;points=5;yOffset=0;rx=3.14159}
+  - sound{s=entity.phantom.flap;v=0.4;p=0.1} @self
+  - delay 3
+  - removetag{t=projectile_effect} @self
+
+Nocsy_FPV2-Gravekeeper-Projectile-HideGhoul:
+  Conditions:
+  - hastag{t=submodeled} castInstead Nocsy_FPV2-Gravekeeper-Projectile-HideGhoul-Change
+  Skills:
+  - addtag{t=submodeled} @self
+  - delay 2
+  - skill{s=Nocsy_FPV2-Gravekeeper-Projectile-HideGhoul-Change}
+  
+Nocsy_FPV2-Gravekeeper-Projectile-HideGhoul-Change:
+  Skills:
+  - partvisibility{m=nocsy_fpv2_boss;p=projectile_ghoul;v=false}
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_hips;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left_foot;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_right_leg;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_right_foot;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_chest;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left_arm;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left_forearm;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=roj_right_arm;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_right_forearm;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_h_head;v=false} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_h_machoire;v=false} @self
+Nocsy_FPV2-Gravekeeper-Projectile-ShowGhoul:
+  Skills:
+  - partvisibility{m=nocsy_fpv2_boss;p=projectile_ghoul;v=true}
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_hips;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left_foot;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_right_leg;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_right_foot;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_chest;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left_arm;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_left_forearm;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=roj_right_arm;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_right_forearm;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_h_head;v=true} @self
+  - partvisibility{m=nocsy_fpv2_boss;p=proj_h_machoire;v=true} @self
+  
+#----------- Summon -----------#
+Nocsy_FPV2-Gravekeeper-Summon-Tag:
+  Skills:
+  - addtag{t=summon} @self
+
+Nocsy_FPV2-Gravekeeper-Summon:
+  Conditions:
+  - hastag{t=attack} false
+  - hastag{t=summon} true
+  - hastag{t=walkAnim} false
+  - hastag{t=walk} castInstead Nocsy_FPV2-Gravekeeper-ForceIdle
+  Skills:
+  - addtag{t=attack} @self
+  - removetag{t=summon} @self
+  - state{s=summon;li=0;lo=0;} @self
+  - potion{type=SLOW;duration=45;lvl=126;hasParticles=false;force=true} @self
+  - setAI{ai=false} @self
+  - sound{s=entity.ravager.celebrate;v=1;p=0.6} @self
+  - delay 26
+  - summon{type=Nocsy_FPV2-Tombstone;amount=1;radius=0;} @RingAroundOrigin{r=5.5;points=5;yOffset=0.1;}
+  - delay 10
+  - sound{s=entity.ravager.celebrate;v=1;p=0.6} @self
+  - delay 9
+  - setAI{ai=true} @self
+  - removetag{t=attack} @self
+
+#----------- Sounds -----------#
+Nocsy_FPV2-Gravekeeper-Sound-Hurt:
+  Conditions:
+  - hastag{t=hurt} false
+  Skills:
+  - addtag{t=hurt} @self
+  - sound{s=entity.ravager.hurt;v=1;p=0.6} @self
+  - delay 70
+  - removetag{t=hurt} @self
+  
+Nocsy_FPV2-Gravekeeper-Sound-Ambient:
+  Conditions:
+  - hastag{t=ambient} false
+  - hastag{t=sound} false
+  Skills:
+  - addtag{t=ambient} @self
+  - addtag{t=sound} @self
+  - sound{s=entity.ravager.ambient;v=1;p=0.6} @self
+  - delay 40
+  - removetag{t=sound} @self
+  - delay 120
+  - removetag{t=ambient} @self
+  
+Nocsy_FPV2-Gravekeeper-Sound-Death:
+  Skills:
+  - sound{s=entity.ravager.death;v=1;p=0.6} @self
+
+############################################
+#                General                   #
+############################################
+
+#----------- Cancel attack -----------#
+
+Nocsy_FPV2_CancelAttack:
+  Skills:
+  - CancelEvent
+#glQ1AVTrxWRphzSIlkUSJjQVpXYxUFVOhXVU9keRRlT5VUbSNHVoRWQwYFVTZGV5onb5lVN

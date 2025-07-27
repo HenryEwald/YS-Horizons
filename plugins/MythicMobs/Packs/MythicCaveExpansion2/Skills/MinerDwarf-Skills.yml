@@ -1,0 +1,10 @@
+MinerDwarfMine:
+  Skills:
+  - setai{ai=false}
+  - state{s=mine}
+  - delay 30
+  - setai{ai=true}
+  - state{s=mine;remove=true}
+MinerDwarfTrade:
+  Skills:
+  - state{s=traide} @Self

@@ -1,0 +1,920 @@
+#_______________________________________________________________________________
+#
+#-------------------------------+ INFORMATION +--------------------------------#
+#_______________________________________________________________________________
+
+# File: DP-SKILLS
+
+# Created by: Buguser
+# Version: 1.5.0
+# Server Version: Paper - 1.19
+# Hard-Dependencies:
+# - MythicMobs (tested in v5.1.2)
+
+# Join my Discord-Server for support: https://discord.gg/z6A4dk25BC
+
+#_______________________________________________________________________________
+#
+#--------------------------------+ ORC SKILLS +--------------------------------#
+#_______________________________________________________________________________
+
+#+--------------------------------+#
+#            Orc Archer            #
+#+--------------------------------+#
+
+BUG_DP_Orc-Archer_Fire-Bow:
+  Cooldown: 30
+  Conditions:
+  - targetwithin{d=20}
+  Skills:
+  - sound{s=item.armor.equip_iron;p=1.3;v=2} @self
+  - skill{s=BUG_DP_Weapon-11} @self
+  - runaigoalselector{goal=clear}
+  - runaitargetselector{target=clear}
+  - runaigoalselector{goal=float}
+  - runaigoalselector{goal=lookatplayers}
+  - potion{type=SLOW;duration=90;level=9;force=true;hasParticles=false} @self
+  - sound{s=item.flintandsteel.use;p=0.8;v=2} @self
+  - sound{s=block.furnace.fire_crackle;p=0.8;v=2} @self
+  - skill{s=BUG_DP_Orc-Archer_Fire-Bow-Particles;repeatInterval=4;repeat=100} @self
+  - delay 40
+  - sound{s=item.armor.equip_iron;p=1.3;v=2} @self
+  - skill{s=BUG_DP_Weapon-8} @self
+  - delay 10
+  - runaigoalselector{goal=skeletonbowattack}
+  - runaitargetselector{target=players}
+  - delay 330
+  - sound{s=item.armor.equip_iron;p=1.3;v=2} @self
+  - skill{s=BUG_DP_Weapon-7} @self
+BUG_DP_Orc-Archer_Fire-Bow-Particles:
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - effect:particles{particle=flame;amount=6;hS=0.4;vS=0.8;speed=0;y=1} @self
+
+#+--------------------------------+#
+#            Orc Knight            #
+#+--------------------------------+#
+
+BUG_DP_Orc-Knight_Attack:
+  Cooldown: 8
+  Skills:
+  - sound{s=entity.vindicator.death;p=0.6} @self
+  - effect:particles{particle=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=2.2} @self
+  - effect:particles{particle=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=5} @self
+  - delay 5
+  - randomskill{skills=BUG_DP_Orc-Knight_Attack-Heavy,BUG_DP_Orc-Knight_Attack-Swirl}
+
+BUG_DP_Orc-Knight_Attack-Heavy:
+  Cooldown: 10
+  Conditions:
+  - score{objective=heavyattack;v=0} true
+  - targetwithin{d=20}
+  Skills:
+  - modifymobscore{objective=heavyattack;action=set;value=1}
+  - potion{type=SPEED;duration=100;level=1;force=true;hasParticles=false} @self
+  - delay 100
+  - modifymobscore{objective=heavyattack;action=set;value=0}
+BUG_DP_Orc-Knight_Attack-Heavy-Hit:
+  Cooldown: 1
+  Conditions:
+  - score{objective=heavyattack;v=1} true
+  - targetwithin{d=3}
+  Skills:
+  - modifymobscore{objective=heavyattack;action=set;value=0}
+  - potion{type=SPEED;duration=1;level=1;force=true;hasParticles=false} @self
+  - effect:particles{particle=sweep_attack;amount=6;hS=0.5;vS=0.2;speed=0;y=1.2} @self
+  - sound{s=entity.player.attack.weak;p=0.4;v=2} @self
+  - delay 2
+  - skill{s=BUG_DP_Orc-Knight_Attack-Heavy-Damage} @self
+  - effect:particles{particle=sweep_attack;amount=6;hS=0.5;vS=0.2;speed=0;y=1.2} @self
+  - sound{s=entity.player.attack.weak;p=0.4;v=2} @self
+  - effect:particles{particle=crit;amount=30;hS=1;vS=1.2;speed=0.01;y=1} @target
+  - sound{s=entity.player.attack.crit;p=1;v=1} @target
+  - sound{s=block.anvil.land;p=0.8;v=2.0} @target
+BUG_DP_Orc-Knight_Attack-Heavy-Damage:
+  Cooldown: 1
+  Skills:
+  - damage{amount=40} @target
+  - throw{velocity=6;velocityY=2} @target
+
+BUG_DP_Orc-Knight_Attack-Swirl:
+  Cooldown: 10
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - runaigoalselector{goal=clear}
+  - runaitargetselector{target=clear}
+  - runaigoalselector{goal=float}
+  - potion{type=SLOW;duration=90;level=9;force=true;hasParticles=false} @self
+  - effect:spin{duration=80;velocity=10} @self
+  - skill{s=BUG_DP_Orc-Knight_Attack-Swirl-Animation;repeat=7;repeatInterval=10} @self
+  - skill{s=BUG_DP_Orc-Knight_Attack-Swirl-Hit;repeat=7;repeatInterval=10} @self
+  - delay 80
+  - runaigoalselector{goal=meleeattack}
+  - runaigoalselector{goal=lookatplayers}
+  - runaitargetselector{target=players}
+BUG_DP_Orc-Knight_Attack-Swirl-Animation:
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - sound{s=entity.player.attack.weak;p=1;v=1.5} @self
+  - effect:particles{p=cloud;amount=7;hS=0.9;vS=0.9;speed=0;yOffset=1;repeat=1;repeatInterval=5}
+  - effect:particles{p=falling_dust;material=sand;amount=2;hS=1;vS=1;speed=0;yOffset=1;repeat=1;repeatInterval=5}
+  - effect:particles{particle=sweep_attack;amount=1;hS=0.5;vS=0.2;speed=0;y=1.2} @Ring{r=1;points=3}
+  - delay 5
+  - effect:particles{particle=sweep_attack;amount=1;hS=0.5;vS=0.2;speed=0;y=1.2} @Ring{r=2;points=5}
+BUG_DP_Orc-Knight_Attack-Swirl-Hit:
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - damage{amount=6} @PIR{r=4}
+  - throw{velocity=2;velocityY=1} @PIR{r=4}
+  - effect:particles{particle=crit;amount=30;hS=1;vS=1.2;speed=0.01;y=1} @PIR{r=4}
+  - sound{s=entity.player.attack.crit;p=1;v=1} @PIR{r=4}
+
+#+--------------------------------+#
+#           Orc War Mage           #
+#+--------------------------------+#
+
+BUG_DP_Orc-War-Mage_Attack:
+  Cooldown: 2
+  Conditions:
+  - targetwithin{d=25}
+  Skills:
+  - skill{s=BUG_DP_Orc-War-Mage_Attack-Bolt-Strong-Cast}
+  - skill{s=BUG_DP_Orc-War-Mage_Attack-Bolt-Weak-Cast}
+
+BUG_DP_Orc-War-Mage_Attack-Bolt-Strong-Cast:
+  Cooldown: 8
+  Conditions:
+  - score{objective=magic;value=>8} true
+  - score{objective=magic;value=<8} false
+  Skills:
+  - signal{s=NORMAL} @self
+BUG_DP_Orc-War-Mage_Attack-Bolt-Strong:
+  Skills:
+  - potion{type=SLOW;duration=80;level=9;force=true;hasParticles=false} @self
+  - sound{s=entity.guardian.attack;p=0.8;v=2.0} @self
+  - effect:particles{particle=spell_witch;amount=50;hS=1;vS=1;speed=0;repeat=2;repeatInterval=20} @self
+  - effect:particles{particle=crit_magic;amount=20;hS=1;vS=1;speed=0;repeat=2;repeatInterval=20} @self
+  - sound{s=entity.guardian.hurt;p=0.1;v=2.0;repeat=2;repeatInterval=20} @self
+  - delay 65
+  - sound{s=entity.wither.shoot;p=0.8} @self
+  - projectile{onTick=BUG_DP_Orc-War-Mage_Attack-Bolt-Strong-Tick;onHit=BUG_DP_Orc-War-Mage_Attack-Bolt-Strong-Hit;v=15;i=1;hR=1;vR=1;mr=30}
+  - modifymobscore{objective=magic;action=set;value=0}
+BUG_DP_Orc-War-Mage_Attack-Bolt-Strong-Tick:
+  Skills:
+  - effect:particles{p=spell_witch;amount=2;speed=0.04;hR=0.1;vR=0.1} @origin
+  - delay 2
+  - effect:particles{p=crit_magic;amount=1;speed=0.04;hR=0.1;vR=0.1} @origin
+BUG_DP_Orc-War-Mage_Attack-Bolt-Strong-Hit:
+  Skills:
+  - damage{a=15}
+  - modifymobscore{objective=magic;action=add;value=7}
+  - effect:particles{p=spell_witch;amount=95;hSpread=2.5;ySpread=1;speed=0;yOFfset=0.3} @target
+  - sound{s=entity.elder_guardian.curse;p=0.5} @target
+
+BUG_DP_Orc-War-Mage_Attack-Bolt-Weak-Cast:
+  Cooldown: 2
+  Conditions:
+  - score{objective=magic;value=<2} false
+  - score{objective=magic;value=>8} false
+  Skills:
+  - signal{s=WEAK} @self
+BUG_DP_Orc-War-Mage_Attack-Bolt-Weak:
+  Skills:
+  - modifymobscore{objective=magic;action=subtract;value=3}
+  - sound{s=entity.wither.shoot;p=1.2} @self
+  - projectile{onTick=BUG_DP_Orc-War-Mage_Attack-Bolt-Weak-Tick;onHit=BUG_DP_Orc-War-Mage_Attack-Bolt-Weak-Hit;v=7;i=1;hR=1;vR=1;mr=12}
+BUG_DP_Orc-War-Mage_Attack-Bolt-Weak-Tick:
+  Skills:
+  - effect:particles{p=spell_witch;amount=1;speed=0.04;hR=0.1;vR=0.1} @origin
+BUG_DP_Orc-War-Mage_Attack-Bolt-Weak-Hit:
+  Skills:
+  - damage{a=8}
+  - modifymobscore{objective=magic;action=add;value=5}
+  - effect:particles{p=spell_witch;amount=40;hSpread=1;ySpread=1;speed=0;yOFfset=0.3} @target
+
+#+--------------------------------+#
+#            Orc Drummer           #
+#+--------------------------------+#
+
+BUG_DP_Orc-Drummer_Drum:
+  Cooldown: 1
+  Conditions:
+  - playerwithin{d=25}
+  Skills:
+  - signal{s=DRUMMER} @MobsInRadius{r=12;t=BUG_DP_Orc-War-Mage,BUG_DP_Orc-Archer,BUG_DP_Orc-Knight,BUG_DP_Orcling}
+  - effect:particles{p=note;amount=7;hS=12;vS=0.1;speed=0;repeat=7;repeatInterval=5} @self
+BUG_DP_Orc-Drummer_Drum-Effect:
+  Skills:
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.7;v=2.0} @self
+  - delay 7
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.8;v=2.0} @self
+  - delay 5
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.8;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.9;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.7;v=2.0} @self
+  - delay 7
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.8;v=2.0} @self
+  - delay 12
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.7;v=2.0} @self
+  - delay 10
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.8;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 10
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.8;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 10
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=0.8;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 3
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1;v=2.0} @self
+  - delay 5
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1.1;v=2.0} @self
+  - delay 6
+  - effect:particles{p=note;amount=1;hS=0.45;vS=0.8;speed=0;y=1} @self
+  - sound{s=block.note_block.bass;p=1.3;v=2.0} @self
+BUG_DP_Orc-Drummer_Drum-Buff:
+  Skills:
+  - potion{type=INCREASE_DAMAGE;duration=45;level=1;force=true;hasParticles=false} @self
+  - potion{type=SPEED;duration=45;level=0;force=true;hasParticles=false} @self
+  - potion{type=DAMAGE_RESISTANCE;duration=45;level=2;force=true;hasParticles=false} @self
+  - effect:particles{p=spell_mob;color=#F00000;amount=6;hS=0.45;vS=1.2;speed=0;y=1;repeat=7;repeatInterval=5} @self
+
+#+--------------------------------+#
+#          Orc Axe Thrower         #
+#+--------------------------------+#
+
+BUG_DP_Orc-Axe-Thrower_Attack:
+  Cooldown: 3
+  Conditions:
+  - targetwithin{d=25}
+  Skills:
+  - threat{amount=1} @NearestPlayer #Forces the item-projectile to have a target before the mob gets damaged.
+  - delay 5
+  - projectile{bulletType=ITEM;material=IRON_AXE;onStart=BUG_DP_Orc-Axe-Thrower_Attack-Start;onTick=BUG_DP_Orc-Axe-Thrower_Attack-Tick;onHit=BUG_DP_Orc-Axe-Thrower_Attack-Hit;onEnd=BUG_DP_Orc-Axe-Thrower_Attack-End;v=12;i=1;hR=1;vR=1;mr=20;syo=1;tyo=0.5;hfs=1;g=0.16}
+BUG_DP_Orc-Axe-Thrower_Attack-Start:
+  Skills:
+  - equip{item=air:0}
+  - sound{s=item.trident.throw;p=0.6} @self
+  - effect:particles{particle=cloud;amount=3;hS=1;vS=1;speed=0;y=1} @self
+BUG_DP_Orc-Axe-Thrower_Attack-Tick:
+  Skills:
+  - effect:particles{particle=crit;amount=1;hS=0;vS=0;speed=0} @origin
+  - delay 1
+  - effect:particles{particle=cloud;amount=1;hS=0;vS=0;speed=0} @origin
+BUG_DP_Orc-Axe-Thrower_Attack-Hit:
+  Skills:
+  - damage{a=15}
+BUG_DP_Orc-Axe-Thrower_Attack-End:
+  Skills:
+  - sound{s=item.trident.hit_ground;p=0.6} @origin
+  - effect:particles{particle=block_crack;amount=3;hS=0.3;vS=0.2;speed=0.2;m=oak_planks} @origin
+  - effect:particles{particle=block_crack;amount=2;hS=0.4;vS=0.2;speed=0.1;m=iron_block} @origin
+  - delay 20
+  - equip{item=iron_axe:0} @self
+  - sound{s=item.armor.equip_iron;p=1} @self
+
+#_______________________________________________________________________________
+#
+#-------------------------------+ SPIDER SKILLS +------------------------------#
+#_______________________________________________________________________________
+
+#+--------------------------------+#
+#           Poison Spider          #
+#+--------------------------------+#
+
+BUG_DP_Spider-Poison_Bite:
+  Cooldown: 1
+  Skills:
+  - potion{type=POISON;duration=120;level=0;force=true;hasParticles=false} @target
+  - potion{type=CONFUSION;duration=180;level=1;force=true;hasParticles=false} @target
+  - effect:particles{p=spell_mob;color=#15ff00;amount=2;hS=1;vS=1;speed=0.01;repeat=15;repeatInterval=7} @Target
+
+BUG_DP_Spider-Poison_Web-Bolt-Cast:
+  Cooldown: 8
+  Conditions:
+  - targetwithin{d=25}
+  Skills:
+  - effect:particles{particle=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{particle=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=2} @self
+  - potion{type=SLOW;duration=50;level=9;force=true;hasParticles=false} @self
+  - effect:particles{p=spell_mob;color=#15ff00;amount=20;hS=1;vS=1;speed=0;repeat=2;repeatInterval=20} @self
+  - effect:itemspray{item=cobweb;amount=8;velocity=0.6;duration=45} @self
+  - sound{s=entity.spider.hurt;p=0.3;v=2.0} @self
+  - delay 40
+  - skill{s=BUG_DP_Spider-Poison_Web-Bolt}
+BUG_DP_Spider-Poison_Web-Bolt:
+  Skills:
+  - sound{s=entity.wither.shoot;p=1.3;v=0.6} @self
+  - sound{s=entity.slime.attack;p=1.2;v=2.0} @self
+  - projectile{onTick=BUG_DP_Spider-Poison_Web-Bolt-Tick;onHit=BUG_DP_Spider-Poison_Web-Bolt-Hit;v=20;i=1;hR=1;vR=1;g=0.12}
+BUG_DP_Spider-Poison_Web-Bolt-Tick:
+  Skills:
+  - effect:itemspray{item=cobweb;amount=2;velocity=0.3;duration=25} @origin
+  - delay 2
+  - effect:particles{p=spell_mob;color=#15ff00;amount=1;hS=0;vS=0;speed=0} @origin
+BUG_DP_Spider-Poison_Web-Bolt-Hit:
+  Skills:
+  - damage{a=10}
+  - effect:itemspray{item=cobweb;amount=12;velocity=0.6;duration=30}
+  - sound{s=entity.slime.attack;p=0.8}
+  - potion{type=POISON;duration=100;level=0;force=true;hasParticles=false}
+  - potion{type=CONFUSION;duration=180;level=1;force=true;hasParticles=false}
+
+#+--------------------------------+#
+#           Wither Spider          #
+#+--------------------------------+#
+
+BUG_DP_Spider-Wither_Bite:
+  Cooldown: 1
+  Skills:
+  - potion{type=WITHER;duration=120;level=0;force=true;hasParticles=false} @Target
+  - effect:particles{p=spell_mob;color=#000000;amount=2;hS=1;vS=1;speed=0.01;repeat=15;repeatInterval=7} @Target
+
+BUG_DP_Spider-Wither_Mount:
+  Cooldown: 8
+  Conditions:
+  - score{objective=spidermount;v=0} true
+  - targetwithin{d=12}
+  Skills:
+  - effect:particles{particle=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{particle=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=3} @self
+  - modifymobscore{objective=spidermount;action=set;value=1}
+  - potion{type=SPEED;duration=60;level=0;force=true;hasParticles=false} @self
+  - sound{s=entity.spider.hurt;p=0.5;v=2.0} @self
+  - delay 60
+  - modifymobscore{objective=spidermount;action=set;value=0}
+BUG_DP_Spider-Wither_Mount-Hit:
+  Cooldown: 1
+  Conditions:
+  - score{objective=spidermount;v=1} true
+  - targetwithin{d=3}
+  Skills:
+  - mounttarget @target
+  - modifymobscore{objective=spidermount;action=set;value=0}
+
+#+--------------------------------+#
+#           Frost Spider           #
+#+--------------------------------+#
+
+BUG_DP_Spider-Frost_Bite:
+  Cooldown: 1
+  Skills:
+  - potion{type=SLOW;duration=120;level=3;force=true;hasParticles=false} @Target
+  - potion{type=SLOW_DIGGING;duration=120;level=1;force=true;hasParticles=false} @Target
+  - effect:particles{p=spell_mob;color=#b7fdff;amount=2;hS=1;vS=1;speed=0.01;repeat=15;repeatInterval=7} @Target
+
+BUG_DP_Spider-Frost_Aura:
+  Cooldown: 8
+  Conditions:
+  - targetwithin{d=15}
+  Skills:
+  - runaitargetselector{target=clear}
+  - effect:particles{p=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{p=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=2} @self
+  - effect:particles{p=fireworks_spark;amount=60;hS=1;vS=1;speed=0;repeat=1;repeatInterval=20} @self
+  - sound{s=entity.spider.hurt;p=0.5;v=2.0} @self
+  - delay 40
+  - skill{s=BUG_DP_Spider-Frost_Aura-Animation;repeat=11;repeatInterval=10}
+  - skill{s=BUG_DP_Spider-Frost_Aura-Hit;repeat=11;repeatInterval=10}
+  - delay 120
+  - runaitargetselector{target=hurtbytarget}
+  - runaitargetselector{target=players}
+  - runaitargetselector{target=attacker}
+BUG_DP_Spider-Frost_Aura-Animation:
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - effect:blockmask{m=packed_ice;r=4;d=40} @self
+  - effect:particles{p=fireworks_spark;amount=60;hS=1;vS=1;speed=0} @self
+  - effect:particles{p=cloud;amount=5;hS=4;vS=3;speed=0} @self
+  - effect:particles{p=snow_shovel;amount=100;hS=3;vS=1.8;speed=0;y=3.6} @self
+  - effect:particles{p=fireworks_spark;amount=70;hS=4;vS=0.2;speed=0} @self
+  - sound{s=block.snow.step;p=0.7;v=2} @self
+BUG_DP_Spider-Frost_Aura-Hit:
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - damage{amount=6} @PIR{r=4}
+  - effect:particles{p=snow_shovel;amount=15;hS=1;vS=1.2;speed=0.01;y=1} @PIR{r=4}
+  - sound{s=entity.player.attack.crit;p=1;v=1} @PIR{r=4}
+
+#+--------------------------------+#
+#            Fire Spider           #
+#+--------------------------------+#
+
+BUG_DP_Spider-Fire_Bite:
+  Cooldown: 1
+  Skills:
+  - ignite{ticks=120} @Target
+  - effect:particles{p=flame;amount=2;hS=1;vS=1;speed=0.01;repeat=15;repeatInterval=7} @Target
+
+BUG_DP_Spider-Fire_Breath-Cast:
+  Cooldown: 8
+  Conditions:
+  - targetwithin{d=25}
+  Skills:
+  - effect:particles{particle=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{particle=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=2} @self
+  - potion{type=SLOW;duration=50;level=9;force=true;hasParticles=false} @self
+  - effect:particles{p=flame;amount=10;hS=1;vS=1;speed=0.06;repeat=2;repeatInterval=20} @self
+  - effect:particles{p=smoke_normal;amount=5;hS=1;vS=1;speed=0;repeat=2;repeatInterval=20} @self
+  - sound{s=entity.spider.hurt;p=0.3;v=2} @self
+  - sound{s=block.furnace.fire_crackle;p=0.8;v=2} @self
+  - delay 40
+  - skill{s=BUG_DP_Spider-Fire_Breath}
+BUG_DP_Spider-Fire_Breath:
+  Skills:
+  - sound{s=entity.blaze.shoot;p=1.3;v=0.6} @self
+  - sound{s=entity.blaze.burn;p=1.4;v=1} @self
+  - projectile{onTick=BUG_DP_Spider-Fire_Breath-Tick;onHit=BUG_DP_Spider-Fire_Breath-Hit;onEnd=BUG_DP_Spider-Fire_Breath-End;v=10;i=1;hR=1;vR=1;mr=10}
+BUG_DP_Spider-Fire_Breath-Tick:
+  Skills:
+  - effect:particles{p=flame;amount=6;hS=0.5;vS=0.5;speed=0.02} @origin
+  - delay 2
+  - effect:particles{p=smoke_normal;amount=3;hS=0.5;vS=0.5;speed=0} @origin
+BUG_DP_Spider-Fire_Breath-Hit:
+  Skills:
+  - ignite{ticks=135}
+  - damage{a=10}
+  - effect:particles{p=flame;amount=2;hS=1;vS=1;speed=0.01;repeat=15;repeatInterval=9} @Trigger
+BUG_DP_Spider-Fire_Breath-End:
+  Skills:
+  - sound{s=block.fire.ambient;p=0.6}
+  - effect:particles{p=flame;amount=10;hS=0.5;vS=0.5;speed=0.02;repeat=3;repeatInterval=5}
+  - effect:particles{p=smoke_normal;amount=3;hS=0.5;vS=0.5;speed=0;repeat=3;repeatInterval=5}
+  - delay 20
+  - effect:particles{p=flame;amount=7;hS=0.3;vS=0.3;speed=0.02;repeat=2;repeatInterval=5}
+  - effect:particles{p=smoke_normal;amount=2;hS=0.3;vS=0.3;speed=0;repeat=2;repeatInterval=5}
+  - delay 15
+  - effect:particles{p=flame;amount=4;hS=0.15;vS=0.15;speed=0.02;repeat=2;repeatInterval=5}
+  - effect:particles{p=smoke_normal;amount=1;hS=0.15;vS=0.15;speed=0;repeat=2;repeatInterval=5}
+
+#+--------------------------------+#
+#            Spider Eggs           #
+#+--------------------------------+#
+
+BUG_DP_Spider-Egg-Poison_Summon:
+  Cooldown: 8
+  Conditions:
+  - score{objective=summon;v=<1} true
+  - playerwithin{d=20}
+  - mobsinradius{t=BUG_DP_Spiderling-Poison,BUG_DP_Spider-Poison;a=0to1;r=35;action=TRUE}
+  Skills:
+  - modifymobscore{objective=summon;action=add;value=1}
+  - sound{s=block.slime.break;p=0.8} @self
+  - effect:particles{p=spell_mob;color=#15ff00;amount=30;hS=1.5;vS=1;speed=0;y=1} @self
+  - delay 5
+  - summon{type=BUG_DP_Spiderling-Poison;amount=1;radius=1} @self
+
+BUG_DP_Spider-Egg-Wither_Summon:
+  Cooldown: 8
+  Conditions:
+  - score{objective=summon;v=<2} true
+  - playerwithin{d=20}
+  - mobsinradius{t=BUG_DP_Spiderling-Wither,BUG_DP_Spider-Wither;a=0to2;r=35;action=TRUE}
+  Skills:
+  - modifymobscore{objective=summon;action=add;value=1}
+  - sound{s=block.slime.break;p=0.8} @self
+  - effect:particles{p=spell_mob;color=#000000;amount=30;hS=1.5;vS=1;speed=0;y=1} @self
+  - delay 5
+  - summon{type=BUG_DP_Spiderling-Wither;amount=1;radius=1} @self
+
+BUG_DP_Spider-Egg-Frost_Summon:
+  Cooldown: 8
+  Conditions:
+  - score{objective=summon;v=<1} true
+  - playerwithin{d=20}
+  - mobsinradius{t=BUG_DP_Spiderling-Frost,BUG_DP_Spider-Frost;a=0to1;r=35;action=TRUE}
+  Skills:
+  - modifymobscore{objective=summon;action=add;value=1}
+  - sound{s=block.slime.break;p=0.8} @self
+  - effect:particles{p=fireworks_spark;amount=20;hS=1.5;vS=1;speed=0;y=1} @self
+  - delay 5
+  - summon{type=BUG_DP_Spiderling-Frost;amount=1;radius=1} @self
+
+BUG_DP_Spider-Egg-Fire_Summon:
+  Cooldown: 8
+  Conditions:
+  - score{objective=summon;v=<1} true
+  - playerwithin{d=20}
+  - mobsinradius{t=BUG_DP_Spiderling-Fire,BUG_DP_Spider-Fire;a=0to1;r=35;action=TRUE}
+  Skills:
+  - modifymobscore{objective=summon;action=add;value=1}
+  - sound{s=block.slime.break;p=0.8} @self
+  - effect:particles{p=flame;amount=25;hS=1.5;vS=1;speed=0.02;y=1} @self
+  - delay 5
+  - summon{type=BUG_DP_Spiderling-Fire;amount=1;radius=1} @self
+
+BUG_DP_Spider-Egg-Random_Summon:
+  Cooldown: 8
+  Conditions:
+  - score{objective=summon;v=<1} true
+  - playerwithin{d=20}
+  - mobsinradius{t=BUG_DP_Spiderling-Poison,BUG_DP_Spiderling-Wither,BUG_DP_Spiderling-Frost,BUG_DP_Spiderling-Fire,BUG_DP_Spider-Poison,BUG_DP_Spider-Wither,BUG_DP_Spider-Frost,BUG_DP_Spider-Fire;a=0to1;r=35;action=TRUE}
+  Skills:
+  - randomskill{skills=BUG_DP_Spider-Egg-Poison_Summon,BUG_DP_Spider-Egg-Wither_Summon,BUG_DP_Spider-Egg-Frost_Summon,BUG_DP_Spider-Egg-Fire_Summon}
+
+BUG_DP_Spider-Egg_Score:
+  Conditions:
+  - score{objective=summon;v=1-3} true
+  Skills:
+  - modifymobscore{objective=summon;action=subtract;value=1}
+
+#+--------------------------------+#
+#            Spiderlings           #
+#+--------------------------------+#
+
+BUG_DP_Spiderling_Grow:
+  Conditions:
+  - score{objective=grow;v=>29} true
+  Cooldown: 9999
+  Skills:
+  - sound{s=entity.spider.hurt;p=0.5;v=2.0} @self
+  - effect:particles{particle=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{particle=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=2} @Self
+  - potion{type=SLOW;duration=50;level=9;force=true;hasParticles=false} @self
+  - delay 45
+  - sound{s=block.slime.break;p=0.8} @self
+  - signal{s=GROW} @self
+  - delay 1
+  - remove @self
+
+BUG_DP_Spiderling_Score:
+  Conditions:
+  - playerwithin{d=15}
+  Skills:
+  - modifymobscore{objective=grow;action=add;value=1}
+
+
+#_______________________________________________________________________________
+#
+#-------------------------------+ WRAITH SKILLS +------------------------------#
+#_______________________________________________________________________________
+
+#+--------------------------------+#
+#          Wraith Warrior          #
+#+--------------------------------+#
+
+BUG_DP_Wraith-Warrior_Attack-Teleport:
+  Cooldown: 6
+  Conditions:
+  - targetnotwithin{d=3}
+  - targetwithin{d=40}
+  Skills:
+  - effect:particles{particle=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{particle=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=2} @self
+  - sound{s=entity.vex.charge;p=0.3;v=2.0} @self
+  - potion{type=SLOW;duration=50;level=9;force=true;hasParticles=false} @self
+  - delay 35
+  - sound{s=entity.enderman.teleport} @self
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0} @self
+  - delay 5
+  - teleport{spreadh=1;spreadv=0} @target
+  - delay 2
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0} @self
+  - delay 5
+  - skill{s=BUG_DP_Wraith-Warrior_Attack-Teleport-Hit;repeat=2;repeatInterval=10}
+BUG_DP_Wraith-Warrior_Attack-Teleport-Hit:
+  Conditions:
+  - health{a=>0} true
+  - targetwithin{d=4}
+  Skills:
+  - effect:particles{particle=sweep_attack;amount=2;hS=0.5;vS=0.2;speed=0;y=1.2} @self
+  - sound{s=entity.player.attack.weak;p=0.8;v=2} @self
+  - damage{amount=6} @target
+  - sound{s=entity.player.attack.crit;p=1;v=1} @target
+
+#+--------------------------------+#
+#           Wraith Archer          #
+#+--------------------------------+#
+
+BUG_DP_Wraith-Archer_Damaged:
+  Conditions:
+  - health{a=>0} true
+  - targetwithin{d=6}
+  Skills:
+  - sound{s=entity.enderman.teleport}
+  - teleport{spreadh=11;spreadv=0} @target
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0}
+  - delay 5
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0}
+
+#+--------------------------------+#
+#          Wraith Sprinter         #
+#+--------------------------------+#
+
+BUG_DP_Wraith-Sprinter_Attack-Sprint:
+  Cooldown: 8
+  Conditions:
+  - score{objective=sprintattack;v=0} true
+  - targetwithin{d=20}
+  Skills:
+  - modifymobscore{objective=sprintattack;action=set;value=1}
+  - potion{type=SPEED;duration=100;level=1;force=true;hasParticles=false} @self
+  - effect:particles{p=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{p=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=2} @self
+  - sound{s=entity.vex.charge;p=0.7;v=2.0} @self
+  - delay 2
+  - sound{s=entity.vex.charge;p=0.9;v=2.0} @target
+  - delay 2
+  - sound{s=entity.vex.charge;p=1.1;v=2.0} @target
+  - delay 2
+  - sound{s=entity.vex.hurt;p=1.3;v=2.0} @target
+  - delay 2
+  - sound{s=entity.vex.ambient;p=1.5;v=2.0} @target
+  - delay 2
+  - sound{s=entity.vex.charge;p=1.7;v=2.0} @target
+  - delay 5
+  - sound{s=entity.vex.death;p=0.1;v=2.0} @target
+  - delay 2
+  - sound{s=entity.vex.charge;p=0.3;v=2.0} @target
+  - delay 83
+  - modifymobscore{objective=sprintattack;action=set;value=0}
+BUG_DP_Wraith-Sprinter_Attack-Sprint-Hit:
+  Cooldown: 1
+  Conditions:
+  - score{objective=sprintattack;v=1} true
+  - targetwithin{d=3}
+  Skills:
+  - damage{a=10} @target
+  - potion{type=WITHER;duration=100;level=0;force=true;hasParticles=false} @target
+  - modifymobscore{objective=sprintattack;action=set;value=0}
+  - effect:particles{p=sweep_attack;amount=1;hS=0.5;vS=0.2;speed=0;y=1.2;repeatInterval=2;repeat=4} @self
+  - sound{s=entity.player.attack.weak;p=0.6;v=2;repeatInterval=2;repeat=4} @self
+  - effect:particles{p=crit;amount=30;hS=1;vS=1.2;speed=0.01;y=1;repeatInterval=2;repeat=4} @target
+  - sound{s=entity.player.attack.crit;p=1;v=1;repeatInterval=2;repeat=4} @target
+
+#+--------------------------------+#
+#        Wraith Interceptor        #
+#+--------------------------------+#
+
+BUG_DP_Wraith-Interceptor_Attack-Pull:
+  Cooldown: 13
+  Conditions:
+  - health{a=>0} true
+  - targetwithin{d=20}
+  Skills:
+  - sound{s=entity.enderman.teleport} @self
+  - teleport{spreadh=12;spreadv=0} @target
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0} @self
+  - delay 5
+  - potion{type=DAMAGE_RESISTANCE;duration=30;level=9;force=true;hasParticles=false;repeat=5;repeatInterval=20} @self
+  - effect:particles{p=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0} @self
+  - sound{s=entity.vex.charge;p=0.2;v=2.0} @self
+  - delay 10
+  - skill{s=BUG_DP_Wraith-Interceptor_Attack-Pull-Hit;repeat=11;repeatInterval=10}
+  - potion{type=WITHER;duration=200;level=0;force=true;hasParticles=false;repeat=5;repeatInterval=20} @PIR{r=4}
+  - delay 110
+  - sound{s=entity.vex.death;p=0.1;v=2.0} @self
+  - delay 5
+  - sound{s=entity.enderman.teleport} @self
+  - teleport{spreadh=12;spreadv=0} @target
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0} @self
+  - delay 5
+  - effect:particles{p=smoke_large;amount=30;hS=0.4;vS=1.2;speed=0} @self
+BUG_DP_Wraith-Interceptor_Attack-Pull-Hit:
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - potion{type=LEVITATION;duration=40;level=1;force=true;hasParticles=false;hasIcon=false} @target
+  - effect:particles{p=spell_mob;color=#000000;amount=256;hS=4;vS=0.2;speed=0} @self
+  - effect:particleline{p=redstone;color=#000000;amount=1;repeat=1;repeatInterval=5;y=0.5} @target
+  - pull{velocity=3;repeat=4;repeatInterval=2} @target
+
+#+--------------------------------+#
+#          Wraith Exploder         #
+#+--------------------------------+#
+
+BUG_DP_Wraith-Exploder_Attack-Explode:
+  Cooldown: 10
+  Conditions:
+  - health{a=>0} true
+  - targetwithin{d=4} true
+  Skills:
+  - effect:particles{particle=villager_angry;amount=1;hS=0;vS=0;speed=-0.5;y=1} @self
+  - effect:particles{particle=smoke_normal;amount=8;hS=0.5;vS=0.5;speed=0;y=1;repeatInterval=15;repeat=2} @self
+  - sound{s=entity.vex.charge;p=0.5;v=2.0} @self
+  - sound{s=entity.creeper.death;p=0.5;v=1.5} @self
+  - potion{type=SLOW;duration=100;level=9;force=true;hasParticles=false} @self
+  - pull{velocity=2;repeat=14;repeatInterval=2} @PIR{r=10}
+  - delay 30
+  - skill{s=BUG_DP_Wraith-Exploder_Attack-Explode-Hit} @self
+BUG_DP_Wraith-Exploder_Attack-Explode-Hit:
+  Conditions:
+  - health{a=>0} true
+  Skills:
+  - explosion{yield=3} @self
+  - damage{amount=15} @PIR{r=5}
+  - potion{type=WITHER;duration=100;level=0;force=true;hasParticles=false} @PIR{r=5}
+  - potion{type=SLOW;duration=100;level=2;force=true;hasParticles=false} @PIR{r=5}
+  - potion{type=BLINDNESS;duration=100;level=0;force=true;hasParticles=false} @PIR{r=5}
+  - effect:particles{p=smoke_large;amount=70;hS=1.2;vS=1.2;speed=0.05} @self
+  - sound{s=entity.vex.charge;p=1.1;v=2.0} @target
+  - remove @self
+
+#_______________________________________________________________________________
+#
+#-----------------------------+ EQUIPMENT SKILLS +-----------------------------#
+#_______________________________________________________________________________
+
+BUG_DP_Random-Equipment_Orcling:
+  Cooldown: 1
+  Skills:
+  - randomskill{skills=BUG_DP_Armor-1,BUG_DP_Armor-2,BUG_DP_Armor-3,BUG_DP_Armor-4}
+  - randomskill{skills=BUG_DP_Weapon-12,BUG_DP_Weapon-13,BUG_DP_Weapon-14,BUG_DP_Weapon-15,BUG_DP_Weapon-16,BUG_DP_Weapon-16,BUG_DP_Weapon-17,BUG_DP_Weapon-17,BUG_DP_Weapon-18,BUG_DP_Weapon-18}
+BUG_DP_Random-Equipment_Orc-Knight:
+  Skills:
+  - randomskill{skills=BUG_DP_Armor-6,BUG_DP_Armor-6,BUG_DP_Armor-6,BUG_DP_Armor-6,BUG_DP_Armor-7,BUG_DP_Armor-7,BUG_DP_Armor-7,BUG_DP_Armor-7,BUG_DP_Armor-7,BUG_DP_Armor-8,BUG_DP_Armor-9}
+  - randomskill{skills=BUG_DP_Weapon-1,BUG_DP_Weapon-1,BUG_DP_Weapon-2,BUG_DP_Weapon-2,BUG_DP_Weapon-3,BUG_DP_Weapon-4,BUG_DP_Weapon-4,BUG_DP_Weapon-4,BUG_DP_Weapon-4,BUG_DP_Weapon-5,BUG_DP_Weapon-5,BUG_DP_Weapon-6}
+BUG_DP_Random-Equipment_Orc-Archer:
+  Cooldown: 1
+  Skills:
+  - randomskill{skills=BUG_DP_Armor-1,BUG_DP_Armor-2,BUG_DP_Armor-3,BUG_DP_Armor-4,BUG_DP_Armor-6}
+BUG_DP_Random-Equipment_Orc-War-Mage:
+  Cooldown: 1
+  Skills:
+  - randomskill{skills=BUG_DP_Armor-1,BUG_DP_Armor-4,BUG_DP_Armor-5}
+  - randomskill{skills=BUG_DP_Weapon-9,BUG_DP_Weapon-10}
+BUG_DP_Random-Equipment_Orc-Axe-Thrower:
+  Cooldown: 1
+  Skills:
+  - randomskill{skills=BUG_DP_Armor-1,BUG_DP_Armor-2,BUG_DP_Armor-3,BUG_DP_Armor-4,BUG_DP_Armor-6}
+  - skill{s=BUG_DP_Weapon-1}
+BUG_DP_Random-Equipment_Wraith-Warrior:
+  Cooldown: 1
+  Skills:
+  - randomskill{skills=BUG_DP_Weapon-4,BUG_DP_Weapon-4,BUG_DP_Weapon-19,BUG_DP_Weapon-19,BUG_DP_Weapon-20}
+BUG_DP_Random-Equipment_Wraith-Archer:
+  Cooldown: 1
+  Skills:
+  - randomskill{skills=BUG_DP_Weapon-7,BUG_DP_Weapon-7,BUG_DP_Weapon-7,BUG_DP_Weapon-8,BUG_DP_Weapon-8,BUG_DP_Weapon-21,BUG_DP_Weapon-21}
+BUG_DP_Random-Equipment_Wraith-Servant:
+  Cooldown: 1
+  Skills:
+  - randomskill{skills=BUG_DP_Weapon-18,BUG_DP_Weapon-18,BUG_DP_Weapon-18,BUG_DP_Weapon-18,BUG_DP_Weapon-22}
+
+BUG_DP_Armor-1:
+  Skills:
+  - equip{i=leather_helmet HEAD} 0.55
+  - equip{i=leather_chestplate CHEST} 0.8
+  - equip{i=leather_leggings LEGS} 0.9
+  - equip{i=leather_boots FEET} 0.7
+BUG_DP_Armor-2:
+  Skills:
+  - equip{i=leather_helmet{color=LIGHT_GRAY} HEAD} 0.7
+  - equip{i=leather_chestplate{color=LIGHT_GRAY} CHEST} 0.9
+  - equip{i=leather_leggings{color=LIGHT_GRAY} LEGS} 0.7
+  - equip{i=leather_boots{color=LIGHT_GRAY} FEET} 0.7
+BUG_DP_Armor-3:
+  Skills:
+  - equip{i=leather_helmet{color=GRAY} HEAD} 0.8
+  - equip{i=leather_chestplate{color=GRAY} CHEST} 0.85
+  - equip{i=leather_leggings{color=GRAY} LEGS} 0.85
+  - equip{i=leather_boots{color=GRAY} FEET} 0.8
+BUG_DP_Armor-4:
+  Skills:
+  - equip{i=leather_helmet{color=BLACK} HEAD} 0.9
+  - equip{i=leather_chestplate{color=BLACK} CHEST} 0.9
+  - equip{i=leather_leggings{color=BLACK} LEGS} 0.9
+  - equip{i=leather_boots{color=BLACK} FEET} 0.9
+BUG_DP_Armor-5:
+  Skills:
+  - equip{i=leather_helmet{enchants=PROTECTION_ENVIRONMENTAL:2} HEAD} 0.55
+  - equip{i=leather_chestplate{enchants=PROTECTION_ENVIRONMENTAL:2} CHEST} 0.8
+  - equip{i=leather_leggings{enchants=PROTECTION_ENVIRONMENTAL:2} LEGS} 0.9
+  - equip{i=leather_boots{enchants=PROTECTION_ENVIRONMENTAL:2} FEET} 0.7
+BUG_DP_Armor-6:
+  Skills:
+  - equip{i=chainmail_helmet HEAD} 0.6
+  - equip{i=chainmail_chestplate CHEST} 0.8
+  - equip{i=chainmail_leggings LEGS} 0.75
+  - equip{i=chainmail_boots FEET} 0.5
+BUG_DP_Armor-7:
+  Skills:
+  - equip{i=iron_helmet HEAD} 0.6
+  - equip{i=iron_chestplate CHEST} 0.75
+  - equip{i=iron_leggings LEGS} 0.65
+  - equip{i=iron_boots FEET} 0.7
+BUG_DP_Armor-8:
+  Skills:
+  - equip{i=diamond_helmet HEAD} 0.8
+  - equip{i=diamond_chestplate CHEST} 0.9
+  - equip{i=diamond_leggings LEGS} 0.85
+  - equip{i=diamond_boots FEET} 0.8
+BUG_DP_Armor-9:
+  Skills:
+  - equip{i=diamond_helmet{enchants=PROTECTION_ENVIRONMENTAL:2} HEAD} 0.9
+  - equip{i=diamond_chestplate{enchants=PROTECTION_ENVIRONMENTAL:2} CHEST} 0.9
+  - equip{i=diamond_leggings{enchants=PROTECTION_ENVIRONMENTAL:2} LEGS} 0.9
+  - equip{i=diamond_boots{enchants=PROTECTION_ENVIRONMENTAL:2} FEET} 0.9
+BUG_DP_Weapon-1:
+  Skills:
+  - equip{i=iron_axe HAND}
+BUG_DP_Weapon-2:
+  Skills:
+  - equip{i=golden_axe HAND}
+BUG_DP_Weapon-3:
+  Skills:
+  - equip{i=diamond_axe HAND}
+  - equip{i=shield{color=BLACK} OFFHAND} 0.5
+BUG_DP_Weapon-4:
+  Skills:
+  - equip{i=iron_sword HAND}
+BUG_DP_Weapon-5:
+  Skills:
+  - equip{i=golden_sword HAND}
+BUG_DP_Weapon-6:
+  Skills:
+  - equip{i=diamond_sword HAND}
+  - equip{i=shield{color=BLACK} OFFHAND} 0.5
+BUG_DP_Weapon-7:
+  Skills:
+  - equip{i=bow HAND}
+BUG_DP_Weapon-8:
+  Skills:
+  - equip{i=bow{enchants=ARROW_FIRE:2} HAND}
+BUG_DP_Weapon-9:
+  Skills:
+  - equip{i=blaze_rod{enchants=FIRE_ASPECT:2} HAND}
+BUG_DP_Weapon-10:
+  Skills:
+  - equip{i=stick{enchants=KNOCKBACK:1} HAND}
+BUG_DP_Weapon-11:
+  Skills:
+  - equip{i=flint_and_steel HAND}
+BUG_DP_Weapon-12:
+  Skills:
+  - equip{i=iron_axe HAND}
+BUG_DP_Weapon-13:
+  Skills:
+  - equip{i=stone_axe HAND}
+BUG_DP_Weapon-14:
+  Skills:
+  - equip{i=stone_hoe HAND}
+BUG_DP_Weapon-15:
+  Skills:
+  - equip{i=iron_hoe HAND}
+BUG_DP_Weapon-16:
+  Skills:
+  - equip{i=iron_sword HAND}
+BUG_DP_Weapon-17:
+  Skills:
+  - equip{i=wooden_sword HAND}
+BUG_DP_Weapon-18:
+  Skills:
+  - equip{i=stone_sword HAND}
+BUG_DP_Weapon-19:
+  Skills:
+  - equip{i=iron_sword{enchants=KNOCKBACK:1} HAND}
+BUG_DP_Weapon-20:
+  Skills:
+  - equip{i=iron_sword{enchants=FIRE_ASPECT:2} HAND}
+BUG_DP_Weapon-21:
+  Skills:
+  - equip{i=bow{enchants=ARROW_KNOCKBACK:1} HAND}
+BUG_DP_Weapon-22:
+  Skills:
+  - equip{i=iron_hoe{enchants=KNOCKBACK:1} HAND}

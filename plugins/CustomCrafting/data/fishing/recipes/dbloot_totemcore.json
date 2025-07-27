@@ -1,0 +1,216 @@
+{
+  "@type" : "customcrafting:crafting_shaped",
+  "group" : "",
+  "hidden" : false,
+  "vanillaBook" : true,
+  "priority" : "NORMAL",
+  "checkNBT" : false,
+  "conditions" : {
+    "values" : [ ]
+  },
+  "symmetry" : {
+    "horizontal" : false,
+    "vertical" : false,
+    "rotate" : false
+  },
+  "shape" : [ "ABC", "DEF", "GHI" ],
+  "ingredients" : {
+    "I" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "DRAGON_BREATH"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "A" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "DRAGON_BREATH"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "B" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "PRISMARINE_SHARD",
+          "meta" : {
+            "==" : "ItemMeta",
+            "meta-type" : "UNSPECIFIC",
+            "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Spectral Silt\"}],\"text\":\"\"}",
+            "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"blue\",\"text\":\"Crafting component\"}],\"text\":\"\"}" ],
+            "custom-model-data" : 83680,
+            "enchants" : {
+              "DURABILITY" : 1
+            },
+            "ItemFlags" : [ "HIDE_ENCHANTS" ],
+            "PublicBukkitValues" : {
+              "realisticsurvival:rsvitem" : "spectral_silt",
+              "realisticsurvival:rsvmodule" : "Baubles"
+            }
+          }
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "C" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GHAST_TEAR"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "D" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "PRISMARINE_SHARD",
+          "meta" : {
+            "==" : "ItemMeta",
+            "meta-type" : "UNSPECIFIC",
+            "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Spectral Silt\"}],\"text\":\"\"}",
+            "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"blue\",\"text\":\"Crafting component\"}],\"text\":\"\"}" ],
+            "custom-model-data" : 83680,
+            "enchants" : {
+              "DURABILITY" : 1
+            },
+            "ItemFlags" : [ "HIDE_ENCHANTS" ],
+            "PublicBukkitValues" : {
+              "realisticsurvival:rsvitem" : "spectral_silt",
+              "realisticsurvival:rsvmodule" : "Baubles"
+            }
+          }
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "E" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "DIAMOND"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "F" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "PRISMARINE_SHARD",
+          "meta" : {
+            "==" : "ItemMeta",
+            "meta-type" : "UNSPECIFIC",
+            "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Spectral Silt\"}],\"text\":\"\"}",
+            "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"blue\",\"text\":\"Crafting component\"}],\"text\":\"\"}" ],
+            "custom-model-data" : 83680,
+            "enchants" : {
+              "DURABILITY" : 1
+            },
+            "ItemFlags" : [ "HIDE_ENCHANTS" ],
+            "PublicBukkitValues" : {
+              "realisticsurvival:rsvitem" : "spectral_silt",
+              "realisticsurvival:rsvmodule" : "Baubles"
+            }
+          }
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "G" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GHAST_TEAR"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "H" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "PRISMARINE_SHARD",
+          "meta" : {
+            "==" : "ItemMeta",
+            "meta-type" : "UNSPECIFIC",
+            "display-name" : "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"white\",\"text\":\"Spectral Silt\"}],\"text\":\"\"}",
+            "lore" : [ "{\"extra\":[{\"bold\":false,\"italic\":false,\"underlined\":false,\"strikethrough\":false,\"obfuscated\":false,\"color\":\"blue\",\"text\":\"Crafting component\"}],\"text\":\"\"}" ],
+            "custom-model-data" : 83680,
+            "enchants" : {
+              "DURABILITY" : 1
+            },
+            "ItemFlags" : [ "HIDE_ENCHANTS" ],
+            "PublicBukkitValues" : {
+              "realisticsurvival:rsvitem" : "spectral_silt",
+              "realisticsurvival:rsvmodule" : "Baubles"
+            }
+          }
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    }
+  },
+  "checkAllNBT" : false,
+  "settings" : { },
+  "result" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "DIAMOND",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"italic\":false,\"extra\":[{\"color\":\"#F0F8FF\",\"text\":\"D\"},{\"color\":\"#E9F5FF\",\"text\":\"o\"},{\"color\":\"#E2F2FE\",\"text\":\"u\"},{\"color\":\"#DBF0FE\",\"text\":\"b\"},{\"color\":\"#D4EDFE\",\"text\":\"l\"},{\"color\":\"#CDEAFD\",\"text\":\"e\"},{\"text\":\" \"},{\"color\":\"#BFE4FD\",\"text\":\"L\"},{\"color\":\"#B8E2FC\",\"text\":\"o\"},{\"color\":\"#B1DFFC\",\"text\":\"o\"},{\"color\":\"#AADCFC\",\"text\":\"t\"},{\"text\":\" \"},{\"color\":\"#9CD6FB\",\"text\":\"F\"},{\"color\":\"#95D4FB\",\"text\":\"i\"},{\"color\":\"#8ED1FA\",\"text\":\"s\"},{\"color\":\"#87CEFA\",\"text\":\"hi\"},{\"color\":\"#8ED1FA\",\"text\":\"n\"},{\"color\":\"#95D4FB\",\"text\":\"g\"},{\"text\":\" \"},{\"color\":\"#A3D9FB\",\"text\":\"T\"},{\"color\":\"#AADCFC\",\"text\":\"o\"},{\"color\":\"#B1DFFC\",\"text\":\"t\"},{\"color\":\"#B8E2FC\",\"text\":\"e\"},{\"color\":\"#BFE4FD\",\"text\":\"m\"},{\"text\":\" \"},{\"color\":\"#CDEAFD\",\"text\":\"C\"},{\"color\":\"#D4EDFE\",\"text\":\"o\"},{\"color\":\"#DBF0FE\",\"text\":\"r\"},{\"color\":\"#E2F2FE\",\"text\":\"e\"}],\"text\":\"\"}",
+          "internal" : "H4sIAAAAAAAA/yXMQQqAIBBG4Z8wECFad56gE7QXS6sBbSLHoNtHtX18PAMYNH3JwmmgvNG+aii5jwBVhKJGRR6tsIRk3Sx0OeETGvX4JnSeyxSDjcxil39gP40HufRNw1sAAAA="
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "extensions" : [ ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+	"replace": false,
+	"values": [
+		"terralith:setup",
+		"#load:_private/load",
+		"magic:load",
+		"ncdamage:load",
+		"effects:load",
+		"effects:__generated__/load",
+		"nyctocosm:load",
+		"nyctocosm:__generated__/load",
+		"spells:load",
+		"spells:__generated__/load"
+	]
+	
+}

@@ -1,0 +1,192 @@
+locale: en
+hardship: 0.0
+mana: 0
+days-since-hardship-depreciation: 0
+tutorial-index: 0
+tutorial-path: default
+tutorial-progress: 0
+use-announcements: true
+kills: 0
+kill-streak: 0
+deaths: 0
+highest-kill-streak: 0
+points: 0.0
+karma: 0
+classes:
+- 0768dd93-7250-4068-972a-b10ea600d057
+last-karma-depreciation: 0
+skills:
+  exploration:
+    SNOWY_SLOPES: 1
+    JAGGED_PEAKS: 1
+    CUSTOM: 1
+    PLAINS: 1
+    CRIMSON_FOREST: 1
+    SUNFLOWER_PLAINS: 1
+    MEADOW: 1
+    DRIPSTONE_CAVES: 1
+    DEEP_DARK: 1
+    DEEP_OCEAN: 1
+    LUSH_CAVES: 1
+    RIVER: 1
+    NETHER_WASTES: 1
+    THE_END: 1
+    END_HIGHLANDS: 1
+    COLD_OCEAN: 1
+    BEACH: 1
+    OCEAN: 1
+    DARK_FOREST: 1
+    DESERT: 1
+    ERODED_BADLANDS: 1
+    BADLANDS: 1
+    WINDSWEPT_FOREST: 1
+    SNOWY_PLAINS: 1
+    END_MIDLANDS: 1
+    END_BARRENS: 1
+    FOREST: 1
+    FROZEN_RIVER: 1
+    SNOWY_BEACH: 1
+    BIRCH_FOREST: 1
+    OLD_GROWTH_SPRUCE_TAIGA: 1
+    OLD_GROWTH_PINE_TAIGA: 1
+    OLD_GROWTH_BIRCH_FOREST: 1
+  potion:
+    HEAL: 20
+    SLOW_FALLING: 1
+    FIRE_RESISTANCE: 13
+    NIGHT_VISION: 1
+    REGENERATION: 20
+    INVISIBILITY: 1
+  sword:
+    SKELETON: 5
+    CREEPER: 7
+    PIG: 4
+    WITHER_SKELETON: 1
+    EVOKER: 5
+    ZOMBIE: 8
+    HUSK: 9
+    VINDICATOR: 4
+    STRAY: 5
+    PARROT: 1
+    SPIDER: 6
+    DROWNED: 2
+    COD: 3
+    SHEEP: 8
+    COW: 2
+    SALMON: 1
+    CHICKEN: 2
+    ENDERMAN: 1
+    HORSE: 2
+  food:
+    CARROT: 2
+    COOKED_BEEF: 7
+    ENCHANTED_GOLDEN_APPLE: 2
+    PORKCHOP: 5
+    BREAD: 7
+    APPLE: 7
+    ROTTEN_FLESH: 7
+    COD: 1
+    GOLDEN_CARROT: 3
+    MELON_SLICE: 2
+    GOLDEN_APPLE: 2
+  crossbow:
+    SHULKER: 1
+    ZOMBIE: 3
+    CHICKEN: 4
+    HORSE: 2
+    CREEPER: 2
+    SHEEP: 6
+    SPIDER: 2
+    STRAY: 2
+    ZOMBIE_HORSE: 1
+    PILLAGER: 8
+    VINDICATOR: 1
+    MAGMA_CUBE: 9
+    PIGLIN: 2
+    PIGLIN_BRUTE: 2
+  mining:
+    COPPER_ORE: 19
+    DEEPSLATE_COAL_ORE: 2
+    COAL_ORE: 35
+    IRON_ORE: 16
+    DEEPSLATE_DIAMOND_ORE: 1
+  crafting:
+    BEACON: 1
+    FISHING_ROD: 1
+    WOODEN_SWORD: 3
+    STRING: 2
+    WOODEN_AXE: 3
+    WHEAT: 1
+    CRAFTING_TABLE: 2
+    WOODEN_PICKAXE: 1
+    IRON_CHESTPLATE: 1
+    SHIELD: 1
+    PRISMARINE_SHARD: 2
+    BREAD: 1
+    COBBLESTONE: 2
+    STONE_PICKAXE: 1
+    IRON_SWORD: 2
+    IRON_INGOT: 2
+    TORCH: 1
+  axe:
+    ZOMBIE: 6
+    SPIDER: 3
+    PIG: 7
+    STRAY: 2
+    SHEEP: 2
+    SKELETON: 8
+    IRON_GOLEM: 1
+    WOLF: 1
+    HORSE: 1
+    CREEPER: 3
+    ENDERMAN: 1
+    COW: 2
+  armor:
+    IRON_CHESTPLATE: 30
+    IRON_HELMET: 30
+    IRON_LEGGINGS: 30
+    IRON_BOOTS: 30
+    LEATHER_CHESTPLATE: 30
+    GOLDEN_BOOTS: 15
+    GOLDEN_CHESTPLATE: 15
+  shield:
+    BLOCKED: 20
+    DAMAGE: 62
+  bow:
+    PIG: 4
+    CHICKEN: 1
+    CREEPER: 1
+    SKELETON_HORSE: 2
+    SKELETON: 1
+    SHEEP: 1
+    PILLAGER: 1
+    VINDICATOR: 2
+    ZOMBIE_HORSE: 1
+  enchant:
+    unbreaking1: 1
+    knockback1: 1
+    sharpness1: 1
+    piercing3: 1
+    quick_charge1: 1
+    unbreaking3: 3
+    bane_of_arthropods4: 2
+    sharpness4: 3
+    fire_protection4: 1
+    depth_strider3: 1
+    protection4: 1
+    protection3: 2
+    aqua_affinity1: 1
+    efficiency4: 1
+    knockback2: 2
+    looting2: 1
+    sharpness3: 1
+  trident:
+    SNOWMAN: 1
+    SKELETON_HORSE: 1
+    SKELETON: 1
+    PILLAGER: 2
+items:
+  elemental: 1
+  default: 1
+  shelter: 1
+  archer: 1

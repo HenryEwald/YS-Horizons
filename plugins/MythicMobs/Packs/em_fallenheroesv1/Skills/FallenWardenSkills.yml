@@ -1,0 +1,1103 @@
+fwarden_hp_check:
+  Cooldown: 999
+  Conditions:
+  - playersinradius{a=>1;r=80} true
+  Skills:
+  - skill{s=fwarden_hp_checkB} @pir{r=80} #MODIFY THE RANGE TO CHECK FOR PLAYERS
+# GUIDE TO CUSTOMIZE HEALTH SCALING
+fwarden_hp_checkB:
+  Conditions:
+  Skills:
+  - setvariable{var=skill.amount_targets;val=<skill.targets>}
+  - setmaxhealth{amount=<caster.var.eichpee>+12*<skill.var.amount_targets>;mode=SCALE} @self
+# AMOUNT = (BASE HEALTH DESIRED) + (ADDITIONAL NET HEALTH PER PLAYER IN RANGE, #Modify this#) * <skill.var.amount_targets>
+# (That is just the variable for number of players, don't touch it.)
+
+fwardenstcheck: #FWARDEN ________________________________________ ========================================  F A L L E N    H E R O E S
+  Conditions:
+  - playerwithin{d=5} castinstead fwardenstcheck2
+  Skills:
+  - RunAIGoalSelector{goal=clear} @self
+  - stun{d=21;f=false;stopai=true} @Self
+  - potion{type=SLOW;duration=21;level=200;p=false;delay=0;force=true} @Self
+  - velocity{m=set;x=0;y=0;z=0} @self
+  - effect:particles{particle=reddust;amount=5;hS=0.3;vS=0.3} @Self 0 #DEBUG
+fwardenstcheck2: 
+  Conditions:
+  - playerwithin{d=6} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.statueform;value="0";t=integer} @Self
+  - effect:particles{particle=reddust;color=#cbfbff;amount=90;hS=0.3;vS=1.3;size=2} @Self
+  
+  - changepart{m=fallenwarden;pid=rightarm;nm=fallenwarden;npid=rightarm} @self 
+  - changepart{m=fallenwarden;pid=rightarmbot;nm=fallenwarden;npid=rightarmbot} @self 
+  - changepart{m=fallenwarden;pid=leftarm;nm=fallenwarden;npid=leftarm} @self 
+  - changepart{m=fallenwarden;pid=leftarmbot;nm=fallenwarden;npid=leftarmbot} @self 
+  - changepart{m=fallenwarden;pid=body;nm=fallenwarden;npid=body} @self 
+  - changepart{m=fallenwarden;pid=lanceaxe;nm=fallenwarden;npid=lanceaxe} @self 
+  - changepart{m=fallenwarden;pid=leftleg;nm=fallenwarden;npid=leftleg} @self 
+  - changepart{m=fallenwarden;pid=leftlegbot;nm=fallenwarden;npid=leftlegbot} @self 
+  - changepart{m=fallenwarden;pid=rightleg;nm=fallenwarden;npid=rightleg} @self 
+  - changepart{m=fallenwarden;pid=rightlegbot;nm=fallenwarden;npid=rightlegbot} @self
+  - changepart{m=fallenwarden;pid=rightlegbot;nm=fallenwarden;npid=rightlegbot} @self 
+  - changepart{m=fallenwarden;pid=head;nm=fallenwarden;npid=head} @self 
+
+  - delay 1
+  - skill{s=fwarden_hp_check;cooldown=99999;sync=true} @PlayersInRadius
+
+  - sound{s=emaginationfallenheroes:custom.fallenhero.spawn;p=1;v=1} @selflocation
+  - sound{s=emaginationfallenwarden:custom.fallenwarden.spawnb;p=1;v=1} @selflocation
+  - RunAIGoalSelector{goal=randomstroll} @self
+  - RunAIGoalSelector{goal=meleeattack} @self
+  - RunAIGoalSelector{goal=randomlookaround} @self
+  - RunAIGoalSelector{goal=float} @self
+  - setspeed{speed=1.42;type=walking} @Self
+  - state{mid=fallenwarden;s=activate;li=3;lo=10;n=false} @self
+  - state{s=idlestatic;li=3;lo=10;n=false;remove=true} @self
+  - DefaultState{type=IDLE;state=idle;li=3;lo=2;n=false;frame=0;cooldown=2} @self
+  - potion{type=SLOW;duration=45;level=200;p=false;delay=0;force=true;repeat} @Self
+  - velocity{m=set;x=0;y=0;z=0} @self
+  - auraremove{aura=staticfwarden} @self
+  - delay 30
+  - lockmodel{l=false;delay=0} @Self
+  - setstance{stance=normal} @self
+fwardenstcheck3: 
+  Conditions:
+  - variableEquals{var=caster.statueform;value="1"} true
+  Skills:
+  - setstance{stance=casting} @self
+  - setvariable{var=caster.statueform;value="0";t=integer} @Self
+  - effect:particles{particle=reddust;color=#cbfbff;amount=90;hS=0.3;vS=1.3;size=2} @Self
+  
+  - changepart{m=fallenwarden;pid=rightarm;nm=fallenwarden;npid=rightarm} @self 
+  - changepart{m=fallenwarden;pid=rightarmbot;nm=fallenwarden;npid=rightarmbot} @self 
+  - changepart{m=fallenwarden;pid=leftarm;nm=fallenwarden;npid=leftarm} @self 
+  - changepart{m=fallenwarden;pid=leftarmbot;nm=fallenwarden;npid=leftarmbot} @self 
+  - changepart{m=fallenwarden;pid=body;nm=fallenwarden;npid=body} @self 
+  - changepart{m=fallenwarden;pid=lanceaxe;nm=fallenwarden;npid=lanceaxe} @self 
+  - changepart{m=fallenwarden;pid=leftleg;nm=fallenwarden;npid=leftleg} @self 
+  - changepart{m=fallenwarden;pid=leftlegbot;nm=fallenwarden;npid=leftlegbot} @self 
+  - changepart{m=fallenwarden;pid=rightleg;nm=fallenwarden;npid=rightleg} @self 
+  - changepart{m=fallenwarden;pid=rightlegbot;nm=fallenwarden;npid=rightlegbot} @self
+  - changepart{m=fallenwarden;pid=rightlegbot;nm=fallenwarden;npid=rightlegbot} @self 
+  - changepart{m=fallenwarden;pid=head;nm=fallenwarden;npid=head} @self 
+
+  - delay 1
+  - skill{s=fwarden_hp_check;cooldown=99999;sync=true} @PlayersInRadius
+
+  - sound{s=emaginationfallenheroes:custom.fallenhero.spawn;p=1;v=1} @selflocation
+  - sound{s=emaginationfallenwarden:custom.fallenwarden.spawnb;p=1;v=1} @selflocation
+  - RunAIGoalSelector{goal=randomstroll} @self
+  - RunAIGoalSelector{goal=meleeattack} @self
+  - RunAIGoalSelector{goal=randomlookaround} @self
+  - RunAIGoalSelector{goal=float} @self
+  - setspeed{speed=1.42;type=walking} @Self
+  - state{mid=fallenwarden;s=activate;li=3;lo=10;n=false} @self
+  - state{s=idlestatic;li=3;lo=10;n=false;remove=true} @self
+  - DefaultState{type=IDLE;state=idle;li=3;lo=2;n=false;frame=0;cooldown=2} @self
+  - potion{type=SLOW;duration=45;level=200;p=false;delay=0;force=true;repeat} @Self
+  - velocity{m=set;x=0;y=0;z=0} @self
+  - auraremove{aura=staticfwarden} @self
+  - delay 30
+  - lockmodel{l=false;delay=0} @Self
+  - setstance{stance=normal} @self
+hurtgenfwarden:
+  Cooldown: 0
+  Conditions:
+  - damagecause{c=PROJECTILE} true
+  Skills:
+  - velocity{m=set;x=0;y=0;z=0;repeat=2;Repeatinterval=1} @self
+  - variableadd{var=caster.combor;amount=2} @self
+  - randomskill{s=attack7fwarden,attack7bfwarden;sync=true} @Trigger 0.4
+  - stun{d=1;f=false;stopai=false} @Self
+  - skill{s=hurtgenfwardenCLEAR;sync=true} @Trigger 0.18
+hurtgenfwarden2:
+  Cooldown: 0
+  Conditions:
+  - damagecause{c=PROJECTILE} false
+  TriggerConditions:
+  - distance{d=>5} true
+  Skills:
+  - velocity{m=set;x=0;y=0;z=0;repeat=2;Repeatinterval=1} @self
+  - variableadd{var=caster.combor;amount=2} @self
+  - randomskill{s=attack7fwarden,attack7bfwarden;sync=true} @Trigger 0.4
+  - stun{d=1;f=false;stopai=false} @Self
+  - skill{s=hurtgenfwardenCLEAR;sync=true} @Trigger 0.18
+
+hurtgenfwardenCLEAR:
+  Cooldown: 8
+  Conditions:
+  - hasaura{n=changedThreat} false
+  Skills:
+  - clearThreat{} @self
+  - threat{amount=120} @Trigger
+
+hurtfwardenCLEAR:
+  Cooldown: 8
+  Conditions:
+  - hasaura{n=changedThreat} false
+  TriggerConditions:
+  - fieldofview{angle=40} false
+  Skills:
+  - Aura{auraName=changedThreat;duration=180} @self
+  - clearThreat{} @self
+  - threat{amount=120} @Trigger
+
+hurtgenfwardenCLEAR_back:
+  Cooldown: 8
+  Conditions:
+  - hasaura{n=changedThreat} false
+  TriggerConditions:
+  - fieldofview{angle=90} false
+  Skills:
+  - clearThreat{} @self
+  - threat{amount=160} @Trigger
+
+
+hurt1fwarden:
+  Cooldown: 1
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - skill{s=hurtgenfwardenCLEAR_back;sync=true} @Trigger 0.15
+  - skill{s=hurtfwardenCLEAR;sync=true} @Trigger 0.08
+  - variableadd{var=caster.combor;amount=1} @self
+  - setstance{stance=casting} @self
+  - state{state=hurt1;li=2;lo=2;n=false;speed=1} @self
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hurt;p=1;v=1;cooldown=2} @selflocation 0.85
+  - potion{type=SLOW;duration=20;level=0;p=false;force=true} @Self
+  - delay 15
+  - setstance{stance=normal} @self
+hurt2fwarden:
+  Cooldown: 1
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - skill{s=hurtgenfwardenCLEAR_back;sync=true} @Trigger 0.15
+  - skill{s=hurtfwardenCLEAR;sync=true} @Trigger 0.08
+  - variableadd{var=caster.combor;amount=1} @self
+  - setstance{stance=casting} @self
+  - state{state=hurt2;li=2;lo=2;n=false;speed=1} @self
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hurt;p=1;v=1;cooldown=2} @selflocation 0.85
+  - potion{type=SLOW;duration=20;level=0;p=false;force=true} @Self
+  - delay 15
+  - setstance{stance=normal} @self
+hurt3fwarden:
+  Cooldown: 1
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  Skills:
+  - skill{s=hurtgenfwardenCLEAR_back;sync=true} @Trigger 0.15
+  - skill{s=hurtfwardenCLEAR;sync=true} @Trigger 0.08
+  - variableadd{var=caster.combor;amount=1} @self
+  - setstance{stance=casting} @self
+  - state{state=hurt3;li=2;lo=2;n=false;speed=1} @self
+  - sound{s=emaginationfallenheroes:custom.fallenhero.hurt;p=1;v=1;cooldown=2} @selflocation 0.85
+  - potion{type=SLOW;duration=20;level=0;p=false;force=true} @Self
+  - delay 15
+  - setstance{stance=normal} @self
+cancelatackfallen: # ATTACK EVENTS
+  Skills:
+  - CancelEvent
+meleefwardentrigger:
+  Cooldown: 1
+  TargetConditions:
+  - fieldofview{angle=50} true
+  - distance{d=0to3.5} true
+  Conditions:
+  - incombat true
+  - variableEquals{var=caster.comboa;value="1"} castinstead attack2fwarden
+  - variableEquals{var=caster.comboa;value="2"} castinstead attack3fwardenTrigger
+  Skills:
+  - randomskill{s=attack1fwarden,attack2fwarden;sync=true} @Target
+meleefwardentrigger2:
+  Cooldown: 2
+  TargetConditions:
+  - fieldofview{angle=70} true
+  - distance{d=0to5} true
+  Conditions:
+  - incombat true
+  Skills:
+  - randomskill{s=attack3xdfwarden,attack4fwarden,attack5fwarden,attack6fwarden,attack7bfwarden,attack7fwarden;sync=true} @Target
+reducestacksfwarden:
+  Cooldown: 3
+  Conditions:
+  - incombat true
+  - stance{s=casting} false
+  - stance{s=normal} true
+  TargetConditions:
+  - distance{d=>3} true
+  Skills:
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self
+attack3fwardenTrigger:
+  Skills:
+  - randomskill{s=attack3fwarden,attack3bfwarden;sync=true} @Target
+attack1fwarden:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.comboa;value="1"} castinstead attack2fwarden
+  - variableEquals{var=caster.comboa;value="2"} castinstead attack3fwardenTrigger
+  TargetConditions:
+  - distance{d=0to3.6} true
+  Skills:
+  - state{remove=true;s=attack3;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=attack3b;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=land1;lo=1;n=false;frame=0} @self
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack1;li=2;lo=6;n=false;speed=1.4} @self
+  - setvariable{var=caster.comboa;value="1";t=integer} @Self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - delay 11
+  - skill{s=fwardenatk1FX;delay=3} @self ### EFFECTENN
+  - delay 3
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - Aura{auraName=tickfwardencomboa;onTick=reducestacksfwarden;interval=30;duration=110;mergeSameCaster=true;refreshDuration=true} @self
+  - basedamage{m=1.5;ignorearmor=false} @LivingInCone{a=140.0;r=3.6;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{a=140.0;r=3.6;rot=0.0}
+  - delay 15
+  - setstance{stance=normal} @self
+attack2fwarden:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableEquals{var=caster.comboa;value="2"} castinstead attack3fwardenTrigger
+  TargetConditions:
+  - distance{d=0to4} true
+  Skills:
+  - state{remove=true;s=attack3;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=attack3b;lo=1;n=false;frame=0} @self
+  - state{remove=true;s=land1;lo=1;n=false;frame=0} @self
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack2;li=2;lo=10;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - setvariable{var=caster.comboa;value="2";t=integer} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - delay 10
+  - skill{s=fwardenatk2FX} @self ### EFFECTENN
+  - delay 1
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - Aura{auraName=tickfwardencomboa;onTick=reducestacksfwarden;interval=30;duration=110;mergeSameCaster=true;refreshDuration=true} @self
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{a=120.0;r=3.6;rot=0.0}
+  - basedamage{m=1.5;ignorearmor=false} @LivingInCone{a=120.0;r=3.6;rot=0.0;ignore=samefaction}
+  - delay 15
+  - setstance{stance=normal} @self
+  - skill{s=attack3fwardenTrigger} @Target
+attack3fwarden:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  TargetConditions:
+  - distance{d=0to4.3} true
+  Skills:
+  - state{remove=true;s=land1;lo=1;n=false;frame=0} @self
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack3;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - delay 11
+  - skill{s=fwardenatk3FX;delay=2} @self ### EFFECTENN
+  - delay 3
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self
+  - basedamage{m=2.2;ignorearmor=false} @LivingInCone{a=25.0;r=4.3;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{a=25.0;r=4.3;rot=0.0}
+  - delay 25
+  - setstance{stance=normal} @self
+attack3bfwarden:
+  Cooldown: 3
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  TargetConditions:
+  - distance{d=0to4.3} true
+  Skills:
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack3b;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - delay 11
+  - skill{s=fwardenatk3bFX;delay=2} @self ### EFFECTENN
+  - delay 3
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.6;v=1} @selflocation
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self
+  - basedamage{m=2.4;ignorearmor=false} @LivingInCone{a=50.0;r=4.3;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{a=25.0;r=4.3;rot=0.0}
+  - delay 25
+  - setstance{stance=normal} @self
+attack3xdfwarden:
+  Cooldown: 15
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableInRange{var=caster.combor;value=>5} elsecast meleefwardentrigger2
+  TargetConditions:
+  - distance{d=0to6} true
+  Skills:
+  - setstance{stance=casting} @self
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirechannelb;p=1.5;v=1} @selflocation
+  - sound{s=emaginationfallensoldier:custom.fallensoldier.gritus;p=1.5;v=1} @selflocation
+  - effect:particles{p=reddust;c=#9DF2FD;a=4;speed=0.00;hs=0.15;vs=0.1;y=0;forwardOffset=0.0000;Size=0.65;sideOffset=0.0000;repeat=40;repeatinterval=1} @ModelPart{m=fallenwarden;p=lanceaxeparticles1;offset=LOCAL;y=0}
+  - variablesubtract{var=caster.combor;amount=1} @self 0.9
+  - variablesubtract{var=caster.combor;amount=1} @self 0.7
+  - variablesubtract{var=caster.combor;amount=1} @self 0.4
+  - delay 20
+  - state{state=attack8xd;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - delay 11
+  - skill{s=fwardenatk3xdFX;delay=3} @Forward{f=0.7;y=0.7} ### EFFECTENN
+  - delay 5
+  - skill{s=fwardenswatk3xdFX;sync=true} @Forward{f=1;y=0.2}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - basedamage{m=2.4;ignorearmor=false} @LivingInCone{a=50.0;r=4.3;rot=0.0;ignore=samefaction}
+  - projectile{onhit=fwardenswatk3dmg;mr=6;v=14;g=0.1;i=1;hR=1.9;vR=1;hp=true;hnp=true;sB=false;sE=false;d=20;syo=1.2;tyo=1.2} @Forward{f=15;y=0.0}
+  - projectile{onhit=fwardenswatk3dmg;mr=6;v=14;g=0.1;i=1;hR=1.9;vR=1;hp=true;hnp=true;sB=false;sE=false;d=20;syo=1.2;tyo=1.2;hO=-30} @Forward{f=15;y=0.0}
+  - projectile{onhit=fwardenswatk3dmg;mr=6;v=14;g=0.1;i=1;hR=1.9;vR=1;hp=true;hnp=true;sB=false;sE=false;d=20;syo=1.2;tyo=1.2;vO=1;hO=90} @Forward{sideOffset=3;f=5;y=0.0}
+  - potion{type=SLOW;duration=40;level=4;p=false;force=true;delay=4} @LivingInCone{a=80.0;r=6.2;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{a=25.0;r=4.3;rot=0.0}
+  - delay 25
+  - setstance{stance=normal} @self
+fwardenswatk3dmg:
+  Skills:
+  - sound{s=emaginationfallenwarden:custom.spell.grandslashcast;p=1.2;v=1} @Origin
+  - basedamage{m=0.2;ignorearmor=true;delay=4}
+  - potion{type=SLOW;duration=40;level=4;p=false;force=true;delay=4}
+  - effect:particles{p=reddust;c=#9DF2FD;a=25;speed=0.00;hs=0.10;vs=0.10;y=1.4;Size=1.6;delay=0}
+  - effect:particles{p=reddust;c=#9DF2FD;a=30;speed=0.00;hs=0.3;vs=0.3;y=1.4;Size=1.2;delay=1}
+  - effect:particles{p=reddust;c=#9DF2FD;a=40;speed=0.00;hs=0.6;vs=0.6;y=1.4;Size=1;delay=2}
+  - effect:particles{p=reddust;c=#9DF2FD;a=45;speed=0.00;hs=0.9;vs=0.9;y=1.4;Size=0.9;delay=3}
+attack4fwarden:
+  Cooldown: 12
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableInRange{var=caster.combor;value=>5} elsecast meleefwardentrigger
+  TargetConditions:
+  - distance{d=0to5} true
+  Skills:
+  - setstance{stance=casting} @self
+  - variableadd{var=caster.combor;amount=1} @self
+  - state{state=attack4;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=28;level=6;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - stun{d=22;f=false;stopai=true} @Self
+  - sound{s=emaginationfallenheroes:custom.fallenhero.effort;p=1;v=1} @selflocation 0.8
+  - delay 14
+  - skill{s=fwardenatk4trustFX} @Forward{f=4.5;y=0} ### EFFECTENN
+  - delay 1
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=1.1;v=1} @selflocation
+  - basedamage{m=1.5;ignorearmor=false} @LivingInCone{a=21.0;r=7;rot=0.0;ignore=samefaction}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhitb;p=1;v=1} @LivingInCone{a=21.0;r=7;rot=0.0}
+  - throw{velocity=15;velocityY=3} @LivingInCone{a=21.0;r=7;rot=0.0;ignore=samefaction}
+  - skill{s=attack4fwardencripplexd} @LivingInCone{a=21.0;r=7;rot=0.0}
+  - delay 15
+  - setstance{stance=normal} @self
+attack4fwardencripplexd:
+  Skills:
+  - potion{type=LEVITATION;duration=9;level=8;p=false;delay=0} 
+  - potion{type=LEVITATION;duration=5;level=4;p=false;delay=9} 
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=14} 
+  - potion{type=SLOW;duration=16;lvl=7} 
+  - potion{type=SLOW;duration=30;lvl=4;delay=16}
+  - potion{type=SLOW;duration=20;lvl=3;delay=46}
+attack5fwarden:
+  Cooldown: 12
+  TargetConditions:
+  - distance{d=0to5} true
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableInRange{var=caster.combor;value=>8} elsecast meleefwardentrigger
+  Skills:
+  - variablesubtract{var=caster.combor;amount=2} @self 0.9
+  - variablesubtract{var=caster.combor;amount=2} @self 0.7
+  - variablesubtract{var=caster.combor;amount=1} @self 0.4
+  - variablesubtract{var=caster.combor;amount=1} @self 0.2
+  - setstance{stance=casting} @self
+  - setrotation{relative=false;pitch=0} @Self
+  - state{state=attack5;li=6;lo=4;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=47;level=6;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - stun{d=47;f=false;stopai=true} @Self
+  - delay 22
+  - skill{s=fwardenatk5FX} @self
+  - delay 5
+  - totem{charges=1;onStart=fwardenshockwave;i=1;hR=1;vR=4;md=20;hp=true;hnp=true} @Forward{f=5;y=0}
+  - delay 15
+  - setstance{stance=normal} @self
+fwardenshockwave:
+  Skills:
+  - projectile{onTick=fwardenshockwavetick;v=15;i=1;hR=0.5;vR=1;g=1;sB=true;sE=false;md=60;mr=20;syo=0.2;tyo=0;sso=0} @Cone{angle=360;points=15;range=15;rotation=0}
+  - effect:particles{p=explosion_large;y=0;amount=1;speed=0.2;hS=0.3;vS=0.4;y=0} @Origin
+  - effect:particles{particle=block_crack;m=dirt;amount=70;hS=0.3;vS=0.4;y=0.1} @Origin
+  - effect:particles{particle=block_crack;m=dirt;amount=80;hS=0.4;vS=0.5;y=0.1;delay=1} @Origin
+  - effect:particles{particle=block_crack;m=dirt;amount=100;hS=0.7;vS=0.3;y=0.1;delay=1} @Origin
+  - effect:particles{particle=block_crack;m=dirt;amount=120;hS=1.8;vS=0.2;y=0.1;delay=2} @Origin
+  - effect:particles{particle=block_crack;m=dirt;amount=140;hS=2.8;vS=0.1;y=0.1;delay=3} @Origin
+  - effect:particles{particle=block_crack;m=dirt;amount=160;hS=0.05;vS=2;y=0.1;delay=4} @Origin
+  - effect:particlesphere{p=smoke_large;amount=70;radius=3;size=10;speed=0.7} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=5;points=20;radius=1;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=5;points=24;radius=1.5;delay=1;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=4;points=28;radius=2;delay=2;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=4;points=32;radius=2.7;delay=3;size=2.7;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=3;points=36;radius=3.4;delay=4;size=2.5;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=3;points=40;radius=4.2;delay=5;size=2.2;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=2;points=44;radius=5.4;delay=6;size=2;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=0.5;points=16;amount=3;hS=0;vS=0;speed=110;size=1.2;yOffset=0;delay=0} @Origin # COLORETTE
+  
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=0.7;points=18;amount=3;hS=0;vS=0;speed=110;size=1.1;yOffset=0;delay=0} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=0.8;points=20;amount=3;hS=0;vS=0;speed=110;size=1.05;yOffset=0;delay=0} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=0.9;points=22;amount=3;hS=0;vS=0;speed=110;size=1;yOffset=0;delay=1} @Origin
+  
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=1.1;points=26;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1} @Origin
+  
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=1.3;points=32;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=2} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=1.4;points=36;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=2} @Origin
+  
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=1.7;points=42;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=2} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=1.8;points=45;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=2} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=1.9;points=49;amount=2;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=3} @Origin
+
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=2.1;points=57;amount=2;hS=0;vS=0;speed=110;size=0.85;yOffset=0;delay=3} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=2.2;points=61;amount=2;hS=0;vS=0;speed=110;size=0.82;yOffset=0;delay=3} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=2.3;points=65;amount=2;hS=0;vS=0;speed=110;size=0.82;yOffset=0;delay=3} @Origin
+ 
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=2.5;points=75;amount=2;hS=0;vS=0;speed=110;size=0.78;yOffset=0;delay=4} @Origin
+ 
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=2.7;points=85;amount=2;hS=0;vS=0;speed=110;size=0.78;yOffset=0;delay=4} @Origin
+
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=2.9;points=96;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=4} @Origin
+ 
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=3.1;points=108;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=5} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=3.2;points=114;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=5} @Origin
+ 
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=3.4;points=126;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=5} @Origin
+ 
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=3.6;points=138;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=6} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=3.7;points=142;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=6} @Origin
+
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=3.9;points=146;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=6} @Origin
+
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=4.2;points=154;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=6} @Origin
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=4.35;points=154;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=7} @Origin
+
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=4.65;points=156;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=7} @Origin
+ 
+  - effect:particlering{particle=reddust;c=#CAF8FE;d=40;radius=5.05;points=156;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=7} @Origin
+  - sound{s=custom.spell.slam;p=1;v=2} @Origin
+  - sound{s=emaginationfallenheroes:custom.spell.landshockwave;v=2.4;p=1} @origin
+  - basedamage{m=0.7;ignorearmor=true} @EntitiesNearOrigin{ignore=samefaction;r=2}
+  - basedamage{m=1;ignorearmor=false} @EntitiesNearOrigin{ignore=samefaction;r=3}
+  - basedamage{m=0.3;ignorearmor=true} @EntitiesNearOrigin{ignore=samefaction;r=3}
+  - basedamage{m=0.7;ignorearmor=false} @EntitiesNearOrigin{ignore=samefaction;r=4}
+  - basedamage{m=0.7;ignorearmor=false} @EntitiesNearOrigin{ignore=samefaction;r=5}
+  - basedamage{m=0.7;ignorearmor=false} @EntitiesNearOrigin{ignore=samefaction;r=6}
+  - actionmessage{m="&E&LKNOCKED AIRBORNE!";delay=0} @EntitiesNearOrigin{ignore=samefaction;r=6}
+  - potion{type=LEVITATION;duration=9;level=15;p=false;delay=0} @EntitiesNearOrigin{ignore=samefaction;r=6}
+  - throw{velocity=15;velocityY=20} @EntitiesNearOrigin{ignore=samefaction;r=3}
+  - throw{velocity=10;velocityY=10} @EntitiesNearOrigin{ignore=samefaction;r=4}
+  - throw{velocity=10;velocityY=5} @EntitiesNearOrigin{ignore=samefaction;r=5}
+  - throw{velocity=15;velocityY=3} @EntitiesNearOrigin{ignore=samefaction;r=6}
+  - skill{s=attack5fwardencripplexd} @EntitiesInRadius{ignore=samefaction;r=5}
+  - delay 25
+  - setstance{stance=normal} @self
+attack5fwardencripplexd:
+  Skills:
+  - potion{type=LEVITATION;duration=9;level=8;p=false;delay=9} 
+  - potion{type=LEVITATION;duration=5;level=4;p=false;delay=18} 
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=23} 
+  - potion{type=SLOW;duration=25;lvl=7} 
+  - potion{type=SLOW;duration=56;level=4;p=false;force=true;delay=25} 
+  - potion{type=WEAKNESS;duration=60;level=1;p=false;force=true} 
+  - potion{type=WEAKNESS;duration=160;level=2;p=false;force=true} 
+  - potion{type=CONFUSION;duration=200;level=10;p=false;force=true} 
+  - sound{s=entity.player.attack.crit;volume=2;pitch=0.6;cooldown=1} 
+
+  - effect:particles{p=crit;y=0.5;amount=80;speed=1;hS=0.5;vS=0.8} 
+fwardenshockwavetick:
+  Skills:
+  - effect:particles{p=cloud;y=0;amount=1;speed=0.01;hS=0.1;vS=0.1;size=0.1;forwardOffset=5} @Origin
+  - effect:particles{particle=block_crack;m=dirt;amount=1;hS=0.2;vS=0.1;y=0;forwardOffset=5} @Origin
+attack6fwarden:
+  Cooldown: 10
+  TargetConditions:
+  - distance{d=0to6} true
+  Conditions:
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableInRange{var=caster.combor;value=>6} elsecast meleefwardentrigger
+  Skills:
+  - setstance{stance=casting} @self
+  - variablesubtract{var=caster.combor;amount=2} @self 0.9
+  - variablesubtract{var=caster.combor;amount=2} @self 0.7
+  - variablesubtract{var=caster.combor;amount=1} @self 0.4
+  - state{state=attack6;li=6;lo=4;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=47;level=6;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - stun{d=47;f=false;stopai=true} @Self
+  - delay 13
+  - sound{s=emaginationfallenheroes:custom.fallenhero.roundslash;p=1;v=1} @selflocation
+  - skill{s=fwardenatk6FX} @self
+  - delay 2
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhita;p=1;v=1} @EntitiesInRadius{ignore=samefaction;r=4}
+  - basedamage{m=0.7;ignorearmor=true} @EntitiesInRadius{ignore=samefaction;r=2}
+  - basedamage{m=1;ignorearmor=false} @EntitiesInRadius{ignore=samefaction;r=3}
+  - basedamage{m=0.3;ignorearmor=true} @EntitiesInRadius{ignore=samefaction;r=3}
+  - basedamage{m=0.7;ignorearmor=false} @EntitiesInRadius{ignore=samefaction;r=4}
+  - basedamage{m=0.7;ignorearmor=false} @EntitiesInRadius{ignore=samefaction;r=5}
+  - basedamage{m=0.7;ignorearmor=false} @EntitiesInRadius{ignore=samefaction;r=6}
+  - actionmessage{m="&E&LKNOCKED AIRBORNE!";delay=0} @EntitiesInRadius{ignore=samefaction;r=5}
+  - throw{velocity=5;velocityY=12} @EntitiesInRadius{ignore=samefaction;r=3}
+  - throw{velocity=4;velocityY=9} @EntitiesInRadius{ignore=samefaction;r=4}
+  - throw{velocity=3;velocityY=6} @EntitiesInRadius{ignore=samefaction;r=5}
+  - skill{s=attack6fwardencripplexd} @EntitiesInRadius{ignore=samefaction;r=5}
+  - delay 15
+  - setstance{stance=normal} @self
+attack6fwardencripplexd:
+  Skills:
+  - potion{type=SLOW;duration=27;lvl=7}
+  - delay 3
+  - potion{type=LEVITATION;duration=6;level=8;p=false} 
+  - potion{type=LEVITATION;duration=5;level=3;p=false;delay=6} 
+  - potion{type=SLOW_FALLING;duration=3;level=0;p=false;delay=23}
+  - potion{type=SLOW;duration=56;level=4;p=false;force=true;delay=25}
+  - potion{type=WEAKNESS;duration=60;level=1;p=false;force=true}
+  - potion{type=CONFUSION;duration=100;level=10;p=false;force=true}
+attack7fwarden:
+  Cooldown: 6
+  Conditions:
+  - incombat true
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableInRange{var=caster.combor;value=>7} elsecast meleefwardentrigger2
+  - hasaura{n=attacked7} false
+  TargetConditions:
+  - distance{d=2to17} true
+  Skills:
+  - Aura{auraName=attacked7;duration=60} @Self
+  - setstance{stance=casting} @self
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirechannelb;p=1;v=1} @selflocation
+  - effect:particles{p=reddust;c=#9DF2FD;a=7;speed=0.00;hs=0.1;vs=0.1;y=0;forwardOffset=0.0000;Size=0.9;sideOffset=0.0000;repeat=40;repeatinterval=1} @ModelPart{m=fallenwarden;p=lanceaxeparticles1;offset=LOCAL;y=0}
+  - variablesubtract{var=caster.combor;amount=1} @self 0.9
+  - variablesubtract{var=caster.combor;amount=1} @self 0.7
+  - variablesubtract{var=caster.combor;amount=1} @self 0.6
+  - variablesubtract{var=caster.combor;amount=1} @self 0.4
+  - variablesubtract{var=caster.combor;amount=1} @self 0.3
+  - state{state=manum1;li=15;lo=7;n=false;speed=1.1} @self
+  - delay 25
+  - spin{d=20;v=0;delay=10} @self
+  - state{state=manum1;li=2;lo=0;remove=true} @self
+  - state{state=attack7;li=2;lo=7;n=false;speed=1.1} @self
+  - potion{type=SLOW;duration=12;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=5;repeatInterval=1} @Target
+  - delay 8
+  - skill{s=fwardenatk7FX;delay=3} @Forward{f=0.7;y=0.7} ### EFFECTENN
+  - delay 4
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirecastb;p=1.8;v=1} @selflocation
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - projectile{onTick=fwardenattack7tick;onHit=fwardenattack7hit;mr=35;v=23;i=1;hR=1;hp=true;hnp=true;vR=0.38;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.2} @Forward{f=5;y=0.0}
+  - delay 25
+  - setstance{stance=normal} @self
+fwardenattack7hit:
+  Skills:
+  - basedamage{m=0.2;ignorearmor=true}
+  - basedamage{m=2;ignorearmor=false}
+  - potion{type=SLOW;duration=40;level=4;p=false;force=true}
+  - effect:particles{p=reddust;c=#9DF2FD;a=25;speed=0.00;hs=0.10;vs=0.10;y=1.4;Size=1.6;delay=0}
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirehitb;p=1;v=1.5} @Origin
+  - variableadd{var=caster.combor;amount=14} @self
+fwardenattack7tick:
+  Skills:
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=0.2813} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=0.0938} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=0.0000} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=-0.0938} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=-0.1875} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=-0.2813} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=-0.4688} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.5625} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.4688} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.3750} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.2813} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.0938} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=0.0000} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=-0.0938} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=-0.1875} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=-0.2813} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=-0.4688} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=-0.5625} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=0.9375} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=0.8438} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=0.7500} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=0.5625} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=0.4688} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=-0.4688} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=-0.5625} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=-0.6563} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=-0.7500} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=1.1250} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=1.0313} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=0.9375} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=0.8438} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=-0.6563} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=-0.7500} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=-0.9375} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=-1.0313} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=1.2188} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=1.1250} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=1.0313} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=-0.9375} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=-1.0313} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=-1.1250} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=1.3125} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=1.2188} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=1.1250} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=-1.0313} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=-1.1250} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=-1.2188} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=1.3125} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=1.2188} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=-1.1250} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=-1.2188} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=1.4063} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=1.3125} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=-1.2188} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=-1.3125} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0000;y=0.2000;Size=0.60;delay=0;sideOffset=1.4063} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0000;y=0.2000;Size=0.60;delay=0;sideOffset=1.3125} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0000;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0000;y=0.2000;Size=0.60;delay=0;sideOffset=-1.2188} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=0.0000;y=0.2000;Size=0.60;delay=0;sideOffset=-1.3125} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=1.4063} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=1.3125} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=-1.2188} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.0938;y=0.2000;Size=0.60;delay=0;sideOffset=-1.3125} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=1.5000} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=1.4063} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=-0.3750} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=-1.3125} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.1875;y=0.2000;Size=0.60;delay=0;sideOffset=-1.4063} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=1.5000} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=1.4063} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=0.1875} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=-1.3125} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.2813;y=0.2000;Size=0.60;delay=0;sideOffset=-1.4063} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=1.5000} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=1.4063} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=1.0313} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=-1.3125} @Origin
+  - effect:particles{p=reddust;c=#F3FEFF;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.3750;y=0.2000;Size=0.60;delay=0;sideOffset=-1.4063} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=1.5000} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=1.4063} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=1.0313} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=0.6563} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.4688;y=0.2000;Size=0.60;delay=0;sideOffset=-1.4063} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=1.5000} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=1.0313} @Origin
+  - effect:particles{p=reddust;c=#CAF8FE;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.5625;y=0.2000;Size=0.60;delay=0;sideOffset=-1.4063} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.6563;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.7500;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.8438;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-0.9375;y=0.2000;Size=0.60;delay=0;sideOffset=-0.8438} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-1.0313;y=0.2000;Size=0.60;delay=0;sideOffset=0.2813} @Origin
+  - effect:particles{p=reddust;c=#9DF2FD;a=1;speed=0.00;hs=0.20;vs=0.00;forwardOffset=-1.1250;y=0.2000;Size=0.60;delay=0;sideOffset=0.2813} @Origin
+attack7bfwarden:
+  Cooldown: 6
+  Conditions:
+  - incombat true
+  - stance{s=casting} false
+  - stance{s=normal} true
+  - variableInRange{var=caster.combor;value=>7} elsecast meleefwardentrigger2
+  - hasaura{n=attacked7} false
+  TargetConditions:
+  - distance{d=4to17} true
+  Skills:
+  - Aura{auraName=attacked7;duration=60} @Self
+  - setstance{stance=casting} @self
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirechannelb;p=1.2;v=1.8} @selflocation
+  - effect:particles{p=reddust;c=#9DF2FD;a=7;speed=0.00;hs=0.1;vs=0.1;y=0;forwardOffset=0.0000;Size=0.9;sideOffset=0.0000;repeat=40;repeatinterval=1} @ModelPart{m=fallenwarden;p=lanceaxeparticles1;offset=LOCAL;y=0}
+  - variablesubtract{var=caster.combor;amount=1} @self 0.9
+  - variablesubtract{var=caster.combor;amount=1} @self 0.7
+  - variablesubtract{var=caster.combor;amount=1} @self 0.6
+  - variablesubtract{var=caster.combor;amount=1} @self 0.4
+  - state{state=manum1;li=14;lo=7;n=false;speed=1.1} @self
+  - delay 25
+  - state{state=manum1;li=2;lo=0;remove=true} @self
+  - state{state=attack6;li=4;lo=7;n=false;speed=1.1;frame=5} @self
+  - potion{type=SLOW;duration=55;level=0;p=false;force=true} @Self
+  - look{headOnly=false;immediately=false;repeat=10;repeatInterval=1} @Target
+  - spin{d=20;v=0;delay=10} @self
+  - delay 8
+  - skill{s=fwardenatk6FX;delay=3} @Forward{f=0.7;y=0.7} ### EFFECTENN
+  - delay 4
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirecastb;p=1.1;v=2} @selflocation
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirecast;p=0.8;v=2;delay=2} @selflocation
+  - sound{s=emaginationfallenheroes:custom.spell.soulfirecastb;p=1.5;v=2;delay=1} @selflocation
+  - sound{s=emaginationfallenheroes:custom.fallenhero.attackwindup;p=0.7;v=1} @selflocation
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.5;points=16;amount=3;hS=0;vS=0;speed=110;size=1.2;yOffset=0;delay=0;forwardOffset=3} @Forward{f=3;y=0.15} # COLORETTE
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.7;points=18;amount=3;hS=0;vS=0;speed=110;size=1.1;yOffset=0;delay=0;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.9;points=22;amount=3;hS=0;vS=0;speed=110;size=1;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.1;points=26;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.3;points=32;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.5;points=39;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.8;points=45;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.9;points=49;amount=2;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2;points=53;amount=2;hS=0;vS=0;speed=110;size=0.85;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.1;points=57;amount=2;hS=0;vS=0;speed=110;size=0.85;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0.15}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.3;points=65;amount=2;hS=0;vS=0;speed=110;size=0.82;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0.15}
+  
+  - projectile{onTick=fwardenattack7tick;onHit=fwardenattack7hit;mr=35;v=19;i=1;hR=1;hp=true;hnp=true;vR=0.38;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.2} @Forward{f=5;y=0.0}
+  - projectile{onTick=fwardenattack7tick;onHit=fwardenattack7hit;mr=35;v=19;i=1;hR=1;hp=true;hnp=true;vR=0.38;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.2;hO=45} @Forward{f=5;y=0.0}
+  - projectile{onTick=fwardenattack7tick;onHit=fwardenattack7hit;mr=35;v=19;i=1;hR=1;hp=true;hnp=true;vR=0.38;sB=false;sE=false;hs=true;d=150;syo=0;hfs=0.2;hO=-45} @Forward{f=5;y=0.0}
+  - delay 25
+  - setstance{stance=normal} @self
+#LEAP2ExDEE
+leap1fwarden:
+  Cooldown: 7
+  Conditions:
+  - stance{stance=normal} true
+  - stance{stance=casting} false
+  - offgcd true
+  TargetConditions:
+  - distance{d=3to25} true
+  Skills:
+  - gcd{ticks=140} @Self
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.01;vS=0.01;size=0.45;ForwardOffset=-0.1;repeat=40;repeatinterval=1} @ModelPart{m=fallenwarden;p=eye1;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.01;vS=0.01;size=0.45;ForwardOffset=-0.1;repeat=40;repeatinterval=1} @ModelPart{m=fallenwarden;p=eye2;offset=LOCAL;y=0}
+  - effect:particles{p=reddust;c=#9DF2FD;a=4;speed=0.00;hs=0.15;vs=0.1;y=0;forwardOffset=0.0000;Size=0.9;sideOffset=0.0000;repeat=50;repeatinterval=1} @ModelPart{m=fallenwarden;p=lanceaxeparticles1;offset=LOCAL;y=0}
+  - effect:particles{p=reddust;c=#ccf9ff;a=2;speed=0.00;hs=0.15;vs=0.1;y=0;forwardOffset=0.0000;Size=0.6;sideOffset=0;repeat=50;repeatinterval=1} @ModelPart{m=fallenwarden;p=lanceaxeparticles5;offset=LOCAL;y=0}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.salto;v=1} @origin
+  - setstance{stance=casting} @self
+  - delay 7
+  - state{s=leap1;li=1;lo=4;n=false} @self
+  - potion{type=SLOW;duration=15;level=8;p=false;force=true} @Self
+  - delay 9
+  - projectile{type=METEOR;onEnd=leap1fwardenindicatorRing;v=26;i=1;hR=0.1;vR=0.1;g=10;md=80;mr=150;hfs=2;sB=true;sE=false} @TargetLocation
+  - delay 2
+  - lockmodel{l=true;delay=0} @Self #LOCKMODEL
+  - effect:particles{particle=cloud;amount=1;hS=1.2;vS=0.1;speed=0.4;directional=true} @Ring{radius=5;points=24}
+  - look{headOnly=false;immediately=false;repeat=100;repeatinterval=1} @target
+  - lunge{velocity=1.5;velocityY=0.3} @Self
+  - spin{d=35;v=0} @self
+  - sound{s=emaginationfallenheroes:custom.spell.jump;v=1} @origin
+
+  
+  - missile{onTick=advancetick_leap1_fwarden;v=16;i=1;hR=1;vR=1;g=1;syo=1;sB=true;HitNonPlayers=false;hp=true;in=4;tyo=4;vO=80;md=60} @TrackedLocation
+  
+
+  - delay 1
+  - potion{type=SLOW_FALLING;duration=40;level=0;p=false;delay=0;force=true} @Self
+  - potion{type=JUMP;duration=30;lvl=30;p=true} @Self
+#  - Aura{auraName=leap1fwardenaura;onEnd=xdfwarden;onTick=landcheckleap1fwarden;interval=2;duration=80;Charges=1} @self #xdfwarden REMOVE if not used
+  - Aura{auraName=leap1softFall;onEnd=xdfwarden;onTick=softFallleap1Fwarden;interval=1;duration=200;delay=10} @self
+
+leap1fwardenindicatorRing:
+  Skills:
+  - tracklocation 
+  - effect:particlering{particle=reddust;color=#9700ab;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5} @Origin
+  - effect:particlering{particle=reddust;color=#a80abd;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=1} @Origin
+  - effect:particlering{particle=reddust;color=#b410c9;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=2} @Origin
+  - effect:particlering{particle=reddust;color=#bc1bd2;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=3} @Origin
+  - effect:particlering{particle=reddust;color=#c62edb;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=4} @Origin
+  - effect:particlering{particle=reddust;color=#cf3ae3;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=5} @Origin
+  - effect:particlering{particle=reddust;color=#d346e5;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=6} @Origin
+  - effect:particlering{particle=reddust;color=#d950ec;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=7} @Origin
+  - effect:particlering{particle=reddust;color=#dd60ee;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=8} @Origin
+  - effect:particlering{particle=reddust;color=#e575f4;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=9} @Origin
+  - effect:particlering{particle=reddust;color=#eb88f9;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=10} @Origin
+  - effect:particlering{particle=reddust;color=#ed97f9;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=11} @Origin
+  - effect:particlering{particle=reddust;color=#eda8f6;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=12} @Origin
+  - effect:particlering{particle=reddust;color=#f7bbff;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=13} @Origin
+  - effect:particlering{particle=reddust;color=#fad5ff;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=14} @Origin
+  - effect:particlering{particle=reddust;color=#fce6ff;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=15} @Origin
+advancetick_leap1_fwarden:
+  Skills:
+  - effect:particles{p=reddust;a=3;speed=0.00;hs=0.15;vs=0.1;y=0;Size=0.9} @Origin 0 #DEBUGPARTICLES
+  - pull{velocity=7;to=true} @Self{conditions=[  - distance{d=0to0.5} false ]}
+  - pull{velocity=14;to=true} @Self{conditions=[  - distance{d=0to0.5} true ]}
+
+softFallleap1Fwarden:
+  Skills:
+  - skill{s=SoftFallCheckleap1Fwarden} @Forward{f=0;y=-2.35}
+SoftFallCheckleap1Fwarden:
+  TargetConditions:
+  - inblock{b=AIR} false 
+  Conditions:
+#  - onground{} false
+  Skills:
+  - skill{s=landcheckleap1fwarden} 
+  - look{headOnly=false;immediately=false} @target
+  - potion{type=SLOW_FALLING;duration=2;level=0;p=false;delay=0;force=true} @Self
+  - velocity{m=divide;x=0;y=2;z=0;repeat=5=repeatinterval=1} @self 0 #DEBUG
+  - auraremove{aura=leap1softFall} @self  
+landcheckleap1fwarden:
+  Cooldown: 5
+  Conditions:
+#  - onground true
+  Skills:
+  - auraremove{aura=leap1fwardenaura} @self
+  - auraremove{aura=avancefwarden} @self
+  - skill{s=fwardenatk7FX} @Forward{f=0.5;y=1} ### EFFECTENN
+  - state{remove=true;s=leap1;li=2;lo=4;n=false;frame=0} @self
+  - state{s=land1;li=0;lo=4;n=false} @self
+  
+  - potion{type=SLOW;duration=25;level=7;p=false;delay=0} @self
+  - setrotation{relative=false;pitch=0} @Self
+  - lockmodel{l=false;delay=22} @Self #UNLOCKMODEL
+  - spin{d=22;v=0} @self
+  - delay 5
+  - sound{s=emaginationfallenheroes:custom.spell.slam;p=1;v=2} @Origin
+  - sound{s=emaginationfallenheroes:custom.fallenhero.soulfirehit;p=0.7;v=1.2} @Origin
+  - sound{s=emaginationfallenheroes:custom.spell.landshockwave;v=2;p=1.3} @origin
+  - effect:particles{particle=block_crack;m=dirt;amount=50;hS=0.3;vS=0.4;y=0.1} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=55;hS=0.4;vS=0.5;y=0.1;delay=1} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=65;hS=0.7;vS=0.3;y=0.1;delay=1} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=70;hS=1.8;vS=0.2;y=0.1;delay=2} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=75;hS=2.8;vS=0.1;y=0.1;delay=3} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=80;hS=0.05;vS=2;y=0.1;delay=4} @selfLocation
+
+  - effect:particles{particle=cloud;amount=1;hS=1.2;vS=0.1;speed=0.9;directional=true;fromOrigin=true;origin=@Forward{f=2;y=0.1}} @Ring{radius=10;points=24;yoffset=0.5}
+
+  - effect:particlesphere{p=smoke_large;amount=40;radius=3;size=10;repeat=2;repeatinterval=1;speed=1.6} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=2;points=12;radius=1;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=2;points=13;radius=1.5;delay=1;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @selfLocation
+  - effect:particlering{particle=block_crack;m=dirt;amount=3;points=14;radius=2;delay=2;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @selfLocation
+  - effect:particlering{particle=block_crack;m=dirt;amount=3;points=15;radius=2.7;delay=3;size=2.7;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @selfLocation
+  - effect:particlering{particle=block_crack;m=dirt;amount=4;points=18;radius=3.4;delay=4;size=2.5;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @selfLocation
+  - effect:particlering{particle=block_crack;m=dirt;amount=4;points=22;radius=4.2;delay=5;size=2.2;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @selfLocation
+  - effect:particlering{particle=block_crack;m=dirt;amount=4;points=25;radius=5.4;delay=6;size=2;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @selfLocation
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.5;points=16;amount=3;hS=0;vS=0;speed=110;size=1.2;yOffset=0;delay=0;forwardOffset=3} @Forward{f=3;y=0} # COLORETTE
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.7;points=18;amount=3;hS=0;vS=0;speed=110;size=1.1;yOffset=0;delay=0;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.9;points=22;amount=3;hS=0;vS=0;speed=110;size=1;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.1;points=26;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.3;points=32;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.5;points=39;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.8;points=45;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.9;points=49;amount=2;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2;points=53;amount=2;hS=0;vS=0;speed=110;size=0.85;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.1;points=57;amount=2;hS=0;vS=0;speed=110;size=0.85;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.3;points=65;amount=2;hS=0;vS=0;speed=110;size=0.82;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.5;points=75;amount=2;hS=0;vS=0;speed=110;size=0.78;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.6;points=80;amount=2;hS=0;vS=0;speed=110;size=0.78;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.8;points=90;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3;points=102;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.1;points=108;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.3;points=120;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.5;points=132;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.6;points=138;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.8;points=142;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=4.1;points=150;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=4.35;points=154;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=4.65;points=156;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=5;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=5.05;points=156;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=5;forwardOffset=3} @Forward{f=3;y=0}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhita;p=1;v=1} @EntitiesInRadius{r=4}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.roundslash;p=1.8;v=1} @SelfLocation
+  - basedamage{m=0.7;ignorearmor=true} @EntitiesInRadius{r=2;ignore=samefaction}
+  - basedamage{m=1;ignorearmor=false} @EntitiesInRadius{r=3;ignore=samefaction}
+  - basedamage{m=0.3;ignorearmor=true} @EntitiesInRadius{r=3;ignore=samefaction}
+  - basedamage{m=0.8;ignorearmor=false} @EntitiesInRadius{r=4;ignore=samefaction}
+  - actionmessage{m="&E&LKNOCKED AIRBORNE!";delay=0} @EntitiesInRadius{r=4;ignore=samefaction}
+  - throw{velocity=0;velocityY=0.3} @EntitiesInRadius{r=4;ignore=samefaction}
+  - skill{s=leap1cripplefwarden;sync=true} @EntitiesInRadius{r=4;ignore=samefaction}
+  - delay 28
+  - setstance{stance=normal} @self
+leap1cripplefwarden:
+  Skills:
+  - potion{type=LEVITATION;duration=9;level=5;p=false;delay=0}
+  - potion{type=LEVITATION;duration=9;level=2;p=false;delay=9}
+  - potion{type=LEVITATION;duration=5;level=1;p=false;delay=18}
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=23}
+  - potion{type=SLOW;duration=25;lvl=7}
+  - potion{type=SLOW;duration=60;level=4;p=false;force=true;delay=25}
+#LEAP2ExDEE
+leap2fwarden:
+  Cooldown: 10
+  Conditions:
+  - stance{stance=normal} true
+  - stance{stance=casting} false
+  - offgcd true
+  TargetConditions:
+  - distance{d=6to18} true
+  Skills:
+  - gcd{ticks=140} @Self
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.01;vS=0.01;size=0.45;ForwardOffset=-0.1;repeat=40;repeatinterval=1} @ModelPart{m=fallenwarden;p=eye1;offset=LOCAL;y=0}
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.01;vS=0.01;size=0.45;ForwardOffset=-0.1;repeat=40;repeatinterval=1} @ModelPart{m=fallenwarden;p=eye2;offset=LOCAL;y=0}
+  - effect:particles{p=reddust;c=#9DF2FD;a=4;speed=0.00;hs=0.15;vs=0.1;y=0;forwardOffset=0.0000;Size=0.9;sideOffset=0.0000;repeat=50;repeatinterval=1} @ModelPart{m=fallenwarden;p=lanceaxeparticles1;offset=LOCAL;y=0}
+  - effect:particles{p=reddust;c=#ccf9ff;a=2;speed=0.00;hs=0.15;vs=0.1;y=0;forwardOffset=0.0000;Size=0.6;sideOffset=0;repeat=50;repeatinterval=1} @ModelPart{m=fallenwarden;p=lanceaxeparticles5;offset=LOCAL;y=0}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.salto;v=1} @origin
+  - setstance{stance=casting} @self
+  - delay 7
+  - state{s=leap2;li=1;lo=4;n=false} @self
+  - potion{type=SLOW;duration=15;level=8;p=false;force=true} @Self
+  - delay 11
+  - effect:particlering{particle=cloud;d=20;radius=0.5;points=20;amount=1;hS=0.2;vS=0.2;speed=0} @Self
+  - effect:particlering{particle=cloud;d=20;radius=0.6;points=25;amount=1;hS=0.2;vS=0.2;speed=0;delay=1} @Self
+  - effect:particlering{particle=cloud;d=20;radius=0.8;points=30;amount=1;hS=0.2;vS=0.2;speed=0;delay=2} @Self
+  - effect:particlering{particle=cloud;d=20;radius=1;points=40;amount=1;hS=0.2;vS=0.2;speed=0;delay=3} @Self
+  - effect:particlering{particle=cloud;d=20;radius=1.4;points=40;amount=1;hS=0.2;vS=0.2;speed=0;delay=4} @Self
+  - look{headOnly=false;immediately=false;repeat=100;repeatinterval=1} @target
+  - lunge{velocity=1.5;velocityY=0.3} @Self
+  - sound{s=emaginationfallenheroes:custom.spell.jump;v=1} @origin
+  - summon{mob=wardenleapmarker2;amount=1;noise=0;r=0.1;yr=0} @TargetLocation
+  - projectile{type=METEOR;onEnd=leap2fwardenindicatorRing;v=26;i=1;hR=0.1;vR=0.1;g=10;md=60;mr=150;hfs=2;sB=true;sE=false} @TargetLocation
+  - totem{charges=1;onStart=leap2fwardenindicatorRing;i=2;hR=1;vR=4;md=30;hp=true;hnp=true} @TargetLocation 0
+  - delay 1
+  - Aura{auraName=leap2fwardenaura;onEnd=xdfwarden;onTick=landcheckleap2fwarden;interval=2;duration=80;Charges=1} @self #xdfwarden REMOVE if not used
+  - Aura{auraName=leap2softFall;onEnd=xdfwarden;onTick=softFallleap2Fwarden;interval=1;duration=80;Charges=1;delay=20} @self
+  - Aura{auraName=avancefwarden;onTick=aircheckfwarden;interval=2;duration=80;Charges=1} @self
+  - sound{s=custom.rabbit.avanlanza;v=2} @origin
+  - sound{s=entity.player.attack.sweep;v=1;pitch=1.6} @origin
+leap2fwardenindicatorRing:
+  Skills:
+  - effect:particlering{particle=reddust;color=#9700ab;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5} @Origin
+  - effect:particlering{particle=reddust;color=#a80abd;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=1} @Origin
+  - effect:particlering{particle=reddust;color=#b410c9;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=2} @Origin
+  - effect:particlering{particle=reddust;color=#bc1bd2;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=3} @Origin
+  - effect:particlering{particle=reddust;color=#c62edb;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=4} @Origin
+  - effect:particlering{particle=reddust;color=#cf3ae3;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=5} @Origin
+  - effect:particlering{particle=reddust;color=#d346e5;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=6} @Origin
+  - effect:particlering{particle=reddust;color=#d950ec;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=7} @Origin
+  - effect:particlering{particle=reddust;color=#dd60ee;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=8} @Origin
+  - effect:particlering{particle=reddust;color=#e575f4;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=9} @Origin
+  - effect:particlering{particle=reddust;color=#eb88f9;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=10} @Origin
+  - effect:particlering{particle=reddust;color=#ed97f9;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=11} @Origin
+  - effect:particlering{particle=reddust;color=#eda8f6;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=12} @Origin
+  - effect:particlering{particle=reddust;color=#f7bbff;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=13} @Origin
+  - effect:particlering{particle=reddust;color=#fad5ff;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=14} @Origin
+  - effect:particlering{particle=reddust;color=#fce6ff;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=15} @Origin
+aircheckfwarden:
+  Conditions:
+  - onground false
+  Skills:
+  - signal{s=DIERS} @EntitiesNearOrigin{r=3}
+  - sudoskill{s=aircheckfwarden2;setcasterastrigger=true} @Children
+  - look{headOnly=false;immediately=true} @target
+aircheckfwarden2:
+  Skills:
+  - pull{velocity=7} @Parent
+softFallleap2Fwarden:
+  Skills:
+  - skill{s=SoftFallCheckleap2Fwarden} @Forward{f=0;y=-2.5}
+SoftFallCheckleap2Fwarden:
+  TargetConditions:
+  - inblock{b=AIR} false 
+  Conditions:
+  - onground{} false
+  Skills:
+  - effect:particlering{particle=reddust;radius=2.5;points=45;amount=2;hS=0.1;vS=0;size=0.5;delay=7} @Origin
+  - look{headOnly=false;immediately=false} @target
+  - potion{type=SLOW_FALLING;duration=2;level=0;p=false;delay=0;force=true} @Self
+  - velocity{m=divide;x=0;y=2;z=0;repeat=5=repeatinterval=1} @self 0 #DEBUG
+  - auraremove{aura=leap2softFall} @self  
+landcheckleap2fwarden:
+  Cooldown: 5
+  Conditions:
+  - onground true
+  Skills:
+  - auraremove{aura=leap2fwardenaura} @self
+  - auraremove{aura=avancefwarden} @self
+  - skill{s=fwardenatk7FX} @Forward{f=0.5;y=1} ### EFFECTENN
+  - state{remove=true;s=leap2;li=2;lo=4;n=false;frame=0} @self
+  - state{s=land1;li=2;lo=4;n=false;speed=1.7} @self
+  - potion{type=SLOW;duration=25;level=7;p=false;delay=0} @self
+  - delay 4
+  - sound{s=emaginationfallenheroes:custom.spell.slam;p=1;v=2} @Origin
+  - sound{s=emaginationfallenheroes:custom.fallenhero.soulfirehit;p=0.7;v=1.2} @Origin
+  - sound{s=emaginationfallenheroes:custom.spell.landshockwave;v=2.4;p=1} @origin
+  - effect:particles{particle=block_crack;m=dirt;amount=90;hS=0.3;vS=0.4;y=0.1} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=70;hS=0.4;vS=0.5;y=0.1;delay=1} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=90;hS=0.7;vS=0.3;y=0.1;delay=1} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=100;hS=1.8;vS=0.2;y=0.1;delay=2} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=150;hS=2.8;vS=0.1;y=0.1;delay=3} @selfLocation
+  - effect:particles{particle=block_crack;m=dirt;amount=200;hS=0.05;vS=2;y=0.1;delay=4} @selfLocation
+  - effect:particlesphere{p=smoke_large;amount=80;radius=3;size=10;repeat=2;repeatinterval=1;speed=1.6} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=8;points=20;radius=1;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=8;points=23;radius=1.5;delay=1;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=7;points=26;radius=2;delay=2;size=3;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=7;points=29;radius=2.7;delay=3;size=2.7;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=6;points=32;radius=3.4;delay=4;size=2.5;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=6;points=35;radius=4.2;delay=5;size=2.2;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=block_crack;m=dirt;amount=5;points=38;radius=5.4;delay=6;size=2;speed=3;yOffset=0.01;hS=0.3;vS=0.4} @origin
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.5;points=16;amount=3;hS=0;vS=0;speed=110;size=1.2;yOffset=0;delay=0;forwardOffset=3} @Forward{f=3;y=0} # COLORETTE
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.7;points=18;amount=3;hS=0;vS=0;speed=110;size=1.1;yOffset=0;delay=0;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=0.9;points=22;amount=3;hS=0;vS=0;speed=110;size=1;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.1;points=26;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.3;points=32;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.5;points=39;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.8;points=45;amount=3;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=1;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=1.9;points=49;amount=2;hS=0;vS=0;speed=110;size=0.9;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2;points=53;amount=2;hS=0;vS=0;speed=110;size=0.85;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.1;points=57;amount=2;hS=0;vS=0;speed=110;size=0.85;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.3;points=65;amount=2;hS=0;vS=0;speed=110;size=0.82;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.5;points=75;amount=2;hS=0;vS=0;speed=110;size=0.78;yOffset=0;delay=2;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.6;points=80;amount=2;hS=0;vS=0;speed=110;size=0.78;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=2.8;points=90;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3;points=102;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.1;points=108;amount=1;hS=0;vS=0;speed=110;size=0.73;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.3;points=120;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=3;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.5;points=132;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.6;points=138;amount=1;hS=0;vS=0;speed=110;size=0.69;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=3.8;points=142;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=4.1;points=150;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=4.35;points=154;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=4;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=4.65;points=156;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=5;forwardOffset=3} @Forward{f=3;y=0}
+  - effect:particlering{particle=reddust;c=#9DF2FD;d=40;radius=5.05;points=156;amount=1;hS=0;vS=0;speed=110;size=0.62;yOffset=0;delay=5;forwardOffset=3} @Forward{f=3;y=0}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.slashhita;p=1;v=1} @EntitiesInRadius{r=4}
+  - sound{s=emaginationfallenheroes:custom.fallenhero.roundslash;p=1.8;v=1} @SelfLocation
+  - basedamage{m=0.7;ignorearmor=true} @EntitiesInRadius{r=2;ignore=samefaction}
+  - basedamage{m=1;ignorearmor=false} @EntitiesInRadius{r=3;ignore=samefaction}
+  - basedamage{m=0.3;ignorearmor=true} @EntitiesInRadius{r=3;ignore=samefaction}
+  - basedamage{m=0.8;ignorearmor=false} @EntitiesInRadius{r=4;ignore=samefaction}
+  - actionmessage{m="&E&LKNOCKED AIRBORNE!";delay=0} @EntitiesInRadius{r=4}
+  - throw{velocity=0;velocityY=0.3} @EntitiesInRadius{r=4}
+  - skill{s=leap2cripplefwarden;sync=true} @EntitiesInRadius{r=4}
+  - delay 28
+  - setstance{stance=normal} @self
+leap2cripplefwarden:
+  Skills:
+  - potion{type=LEVITATION;duration=9;level=5;p=false;delay=0}
+  - potion{type=LEVITATION;duration=9;level=2;p=false;delay=9}
+  - potion{type=LEVITATION;duration=5;level=1;p=false;delay=18}
+  - potion{type=SLOW_FALLING;duration=5;level=0;p=false;delay=23}
+  - potion{type=SLOW;duration=25;lvl=7}
+  - potion{type=SLOW;duration=60;level=4;p=false;force=true;delay=25}

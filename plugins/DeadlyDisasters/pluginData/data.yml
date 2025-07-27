@@ -1,0 +1,230 @@
+data:
+  version: 13.0
+  timerValueMemory: 120
+  entries: 19
+  notify: false
+  firstStart: false
+  lang: 0
+  catalogFetchCooldown: 75127
+  pro: true
+  currentConfig: DEFAULT
+  favored: 'null'
+  disliked: 'null'
+  catalogVersion: 3
+customentities: {}
+metrics:
+  occurred:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  spawned:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  destroyed:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  killed:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 1
+  - 0
+  - 0
+  - 0
+timers:
+  8617ad97-32fa-4684-96ab-441ca56a03cf:
+    3af04669-36d3-493e-9bf5-31675278b91c: 30
+  dc97c517-6140-4cff-a008-08977eed37f3:
+    3af04669-36d3-493e-9bf5-31675278b91c: 864
+  e1b377c0-3775-4089-8655-724a5a594997:
+    3af04669-36d3-493e-9bf5-31675278b91c: 35
+  6c3417c4-5176-4624-a097-923747806af0:
+    3af04669-36d3-493e-9bf5-31675278b91c: 3546
+  2e955536-dbcb-45fa-8325-1fb2a61244b4:
+    3af04669-36d3-493e-9bf5-31675278b91c: 132
+  e843a23a-9a50-4159-b517-51abbd84c38f:
+    3af04669-36d3-493e-9bf5-31675278b91c: 2894
+  764aad11-65f6-4214-9ad8-39ec8f03a451:
+    3af04669-36d3-493e-9bf5-31675278b91c: 2476
+  4727db74-7d17-4df7-b429-2e8dad934b2c:
+    3af04669-36d3-493e-9bf5-31675278b91c: 24
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 3015
+  ed2f12c2-7434-4ece-a98f-e9910d0abda8:
+    3af04669-36d3-493e-9bf5-31675278b91c: 1463
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 2617
+  6ec1cc15-ff18-4a9f-8a93-a3f7f6a2cc8b:
+    3af04669-36d3-493e-9bf5-31675278b91c: 2861
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 2990
+  564f69a2-5a56-4f21-b88d-414d575ff376:
+    3af04669-36d3-493e-9bf5-31675278b91c: 156
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 157
+  ad517dbc-b397-49e7-8006-2d130796857c:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 2601
+  d07f103b-68e1-4d49-a5af-6e2121a90efd:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 3485
+  c37ede89-68a8-4f21-b3f9-e1b3daff6035:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 1964
+  0f91081c-912c-40d0-8fb8-f848759b5d38:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 86
+  7f55de3e-adbc-4c17-be79-91af2a9ab6c8:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 3439
+  269d2143-a3ed-4486-a241-d34c1619f6f6:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 652
+  3a2947b9-b830-4bdd-bd5d-4539cbc209c0:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 208
+  9e4589b4-9ebc-43b8-bd90-8585b56a1fe2:
+    6dbcde8b-c4e7-4adc-bb2b-c94140489002: 150
+achievements:
+  disasters:
+    survival:
+      sinkhole:
+        tiers:
+          tier 1:
+            claimed: []
+          tier 2:
+            claimed: []
+          tier 3:
+            claimed: []
+          tier 4:
+            claimed: []
+          tier 5:
+            claimed: []
+      earthquake:
+        tiers:
+          tier 1:
+            claimed: []
+          tier 2:
+            claimed: []
+          tier 3:
+            claimed: []
+          tier 4:
+            claimed: []
+          tier 5:
+            claimed: []
+      tornado:
+        tiers:
+          tier 1:
+            claimed: []
+          tier 2:
+            claimed: []
+          tier 3:
+            claimed: []
+          tier 4:
+            claimed: []
+          tier 5:
+            claimed: []
+      level_six:
+        tiers:
+          tier 1:
+            claimed: []
+          tier 2:
+            claimed: []
+          tier 3:
+            claimed: []
+  mobs:
+    slayer:
+      void_mobs:
+        tiers:
+          tier 1:
+            claimed: []
+          tier 2:
+            claimed: []
+          tier 3:
+            claimed: []
+          tier 4:
+            claimed: []
+          tier 5:
+            claimed: []
+  master:
+    series:
+      void_master:
+        tiers:
+          tier 1:
+            claimed: []
+          tier 2:
+            claimed: []
+          tier 3:
+            claimed: []
+          tier 4:
+            claimed: []
+          tier 5:
+            claimed: []
+          tier 6:
+            claimed: []
+          tier 7:
+            claimed: []
+masteries:
+  disasters:
+    survival:
+      tornado:
+        active: []
+      sinkhole:
+        active: []
+      earthquake:
+        active: []

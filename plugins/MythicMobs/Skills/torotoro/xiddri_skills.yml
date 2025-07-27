@@ -1,0 +1,963 @@
+CancelEventSkill:
+    Skills:
+        - CancelEvent
+
+xiddri_setAItrue:
+    Skills:
+        - setAI{ai=true} @self
+        
+xiddri_death:
+    Skills:
+        - delay 120
+        - particles{p=end_rod;a=60;hs=5;vs=1;s=0.5} @origin
+#TICK VFX
+xiddri_tick:
+    Conditions:
+        - hastag{t=flying} castInstead xiddri_thunder_prompt
+        - hastag{t=roar_1st} cast xiddri_inrock_1st_roar_tick
+        - hastag{t=roar_2nd} cast xiddri_inrock_2nd_roar_tick
+
+xiddri_thunder_prompt:
+    Conditions:
+        - incombat true
+        - hastag{t=skill_lock} false 
+        - hastag{t=flying} true 
+    Skills:
+        - totem{ch=1;onStart=xiddri_thunder_strike;int=1;hR=3;md=1} @RLNTE{a=3;r=20;s=8;minr=8} 
+        - signal{s=LIGHTNING} @MobsInRadius{r=20;t=xiddri_rock_onground}
+        - delay 24
+        - effect:sound{s=entity.generic.explode;v=8;p=1.5} @origin
+
+xiddri_thunder_strike:
+    Skills:
+        - randomskill{s=xiddri_thunder_sound1,xiddri_thunder_sound2}
+        - particles{p=reddust;color=#FFE383;a=5;hs=0.5;vs=0.1} @origin
+        - effect:blockmask{m=light;r=0;d=5;oa=true;repeat=1;repeatInterval=10} @origin
+        - delay 20
+        - summon{t=xiddri_thunderstrike;a=1;os=true} @origin
+        - delay 4
+        - damage{a=10} @PlayersNearOrigin{r=6;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+
+xiddri_thunder_sound1:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.electricity;v=3;p=1} @self
+
+xiddri_thunder_sound2:
+    Skills:
+        - effect:sound{s=torotoro:toro.xiddri.electricity;v=3;p=0.7} @self
+
+
+xiddri_inrock_1st_roar_tick:
+    Skills:
+        - summon{t=xiddri_electricity_small_vfx;a=2;r=6;yr=3} @ModelPart{mid=xiddri_inrock;part=chest} 
+
+xiddri_inrock_2nd_roar_tick:
+    Skills:
+        - summon{t=xiddri_electricity_small_vfx;a=2;r=6;yr=5;os=true} @ModelPart{mid=xiddri_inrock;part=chest} 
+        - summon{t=xiddri_thunderstrike_small;a=1;r=10;os=true} @origin
+        
+#ROCK COVERED MODEL
+xiddri_rock_cover:
+    Conditions:
+        - hastag{t=xiddri_dropped} true
+        - incombat true
+        - offgcd
+        - onground true
+        - hastag{t=skill_lock} false 
+        - hastag{t=flying} true
+    Skills:
+        - setAI{ai=false} @self
+        - removetag{t=flying} @self
+        - addtag{t=skill_lock} @self
+        - state{s=transform_back} @self
+        - effect:sound{s=torotoro:toro.xiddri.small_roar;v=3;p=0} @self
+        - delay 57
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri;part=chest}
+        - totem{ch=1;onStart=xiddri_heavy_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=head}
+        - summon{t=xiddri_electricity_small_vfx;a=10;r=15;yr=5} @ModelPart{mid=xiddri;part=chest}
+        - summon{t=xiddri_thunderstrike;a=3;r=8;os=true;repeat=1;repeatInterval=5} @ModelPart{mid=xiddri;part=chest}
+        - summon{t=xiddri_thunderstrike_small;a=3;r=10;os=true;repeat=3;repeatInterval=10} @ModelPart{mid=xiddri;part=chest}
+        - delay 44
+        - setAI{ai=true} @self
+        - teleport{} @target
+        - delay 5
+        - setAI{ai=false} @self
+        - model{m=xiddri;r=true;ko=false} @self
+        - model{m=xiddri_inrock;tint=false} @self
+        - skill{s=xiddri_inrock_parthp_set} @self
+        - state{s=transform_back} @self
+        - delay 3
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=0} @self
+        - effect:sound{s=torotoro:toro.xiddri.roar;v=3;p=0.7} @self
+        # vfx
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true;repeat=5;repeatInterval=2} @ModelPart{mid=xiddri_inrock;part=hip}
+        - summon{t=xiddri_groundshatter_large_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;;part=chest}
+        #
+        - weather{type=sunny;duration=6000}
+        - delay 24
+        # Two smashing damages after breaking out of ground
+        - totem{ch=1;onStart=xiddri_quick_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw}
+        - delay 5
+        - totem{ch=1;onStart=xiddri_heavy_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw}
+        - delay 76
+        - removetag{t=skill_lock} @self
+        - setAI{ai=true} @self
+        
+#FLYING MODEL
+xiddri_change_to_fly:
+    Conditions:
+        - incombat true
+        - offgcd
+        - onground true
+        - hastag{t=skill_lock} false 
+        - hastag{t=flying} false
+    Skills:
+        - setAI{ai=false} @self
+        - addtag{t=skill_lock} @self
+        - addtag{t=flying} @self
+        - state{s=transform} @self
+        - effect:sound{s=torotoro:toro.xiddri.roar;v=5;p=0.7} @self
+        - delay 40
+        - effect:sound{s=torotoro:toro.xiddri.roar;v=5;p=1} @self
+        - effect:sound{s=torotoro:toro.xiddri.small_roar;v=5;p=0} @self 
+        - delay 10
+        - effect:sound{s=entity.zombie.break_wooden_door;v=5;p=0} @self
+        - effect:sound{s=entity.lightning_bolt.impact;v=5;p=1} @self
+        - effect:sound{s=entity.lightning_bolt.thunder;v=5;p=1} @self
+        # breaking vfx
+        - weather{type=storm;duration=6000}
+        - particles{p=end_rod;a=60;s=0.5;hs=1;vs=1} @ModelPart{mid=xiddri_inrock;part=chest}
+        - summon{t=xiddri_rock_fly_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=chest}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=head}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=chest}
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=hip}
+        - summon{t=xiddri_electricity_small_vfx;a=10;r=15;yr=5} @ModelPart{mid=xiddri_inrock;part=chest}
+        - summon{t=xiddri_thunderstrike;a=5;r=8;os=true;repeat=1;repeatInterval=5} @origin
+        - summon{t=xiddri_thunderstrike_small;a=3;r=10;os=true;repeat=3;repeatInterval=10} @origin
+        - damage{a=1} @PlayersNearOrigin{r=12;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_roar_knockback} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        # 
+        - delay 2
+        - model{m=xiddri_inrock;r=true;ko=false} @self
+        - model{m=xiddri;tint=false} @self
+        # reset rock part HP, and reset part tags
+        - skill{s=xiddri_flying_parthp_set} @self
+        - skill{s=xiddri_remove_all_parttag} @self
+        #
+        - state{s=transform} @self
+        - particles{p=end_rod;a=10;s=0.2;hs=1;vs=1;repeat=7;repeatInterval=10} @ModelPart{mid=xiddri;part=tail1}
+        - summon{t=xiddri_electricity_small_vfx;a=3;r=5;repeat=7;repeatInterval=10} @ModelPart{mid=xiddri;part=tail1}
+        - delay 94
+        - removetag{t=roar_1st} @self
+        - removetag{t=roar_2nd} @self
+        - removetag{t=skill_lock} @self
+        - setAI{ai=true} @self
+
+xiddri_onground_roar:
+    Cooldown: 45
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true 
+        - hastag{t=roar_1st} castInstead xiddri_onground_roar_2nd
+    Skills:
+        - gcd{ticks=85} @self
+        - state{s=roar;lerpin=5;lerpout=10} @self
+        - setAI{ai=false} @self
+        - delay 30
+        - skill{s=xiddri_roar1} @self
+        - delay 55
+        - setAI{ai=true} @self
+
+xiddri_roar1:
+    Conditions:
+        - hastag{t=skill_lock} false
+    Skills:
+        - addtag{t=roar_1st} @self
+        - effect:sound{s=torotoro:toro.xiddri.roar;v=5;p=1} @self
+        - summon{t=xiddri_electricity_small_vfx;a=10;r=15;yr=5} @origin
+
+xiddri_onground_roar_2nd:
+    Cooldown: 45
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true 
+        - hastag{t=roar_2nd} castInstead xiddri_change_to_fly
+    Skills:
+        - gcd{ticks=85} @self
+        - state{s=roar;lerpin=5;lerpout=10} @self
+        - setAI{ai=false} @self
+        - delay 30
+        - skill{s=xiddri_roar2} @self
+        - delay 55
+        - setAI{ai=true} @self
+
+xiddri_roar2:
+    Conditions:
+        - hastag{t=skill_lock} false
+    Skills:
+        - addtag{t=roar_2nd} @self
+        - effect:sound{s=torotoro:toro.xiddri.roar;v=5;p=1} @self
+        - summon{t=xiddri_electricity_small_vfx;a=10;r=15;yr=5} @origin
+        - summon{t=xiddri_thunderstrike_small;a=3;r=10;os=true;repeat=3;repeatInterval=10} @origin 
+
+#GROUND SKILLS
+#==Xiddri quick smash
+xiddri_quick_smash:
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    Skills:
+        - randomskill{s=xiddri_right_quick_smash,xiddri_left_quick_smash} @target  
+
+xiddri_right_quick_smash:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=8to16} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=45} @self
+        - state{s=right_quick_smash;lerpin=8} @self
+        - setAI{ai=false} @self
+        - delay 8
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=right_forearm}
+        - setAI{ai=true} @self
+        - potion{t=SPEED;d=5;l=6;icon=false;p=false} @self
+        - potion{t=SPEED;d=5;l=14;icon=false;p=false} @self{conditions=[  - targetnotwithin{d=13} true ]}
+        - delay 7
+        - setAI{ai=false} @self
+        - delay 10
+        - skill{s=xiddri_right_quick_smash_totem} @target
+        - delay 15
+        - randomskill{s=xiddri_left_quick_smash,xiddri_left_heavy_smash,xiddri_setAItrue} @target
+
+xiddri_right_quick_smash_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_quick_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw}
+
+xiddri_left_quick_smash:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=8to16} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=45} @self
+        - state{s=left_quick_smash;lerpin=8} @self
+        - setAI{ai=false} @self
+        - delay 8
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true} @ModelPart{mid=xiddri_inrock;part=left_forearm}
+        - setAI{ai=true} @self
+        - potion{t=SPEED;d=5;l=6;icon=false;p=false} @self
+        - potion{t=SPEED;d=5;l=14;icon=false;p=false} @self{conditions=[  - targetnotwithin{d=13} true ]}
+        - delay 7
+        - setAI{ai=false} @self
+        - delay 10
+        - skill{s=xiddri_left_quick_smash_totem} @target
+        - delay 15
+        - randomskill{s=xiddri_right_quick_smash,xiddri_right_heavy_smash,xiddri_setAItrue} @target
+
+xiddri_left_quick_smash_totem:
+    Conditions:
+        - hastag{t=skill_lock} false 
+    Skills:
+        - totem{ch=1;onStart=xiddri_quick_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw}
+
+xiddri_quick_smash_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_smallrock_vfx;a=1;os=true} @origin
+        - damage{a=10} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_quick_smash_knockback} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=1.5} @origin
+        - particlering{p=block_crack;m=stone;a=20;points=16;r=6;hs=0.5;vs=0.5} @origin
+        - particles{p=falling_dust;a=30;hs=2;vs=3} @origin
+
+## heavy smash
+xiddri_heavy_smash:
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - offgcd
+        - incombat true
+        - onground true
+    Skills:
+        - randomskill{s=xiddri_right_heavy_smash,xiddri_left_heavy_smash} @target 
+        
+xiddri_right_heavy_smash:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=5to12} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=75} @self
+        - state{s=right_heavy_smash;lerpin=10} @self
+        - setAI{ai=true} @self
+        - delay 8
+        - setAI{ai=false} @self
+        - delay 24
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - delay 6
+        - skill{s=xiddri_right_heavy_smash_totem} @target
+        - delay 33
+        - setAI{ai=true} @self
+
+
+xiddri_right_heavy_smash_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_heavy_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw}
+
+xiddri_left_heavy_smash:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=5to12} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=75} @self
+        - state{s=left_heavy_smash;lerpin=10} @self
+        - setAI{ai=true} @self
+        - delay 8
+        - setAI{ai=false} @self
+        - delay 24
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - delay 6
+        - skill{s=xiddri_left_heavy_smash_totem} @target
+        - delay 33
+        - setAI{ai=true} @self
+
+xiddri_left_heavy_smash_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_heavy_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw}
+
+xiddri_heavy_smash_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_groundshatter_vfx;a=1;os=true} @origin
+        - damage{a=14} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_heavy_smash_knockback} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=1} @origin
+        - particlering{p=block_crack;m=stone;a=20;points=16;r=6;hs=0.5;vs=0.5} @origin
+        - particles{p=falling_dust;a=50;hs=3;vs=4} @origin
+
+#===back step
+xiddri_backstep:
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=0to8} true
+    Skills:
+        - gcd{ticks=41} @self
+        - state{s=backstep;lerpin=8} @self
+        - setAI{ai=false} @self
+        - delay 10
+        - setAI{ai=true} @self
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - lunge{v=1;repeat=9;repeatInterval=2} @forward{f=-1}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true;repeat=4;repeatInterval=5} @ModelPart{mid=xiddri_inrock;part=tail1}
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true;repeat=4;repeatInterval=5} @ModelPart{mid=xiddri_inrock;part=tail3}
+        - delay 20
+        - stun{d=13;stopai=true} @self
+        - delay 13
+        #- skill{s=xiddri_backstep_nextskill} @target
+
+xiddri_backstep_nextskill:
+    TargetConditions:
+        - distance{d=9to15} castInstead xiddri_right_quick_smash
+        - distance{d=0to16} castInstead xiddri_roll_smash
+        - distance{d=16to24} castInstead xiddri_jump_smash
+    Skills:
+        - delay 40
+        - setAI{ai=true} @self
+
+# xiddri roll smash
+xiddri_roll_smash:
+    Cooldown: 10
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=5to17} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=130} @self
+        - state{s=roll_smash;learpin=5;lerpout=10} @self
+        - setAI{ai=false} @self
+        - delay 27
+        - setAI{ai=true} @self
+        - summon{t=xiddri_debris_smash_vfx;a=1;os=true;repeat=4;repeatInterval=5} @ModelPart{mid=xiddri_inrock;part=shoulder}
+        - damage{a=1;repeat=8;repeatInterval=2} @PIR{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_rolling_knockback;repeat=8;repeatInterval=2} @PIR{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - potion{t=speed;d=18;l=8;p=false} @self
+        - delay 18
+        - setAI{ai=false} @self
+        - delay 13
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - delay 10
+        - skill{s=xiddri_roll_smash_totem} @target
+        - delay 57
+        - setAI{ai=true} @self
+
+xiddri_roll_smash_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_roll_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw}
+        - totem{ch=1;onStart=xiddri_roll_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw}
+
+xiddri_roll_smash_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_groundshatter_vfx;a=1;os=true} @origin
+        - damage{a=20} @PlayersNearOrigin{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_roll_smash_knockback} @PlayersNearOrigin{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=0.5} @origin
+        - particlering{p=block_crack;m=stone;a=20;points=16;r=6;hs=0.5;vs=0.5} @origin
+        - particles{p=falling_dust;a=50;hs=3;vs=4} @origin
+
+# Jump Smash
+xiddri_jump_smash:
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=15to25} true
+    Skills:
+        - gcd{ticks=120} @self
+        - state{s=jump_smash;learpin=10;lerpout=10} @self
+        - setAI{ai=false} @self
+        - delay 30
+        - setAI{ai=true} @self
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - potion{t=speed;d=10;l=5;p=false} @self
+        - delay 10
+        - teleport{} @target
+        - delay 2
+        - setAI{ai=false} @self
+        - delay 4
+        - skill{s=xiddri_jump_smash_totem} @target
+        - delay 57
+        - setAI{ai=true} @self
+        
+xiddri_jump_smash_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_jump_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw} 
+
+xiddri_jump_smash_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_groundshatter_vfx;a=1;os=true} @origin
+        - damage{a=15} @PlayersNearOrigin{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_jump_smash_knockback} @PlayersNearOrigin{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=0.5} @origin
+        - particlering{p=block_crack;m=stone;a=20;points=16;r=6;hs=0.5;vs=0.5} @origin
+        - particles{p=falling_dust;a=50;hs=3;vs=4} @origin
+
+#Origin Smash
+xiddri_origin_smash:
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=0to8} true
+    Skills:
+        - gcd{ticks=120} @self
+        - state{s=origin_smash;lerpin=10;lerpout=10} @self
+        - setAI{ai=false} @self
+        - delay 34
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - delay 10
+        - skill{s=xiddri_origin_smash_totem} @target
+        - delay 74
+        - setAI{ai=true} @self
+        
+xiddri_origin_smash_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_origin_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=chest} 
+
+xiddri_origin_smash_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_groundshatter_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_groundshatter_large_vfx;a=1;os=true} @origin{y=-0.5}
+        - damage{a=15} @PlayersNearOrigin{r=12;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_origin_smash_knockback} @PlayersNearOrigin{r=12;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=0.5} @origin
+        - particlering{p=block_crack;m=stone;a=20;points=16;r=6;hs=0.5;vs=0.5} @origin
+        - particles{p=falling_dust;a=50;hs=3;vs=4} @origin
+
+#Smash Swipe
+xiddri_smash_swipe:
+    Conditions:
+        - hastag{t=flying} false
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    Skills:
+        - randomskill{s=xiddri_left_smash_swipe,xiddri_right_smash_swipe} @target  
+
+xiddri_right_smash_swipe:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=5to15} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=90} @self
+        - state{s=right_smash_swipe;lerpin=10} @self
+        - setAI{ai=false} @self
+        - delay 25
+        - skill{s=xiddri_right_smash_swipe_totem} @target
+        - delay 56
+        - setAI{ai=true} @self
+
+xiddri_right_smash_swipe_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:                                                                                                             
+        - totem{ch=1;onStart=xiddri_smash_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw}
+        - delay 20
+        - effect:sound{s=torotoro:toro.xiddri.electricity;v=5;p=0.5;repeat=5;repeatInterval=2} @self
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1;repeat=2;repeatInterval=2} @ModelPart{mid=xiddri_inrock;part=right_claw}
+        - delay 5
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw;y=-3;z=-2}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw;y=-4;z=-3}
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw;x=-2;y=-5;z=-3}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw;x=2;y=-4;z=-3}
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=right_claw;y=-5;z=-3}
+
+xiddri_left_smash_swipe:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=5to15} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=80} @self
+        - state{s=left_smash_swipe;lerpin=10} @self
+        - setAI{ai=false} @self
+        - delay 25
+        - skill{s=xiddri_left_smash_swipe_totem} @target
+        - delay 56
+        - setAI{ai=true} @self
+
+xiddri_left_smash_swipe_totem:
+    Conditions:
+        - hastag{t=skill_lock} false 
+    Skills:
+        - totem{ch=1;onStart=xiddri_smash_swipe_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw}
+        - delay 20
+        - effect:sound{s=torotoro:toro.xiddri.electricity;v=5;p=0.5;repeat=5;repeatInterval=2} @self
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1;repeat=2;repeatInterval=2} @ModelPart{mid=xiddri_inrock;part=left_claw}
+        - delay 5
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw;y=-3;z=-2}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw;y=-4;z=-3}
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw;x=-2;y=-5;z=-3}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw;x=-2;y=4;z=-3}
+        - totem{ch=1;onStart=xiddri_smash_swipe_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri_inrock;part=left_claw;y=5;z=-3}
+
+xiddri_smash_swipe_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_smallrock_vfx;a=1;os=true} @origin
+        - damage{a=10} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_quick_smash_knockback} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=1.5} @origin
+        - particlering{p=block_crack;m=stone;a=20;points=16;r=6;hs=0.5;vs=0.5} @origin
+        - particles{p=falling_dust;a=30;hs=2;vs=3} @origin
+
+xiddri_smash_swipe_explode:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_electricity_small_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_thunderstrike_small;a=1;os=true} @origin
+        - delay 3
+        - damage{a=12} @PlayersNearOrigin{r=5;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+
+#FLYING SKILLS
+#Charging
+xiddri_charge:
+    Conditions:
+        - hastag{t=flying} true
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=0to40} true
+    Skills:
+        - gcd{ticks=90} @self
+        - state{s=charge;learpin=10} @self
+        - setAI{ai=false} @self
+        - delay 28
+        - setAI{ai=true} @self
+        - effect:sound{s=torotoro:toro.xiddri.swing;v=5;p=0} @self
+        - spin{d=16;v=0} @self
+        - skill{s=xiddri_charge_skill;repeat=16;repeatInterval=1} @target
+        - skill{s=xiddri_charge_thunder;repeat=4;repeatInterval=4} @self
+
+xiddri_charge_skill:
+    Conditions:
+        - hastag{t=skill_lock} false
+    Skills:
+        - lunge{v=2} @forward
+        - damage{a=14} @PIR{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_charge_knockback} @PIR{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+
+xiddri_charge_thunder:
+    Conditions:
+        - incombat true
+        - hastag{t=skill_lock} false 
+        - hastag{t=flying} true 
+    Skills:
+        - totem{ch=1;onStart=xiddri_thunder_strike;int=1;hR=3;md=1} @RLNTE{a=2;r=5;s=3;minr=3} 
+        - signal{s=LIGHTNING} @MobsInRadius{r=7;t=xiddri_rock_onground}
+        - delay 24
+        - effect:sound{s=entity.generic.explode;v=8;p=1.5} @origin
+
+#tail strike
+xiddri_tail_strike:
+    Conditions:
+        - hastag{t=flying} true
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=0to10} true
+    Skills:
+        - gcd{ticks=60} @self
+        - state{s=tail_strike} @self
+        - setAI{ai=false} @self
+        - delay 32
+        - skill{s=xiddri_tail_strike_totem} @target
+        - delay 26
+        - setAI{ai=true} @self
+
+xiddri_tail_strike_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_tail_strike_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=tail3} 
+
+xiddri_tail_strike_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_groundshatter_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_electricity_small_vfx;a=2;r=3;yr=0} @origin
+        - summon{t=xiddri_thunderstrike;a=1;os=true} @origin
+        - summon{t=xiddri_thunderstrike_small;a=2;r=3;os=true;repeat=1;repeatInterval=10} @origin
+        - damage{a=20} @PlayersNearOrigin{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_tail_strike_knockback} @PlayersNearOrigin{r=9;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=0.5} @origin
+        - particles{p=falling_dust;a=50;hs=3;vs=4} @origin
+
+#tail shock
+xiddri_tail_shock:
+    Conditions:
+        - hastag{t=flying} true
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=7to14} true
+    Skills:
+        - gcd{ticks=60} @self
+        - state{s=tail_shock} @self
+        - setAI{ai=false} @self
+        - delay 24
+        - skill{s=xiddri_tail_shock_totem} @target
+        - delay 26
+        - setAI{ai=true} @self
+
+xiddri_tail_shock_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_tail_thrust_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=tail3} 
+        - delay 1
+        - totem{ch=1;onStart=xiddri_tail_shock_smash_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=tail3}
+        - delay 5
+        - effect:blockmask{m=light;r=0;d=5;oa=true} @ModelPart{mid=xiddri;part=chest}
+        - delay 5
+        - effect:blockmask{m=light;r=0;d=5;oa=true} @ModelPart{mid=xiddri;part=belly}
+        - delay 5
+        - effect:blockmask{m=light;r=0;d=5;oa=true} @ModelPart{mid=xiddri;part=hip}
+        - delay 5
+        - effect:blockmask{m=light;r=0;d=5;oa=true} @ModelPart{mid=xiddri;part=tail2}
+        - delay 6
+        - totem{ch=1;onStart=xiddri_tail_shock_damage;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=tail3}
+
+xiddri_tail_thrust_damage:
+    Skills:
+        - damage{a=10} @PlayersNearOrigin{r=5;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_tail_strike_knockback} @PlayersNearOrigin{r=5;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+
+xiddri_tail_shock_smash_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_smallrock_vfx;a=1;os=true} @origin
+        - damage{a=10} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_tail_shock_smash_knockback} @PlayersNearOrigin{r=7;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=2} @origin
+        - particles{p=falling_dust;a=50;hs=3;vs=4} @origin
+
+xiddri_tail_shock_damage:
+    Skills:
+        - summon{t=xiddri_debris_fast_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_groundshatter_vfx;a=1;os=true} @origin
+        - summon{t=xiddri_electricity_small_vfx;a=5;r=7;yr=0} @origin
+        - summon{t=xiddri_thunderstrike;a=3;r=3;yr=0;os=true} @origin
+        - summon{t=xiddri_thunderstrike_small;a=3;r=5;yr=0;os=true;repeat=1;repeatInterval=10} @origin
+        - damage{a=20} @PlayersNearOrigin{r=10;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_tail_shock_knockback} @PlayersNearOrigin{r=10;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - effect:sound{s=entity.generic.explode;v=4;p=0.5} @origin
+
+#xiddri lightning target
+xiddri_lightning_target:
+    Cooldown: 5
+    Conditions:
+        - hastag{t=flying} true
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    TargetConditions:
+        - distance{d=0to40} true
+    Skills:
+        - gcd{ticks=40} @self
+        - state{s=lightning_target} @self
+        - setAI{ai=false} @self
+        - delay 14
+        - skill{s=xiddri_lightning_target_skill;repeat=1;repeatInterval=5} @target
+        - delay 26
+        - setAI{ai=true} @self
+
+xiddri_lightning_target_skill:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:
+        - totem{ch=1;onStart=xiddri_thunder_strike;int=1;hR=3;md=1}
+        - delay 24
+        - effect:sound{s=entity.generic.explode;v=8;p=1.5} @self
+
+#xiddri left/right claw
+xiddri_claw:
+    Conditions:
+        - hastag{t=flying} true
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    Skills:
+        - randomskill{s=xiddri_left_claw,xiddri_right_claw} @target  
+
+xiddri_right_claw:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=0to10} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=70} @self
+        - state{s=right_claw;lerpin=5} @self
+        - setAI{ai=false} @self
+        - delay 27
+        - skill{s=xiddri_right_claw_totem} @target
+        - delay 45
+        - setAI{ai=true} @self
+
+xiddri_right_claw_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:                                                                                                             
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1;repeat=4;repeatInterval=1} @ModelPart{mid=xiddri;part=right_claw}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=right_claw;y=-1;x=-2}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=right_claw;y=3;x=2}
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1} @ModelPart{mid=xiddri;part=right_claw;y=-1;x=-2}
+
+xiddri_left_claw:
+    Conditions:
+        - hastag{t=skill_lock} false
+    TargetConditions:
+        - distance{d=0to10} orElseCast xiddri_setAItrue
+    Skills:
+        - gcd{ticks=70} @self
+        - state{s=left_claw;lerpin=5} @self
+        - setAI{ai=false} @self
+        - delay 27
+        - skill{s=xiddri_left_claw_totem} @target
+        - delay 45
+        - setAI{ai=true} @self
+
+xiddri_left_claw_totem:
+    Conditions:
+        - hastag{t=skill_lock} false  
+    Skills:                                                                                                             
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1;repeat=4;repeatInterval=1} @ModelPart{mid=xiddri;part=left_claw}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1;repeat=4;repeatInterval=1} @ModelPart{mid=xiddri;part=left_claw;y=-1;x=-2}
+        - delay 1
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1;repeat=4;repeatInterval=1} @ModelPart{mid=xiddri;part=left_claw;y=3;x=2}
+        - totem{ch=1;onStart=xiddri_claw_explode;int=1;hR=3;md=1;repeat=4;repeatInterval=1} @ModelPart{mid=xiddri;part=left_claw;y=-1;x=-2}
+
+xiddri_claw_explode:
+    Skills:
+        - summon{t=xiddri_electricity_small_vfx;a=1;os=true} @origin
+        - particles{p=dustColorTransition;color1=#FFD956;color2=#86F8FF;size=2;a=10;hs=1;vs=1} @origin{y=0.1}
+        - particles{p=endrod;a=3;hs=1;vs=1;s=0.1} @origin
+        - particles{p=fireworks_spark;a=5;hs=0.5;vs=2;s=0.1} @origin{y=2}
+        - delay 3
+        - damage{a=15} @PlayersNearOrigin{r=6;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+        - skill{s=xiddri_claw_knockback} @PlayersNearOrigin{r=6;conditions=[ - haspotioneffect{t=DAMAGE_RESISTANCE;l=100-256} false ]}
+
+#xiddri ult
+xiddri_lightning_ult:
+    Cooldown: 120
+    Conditions:
+        - hastag{t=flying} true
+        - hastag{t=skill_lock} false
+        - incombat true
+        - offgcd
+        - onground true
+    Skills:
+        - gcd{ticks=200} @self
+        - state{s=lightning_ult} @self
+        - setAI{ai=false} @self
+        - delay 20
+        - particles{p=end_rod;a=20;s=1;hs=0.5;vs=0.5;repeat=5;repeatInterval=10} @ModelPart{mid=xiddri;part=shoulder} 
+        - delay 60
+        - skill{s=xiddri_lightning_target_skill} @RING{r=5;point=4}
+        - delay 10
+        - skill{s=xiddri_lightning_target_skill} @RING{r=10;point=6}
+        - delay 10
+        - skill{s=xiddri_lightning_target_skill} @RING{r=15;point=8;xRotation=20}
+        - delay 10
+        - skill{s=xiddri_lightning_target_skill} @RING{r=20;point=10}
+        - delay 72
+        - setAI{ai=true} @self 
+###===xiddri vfx skills===
+xiddri_thunderstrike_vfx_spawn:
+    Skills:
+        #- effect:sound{s=entity.lightning_bolt.thunder;v=4;p=1.8} @origin
+        - effect:blockmask{m=light;r=0;d=20;oa=true} @origin
+        - delay 4
+        - particles{p=dustColorTransition;color1=#FFD956;color2=#86F8FF;size=2;a=70;hs=2.5;vs=1} @origin{y=0.5}
+        - particles{p=endrod;a=10;hs=1;vs=1;s=0.1} @origin
+        - particles{p=fireworks_spark;a=10;hs=0.5;vs=5;s=0.1} @origin{y=2}
+        - delay 10
+        - remove{} @self
+
+xiddri_thunderstrike_small_vfx_spawn:
+    Skills:
+        #- effect:sound{s=entity.lightning_bolt.thunder;v=4;p=1.8} @origin
+        - effect:blockmask{m=light;r=0;d=20;oa=true} @origin
+        - delay 4
+        - particles{p=dustColorTransition;color1=#FFD956;color2=#86F8FF;size=2;a=10;hs=1;vs=1} @origin{y=0.1}
+        - particles{p=endrod;a=3;hs=1;vs=1;s=0.1} @origin
+        - particles{p=fireworks_spark;a=5;hs=0.5;vs=2;s=0.1} @origin{y=2}
+        - delay 10
+        - remove{} @self
+
+xiddri_smallrock_vfx_spawn:
+    Skills:
+        #- effect:sound{s=entity.lightning_bolt.thunder;v=4;p=1.8} @origin
+        - delay 2
+        - particles{p=block_crack;m=stone;a=70;hs=1.5;vs=1} @origin{y=0.5}
+        - delay 28
+        - remove{} @self
+
+xiddri_groundshatter_vfx_spawn:
+    Skills:
+        #- effect:sound{s=entity.lightning_bolt.thunder;v=4;p=1.8} @origin
+        - delay 2
+        - particles{p=block_crack;m=stone;a=70;hs=3.5;vs=1} @origin{y=0.5}
+        - summon{t=xiddri_debris_fast_vfx;a=1} @origin
+        - delay 28
+        - remove{} @self
+
+xiddri_groundshatter_vfx_large_spawn:
+    Skills:
+        #- effect:sound{s=entity.lightning_bolt.thunder;v=4;p=1.8} @origin
+        - delay 2
+        - particles{p=block_crack;m=stone;a=70;hs=4.5;vs=1} @origin{y=0.5}
+        - summon{t=xiddri_debris_fast_vfx;a=1} @origin
+        - summon{t=xiddri_debris_smash_vfx;a=1} @origin
+        - delay 28
+        - remove{} @self
+
+xiddri_debris_smash_vfx_spawn:
+    Skills:
+        #- effect:sound{s=entity.lightning_bolt.thunder;v=4;p=1.8} @origin
+        - delay 2
+        - particles{p=block_crack;m=stone;a=70;hs=2.5;vs=1} @origin{y=0.5}
+        - delay 18
+        - remove{} @self
+
+xiddri_debris_fast_vfx_spawn:
+    Skills:
+        #- effect:sound{s=entity.lightning_bolt.thunder;v=4;p=1.8} @origin
+        - delay 20
+        - remove{} @self
+
+xiddri_electricity_small_vfx_spawn:
+    Skills:
+        - effect:blockmask{m=light;r=0;d=10;oa=true} @origin
+        - setAI{ai=false} @self
+        - delay 12
+        - remove{} @self
+
+xiddri_rock_fly_vfx_spawn:
+    Skills:
+        - delay 40
+        - remove{} @self 
+
+#===xiddri rock pickup
+xiddri_pickup_rock:
+    TriggerConditions:
+        - holding{m=DIAMOND_PICKAXE} cast xiddri_rock_onground_break
+        - holding{m=IRON_PICKAXE} cast xiddri_rock_onground_break
+        - holding{m=GOLDEN_PICKAXE} cast xiddri_rock_onground_break
+        - holding{m=NETHERITE_PICKAXE} cast xiddri_rock_onground_break
+
+xiddri_rock_onground_break:
+    Skills:
+        - summon{t=xiddri_debris_smash_vfx;os=true} @origin
+        - dropitem{i=raw_iron} @self
+        - remove{} @self
+#UHepxmTQRTVQtWVYdlR6xWOwUlYwElaNhXWU1UMNRUT51keUxWY5UEMwAHUE5Wcs92VykDN

@@ -1,0 +1,411 @@
+#### SOUNDS ####
+
+Undeadking_Ghoul_attack_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.ghoul_attack;v=1;sc=HOSTILE} @Self
+
+Undeadking_ghoul_death_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.ghoul_death;v=1;sc=HOSTILE} @Self
+
+Undeadking_ghoul_Damaged_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.ghoul_hurt;v=1;sc=HOSTILE} @Self
+
+undead_king_death_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_death;v=2;sc=HOSTILE} @Self
+
+undead_king_hit_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_hit;v=2;sc=HOSTILE} @Self
+
+undead_king_skull_summon_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_skull_summon;v=2;sc=HOSTILE} @Self
+
+undead_king_onplayerkill_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_onplayerkill;v=2;sc=HOSTILE} @Self
+
+undead_king_murmur_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_murmur;v=2;sc=HOSTILE} @Self
+
+undead_king_murmur2_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_murmur2;v=2;sc=HOSTILE} @Self
+
+undead_king_dark_missile_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_dark_missile;v=2;sc=HOSTILE} @Self
+
+undead_king_skull_death_sound:
+  Skills:
+  - sound{s=healong_undeadking:healong.undeadking.undead_king_skull_death;v=2;sc=HOSTILE} @Self
+
+CancelDamageEvent:
+  Skills:
+  - CancelEvent
+
+Undead_king_DropCombat:
+  Conditions:
+  - lastsignal{s=Ghoul} true
+  Skills:
+  - setAI{ai=false} @Children
+  - delay 60
+  - effect:particles{particle=cloud;s=0;a=10;hs=0.5;vs=0.5} @Children
+  - remove @Children
+  - setAI{ai=true} @Self
+  - signal{s=clear} @Self
+
+Undead_king_Attack_sync:
+  Skills:
+  - CancelEvent
+  - skill{s=Undead_king_Attack} @Self
+
+Undead_king_Attack:
+  Cooldown: 2.5
+  Conditions:
+  - offgcd true
+  - incombat true
+  - lastsignal{s=skill} false
+  - lastsignal{s=Ghoul} false
+  TriggerConditions:
+  - lineofsight true
+  Skills:
+  - signal{s=skill} @Self
+  - state{s=attack} @Self
+  - delay 5
+  - look{headOnly=false;immediately=true} @Target
+  - projectile{oT=Undead_king_Tick;oH=Undead_king_Hit;i=1;v=14;syo=2;mr=20;sE=true;sB=false;hp=true} @Target
+  - sound{s=entity.shulker.shoot;p=0.7;v=2} @Self
+  - delay 3
+  - signal{s=clear} @Self
+
+Undead_king_Tick:
+  Skills:
+  - delay 3
+  - effect:particlesphere{p=glow;amount=3;radius=0.5} @Origin
+  - effect:particlesphere{p=reddust;c=#360961;amount=20;radius=0.2} @Origin
+  - effect:particles{p=reddust;c=#6a329f;a=20;hs=0.3;vs=0.3} @Origin
+
+Undead_king_Hit:
+  Skills:
+  - skill{s=undead_king_dark_missile_sound} @Origin
+  - skill{s=Undead_king_damage} @Target
+  - effect:particlesphere{p=reddust;c=#360961;amount=30;radius=1} @Origin
+  - effect:particles{p=reddust;c=#360961;a=30;hs=0.5;vs=0.7;s=0.7;speed=1} @Origin
+  - effect:particles{p=reddust;c=#6a329f;a=30;hs=0.6;vs=0.8;s=0.8;speed=1} @Origin
+  - effect:particles{p=item_crack;m=purple_concrete;s=0.1;a=30;hs=0.5;vs=0.5} @Origin
+
+Undead_king_damage:
+  TargetConditions:
+  - blocking{} false
+  Skills:
+  - damage{a=3} @Target ### damage!! ###
+  - skill{s=undead_king_dark_missile_sound} @Origin
+  - potion{type=SLOW;duration=40;level=1} @Target ## debuff!! ##
+  - effect:particlesphere{p=reddust;c=#360961;amount=30;radius=1} @Origin
+  - effect:particles{p=reddust;c=#360961;a=30;hs=0.5;vs=0.7;s=0.7;speed=1} @Origin
+  - effect:particles{p=reddust;c=#6a329f;a=30;hs=0.6;vs=0.8;s=0.8;speed=1} @Origin
+  - effect:particles{p=item_crack;m=purple_concrete;s=0.1;a=30;hs=0.5;vs=0.5} @Origin
+  
+Undead_king_Skull_summon_sync:
+  Skills:
+  - CancelEvent
+  - skill{s=Undead_king_Skull_summon} @Self
+  
+Undead_king_Skull_summon:
+  Cooldown: 25
+  Conditions:
+  - lastsignal{s=skill} false
+  - lastsignal{s=Ghoul} false
+  - offgcd true
+  - incombat true
+  Skills:
+  - signal{s=skill} @Self
+  - look{headOnly=true;immediately=true} @Target
+  - potion{t=SLOW;l=7;d=60;p=false} @Self
+  - delay 1
+  - state{mid=undead_king;s=skill1;li=0;lo=0} @Self
+  - delay 5
+  - skill{s=undead_king_murmur_sound} @Self
+  - delay 10
+  - summon{type=Skull;amount=1;summonerIsParent=true;inheritThreatTable=true;onSurface=true;yRadiusUpOnly=true;copyThreatTable=true;sip=true} @Forward{f=0;y=0.2;sideOffset=3.0}
+  - delay 15
+  - summon{type=Skull;amount=1;summonerIsParent=true;inheritThreatTable=true;onSurface=true;yRadiusUpOnly=true;copyThreatTable=true;sip=true} @Forward{f=0;y=0.2;sideOffset=-3.0}
+  - delay 10
+  - summon{type=Skull;amount=1;summonerIsParent=true;inheritThreatTable=true;onSurface=true;yRadiusUpOnly=true;copyThreatTable=true;sip=true} @Forward{f=3;y=0.2;sideOffset=0.0}
+  - delay 15
+  - state{mid=Undead_king;s=walk;li=0;lo=0} @Self
+  - delay 10
+  - signal{s=clear} @Self
+
+Undead_king_Sword_Attack_Sync:
+  Skills:
+  - CancelEvent
+  - skill{s=Undead_king_Sword_Attack} @Self
+  
+Undead_king_Sword_Attack:
+  Cooldown: 20
+  Conditions:
+  - lastsignal{s=Ghoul} false
+  - lastsignal{s=skill} false
+  - offgcd true
+  - incombat true
+  Skills:
+  - signal{s=skill} @Self
+  - potion{t=SLOW;l=7;d=60;p=false} @Self
+  - state{s=skill2}  @Self
+  - skill{s=undead_king_murmur2_sound} @Self
+  - totem{ch=1;oE=Undead_king_Sword_E;int=1;hR=2;md=10;hnp=true} @Target
+  - delay 30
+  - signal{s=clear} @Self
+  
+Undead_king_Sword_E:
+  Skills:
+  - effect:particleorbital{particle=flame;r=1;points=16;t=30;i=1;vy=20} @TargetLocation
+  - delay 40
+  - summon{type=undead_king_sword;amount=1;inheritThreatTable=true;onSurface=true;copyThreatTable=true;sip=true}
+  
+Sword_Wide_Area_Attack_Sync:
+  Skills:
+  - CancelEvent
+  - skill{s=Sword_Wide_Area_Attack} @Self
+
+Sword_Wide_Area_Attack:
+  Conditions:
+  - lastsignal{s=Ghoul} false
+  - lastsignal{s=skill} false
+  - offgcd true
+  - incombat true
+  Skills:
+  - signal{s=skill} @Self
+  - delay 5
+  - projectile{oT=Sword_Wide_Area_Attack_oT1;oH=Sword_Wide_Area_Attack_oH;d=5;hR=5;vR=3;hp=true;hnp=false;sB=false;sE=false} @Self
+  - sound{s=entity.generic.explode;v=1.5} @Self
+  - delay 35
+  - effect:particles{particle=lava;amount=20;hs=0.4;vs=0.4;speed=5} @Self
+  - sound{s=entity.generic.explode;v=1.5} @Self
+  - projectile{onTick=Sword_FireBall_T;onHit=Sword_FireBall_H;v=4;i=1;hR=1;vR=1;sso=0;sfo=0;syo=0.5;hp=true;sB=false;sE=false} @Ring{radius=20;points=8;yOffset=0}
+  - delay 30
+  - effect:particles{particle=lava;amount=20;hs=0.4;vs=0.4;speed=5} @Self
+  - sound{s=entity.generic.explode;v=1.5} @Self
+  - delay 5
+  - projectile{onTick=Sword_FireBall_T;onHit=Sword_FireBall_H;v=8;i=1;hR=1;vR=1;sso=0;sfo=0;syo=0.5;hp=true;sB=false;sE=false} @Ring{radius=20;points=8;yOffset=0}
+  - signal{s=clear} @Self
+  
+Sword_Wide_Area_Attack_oT1:
+  Skills:
+  - delay 3
+  - effect:particlering{particle=campfire_cosy_smoke;radius=1;amount=1;hS=0.3;vS=0.2;y=0.2} @Self
+  - effect:particles{particle=lava;amount=10;hs=0.4;vs=0.4;speed=5} @Self
+  - delay 3
+  - effect:particlering{particle=campfire_cosy_smoke;radius=2;amount=1;hS=0.3;vS=0.2;y=0.2} @Self
+  
+Sword_Wide_Area_Attack_oH:
+  Skills:
+  - throw{velocity=20;velocityY=3} @PIR
+  - damage{a=3} @PIR ### damage!! ###
+  
+Sword_FireBall_T:
+  Skills:
+  - effect:particles{p=item_crack;m=magma_block;amount=20;radius=0.2;hS=0.2;vS=0.2;yOffset=0;s=0} @Origin
+  - effect:particles{p=flame;amount=1;radius=0.2;hS=0.2;vS=0.2;yOffset=0;s=0} @Origin
+  - effect:particles{particle=smoke_normal;amount=2;hS=0.3;vS=0.3;y=0.2} @Origin
+  
+Sword_FireBall_H:
+  Skills:
+  - damage{a=3} ### damage!! ###
+  - effect:explosion 
+  - effect:particles{p=lava;s=-1;a=5;hs=0;vs=0}
+
+Sword_Damage:
+  Skills:
+  - effect:particles{particle=lava;amount=20;hs=0.4;vs=0.4;speed=5;repeat=2;repeatInterval=2} @Self
+  - effect:particlering{particle=campfire_cosy_smoke;radius=2;points=20;amount=1;hS=1;vS=0.5;repeat=2;repeatInterval=2} @Self
+  - throw{velocity=15;velocityY=1;repeat=5;repeatInterval=2} @PlayersInRing{min=0;max=3}
+  - damage{a=3} @PIR{r=3} ### damage!! ###
+  
+Summon_Ghoul_Sync:
+  Skills:
+  - CancelEvent
+  - skill{s=Summon_Ghoul} @Self
+  
+Summon_Ghoul:
+  Cooldown: 60
+  Conditions:
+  - incombat true
+  - children{a=0} true
+  - lastsignal{s=skill} false
+  - offgcd true
+  Skills:
+  - signal{s=Ghoul} @Self
+  - state{s=skill3;repeat=1;repeatInterval=1} @Self
+  - delay 3
+  - summon{type=Ghoul;amount=3;r=5;summonerIsParent=true;onSurface=true;copyThreatTable=true;sip=true} @Self
+  
+Ghoul_ChangeAI:
+  Skills:
+  - delay 8
+  - aigoal{goal=clear}
+  - aigoal{goal=fleeplayers}
+  - delay 60
+  - aigoal{goal=clear}
+  - aigoal{goal=meleeattack}
+  - aigoal{goal=randomstroll}
+  - aigoal{goal=randomlookaround}
+  - aitarget{target=hurtbytarget}
+
+Ghoul_attack_sync:
+  Skills:
+  - CancelEvent
+  - skill{s=Ghoul_attack} @Self
+
+Ghoul_attack:
+  Skills:
+  - look{immediately=true} @Target
+  - skill{s=Undeadking_Ghoul_attack_sound} @Self
+  - potion{t=SLOW;l=7;d=20;p=false} @Self
+  - totem{ch=5;oH=Ghoul_Attack_Damage;int=1;hR=1;md=2;hnp=true} @Forward{f=1}
+
+Ghoul_Attack_Damage:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - damage{a=3} ### damage!! ###
+  - delay 10
+  - effect:particles{particle=block;m=redstone_block;amount=25;hS=0.25;vS=0.25;y=1.25} @Target
+  
+Ghoul_Death:
+  Skills:
+  - effect:particles{particle=block;m=redstone_block;amount=25;hS=0.5;vS=0.5;y=1.25} @Self
+  - delay 10
+  - effect:particles{particle=smoke_normal;amount=25;hS=0.5;vS=0.25;y=0.25} @Self
+  
+Meteor_Attack_Sync:
+  Conditions:
+  - incombat true
+  - lastsignal{s=skill} false
+  - lastsignal{s=Ghoul} true
+  Skills:
+  - skill{s=Meteor_Attack} @Self
+  - skill{s=Meteor_Attack_E} @Self
+
+Meteor_Attack:
+  Skills:
+  - signal{s=Ghoul} @Self
+  - setAI{ai=false} @Self
+  - state{s=skill3;repeat=1;repeatInterval=1} @Self
+  - sound{s=entity.elder_guardian.ambient;p=2;v=2} @Self
+  - projectile{onTick=smoke_effect_ot;v=2;i=1} @Ring{radius=2;points=10;yOffset=0}
+  - effect:particle{particle=portal;s=2;a=100;i=2;y=2.7} @Self
+  - potion{t=DAMAGE_RESISTANCE;l=7;d=20;p=false} @Self
+  - delay 20
+  - projectile{onStart=Meteor_Attack_oS;onTick=Meteor_Attack_Tick;oH=Meteor_Attack_Hit;onEnd=Meteor_Attack_End;Type=METEOR;i=0.1;d=100;syo=20;hp=true;hfs=20;g=1} @RLNTE{a=2;r=18;s=10;minr=3}
+  
+smoke_effect_ot:
+  Skills:
+  - effect:particle{p=smoke_normal;a=0.5;s=0;y=0;hs=0.15;vs=0.5} @Ring{radius=1;points=8;yOffset=0}
+
+Meteor_Attack_oS:
+  Skills:
+  - effect:smokeswirl{duration=10;interval=10}
+  
+Meteor_Attack_Tick:
+  Skills:
+  - delay 3
+  - effect:particles{p=flame;a=3;hs=0.25;vs=0.25}
+  - effect:particles{p=reddust;c=#ff2e00;a=25;hs=0.25;vs=0.25}
+  - effect:particles{p=reddust;c=#ffbc00;a=20;hs=0.1;vs=0.1}
+  - delay 5
+  - effect:smoke{direction=1}
+  - effect:particlering{particle=smoke;radius=0.5;points=3;amount=2;hS=0.2;vS=0.2}
+  
+Meteor_Attack_Hit:
+  Skills:
+  - damage{a=5} @PIR{r=2} ### damage!! ###
+  - ignite{ticks=100}
+  - effect:explosion 
+  - effect:particles{p=lava;s=-1;a=20;hs=0;vs=0} 
+
+Meteor_Attack_End:
+  Skills:
+  - effect:explosion
+  - effect:particles{p=lava;s=-1;a=30;hs=0;vs=0}
+  
+Meteor_Attack_E:
+  Conditions:
+  - children{a=0} true
+  Skills:
+  - signal{s=clear} @Self
+  - setAI{ai=true} @Self
+  
+Skull_Effect:
+  Skills:
+  - effect:particleorbital{particle=slime;r=0;points=1;t=5;i=5;rX=0;rY=0;rZ=0;ox=0;oy=0;oz=0;vx=0;vy=30;vz=0} @Self
+  - effect:particles{p=falling_dust;c=#1fff48;a=10;;hs=0;vs=0;s=0.2;Size=5} @Self
+  - effect:particles{p=reddust;c=#1fff48;a=20;hs=0.2;vs=0.2;s=0.2;speed=0} @Self
+  
+Skull_Spawn:
+  Skills:
+  - look{headOnly=true;immediately=true} @Target
+  - effect:particles{p=reddust;color=#b1ff00;s=1;amount=200;hS=1;vS=0.7;y=0.2} @Self
+  - skill{s=undead_king_skull_summon_sound} @Self
+  - remove{delay=400} @Self
+  - delay 390
+  - skill{s=Skull_Damage} @Self
+  
+Skull_Attack_CancelEvent:
+  Skills:
+  - CancelEvent
+  - skill{s=Skull_Attack} @Self
+  
+Skull_Attack_sync:
+  Conditions:
+  - targetwithin{d=1.5} true
+  Skills:
+  - skill{s=Skull_Attack} @Self
+  
+Skull_Attack:
+  Skills:
+  - totem{ch=5;oH=Skull_Damage;int=1;hR=3;vR=3;md=10;hnp=true} @PIR{r=2}
+
+Skull_Damage:
+  Skills:
+  - skill{s=undead_king_skull_death_sound} @Self
+  - delay 1
+  - throw{velocity=15;velocityY=1} @PIR{r=2}
+  - damage{a=3;pi=true;ia=true} @PIR{r=2} ### damage!! ###
+  - effect:particles{particle=slime;s=2;a=200;hs=0.5;vs=0.7;y=1.25} @Self
+  - delay 3
+  - remove @Self
+  
+Ghoul_Moving_effect:
+  Conditions:
+  - moving true
+  Skills:
+  - effect:particles{particle=smoke_normal;amount=4;hs=0.25;vs=0;y=0.1;repeat=10;repeatInterval=2;size=3} @Forward{f=-0.5;y=0.2}
+  
+Undead_king_Death:
+  Skills:
+  - skill{s=undead_king_death_sound} @Self
+  - effect:particles{particle=ASH;amount=100;hS=1;vS=1;speed=0} @Forward{f=-0.5;y=0.5;sideOffset=1}
+  - effect:particles{particle=smoke_large;amount=50;hS=0.5;vS=0.5;speed=0} @Forward{f=-0.5;y=0.5;sideOffset=1}
+  - delay 10
+  - effect:particles{particle=ASH;amount=100;hS=1;vS=1;speed=0} @Forward{f=1;y=2;sideOffset=-1}
+  - effect:particles{particle=smoke_large;amount=50;hS=0.5;vS=0.5;speed=0} @Forward{f=1;y=2;sideOffset=-1}
+  - delay 10
+  - effect:particles{particle=ASH;amount=100;hS=1;vS=1;speed=0} @Forward{f=1;y=0.5;sideOffset=0}
+  - effect:particles{particle=smoke_large;amount=50;hS=0.5;vS=0.5;speed=0} @Forward{f=1;y=0.5;sideOffset=0}
+  - delay 10
+  - effect:particles{particle=ASH;amount=100;hS=1;vS=1;speed=0} @Forward{f=-1;y=1.5;sideOffset=-1}
+  - effect:particles{particle=smoke_large;amount=50;hS=0.5;vS=0.5;speed=0} @Forward{f=-1;y=1.5;sideOffset=-1}
+  - delay 10
+  - effect:particles{particle=ASH;amount=100;hS=1;vS=1;speed=0} @Forward{f=-1;y=2;sideOffset=1}
+  - effect:particles{particle=smoke_large;amount=50;hS=0.5;vS=0.5;speed=0} @Forward{f=-1;y=2;sideOffset=1}
+  - delay 20
+  - effect:particles{particle=ASH;amount=100;hS=1;vS=1;speed=1} @Forward{f=0;y=0.2;sideOffset=0}
+  - effect:particles{particle=SQUID_INK;amount=50;hS=0.5;vS=1;speed=0.2} @Forward{f=0;y=0.2;sideOffset=0}
+

@@ -1,0 +1,24 @@
+slime_princess_smash_knockback:
+    Skills:
+        - throw{v=8;vy=2}
+
+slime_princess_smashswipe_knockback:
+    Skills:
+        - throw{v=5;vy=2}
+
+slime_princess_uppercut_knockback:
+    Skills:
+        - throw{v=5;vy=10}
+
+slime_princess_jumpsmash_knockback:
+    Skills:
+        - throw{v=8;vy=10}
+
+slime_princess_rluppercut_knockback:
+    Skills:
+        - throw{v=-2;vy=5}
+
+slime_princess_rightpunch_knockback:
+    Skills:
+        - throw{v=30;vy=0}
+#MXMysmQ3hFUZ12VNJ0S4dDUJZVU5VFVOJzZq10djRUTwkFWkpGM1o3RyEFcKpnTGVnSz0GO

@@ -1,0 +1,20 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+
+pohaku_mask:
+  Id: ink_sac
+  Display: 'Pohaku Mask'
+  Model: 3
+  
+pohaku_sword:
+  Id: ink_sac
+  Display: 'Pohaku Sword'
+  Model: 4
+  
+pohaku_shield:
+  Id: shield
+  Display: 'Pohaku Shield'
+  Model: 1
+  

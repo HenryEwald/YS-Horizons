@@ -1,0 +1,88 @@
+{
+  "name": "gd:merchant",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/merchant1",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/merchant2",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/merchant3",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/merchant4",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/feature1",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/feature3",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/wagon1",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/wagon2",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/wagon3",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:merchant/wagon4",
+        "projection": "rigid",
+        "processors": "gd:merchant"
+      }
+    }
+
+  ]
+}

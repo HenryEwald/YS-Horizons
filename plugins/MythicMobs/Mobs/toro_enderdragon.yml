@@ -1,0 +1,65 @@
+toro_enderdragon:
+  Type: HUSK
+  Display: '&5&lThe Ender Dragon'
+  Faction: monster
+  Health: 2000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.25
+    FollowRange: 120
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  BossBar:
+    Enabled: true
+    Title: '&5&lThe True Ender Dragon'
+    Range: 60
+    Color: PURPLE
+    Style: SEGMENTED_10
+  Skills:
+  - randomskill{s=toro_enderdragon_fire_ground,toro_enderdragon_flyroar,toro_enderdragon_fly_drop,toro_enderdragon_fly_fire,toro_enderdragon_standup,toro_enderdragon_fly_rushdrop,toro_enderdragon_AITrue_skill} @target ~onTimer:10
+  - skill{s=toro_enderdragon_checkplayer} @target ~onTimer:1
+  - skill{s=toro_enderdragon_fly} @self ~onTimer:140 <75%
+  - skill{s=toro_enderdragon_CancelEventSkill;sync=true} @target ~onAttack
+  #Spawn and death skills
+  - model{mid=toro_ender_dragon;n=false;tint=false} @self ~onSpawn
+  - bodyclamp{m=toro_ender_dragon;c=270} @self ~onSpawn
+  - skill{s=toro_enderdragon_spawn} @self ~onSpawn
+  - skill{s=toro_enderdragon_death} @self ~onDeath
+  #==== check player location skills
+  - randomskill{s=toro_enderdragon_left_claw,toro_enderdragon_left_smash,toro_enderdragon_standup} @self ~onSignal:LEFT
+  - randomskill{s=toro_enderdragon_right_claw,toro_enderdragon_right_smash,toro_enderdragon_standup} @self ~onSignal:RIGHT
+  - randomskill{s=toro_enderdragon_standup_moveback} @self ~onSignal:FOOT
+  - randomskill{s=toro_enderdragon_tailswipe} @self ~onSignal:BACK
+  Drops:
+    - toro_enderdragonDrops
+
+ender_dragon_summon:
+  Type: ENDERMAN
+  Faction: monster
+  Health: 40
+  Options:
+    NoDamageTicks: 1
+    FollowRange: 64
+    KnockbackResistance: 1
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+    MaxCombatDistance: 30
+  Skills:
+  - skill{s=toro_enderdragon_summon} @self ~onDeath

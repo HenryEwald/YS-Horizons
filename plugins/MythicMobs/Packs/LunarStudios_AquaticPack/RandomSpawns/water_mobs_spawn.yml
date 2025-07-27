@@ -1,0 +1,118 @@
+Crab:
+  MobType: Crab
+  Worlds: world
+  Chance: 0.12
+  Priority: 1
+  Action: ADD
+  Biomes: BEACH
+  PositionType: LAND
+  Cooldown: 12
+  
+
+Piranha:
+  MobType: Piranha
+  Worlds: world
+  Chance: 0.09
+  Priority: 2
+  Action: ADD
+  Biomes: SWAMP,SWAMP_HILLS
+  PositionType: SEA
+  Cooldown: 10
+  
+  
+Rusty_Anchor_Spawn:
+  MobType: Rusty_Anchor_Spawn
+  Worlds: world
+  Chance: 0.01
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,RIVER,DEEP_OCEAN,FROZEN_OCEAN,DEEP_COLD_OCEAN
+  PositionType: SEA
+  Cooldown: 40
+  
+Swordfish:
+  MobType: Swordfish
+  Worlds: world
+  Chance: 0.02
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 30
+
+#Seahorse
+Seahorse_Blue:
+  MobType: Seahorse_Blue
+  Worlds: world
+  Chance: 0.06
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 15
+Seahorse_Pink:
+  MobType: Seahorse_Pink
+  Worlds: world
+  Chance: 0.06
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 15
+Seahorse_Green:
+  MobType: Seahorse_Green
+  Worlds: world
+  Chance: 0.06
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 15
+Seahorse_Yellow:
+  MobType: Seahorse_Yellow
+  Worlds: world
+  Chance: 0.06
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 15
+
+#Jellyfish
+Jellyfish_Blue:
+  MobType: Jellyfish_Blue
+  Worlds: world
+  Chance: 0.04
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 20
+Jellyfish_Pink:
+  MobType: Jellyfish_Pink
+  Worlds: world
+  Chance: 0.04
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 20
+Jellyfish_Green:
+  MobType: Jellyfish_Green
+  Worlds: world
+  Chance: 0.04
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 20
+Jellyfish_Yellow:
+  MobType: Jellyfish_Yellow
+  Worlds: world
+  Chance: 0.04
+  Priority: 2
+  Action: ADD
+  Biomes: DEEP_OCEAN,OCEAN,WARM_OCEAN,DEEP_LUKEWARM_OCEAN
+  PositionType: SEA
+  Cooldown: 20
+#cnWOR3UHRVTJZTVGlHZVNVMJR0YxUFVOhXVU9keRRlT5lFblt2bshVdvdHO4MnavN1bBRVN

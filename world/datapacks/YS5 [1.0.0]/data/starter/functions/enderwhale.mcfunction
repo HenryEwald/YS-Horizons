@@ -1,0 +1,3 @@
+summon phantom ~ ~10 ~ {Silent:1b,Invulnerable:1b,Team:"passive",DeathLootTable:"/",Size:25,Tags:["enderwhale"],Passengers:[{id:"minecraft:mule",Silent:1b,ChestedHorse:1b,Invulnerable:1b,DeathLootTable:"/",Tame:1b,Tags:["deathe"],ActiveEffects:[{Id:14b,Amplifier:1b,Duration:199999980,ShowParticles:0b}]}],CustomName:'{"text":"Enderwhale"}'}
+summon phantom ~ ~9 ~ {Silent:1b,Invulnerable:1b,Team:"passive",DeathLootTable:"/",Size:1,Tags:["enderwhale"],CustomName:'{"text":"Enderwhale"}'}
+say look up!

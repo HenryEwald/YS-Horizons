@@ -1,0 +1,41 @@
+MSO_Spittleshrub:
+  Type: HUSK
+  Display: 'Spittleshrub'
+  Damage: 7
+  Health: 45
+  Disguise: ARMOR_STAND setInvisible
+  Drops:
+  - GLOWBERRIES 1to3 1
+  Options:
+    Despawn: true
+    Silent: true
+    ShowName: false
+    MovementSpeed: 0.34
+    KnockbackResistance: 1
+    FollowRange: 32
+    MaxCombatDistance: 64
+    PreventOtherDrops: true
+    PreventRandomEquipment: true
+    PreventItemPickup: true
+  ThreatTable: 
+    Enabled: true
+  DamageModifiers:
+  - LAVA 2
+  - LAVA_TICK 2
+  - FIRE 2
+  - FIRE_TICK 2
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  - players
+  Skills:
+  - skill:MSO_SpittleshrubSpawn @self ~onSpawn
+  - skill:MSO_SpittleshrubDamaged @self ~onDamaged
+  - skill:MSO_SpittleshrubHiddenDamaged{sync=true} @self ~onDamaged
+  - skill:MSO_SpittleshrubBurrow @self ~onDropCombat
+  - skill:MSO_SpittleshrubScan @target ~onTimer:5
+  - skill:MSO_SpittleshrubSpit @target ~onTimer:10 0.33
+  - skill:MSO_SpittleshrubMelee @trigger ~onAttack
+  - skill:MSO_SpittleshrubInteract @trigger ~onInteract
+  

@@ -1,0 +1,36 @@
+respawnTimeInSeconds: 8
+usePermissionForSpectating: false
+respawnWithServerDefaultGamemode: true
+useDamageCauseBlacklist: true
+damageCauseBlacklist:
+- SUFFOCATION
+useWorldWhitelist: false
+worldWhitelist:
+- world
+- world_nether
+- world_the_end
+commandWhitelist:
+- me
+- m
+- msg
+- message
+- t
+- tell
+- w
+- whisper
+- list
+- help
+- '?'
+- info
+- report
+messages:
+  spectating: '&cYou died! Respawning in {0} seconds.'
+  deniedCommand: '&cYou are not allowed to use that command while death spectating.'
+titleMessages:
+  titles:
+  - '&cYou died!'
+  - '&cGame over!'
+  subtitles:
+  - Respawning in {0}
+  - 'Score: &e{1}'
+  - 'Score: &e{1}&f, Respawning in {0}'

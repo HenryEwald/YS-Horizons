@@ -1,0 +1,137 @@
+
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+
+
+pohaku:
+  Type: IRON_GOLEM
+  Display: 'Pohaku' 
+  Health: 2000
+  AITargetSelectors:
+  - players
+  Modules:
+    ThreatTable: true
+  Options:
+    MovementSpeed: 0
+    PreventOtherDrops: true
+    Despawn: true
+    Persistent: false
+    KnockbackResistance: 1
+    Collidable: true
+    Silent: true
+    FollowRange: 64
+    PreventSunburn: true
+  Skills:
+  - skill{s=pohaku_death} @self ~onDeath
+  - skill{s=pohaku_battlestart} @self ~onTimer:20
+  - skill{s=POHAKU_throwrocks} @MobsInRadius{r=24;types=pohaku_ballista} ~onTimer:60
+  - skill{s=pohaku_INVULNERABLE} @self ~onTimer:10
+  - skill{s=POHAKU_bossbar_damage} @self ~onDamaged
+  - velocity{m=set;x=0;y=0;z=0} @self ~onTimer:1
+  - CancelEvent{sync=true} @self ~onAttack
+  - skill{s=pohaku_SPAWN} @self ~onSpawn
+  - skill{s=pohaku_STUN} @self ~onSignal:BALLISTA
+  - skill{s=pohaku_STUN_hit} @self ~onDamaged
+  - randomskill{skills=POHAKU_melee_1,POHAKU_melee_2,POHAKU_melee_3,POHAKU_melee_4,POHAKU_melee_5} @self ~onTimer:120
+  - randomskill{skills=pohaku_laser_straight,pohaku_laser_round} @modelpart{m=pohaku;p=laser1} ~onTimer:20 <50%
+  - model{mid=pohaku;d=false;i=true;lp=true} @self ~onSpawn
+  - model{mid=pohaku;d=false;i=true;lp=true} @self ~onLoad  
+
+pohaku_HEADHITBOX:
+  Type: VEX
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - clear
+  Options:
+    MovementSpeed: 0
+    PreventOtherDrops: true
+    Despawn: true
+    Persistent: false
+    Collidable: true
+    Silent: true
+  Skills:
+  - skill{s=POHAKU_bossbar_damage} @parent ~onDamaged
+  - skill{s=pohaku_INVULNERABLE} @self ~onTimer:10
+
+
+pohaku_explodeFX:
+  Type: SILVERFISH
+  Display: 'explodeFX'
+  Equipment:
+  - torch:0
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - clear
+  Options:
+    Collidable: false
+    ApplyInvisibility: true
+    PreventBlockInfection: true
+    Invincible: true
+    Silent: true
+  Skills:
+  - effect:particles{particle=flame;amount=3;hS=.1;vS=.1;speed=0.02} @self ~onTimer:2
+  - effect:particles{particle=large_smoke;amount=3;hS=.2;vS=.2;speed=0;size=2} @self ~onTimer:2
+  - skill{s=pohaku_explodeFXspawn} @self ~onSpawn
+
+  
+  
+pohaku_ballista:
+  Type: PIG
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - clear
+  Options:
+    Collidable: false
+    ApplyInvisibility: true
+    PreventBlockInfection: true
+    Invincible: true
+    Silent: true
+  Skills:
+  - skill{s=pohaku_ballista_spawn} @self ~onSpawn
+  - skill{s=pohaku_ballista_fire} @MobsInRadius{r=64;types=pohaku} ~onSignal:WINDUP
+  - bodyclamp{mid=pohaku;maxhead=0;maxbody=0;repeat=2;repeatInterval=1} @self ~onSpawn
+  - model{mid=pohaku_ballista;d=false;i=true;lp=true} @self ~onSpawn
+  - model{mid=pohaku_ballista;d=false;i=true;lp=true} @self ~onLoad  
+  
+  
+pohaku_mercenary:
+  Type: PIG
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - clear
+  Options:
+    Collidable: false
+    ApplyInvisibility: true
+    PreventBlockInfection: true
+    Invincible: true
+    Silent: true
+  Skills:
+  - skill{s=pohaku_random_merc_hit} @self ~onSignal:STUN
+  - skill{s=pohaku_mercenary_help} @pir{r=32} ~onTimer:60 .5
+  - skill{s=pohaku_random_merc_waiting} @self ~onTimer:120
+  - skill{s=pohaku_random_merc_laser} @self ~onSignal:LASER .75
+  - skill{s=pohaku_mercenary_pohakudeath} @self ~onSignal:DEATH
+  - skill{s=pohaku_random_merc_hit} @self ~onSignal:HIT
+  - skill{s=pohaku_mercenery_spawn} @self ~onSpawn
+  - skill{s=pohaku_mercenary_startbattle} @pir{r=16;sort=NEAREST} ~onTimer:20
+  - skill{s=pohaku_mercenary_readyballista} @self ~onSignal:READY
+  - skill{s=pohaku_mercenary_windballista} @MobsInRadius{r=6;types=pohaku_ballista} ~onTimer:5
+  - bodyclamp{mid=pohaku;maxhead=0;maxbody=0;repeat=2;repeatInterval=1} @self ~onSpawn
+  - model{mid=pohaku_mercenary;d=false;i=true;lp=true} @self ~onSpawn
+  - model{mid=pohaku_mercenary;d=false;i=true;lp=true} @self ~onLoad    
+  
+pohaku_flag:
+  Type: ARMOR_STAND
+  Options:
+    Marker: true
+  Skills:
+  - model{mid=pohaku_flag;d=false;i=true;lp=true} @self ~onSpawn
+  - model{mid=pohaku_flag;d=false;i=true;lp=true} @self ~onLoad    
+  
+  

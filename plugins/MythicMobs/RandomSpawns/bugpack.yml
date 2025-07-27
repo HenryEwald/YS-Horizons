@@ -1,0 +1,117 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+RandomAntPile:
+  MobType: antpile
+  Worlds: world
+  Chance: .025
+  Priority: 25
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - biome SNOWY_PLAINS,ICE_SPIKES,SNOWY_TAIGA,SNOWY_BEACH,GROVE,SNOWY_SLOPES,JAGGED_PEAKS,FROZEN_PEAKS false
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}
+  
+RandomButterfly:
+  MobType: butterfly
+  Worlds: world
+  Chance: .1
+  Priority: 25
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - day true
+  - biome SNOWY_PLAINS,ICE_SPIKES,SNOWY_TAIGA,SNOWY_BEACH,GROVE,SNOWY_SLOPES,JAGGED_PEAKS,FROZEN_PEAKS false
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}
+  
+RandomDungbeetle:
+  MobType: dung_beetle
+  Worlds: world
+  Chance: .05
+  Priority: 15
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - day true
+  - outside true
+  - onblock{b=SAND,SANDSTONE,TERRACOTTA}
+  
+RandomMothAtlas:
+  MobType: moth_atlas
+  Worlds: world
+  Chance: .01
+  Priority: 5
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - day true
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}
+  
+RandomSnail:
+  MobType: snail
+  Worlds: world
+  Chance: .01
+  Priority: 15
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - day true
+  - biome SNOWY_PLAINS,ICE_SPIKES,SNOWY_TAIGA,SNOWY_BEACH,GROVE,SNOWY_SLOPES,JAGGED_PEAKS,FROZEN_PEAKS false
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}
+  
+RandomMantis:
+  MobType: praying_mantis
+  Worlds: world
+  Chance: .01
+  Priority: 5
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - day true
+  - biome SNOWY_PLAINS,ICE_SPIKES,SNOWY_TAIGA,SNOWY_BEACH,GROVE,SNOWY_SLOPES,JAGGED_PEAKS,FROZEN_PEAKS false
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}
+  
+RandomLadybug:
+  MobType: ladybug
+  Worlds: world
+  Chance: .15
+  Priority: 15
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - day true
+  - biome SNOWY_PLAINS,ICE_SPIKES,SNOWY_TAIGA,SNOWY_BEACH,GROVE,SNOWY_SLOPES,JAGGED_PEAKS,FROZEN_PEAKS false
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}
+  
+RandomFirefly:
+  MobType: firefly
+  Worlds: world
+  Chance: .25
+  Priority: 25
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - night true
+  - biome SNOWY_PLAINS,ICE_SPIKES,SNOWY_TAIGA,SNOWY_BEACH,GROVE,SNOWY_SLOPES,JAGGED_PEAKS,FROZEN_PEAKS false
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}
+  
+RandomTarantula:
+  MobType: tarantula
+  Worlds: world
+  Chance: .01
+  Priority: 25
+  Action: ADD
+  Conditions:
+  - mobsinchunk{a=<1} true
+  - night true
+  - biome SNOWY_PLAINS,ICE_SPIKES,SNOWY_TAIGA,SNOWY_BEACH,GROVE,SNOWY_SLOPES,JAGGED_PEAKS,FROZEN_PEAKS false
+  - outside true
+  - onblock{b=GRASS_BLOCK,DIRT,STONE}

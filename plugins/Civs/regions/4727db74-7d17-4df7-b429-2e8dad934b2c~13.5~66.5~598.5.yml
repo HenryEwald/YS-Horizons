@@ -1,0 +1,29 @@
+location: 4727db74-7d17-4df7-b429-2e8dad934b2c~13.5~66.5~598.5
+xn-radius: 4
+xp-radius: 4
+yn-radius: 4
+yp-radius: 4
+zn-radius: 4
+zp-radius: 4
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner
+upkeep-history:
+  '1748938896839': 0
+  '1748977442553': 0
+  '1748935296202': 0
+  '1748978010857': 0
+  '1748941191786': 0
+  '1748977297909': 0
+  '1748979002331': 0
+  '1748940489136': 0
+effects:
+- block_fire
+- housing:2
+- villager:2
+- block_break
+- block_build
+- chest_use
+- block_liquid
+type: npc_hovel
+exp: 0.0
+warehouse-enabled: true

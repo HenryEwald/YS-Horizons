@@ -1,0 +1,41 @@
+Undead_king:
+  Type: SKELETON
+  Display: '&aUndead_king'
+  Health: 1000
+  Damage: 3
+  Faction: Undead
+  Equipment:
+  - air HEAD
+  - bow HAND
+  BossBar:
+    Enabled: true
+    Title: '<mob.name>'
+    Range: 32
+    Color: PURPLE
+    Style: SOLID
+  Options:
+    Silent: true
+    Despawn: false
+    FollowRange: 40
+    MovementSpeed: 0.3
+    PreventSunburn: true
+    PreventMobKillDrops: true
+    PreventOtherDrops: true
+    PreventItemPickup: true
+    KnockbackResistance: 1
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - players
+  Skills:
+  - model{mid=Undead_king;n=false} @Self ~onSpawn
+  - skill{s=Undead_king_Attack_sync;sync=true} @Self ~onShoot
+  - randomskill{s=Undead_king_Attack_sync,Undead_king_Skull_summon_sync,Undead_king_Sword_Attack_Sync;sync=true} @Target ~onTimer:10
+  - skill{s=Summon_Ghoul_Sync;sync=true} @Self ~onTimer:200
+  - skill{s=Meteor_Attack_Sync;sync=true} @Self ~onTimer:10
+  - state{s=idle} @Self ~onDropCombat
+  - skill{s=Undead_king_DropCombat} @Self ~onDropCombat
+  - skill{s=undead_king_hit_sound} @Self ~onDamaged
+  - skill{s=Undead_king_Death} @Self ~onDeath
+  - skill{s=Undead_king_Death} @Self ~onDespawn
+  - skill{s=undead_king_onplayerkill_sound} @Self ~onEnterCombat

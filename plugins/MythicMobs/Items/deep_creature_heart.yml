@@ -1,0 +1,9 @@
+deep_creature_heart:
+  Id: BOWL
+  Amount: 1
+  Display: '&b&lMysterious Heart'
+  Lore:
+  - '&3An Uncanny heart. Still beating..'
+  Options:
+    HideFlags: true
+  CustomModelData: 1001

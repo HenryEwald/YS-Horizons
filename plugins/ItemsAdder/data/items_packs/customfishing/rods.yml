@@ -1,0 +1,45 @@
+info:
+  namespace: customfishing
+items:
+  nature_fishing_cane:
+    display_name: "&7Nature Fishing Cane"
+    nbt: '{CustomFishing:{type: rod, id: nature_fishing_cane}}'
+    lore:
+    - "&7→ Type &6Rod"
+    resource:
+      material: FISHING_ROD
+      generate: false
+      model_path: items/nature_fishing_rod
+      model_id: 2
+
+  silver_fishing_rod:
+    display_name: "&7Silver Fishing Rod"
+    nbt: '{CustomFishing:{type: rod, id: silver_fishing_rod}}'
+    lore:
+    - "&7→ Type &6Rod"
+    resource:
+      material: FISHING_ROD
+      generate: false
+      model_path: items/silver_fishing_rod
+      model_id: 3
+
+  golden_fishing_rod:
+    display_name: "&7Golden Fishing Rod"
+    nbt: '{CustomFishing:{type: rod, id: golden_fishing_rod}}'
+    lore:
+    - "&7→ Type &6Rod"
+    resource:
+      material: FISHING_ROD
+      generate: false
+      model_path: items/golden_fishing_rod
+      model_id: 4
+  star_fishing_rod:
+    display_name: "&7Star Fishing Rod"
+    nbt: '{CustomFishing:{type: rod, id: star_fishing_rod}}'
+    lore:
+    - "&7→ Type &6Rod"
+    resource:
+      material: FISHING_ROD
+      generate: false
+      model_path: items/star_fishing_rod
+      model_id: 5

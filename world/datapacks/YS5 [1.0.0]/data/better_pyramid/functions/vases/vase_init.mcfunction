@@ -1,0 +1,2 @@
+tag @s remove unset
+summon minecraft:chicken ~ ~.2 ~ {DeathLootTable:"better_pyramid:entities/vase",NoAI:1b,NoGravity:1b,PersistenceRequired:1b,Silent:1b,Attributes:[{Name:"generic.max_health",Base:1}],Health:1, ActiveEffects: [{ Id : 14, Duration : 2147483646, Amplifier : 1b, ShowParticles : 0b }]}

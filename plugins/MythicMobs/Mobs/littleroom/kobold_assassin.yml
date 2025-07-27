@@ -1,0 +1,64 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+
+koboldassassin:
+  Type: IRON_GOLEM
+  Display: 'Kobold Assassin'    
+  AITargetSelectors:
+  - players
+  Options:
+    Despawn: false
+    FollowRange: 48
+    Silent: true
+    PreventOtherDrops: true
+    KnockbackResistance: 1
+    MovementSpeed: .5
+  BossBar:
+    Enabled: true
+    Title: 'kobold assassin'
+    Range: 20
+    Color: RED
+    Style: SOLID
+  Health: 750
+  Skills:
+  - effect:particles{particle=squid_ink;amount=150;hs=1;vs=2} @self ~onSpawn
+  - skill{s=koboldSWIM} @self ~onTimer:1
+  - skill{s=koboldNOSWIM} @self ~onTimer:1
+  - look{headOnly=false;immediately=true;repeat=20;repeatInterval=1} @Target ~onTimer:20
+  - skill{s=koboldSTUN} @self ~onDamaged
+  - skill{s=koboldDEATH} @self ~onDeath
+  - skill{s=koboldassassinLAND} @self ~onTimer:1
+  - randomskill{skills=koboldassassinROLL,koboldassassinLEAP,koboldLEAPATTACK;sync=true} @self ~onTimer:5
+  - skill{s=koboldassassinINAIR} @self ~onTimer:5
+  - skill{s=koboldFLASHBANG} @self ~onDamaged .25 <50%
+  - skill{s=koboldDARKMODE} @self ~onTimer:5 .25 <25%
+  - skill{s=koboldassassinCROSSBOW} @target ~onTimer:5
+  - randomskill{skills=koboldMELEE1sync,koboldMELEE4sync;sync=true} @self ~onAttack
+  - onDamaged{auraName=koboldassassinDODGEprep;onHit=koboldassassinDODGE;duration=40;charges=1;cE=true} @self ~onTimer:60 .25
+  - model{mid=kobold_assassin;n=false;s=1.5;d=true} @self ~onSpawn
+  - model{mid=kobold_assassin;n=false;s=1.5;d=true} @self ~onLoad
+  - bodyclamp{m=kobold_assassin;c=10} @self ~onSpawn
+  
+koboldTRAP:
+  Type: ARMOR_STAND
+  Disguise: ARMOR_STAND setInvisible
+  Display: 'Kobold Trap'
+  Options:
+    Marker: true
+  Skills:
+  - skill{s=koboldTRAPLIFESPAN} @self ~onSpawn
+  - model{mid=kobold_trap;n=false;s=1.5;d=false} @self ~onSpawn
+  - model{mid=kobold_trap;n=false;s=1.5;d=false} @self ~onLoad
+
+koboldBAIT:
+  Type: ARMOR_STAND
+  Display: 'Kobold Bait'
+  Options:
+    Marker: true
+    Invisible: true
+    Despawn: true
+    Persistent: true
+  Skills:
+  - skill{s=koboldBAIT} @self ~onTimer:1

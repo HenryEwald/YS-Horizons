@@ -1,0 +1,20 @@
+isEnabled: false
+name: '&2[lvl 030] &cThe Hallosseum'
+dungeonLocationType: WORLD
+customInfo:
+- '&fThe 2020 spooky halloween encounter!'
+- '&6Credits: MagmaGuy & 69OzCanOfBepis'
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: LAIR
+worldName: em_hallosseum
+environment: NETHER
+protect: true
+playerInfo: |-
+  Difficulty: &chard
+  $bossCount level $lowestTier Big Boss!
+  &6A fun Halloween challenge!
+regionEnterMessage: '&8[EM] &4Trick or treat! &8Your soul is mine!'
+regionLeaveMessage: '&8[EM] &4You''ve escaped with your soul intact.'
+teleportLocation: em_hallosseum,65,21,80,20,0
+contentType: OPEN_DUNGEON
+dungeonConfigFolderName: the_hallosseum

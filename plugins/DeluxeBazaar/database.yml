@@ -1,0 +1,10 @@
+players:
+  6dbcde8b-c4e7-4adc-bb2b-c94140489002:
+    category: other
+items:
+  ENDER_PEARL:
+    buy_amount: 16
+  BONE:
+    sell_amount: 6
+  BLAZE_ROD:
+    buy_amount: 16

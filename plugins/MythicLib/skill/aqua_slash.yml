@@ -1,0 +1,10 @@
+mythicmobs-skill-id: Aqua_Slash
+
+# Display options
+name: '&bAqua Slash'
+
+# Ability modifiers
+cooldown:
+    base: 0
+damage:
+    base: 3

@@ -1,0 +1,457 @@
+#####################################################################################################
+##############################AZGAD THE SMOLDERING SHADOW############################################
+#####################################################################################################
+AzgadSmolderingShadow:
+  Mobtype: skeleton 
+  Display: '&4Smoldering Shadow'
+  Health: 20
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  Options:
+    Collidable: false
+    LockPitch: true
+    KnockbackResistance: 1
+    PreventOtherDrops: true
+    ApplyInvisibility: false
+    Silent: true
+    FollowRange: 60
+    MaxCombatDistance: 64
+    MovementSpeed: 0.3
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+  KillMessages:
+  - '<target.name> becomes a snack of Azgad'
+  - '<target.name> was grilled medium rare'
+  - '<target.name> has found the doom'
+  - '<target.name> becomes one with the ground'
+  - '<target.name> was ripped appart by Azgad'
+  - '<target.name> shredded into pieces by Azgad'
+  - '<target.name> has been taken by flames'
+  - '<target.name> smells like bacon'
+  - '<target.name> not today'
+  - '<target.name> has found his new meaning of life'
+  - '<target.name> now sees stars'
+  - '<target.name> is a bottom part of the foodchain'
+  - '<target.name> flies with ashes now'
+  - '<target.name> got ptsd from constant dying'
+  - '<target.name> is on spawn'
+  - '<target.name> got a new brown color of his armor'
+  - '<target.name> now sees stars'
+  - '<target.name> fear took him/her away'
+  - '<target.name> wasted his all potions'
+  - '<target.name> is a toast'
+  BossBar:
+    Enabled: true
+    Title: '&4Azgad The Smoldering Shadow'
+    Range: 64
+    Color: RED
+    Style: SOLID
+  Modules:
+    ThreatTable: true
+  #Disguise:
+   # Type: player
+  DamageModifiers:
+  - MAGIC 0.1
+  - FALL 0
+  Faction: SmolderingShadow
+  AIGoalSelectors:
+  - 0 Clear
+  #- 1 meleeattack
+  - 1 arrowattack
+  #- 2 lookatplayers
+  #- 2 movetowardstarget 
+  - 2 RandomStroll 
+  #- 4 OpenDoors 
+  #- 5 Float 
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  Skills: 
+  - cancelevent{sync=true} @Self ~onShoot
+  - potion{type=JUMP;duration=999999;lvl=2;hasParticles=false} @self ~onSpawn 1 
+  - potion{type=FIRE_RESISTANCE;duration=999999;lvl=0;hasParticles=false} @self ~onSpawn 1 
+  - effect:particles{p=block_crack;m=redstone_block;amount=30;speed=0;hS=0.1;vS=0.1;y=3.5} @self ~onDamaged
+  - effect:blockmask{m=redstone_block;r=2;d=20} @selflocation ~onDeath
+  - model{mid=smolderingshadow;n=false;damagetint=false;i=true} @self ~onSpawn 
+  #####Turning off voice sounds lines with deleting comment #
+  #- Aura{auraName=VoiceSoundsOff;interval=20;duration=999999} @self ~onSpawn
+  ##### 
+  - Aura{auraName=SmolderingShadowFlyAura;onTick=SmolderingShadowSDasddd;interval=5;duration=999999} @self ~onSpawn
+  - Aura{auraName=SmolderingShadowFlyAttacksAura;onTick=SmolderingShadowDsdpdsaD;interval=10;duration=999999} @self ~onSpawn
+  ##### 
+  - Aura{auraName=SmolderingShadowGroundAttacksAura;onTick=SmolderingShadowSDascceee;interval=10;duration=999999} @self ~onSpawn
+  #####
+  - Aura{auraName=SmolderingShadowWalkAura;onTick=SmolderingShadowWalk;interval=1;duration=999999} @self ~onSpawn
+  - Aura{auraName=SmolderingShadowIdleAura;onTick=SmolderingShadowIdle;interval=1;duration=999999} @self ~onSpawn
+  #####
+  - Aura{auraName=SmolderingShadow;interval=10;duration=999999} @self ~onSpawn 1
+  - Aura{auraName=AzgadWaterCheckAura;onTick=AzgadWaterCheck;interval=20;duration=999999} @self ~onSpawn
+  - Aura{auraName=DamageTargetMHPAura;onTick=DamageTargetMHP;interval=10;duration=999999} @self ~onSpawn 
+  - skill{s=SmolderingShadowSkyDeath} @self ~onDeath
+  - skill{s=SmolderingShadowGroundDeath} @self ~onDeath
+  - Aura{auraName=SmolderingShadowTurnCheckAura;onTick=SmolderingShadowTurnChecker;interval=20;duration=999999} @self ~onSpawn 
+  - Aura{auraName=SmolderingShadowBehindAura;onTick=SmolderingShadowBehindChecker;interval=20;duration=999999} @self ~onSpawn  
+  - Aura{auraName=SmolderingShadowCheckCone;onTick=SmolderingShadowConeChecker;interval=20;duration=999999} @self ~onSpawn
+  - Aura{auraName=SmolderingShadowVelocityAura;onTick=SmolderingShadowVelocity;interval=3;duration=999999} @self ~onSpawn
+  #############################################
+  #- command{c="aach add 1 Kills.AzgadTheSmolderingShadow <trigger.name>"} @PlayersInRadius{r=100} ~onDeath 1 
+  #- skill{s=MobsExpChecker} @PlayersInRadius{r=100} ~onDeath 1         #<---Use if you want mobs to give you EXP
+  #- skill{s=MobsMoneyCheckerPlayer} @PlayersInRadius{r=100} ~onDeath 1 #<---Use if you want mobs to give you Money
+  - potion{type=DAMAGE_RESISTANCE;duration=999999;lvl=1;hasParticles=false} @self ~onSpawn 1
+  LevelModifiers:
+   # Health: 4
+######################################################
+##################HEART IS FOR YOUR LOOT SYSTEM#######
+######################################################
+SmolderingShadowHeart:
+  Mobtype: zombie
+  Display: ''
+  Health: 500
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  Options:
+    PreventRandomEquipment: false
+    Collidable: false
+    NoGravity: false
+    ApplyInvisibility: true
+    Silent: true
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  Skills:
+  - skill{s=SmolderingShadowHeartSkill} @self ~onSpawn 1  #In this skill you can set your loot which will be automatic
+  - skill{s=SmolderingShadowHeartDrop} @self ~onInteract 1  #In this skill you can set your loot after interaction
+  - equip{item=DragonHeart:4} @self ~onSpawn
+  - equip{item=air:3} @self ~onSpawn
+  - equip{item=air:2} @self ~onSpawn
+  - equip{item=air:1} @self ~onSpawn
+  - equip{item=air:0} @self ~onSpawn
+  - equip{item=air:5} @self ~onSpawn
+######################################################
+SmolderingShadowGroundDeath:
+  Mobtype: ARMOR_STAND
+  Display: ''
+  Health: 100
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  KillMessages:
+  - '&9<target.name> &fwas killed by &9Stomp'
+  Options:
+    Invisible: true
+    Silent: true
+    PreventMobKillDrops: false
+    PreventItemPickup: true
+    Marker: true
+    NoGravity: false
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  Skills:
+  - model{mid=smolderingshadow;n=false;damagetint=false;i=true} @self ~onSpawn 
+  - skill{s=SmolderingShadowGroundDeathDummy} @self ~onSpawn 1 
+SmolderingShadowGroundSkyDeath:
+  Mobtype: ZOMBIE
+  Display: ''
+  Health: 5000
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  Options:
+    Collidable: false
+    LockPitch: true
+    KnockbackResistance: 1
+    PreventOtherDrops: true
+    ApplyInvisibility: false
+    Silent: true
+    FollowRange: 0
+    MaxCombatDistance: 64
+    MovementSpeed: 0.0
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  Skills:
+  - model{mid=smolderingshadow;n=false;damagetint=false;i=true} @self ~onSpawn 
+  - skill{s=SmolderingShadowSkyDeathDummy} @self ~onSpawn 1 
+  - Aura{auraName=SmolderingShadowFallDeathCheckerAura;onTick=SmolderingShadowFallDeathChecker;interval=1;duration=999999} @self ~onSpawn
+SmolderingShadowGroundSky2Death:
+  Mobtype: ZOMBIE
+  Display: ''
+  Health: 5000
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  KillMessages:
+  - '&9<target.name> &fwas killed by &9Stomp'
+  Options:
+    Collidable: false
+    LockPitch: true
+    KnockbackResistance: 1
+    PreventOtherDrops: true
+    ApplyInvisibility: false
+    Silent: true
+    FollowRange: 0
+    MaxCombatDistance: 64
+    MovementSpeed: 0.0
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  Skills:
+  - model{mid=smolderingshadow;n=false;damagetint=false;i=true} @self ~onSpawn 
+  - skill{s=SmolderingShadowFallDeath} @self ~onSpawn 1 
+  - Aura{auraName=SmolderingShadowFallDeathCheckerAura;onTick=SmolderingShadowFallDeathChecker;interval=1;duration=999999} @self ~onSpawn
+SmolderingShadowGroundSkyGroundDeath:
+  Mobtype: ZOMBIE
+  Display: ''
+  Health: 100
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  KillMessages:
+  - '&9<target.name> &fwas killed by &9Stomp'
+  Options:
+    Collidable: false
+    LockPitch: true
+    KnockbackResistance: 1
+    PreventOtherDrops: true
+    ApplyInvisibility: false
+    Silent: true
+    FollowRange: 0
+    MaxCombatDistance: 64
+    MovementSpeed: 0.0
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  Skills:
+  - model{mid=smolderingshadow;n=false;damagetint=false;i=true} @self ~onSpawn 
+  - skill{s=SmolderingShadowSkyDeathGround} @self ~onSpawn 1  
+SmolderingShadowEatPullDummy:
+  Mobtype: ARMOR_STAND
+  Display: ''
+  Health: 100
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  KillMessages:
+  - '&9<target.name> &fwas killed by &9Stomp'
+  Options:
+    Invisible: true
+    Silent: true
+    PreventMobKillDrops: false
+    PreventItemPickup: true
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  Skills:
+  - skill{s=SmolderingShadowDummy} @self ~onSpawn 1
+SmolderingShadowStomp:
+  Mobtype: ARMOR_STAND
+  Display: ''
+  Health: 100
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  KillMessages:
+  - '&9<target.name> &fwas killed by &9Stomp'
+  Options:
+    Invisible: true
+    Silent: true
+    PreventMobKillDrops: false
+    PreventItemPickup: true
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  Disguise:
+    Type: zombie
+    ShowName: false
+  Skills:
+  - effect:blockmask{m=MAGMA_BLOCK;r=2;d=60} @self ~onSpawn
+  - skill{s=SmolderingShadowStompPrison} @self ~onSpawn 1
+  - effect:particlering{particle=flame;radius=1;points=5;amount=10;hS=1;vS=0} @self ~onTimer:20
+SmolderingShadowRainDummy:
+  Mobtype: armor_stand
+  Display: ''
+  Health: 500
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  Options:
+    Marker: true
+    Invisible: true
+    PreventRandomEquipment: true
+    Collidable: true
+    NoGravity: false
+    #ApplyInvisibility: true
+    Silent: true
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+    MovementSpeed: 0.0
+  KillMessages:
+  - '<target.name> got vaporized by meteor shower'
+  - '<target.name> got burnt alive'
+  - '<target.name> was foolish and stayed in his doom'
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 player
+  Skills:
+  - potion{type=SLOW;duration=999999;lvl=2;hasParticles=false} @self ~onSpawn 1 
+  - Aura{auraName=DamageTargetMHPAura;onTick=DamageTargetMHP;interval=10;duration=999999} @self ~onSpawn 
+  - skill{s=SmolderingShadowRainDummySkill} @self ~onSpawn 1  
+SmolderingShadowTornadoDummy:
+  Mobtype: zombie
+  Display: ''
+  Health: 500
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  Options:
+    #Marker: true
+    #Invisible: true
+    PreventRandomEquipment: true
+    Collidable: true
+    #NoGravity: false
+    ApplyInvisibility: true
+    Silent: true
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+    MovementSpeed: 0.0
+  KillMessages:
+  - '<target.name> was blown away by Azgad Tornado'
+  - '<target.name> has been melted by Azgad Tornado'
+  - '<target.name> got burnt alive by Azgad Tornado'
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear
+  - 1 player
+  Skills:
+  - potion{type=SLOW;duration=999999;lvl=2;hasParticles=false} @self ~onSpawn 1 
+  - Aura{auraName=DamageTargetMHPAura;onTick=DamageTargetMHP;interval=10;duration=999999} @self ~onSpawn 
+  - skill{s=SmolderingShadowTornadoDummy} @self ~onSpawn 1
+SmolderingShadowBlazingSunDummy:
+  Mobtype: zombie
+  Display: ''
+  Health: 9999
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  Options:
+    PreventRandomEquipment: false
+    Collidable: false
+    NoGravity: false
+    ApplyInvisibility: true
+    Silent: true
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+  KillMessages:
+  - '<target.name>'
+  - '<target.name>'
+  - '<target.name>'
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear 
+  Skills:
+  - Aura{auraName=SmolderingShadow;interval=10;duration=999999} @self ~onSpawn 1
+  - summon{type=SmolderingShadowBlazingSunDummyTarget;amount=5;radius=8} @SelfLocation ~onTimer:40
+  - potion{type=DAMAGE_RESISTANCE;duration=999999;lvl=5;hasParticles=false} @self ~onSpawn 1 
+  - skill{s=SmolderingShadowBlazingSunDummySpawn} @self ~onSpawn 1 
+  - Aura{auraName=BlazingSunEffectAura;onTick=BlazingSunEffect;interval=5;duration=999999} @self ~onSpawn 
+  - equip{item=BlazingSunProjectile:4} @self ~onSpawn
+  - equip{item=air:3} @self ~onSpawn
+  - equip{item=air:2} @self ~onSpawn
+  - equip{item=air:1} @self ~onSpawn
+  - equip{item=air:0} @self ~onSpawn
+  - equip{item=air:5} @self ~onSpawn
+SmolderingShadowBlazingSunDummyTarget:
+  Mobtype: zombie
+  Display: ''
+  Health: 9999
+  Damage: 0
+  ShowHealth: true
+  Despawn: true
+  Options:
+    PreventRandomEquipment: true
+    Collidable: false
+    NoGravity: true
+    ApplyInvisibility: true
+    Silent: true
+    PreventMobKillDrops: true
+    PreventItemPickup: true
+    PreventSunburn: true
+  Faction: SmolderingShadow
+  Modules:
+    ThreatTable: false
+  AIGoalSelectors:
+  - 0 Clear
+  AITargetSelectors:
+  - 0 clear 
+  Skills:
+  - velocity{m=set;x=0;y=0;z=0} @self ~onTimer:1
+  - potion{type=DAMAGE_RESISTANCE;duration=999999;lvl=5;hasParticles=false} @self ~onSpawn 1 
+  - remove{delay=100} @self ~onSpawn
+  - equip{item=air:4} @self ~onSpawn
+  - equip{item=air:3} @self ~onSpawn
+  - equip{item=air:2} @self ~onSpawn
+  - equip{item=air:1} @self ~onSpawn
+  - equip{item=air:0} @self ~onSpawn
+  - equip{item=air:5} @self ~onSpawn
+ 
+########## 

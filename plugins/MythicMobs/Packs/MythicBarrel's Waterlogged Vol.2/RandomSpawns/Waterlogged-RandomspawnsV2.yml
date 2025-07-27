@@ -1,0 +1,197 @@
+RandomMahiMahi:
+  MobType: MSO_MahiMahi
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomOarfish:
+  MobType: MSO_Oarfish
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomElectricEel:
+  MobType: MSO_ElectricEel
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomTropicalFish:
+  MobType: MSO_TropicalFish
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomTropicalFish2:
+  MobType: MSO_TropicalFish_2
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomTropicalFish3:
+  MobType: MSO_TropicalFish_3
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomTropicalFish4:
+  MobType: MSO_TropicalFish_4
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomClownfish:
+  MobType: MSO_Clownfish
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomBlueGlaucus:
+  MobType: MSO_BlueGlaucus
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomOceanSnail:
+  MobType: MSO_OceanSnail
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomNarwhal:
+  MobType: MSO_Narwhal
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomCrab:
+  MobType: MSO_Crab
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomSeahorse:
+  MobType: MSO_Seahorse
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomSeahorse2:
+  MobType: MSO_Seahorse_2
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomSeahorse3:
+  MobType: MSO_Seahorse_3
+  Worlds: world
+  Chance: 1
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomLionfish:
+  MobType: MSO_Lionfish
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomBettaFish:
+  MobType: MSO_BettaFish
+  Worlds: world
+  Chance: 0.1
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomBettaFish2:
+  MobType: MSO_BettaFish_2
+  Worlds: world
+  Chance: 0.1
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomBettaFish3:
+  MobType: MSO_BettaFish_3
+  Worlds: world
+  Chance: 0.1
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomDoryfish:
+  MobType: MSO_Doryfish
+  Worlds: world
+  Chance: 0.2
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomGardenEel:
+  MobType: MSO_GardenEel
+  Worlds: world
+  Chance: 0.2
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   
+
+RandomMantisShrimp:
+  MobType: MSO_MantisShrimp
+  Worlds: world
+  Chance: 0.15
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+   

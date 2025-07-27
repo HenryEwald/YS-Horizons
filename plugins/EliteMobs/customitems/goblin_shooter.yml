@@ -1,0 +1,13 @@
+isEnabled: true
+material: BOW
+name: '&8Goblin Shooter'
+lore:
+- '&8A treasure among goblins!'
+enchantments:
+- ARROW_DAMAGE,1
+- DURABILITY,1
+- ARROW_INFINITE,1
+- ARROW_FIRE,1
+potionEffects:
+- SPEED,2,self,onHit
+itemType: UNIQUE

@@ -1,0 +1,32 @@
+location: 4727db74-7d17-4df7-b429-2e8dad934b2c~-2.5~66.5~638.5
+xn-radius: 11
+xp-radius: 7
+yn-radius: 9
+yp-radius: 9
+zn-radius: 13
+zp-radius: 5
+people:
+  3af04669-36d3-493e-9bf5-31675278b91c: owner
+upkeep-history:
+  '1748978010544': 0
+  '1748938903429': 0
+  '1748937099429': 0
+  '1748940488937': 0
+  '1748979002148': 0
+  '1748938001428': 0
+  '1748977441410': 0
+  '1748936197429': 0
+  '1748935297008': 0
+  '1748939805429': 0
+  '1748941191580': 0
+  '1748977299811': 0
+effects:
+- block_fire
+- door_use
+- exclusive:barracks
+- housing:6
+- block_break
+- block_build
+type: inn
+exp: 0.0
+warehouse-enabled: true

@@ -1,0 +1,2006 @@
+# << Example configuration >>
+# lastchance:    <-- Enchantment name
+#  display: "%group-color%Last Chance"    <-- Display in item lore
+#  description: "Has a chance to heal when on low hearts"    <-- Enchantment Description
+#  applies-to: "Chestplate"    <-- What applies to (display purposes)
+#  type: "DEFENSE"    <-- Enchantment type (controls when enchantment activates)
+#  group: "COMMON"    <-- Enchantment group (For enchanter and right-click random books)
+#  settings:
+#    required-enchants:
+#      - "springs:1" # Can require specific level
+#      - "gears"
+#    not-applyable-with:
+#      - "frozen"
+#  applies:    <-- List of items that it applies
+#    - ALL_CHESTPLATE    <-- Item(s) list
+#  levels:    < -- All Levels are under here
+#    1:     <-- Level indicator
+#      chance: 30    <-- Chance for enchantment to activate
+#      conditions: "%victim health% > 5 : %stop%"    <-- Condition (read more about it at Conditions)
+#      effects:    <-- All enchantment effects
+#        - "ADD_HEALTH:2 %victim%"    <-- Effect(s) list
+
+#  Display (String) (No spaces or enchantment will break)
+#    Determines how will enchantment look in item lore
+
+#  Applies-to (String)
+#    Display used in Custom Enchantment books for %description% variable
+
+#  Group (Setting)
+#    INFO: Create enchantment groups in config.yml under enchanter configuration.
+#   Enchantment groups are used for enchanter, to sell specific type books. You can group them
+#   and add a group-wide color, then obtain it with variable %group-color% (shown in example enchantments below).
+
+#  Enchantment Types List: https://ae.advancedplugins.net/enchantments/creating-enchantments/type-list
+
+#  Applies (Material)
+#    Determines which items will have the effects
+#    The Latest Materials list: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Material.html
+#    NOTICE: You can use "LEATHER_ARMOR, IRON_ARMOR, CHAIN_ARMOR, GOLD_ARMOR or DIAMOND_ARMOR" to
+#    instantly add availability for all specific armor type pieces.
+#    Use "ALL_ARMOR" to add all armor pieces.
+#    Use "ALL_HELMET" to add all helmets.
+#    Use "ALL_CHESTPLATE" to add all chestplates.
+#    Use "ALL_BOOTS" to add all boots.
+#    Use "ALL_SWORD" to add all swords.
+#    Use "ALL_PICKAXE" to add all pickaxes.
+#    Use "ALL_AXE" to add all axes.
+#    Use "ALL_EDIBLE" to add all foods.
+#    And so on, but make sure to use non-plural names of items!
+
+#  Levels (Numbers)
+#    Effects for each level, use as display in examples.
+
+#  Enchantment Effect List: https://ae.advancedplugins.net/enchantments/creating-enchantments/effect-list
+
+#        # You can use tags <random word>word1,word2,word3</random word>, it will get a random word from listed words.
+#        # You can use tags <random number>x-y</random number> while x < y, it will generate a random number between two given integers.
+#        # e.g.: "STEAL_MONEY:<random number>10000-50000</random number>"
+#        # Use <chance>x</chance> to set per-effect chance, x being a chance percentage.
+#        # e.g.: "POTION:SPEED:1:100 %attacker% <chance>25</chance>"
+
+#        # You also may use %victim% or %attacker% flag to give effects to different players (in ATTACK, BOW, DEATH, KILL_PLAYER and DEFENSE types).
+#        # Example usage: - "POTION:POISON:1:50 %attacker%', this will give Level 2 POISON potion effect to the player who attacked.
+#        # If none is provided, effects will be given to the player who had custom enchanted item.
+#        # You can add %combo% instead of numbers, to use number of combo's player has (eg. to limit combo number: "%combo% > 0 && %combo% < 5 : %continue%')
+#        # You can add %damage% instead of numbers, to use number of damage has been done (for ATTACK and DEFENSE)
+
+#  Area of effect: https://ae.advancedplugins.net/enchantments/radius-of-effect-enchantments
+#  Conditions:  https://ae.advancedplugins.net/enchantments/enchantment-conditions
+
+# Settings for enchantments
+# *** This is not a required configuration section and each enchantment doesn't need to have it ***
+#  settings:
+#    required-enchants:
+#      - "springs"
+#    not-applyable-with:
+#      - "frozen"
+#    removeable: false # Makes enchantment non-removeable with blackscrolls
+#    disable-in-enchanter: true # Players can no longer obtain enchantment from Enchanter
+#    disabled-worlds: # List worlds in which enchantment will not work (cAsE sEnSiTiVe)
+#      - "My_World"
+
+impact:
+  display: '%group-color%Impact'
+  description: Deals double damage with tridents on the first hit.
+  applies-to: Trident
+  type: SHOOT;SHOOT_MOB
+  group: ELITE
+  applies:
+    - TRIDENT
+  levels:
+    '1':
+      cooldown: 20
+      effects:
+        - DOUBLE_DAMAGE @Victim
+    '2':
+      cooldown: 18
+      effects:
+        - DOUBLE_DAMAGE @Victim
+    '3':
+      cooldown: 16
+      effects:
+        - DOUBLE_DAMAGE @Victim
+    '4':
+      cooldown: 14
+      effects:
+        - DOUBLE_DAMAGE @Victim
+smelting:
+  display: '%group-color%Smelting'
+  description: Chance to smelt mined blocks.
+  applies-to: Pickaxes
+  type: MINING
+  group: SIMPLE
+  applies:
+    - ALL_PICKAXE
+    - ALL_SHOVEL
+  levels:
+    '1':
+      chance: 33
+      effects:
+        - SMELT
+    '2':
+      chance: 66
+      effects:
+        - SMELT
+    '3':
+      chance: 100
+      effects:
+        - SMELT
+experience:
+  display: '%group-color%Experience'
+  description: Chance to get more experience from ores.
+  applies-to: Tools
+  type: MINING
+  group: SIMPLE
+  applies:
+    - ALL_PICKAXE
+    - ALL_SPADE
+    - ALL_AXE
+  levels:
+    '1':
+      chance: 15
+      cooldown: 1
+      conditions:
+        - '%block type% contains ORE : %allow%'
+      effects:
+        - EXP:<random number>2-5</random number> @Block
+    '2':
+      chance: 30
+      cooldown: 2
+      conditions:
+        - '%block type% contains ORE : %allow%'
+      effects:
+        - EXP:<random number>2-5</random number>
+    '3':
+      chance: 45
+      cooldown: 3
+      conditions:
+        - '%block type% contains ORE : %allow%'
+      effects:
+        - EXP:<random number>2-5</random number> @Block
+    '4':
+      chance: 60
+      cooldown: 4
+      conditions:
+        - '%block type% contains ORE : %allow%'
+      effects:
+        - EXP:<random number>2-5</random number> @Block
+    '5':
+      chance: 75
+      cooldown: 5
+      conditions:
+        - '%block type% contains ORE : %allow%'
+      effects:
+        - EXP:<random number>2-5</random number> @Block
+
+        - POTION:FAST_DIGGING:2:80
+rebreather:
+  display: '%group-color%Rebreather'
+  description: |-
+    Regain air
+    when mining under water.
+  applies-to: Pickaxe
+  type: MINING
+  group: SIMPLE
+  applies:
+    - ALL_PICKAXE
+  levels:
+    '1':
+      cooldown: 3
+      effects:
+        - AIR
+famine:
+  display: '%group-color%Famine'
+  description: Gives your opponent the hunger effect.
+  applies-to: Weapons
+  type: ATTACK
+  group: UNIQUE
+  applies:
+    - ALL_SWORD
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 2
+      effects:
+        - POTION:HUNGER:0:20 @Victim
+    '2':
+      cooldown: 2
+      effects:
+        - POTION:HUNGER:0:40 @Victim
+    '3':
+      cooldown: 2
+      effects:
+        - POTION:HUNGER:1:40 @Victim
+    '4':
+      cooldown: 2
+      effects:
+        - POTION:HUNGER:1:60 @Victim
+frenzy:
+  display: '%group-color%Frenzy'
+  description: Arrows explode on impact.
+  applies-to: Crossbow
+  type: SHOOT;SHOOT_MOB
+  group: UNIQUE
+  applies:
+    - CROSSBOW
+  levels:
+    '1':
+      cooldown: 20
+      effects:
+        - TNT @Victim
+    '2':
+      cooldown: 177
+      effects:
+        - TNT @Victim
+    '3':
+      cooldown: 15
+      effects:
+        - TNT @Victim
+    '4':
+      cooldown: 13
+      effects:
+        - TNT @Victim
+    '5':
+      cooldown: 10
+      effects:
+        - TNT @Victim
+berzerk:
+  display: '%group-color%Berzerk'
+  description: Gain a burst of haste on attack.
+  applies-to: Swords, Axes
+  type: ATTACK;ATTACK_MOB
+  group: UNIQUE
+  applies:
+    - ALL_SWORD
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 2
+      effects:
+        - POTION:FAST_DIGGING:0:80
+    '2':
+      cooldown: 2
+      effects:
+        - POTION:FAST_DIGGING:1:80
+    '3':
+      cooldown: 2
+      effects:
+        - POTION:FAST_DIGGING:2:80
+molten:
+  display: '%group-color%Molten'
+  description: Set your attacker ablaze.
+  applies-to: Armor
+  type: DEFENSE;DEFENSE_MOB
+  group: UNIQUE
+  applies:
+    - ALL_ARMOR
+  levels:
+    '1':
+      cooldown: 15
+      effects:
+        - BURN:2 @Attacker
+    '2':
+      cooldown: 13
+      effects:
+        - BURN:2 @Attacker
+    '3':
+      cooldown: 11
+      effects:
+        - BURN:2 @Attacker
+    '4':
+      cooldown: 10
+      effects:
+        - BURN:3 @Attacker
+ravenous:
+  display: '%group-color%Ravenous'
+  description: |-
+    Regain hunger
+    while fighting.
+  applies-to: Swords, Axes
+  type: ATTACK;ATTACK_MOB
+  group: UNIQUE
+  applies:
+    - ALL_SWORD
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 5
+      effects:
+        - ADD_FOOD:1 @Attacker
+    '2':
+      cooldown: 4
+      effects:
+        - ADD_FOOD:1 @Attacker
+    '3':
+      cooldown: 3
+      effects:
+        - ADD_FOOD:1 @Attacker
+    '4':
+      cooldown: 2
+      effects:
+        - ADD_FOOD:1 @Attacker
+veinminer:
+  display: '%group-color%Vein Miner'
+  description: Mine entire vein of ores
+  applies-to: Pickaxes
+  group: ELITE
+  type: MINING
+  applies:
+    - ALL_PICKAXE
+  levels:
+    '1':
+      chance: 50
+      cooldown: 4
+      settings:
+        whitelist:
+          - "COAL_ORE"
+          - "COPPER_ORE"
+          - "IRON_ORE"
+          - "GOLD_ORE"
+          - "LAPIS_ORE"
+          - "REDSTONE_ORE"
+          - "DIAMOND_ORE"
+          - "EMERALD_ORE"
+          - "NETHER_QUARTZ_ORE"
+          - "NETHER_GOLD_ORE"
+          - "ANCIENT_DEBRIS"
+          - "DEEPSLATE_COAL_ORE"
+          - "DEEPSLATE_COPPER_ORE"
+          - "DEEPSLATE_IRON_ORE"
+          - "DEEPSLATE_GOLD_ORE"
+          - "DEEPSLATE_LAPIS_ORE"
+          - "DEEPSLATE_REDSTONE_ORE"
+          - "DEEPSLATE_DIAMOND_ORE"
+          - "DEEPSLATE_EMERALD_ORE"
+      effects:
+        - BREAK_BLOCK @Veinmine
+    '2':
+      chance: 75
+      cooldown: 3
+      settings:
+        whitelist:
+          - "COAL_ORE"
+          - "COPPER_ORE"
+          - "IRON_ORE"
+          - "GOLD_ORE"
+          - "LAPIS_ORE"
+          - "REDSTONE_ORE"
+          - "DIAMOND_ORE"
+          - "EMERALD_ORE"
+          - "NETHER_QUARTZ_ORE"
+          - "NETHER_GOLD_ORE"
+          - "ANCIENT_DEBRIS"
+          - "DEEPSLATE_COAL_ORE"
+          - "DEEPSLATE_COPPER_ORE"
+          - "DEEPSLATE_IRON_ORE"
+          - "DEEPSLATE_GOLD_ORE"
+          - "DEEPSLATE_LAPIS_ORE"
+          - "DEEPSLATE_REDSTONE_ORE"
+          - "DEEPSLATE_DIAMOND_ORE"
+          - "DEEPSLATE_EMERALD_ORE"
+      effects:
+        - BREAK_BLOCK @Veinmine
+    '3':
+      settings:
+        whitelist:
+          - "COAL_ORE"
+          - "COPPER_ORE"
+          - "IRON_ORE"
+          - "GOLD_ORE"
+          - "LAPIS_ORE"
+          - "REDSTONE_ORE"
+          - "DIAMOND_ORE"
+          - "EMERALD_ORE"
+          - "NETHER_QUARTZ_ORE"
+          - "NETHER_GOLD_ORE"
+          - "ANCIENT_DEBRIS"
+          - "DEEPSLATE_COAL_ORE"
+          - "DEEPSLATE_COPPER_ORE"
+          - "DEEPSLATE_IRON_ORE"
+          - "DEEPSLATE_GOLD_ORE"
+          - "DEEPSLATE_LAPIS_ORE"
+          - "DEEPSLATE_REDSTONE_ORE"
+          - "DEEPSLATE_DIAMOND_ORE"
+          - "DEEPSLATE_EMERALD_ORE"
+      effects:
+        - BREAK_BLOCK @Veinmine
+telepathy:
+  display: '%group-color%Telepathy'
+  description: |-
+    Automatically places blocks broken
+    by tools in your inventory.
+  applies-to: Tools
+  type: MINING
+  group: UNIQUE
+  applies:
+    - ALL_TOOLS
+  levels:
+    '1':
+      effects:
+        - TP_DROPS @Block
+explosivedemise:
+  display: '%group-color%Explosive Demise'
+  description: |-
+    Summon creepers as your guards
+    when near death.
+  applies-to: Leggings
+  type: DEFENSE;DEFENSE_MOB
+  group: UNIQUE
+  applies:
+    - ALL_LEGGINGS
+  levels:
+    '1':
+      cooldown: 10
+      conditions:
+        - '%victim health% > 6 : %stop%'
+      effects:
+        - GUARD:CREEPER:8:1:@Victim
+    '2':
+      cooldown: 10
+      conditions:
+        - '%victim health% > 6 : %stop%'
+      effects:
+        - GUARD:CREEPER:8:1:@Victim
+        - POTION:BLINDNESS:0:10 @Attacker
+    '3':
+      cooldown: 10
+      conditions:
+        - '%victim health% > 6 : %stop%'
+      effects:
+        - GUARD:CREEPER:8:1:@Victim
+        - POTION:BLINDNESS:0:20 @Attacker
+enderslayer:
+  display: '%group-color%Ender Slayer'
+  description: Increases damage dealt to Enderman and Ender dragons.
+  applies-to: Weapons
+  type: ATTACK_MOB
+  group: ELITE
+  applies:
+    - ALL_SWORD
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 4
+      conditions:
+        - '%mob type% = ENDERMAN or %mob type% = ENDER_DRAGON or %mob type% = ENDERDRAGON
+        : %allow%'
+      effects:
+        - INCREASE_DAMAGE:3 @Attacker
+    '2':
+      cooldown: 3
+      conditions:
+        - '%mob type% = ENDERMAN or %mob type% = ENDER_DRAGON or %mob type% = ENDERDRAGON
+        : %allow%'
+      effects:
+        - INCREASE_DAMAGE:3 @Attacker
+    '3':
+      cooldown: 3
+      conditions:
+        - '%mob type% = ENDERMAN or %mob type% = ENDER_DRAGON or %mob type% = ENDERDRAGON
+        : %allow%'
+      effects:
+        - INCREASE_DAMAGE:4 @Attacker
+    '4':
+      cooldown: 2
+      conditions:
+        - '%mob type% = ENDERMAN or %mob type% = ENDER_DRAGON or %mob type% = ENDERDRAGON
+        : %allow%'
+      effects:
+        - INCREASE_DAMAGE:4 @Attacker
+    '5':
+      cooldown: 2
+      conditions:
+        - '%mob type% = ENDERMAN or %mob type% = ENDER_DRAGON or %mob type% = ENDERDRAGON
+        : %allow%'
+      effects:
+        - INCREASE_DAMAGE:5 @Attacker
+bait:
+  display: '%group-color%Bait'
+  description: Chance to receive double fishing drops.
+  applies-to: Fishing Rod
+  type: CATCH_FISH
+  group: LEGENDARY
+  applies:
+    - FISHING_ROD
+  levels:
+    '1':
+      chance: 15
+      cooldown: 10
+      effects:
+        - MORE_DROPS:1
+    '2':
+      chance: 18
+      cooldown: 15
+      effects:
+        - MORE_DROPS:1
+    '3':
+      chance: 26
+      cooldown: 20
+      effects:
+        - MORE_DROPS:1
+snap:
+  display: '%group-color%Snap'
+  description: Pull hit entity towards you.
+  applies-to: Fishing Rod
+  type: CATCH_FISH
+  group: ELITE
+  applies:
+    - FISHING_ROD
+  levels:
+    '1':
+      conditions:
+        - '%caught% = PLAYER : %allow%'
+      effects:
+        - PULL_CLOSER:1 @Victim
+    '2':
+      conditions:
+        - '%caught% = PLAYER : %allow%'
+      effects:
+        - PULL_CLOSER:3 @Victim
+    '3':
+      conditions:
+        - '%caught% = PLAYER : %allow%'
+      effects:
+        - PULL_CLOSER:4 @Victim
+
+blind:
+  display: '%group-color%Blind'
+  description: |-
+    Removes the eyes of the victim.
+  applies-to: Crossbow
+  type: SHOOT;SHOOT_MOB
+  group: UNIQUE
+  applies:
+    - CROSSBOW
+  levels:
+    '1':
+      cooldown: 5
+      effects:
+        - POTION:BLINDNESS:0:60 @Victim
+    '2':
+      cooldown: 5
+      effects:
+        - POTION:BLINDNESS:1:80 @Victim
+    '3':
+      cooldown: 5
+      effects:
+        - POTION:BLINDNESS:2:100 @Victim
+poison:
+  display: '%group-color%Poison'
+  description: Applies the poison effect.
+  applies-to: Crossbow
+  type: SHOOT;SHOOT_MOB
+  group: UNIQUE
+  applies:
+    - CROSSBOW
+  levels:
+    '1':
+      cooldown: 2
+      effects:
+        - POTION:POISON:0:80 @Victim
+    '2':
+      cooldown: 2
+      effects:
+        - POTION:POISON:0:120 @Victim
+    '3':
+      cooldown: 2
+      effects:
+        - POTION:POISON:1:80 @Victim
+snare:
+  display: '%group-color%Snare'
+  description: |-
+    Slow and fatigue
+    enemies with projectiles.
+  applies-to: Bows
+  type: SHOOT;SHOOT_MOB
+  group: ELITE
+  applies:
+    - BOW
+    - CROSSBOW
+  levels:
+    '1':
+      cooldown: 3
+      effects:
+        - POTION:SLOW:0:80 @Victim
+        - POTION:SLOW_DIGGING:0:80 @Victim
+    '2':
+      cooldown: 3
+      effects:
+        - POTION:SLOW:0:120 @Victim
+        - POTION:SLOW_DIGGING:0:120 @Victim
+    '3':
+      cooldown: 3
+      effects:
+        - POTION:SLOW:1:80 @Victim
+        - POTION:SLOW_DIGGING:1:80 @Victim
+    '4':
+      cooldown: 3
+      effects:
+        - POTION:SLOW:1:120 @Victim
+        - POTION:SLOW_DIGGING:1:120 @Victim
+perish:
+  display: '%group-color%Perish'
+  description: Applies the wither effect.
+  applies-to: Bow, Crossbow, Trident
+  type: SHOOT;SHOOT_MOB
+  group: UNIQUE
+  applies:
+    - TRIDENT
+    - BOW
+    - CROSSBOW
+  levels:
+    '1':
+      cooldown: 5
+      effects:
+        - POTION:WITHER:0:60 @Victim
+    '2':
+      cooldown: 5
+      effects:
+        - POTION:WITHER:0:100 @Victim
+    '3':
+      cooldown: 5
+      effects:
+        - POTION:WITHER:0:140 @Victim
+    '4':
+      cooldown: 5
+      effects:
+        - POTION:WITHER:1:60 @Victim
+    '5':
+      cooldown: 5
+      effects:
+        - POTION:WITHER:1:100 @Victim
+smokebomb:
+  display: '%group-color%Smoke Bomb'
+  description: |-
+    When you are near death, you
+    will spawn a smoke bomb to
+    distract your enemies.
+  applies-to: Helmet
+  type: DEFENSE;DEFENSE_MOB
+  group: ELITE
+  applies:
+    - ALL_HELMET
+  levels:
+    '1':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 4 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:0:60 @Attacker
+        - POTION:SPEED:0:40 @Victim
+    '2':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 4 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:0:60 @Attacker
+        - POTION:SPEED:0:40 @Victim
+    '3':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 4 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:0:100 @Attacker
+        - POTION:SPEED:0:60 @Victim
+    '4':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:0:100 @Attacker
+        - POTION:SPEED:1:60 @Victim
+    '5':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:1:60 @Attacker
+        - POTION:SPEED:1:80 @Victim
+    '6':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:1:100 @Attacker
+        - POTION:SPEED:1:100 @Victim
+    '7':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 6 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:1:140 @Attacker
+        - POTION:SPEED:1:120 @Victim
+    '8':
+      cooldown: 2
+      conditions:
+        - '%victim health% > 6 : %stop%'
+      effects:
+        - PARTICLE:CLOUD:200:3 @Victim
+        - POTION:BLINDNESS:2:120 @Attacker
+        - POTION:SPEED:2:120 @Victim
+shockwave:
+  display: '%group-color%Shockwave'
+  description: |-
+    Push back your attacker
+    when your health is low.
+  applies-to: Chestplates
+  type: DEFENSE;DEFENSE_MOB
+  group: ELITE
+  applies:
+    - ALL_CHESTPLATE
+  levels:
+    '1':
+      cooldown: 4
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PULL_AWAY:0.5 @Attacker
+    '2':
+      cooldown: 4
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PULL_AWAY:1.0 @Attacker
+    '3':
+      cooldown: 4
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PULL_AWAY:1.5 @Attacker
+    '4':
+      cooldown: 4
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PULL_AWAY:2.0 @Attacker
+    '5':
+      cooldown: 4
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - PULL_AWAY:2.5 @Attacker
+trickster:
+  display: '%group-color%Trickster'
+  description: |-
+    When hit you teleport directly
+    behind you opponent.
+  applies-to: Armor
+  type: DEFENSE;DEFENSE_MOB
+  group: ELITE
+  applies:
+    - ALL_ARMOR
+  levels:
+    '1':
+      cooldown: 25
+      effects:
+        - TELEPORT_BEHIND @Victim
+    '2':
+      cooldown: 20
+      effects:
+        - TELEPORT_BEHIND @Victim
+    '3':
+      cooldown: 15
+      effects:
+        - TELEPORT_BEHIND @Victim
+timber:
+  display: '%group-color%Timber'
+  description: Breaks a tree in one hit
+  applies-to: Axes
+  group: ULTIMATE
+  type: MINING
+  applies:
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 6
+      effects:
+        - BREAK_TREE @Block
+    '2':
+      cooldown: 5
+      effects:
+        - BREAK_TREE @Block
+    '3':
+      cooldown: 3
+      effects:
+        - BREAK_TREE @Block
+cleave:
+  display: '%group-color%Cleave'
+  description: |-
+    Damages entities within a radius
+    that increases with the level of enchant.
+  applies-to: Axes
+  type: ATTACK_MOB;ATTACK
+  group: ULTIMATE
+  applies:
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 10
+      effects:
+        - DO_HARM:1 @Aoe{radius=2,target=damageable}
+    '2':
+      cooldown: 10
+      effects:
+        - DO_HARM:2 @Aoe{radius=2,target=damageable}
+    '3':
+      cooldown: 9
+      effects:
+        - DO_HARM:3 @Aoe{radius=3,target=damageable}
+    '4':
+      cooldown: 9
+      effects:
+        - DO_HARM:3 @Aoe{radius=4,target=damageable}
+    '5':
+      cooldown: 8
+      effects:
+        - DO_HARM:3 @Aoe{radius=5,target=damageable}
+    '6':
+      cooldown: 8
+      effects:
+        - DO_HARM:3 @Aoe{radius=6,target=damageable}
+    '7':
+      cooldown: 8
+      effects:
+        - DO_HARM:3 @Aoe{radius=7,target=damageable}
+exalted:
+  display: '%group-color%Exalted'
+  description: |-
+    A removes
+    bad potion effects.
+  applies-to: Swords
+  type: ATTACK
+  group: ULTIMATE
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      cooldown: 25
+      effects:
+        - CURE:SLOW @Attacker
+        - CURE:CONFUSION @Attacker
+        - CURE:BLINDNESS @Attacker
+        - CURE:POISON @Attacker
+        - CURE:WITHER @Attacker
+        - CURE:HUNGER @Attacker
+        - CURE:WEAKNESS @Attacker
+        - CURE:SLOW_DIGGING @Attacker
+    '2':
+      cooldown: 22
+      effects:
+        - CURE:SLOW @Attacker
+        - CURE:CONFUSION @Attacker
+        - CURE:BLINDNESS @Attacker
+        - CURE:POISON @Attacker
+        - CURE:WITHER @Attacker
+        - CURE:HUNGER @Attacker
+        - CURE:WEAKNESS @Attacker
+        - CURE:SLOW_DIGGING @Attacker
+    '3':
+      cooldown: 20
+      effects:
+        - CURE:SLOW @Attacker
+        - CURE:CONFUSION @Attacker
+        - CURE:BLINDNESS @Attacker
+        - CURE:POISON @Attacker
+        - CURE:WITHER @Attacker
+        - CURE:HUNGER @Attacker
+        - CURE:WEAKNESS @Attacker
+        - CURE:SLOW_DIGGING @Attacker
+    '4':
+      cooldown: 18
+      effects:
+        - CURE:SLOW @Attacker
+        - CURE:CONFUSION @Attacker
+        - CURE:BLINDNESS @Attacker
+        - CURE:POISON @Attacker
+        - CURE:WITHER @Attacker
+        - CURE:HUNGER @Attacker
+        - CURE:WEAKNESS @Attacker
+        - CURE:SLOW_DIGGING @Attacker
+dodge:
+  display: '%group-color%Dodge'
+  description: |-
+    Take decreased damage when sneaking.
+  applies-to: Armor
+  type: DEFENSE
+  group: ULTIMATE
+  applies:
+    - ALL_ARMOR
+  levels:
+    '1':
+      conditions:
+        - '%victim is sneaking% = true : %allow%'
+      effects:
+      - DECREASE_DAMAGE:5
+    '2':
+      conditions:
+        - '%victim is sneaking% = true : %allow%'
+      effects:
+      - DECREASE_DAMAGE:10
+    '3':
+      conditions:
+        - '%victim is sneaking% = true : %allow%'
+      effects:
+      - DECREASE_DAMAGE:15
+
+reinforced:
+  display: '%group-color%Reinforced'
+  description: Reduces damage dealt to you.
+  applies-to: Elytra
+  type: DEFENSE;DEFENSE_MOB;DEFENSE_PROJECTILE
+  group: ULTIMATE
+  applies:
+    - ELYTRA
+  levels:
+    '1':
+      cooldown: 1
+      effects:
+        - DECREASE_DAMAGE:10
+    '2':
+      cooldown: 1
+      effects:
+        - DECREASE_DAMAGE:15
+    '3':
+      cooldown: 1
+      effects:
+        - DECREASE_DAMAGE:18
+    '4':
+      cooldown: 1
+      effects:
+        - DECREASE_DAMAGE:20
+restore:
+  display: '%group-color%Restore'
+  description: |-
+    Upon breaking, item has a chance
+    to lose this enchantment and repair
+    half of its durability.
+  applies-to: Tools
+  type: ITEM_BREAK
+  group: FABLED
+  applies:
+    - ALL_PICKAXE
+    - ALL_SPADE
+    - ALL_AXE
+  levels:
+    '1':
+      chance: 20
+      effects:
+        - ADD_DURABILITY_CURRENT_ITEM:<round><math>-1 * (%maximum durability%/2)</math></round>
+        - REMOVE_ENCHANT:restore
+        - PLAY_SOUND:ITEM_TOTEM_USE
+    '2':
+      chance: 40
+      effects:
+        - ADD_DURABILITY_CURRENT_ITEM:<round><math>-1 * (%maximum durability%/2)</math></round>
+        - REMOVE_ENCHANT:restore
+        - PLAY_SOUND:ITEM_TOTEM_USE
+    '3':
+      chance: 60
+      effects:
+        - ADD_DURABILITY_CURRENT_ITEM:<round><math>-1 * (%maximum durability%/2)</math></round>
+        - REMOVE_ENCHANT:restore
+        - PLAY_SOUND:ITEM_TOTEM_USE
+    '4':
+      chance: 70
+      effects:
+        - ADD_DURABILITY_CURRENT_ITEM:<round><math>-1 * (%maximum durability%/2)</math></round>
+        - REMOVE_ENCHANT:restore
+        - PLAY_SOUND:ITEM_TOTEM_USE
+disappear:
+  display: '%group-color%Disappear'
+  description: |-
+    Become invisible when
+    low on health.
+  applies-to: Armor
+  type: DEFENSE;DEFENSE_MOB
+  group: ULTIMATE
+  applies:
+    - ALL_ARMOR
+  levels:
+    '1':
+      cooldown: 20
+      conditions:
+        - '%victim health% > 5 : %stop%'
+      effects:
+        - POTION:INVISIBILITY:2:60 @Victim
+    '2':
+      cooldown: 20
+      conditions:
+        - '%victim health% > 6 : %stop%'
+      effects:
+        - POTION:INVISIBILITY:2:80 @Victim
+    '3':
+      cooldown: 20
+      conditions:
+        - '%victim health% > 7 : %stop%'
+      effects:
+        - POTION:INVISIBILITY:2:100 @Victim
+    '4':
+      cooldown: 20
+      conditions:
+        - '%victim health% > 8 : %stop%'
+      effects:
+        - POTION:INVISIBILITY:2:120 @Victim
+shatter:
+  display: '%group-color%Shatter'
+  description: |-
+    Deal extra durability damage to
+    all enemy armor with every attack.
+  applies-to: Axes
+  type: ATTACK
+  group: ULTIMATE
+  applies:
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 6
+      effects:
+        - DAMAGE_ARMOR:1 @Victim
+    '2':
+      cooldown: 4
+      effects:
+        - DAMAGE_ARMOR:1 @Victim
+    '3':
+      cooldown: 2
+      effects:
+        - DAMAGE_ARMOR:1 @Victim
+    '4':
+      cooldown: 2
+      effects:
+        - DAMAGE_ARMOR:2 @Victim
+heavy:
+  display: '%group-color%Heavy'
+  description: |-
+    Decreases damage from enemy bows
+    by 2% per level.
+  applies-to: Armor
+  type: DEFENSE;DEFENSE_PROJECTILE
+  group: ULTIMATE
+  applies:
+    - ALL_ARMOR
+  levels:
+    '1':
+      cooldown: 4
+      conditions:
+        - '%attacker is holding% = BOW : %allow%'
+      effects:
+        - DECREASE_DAMAGE:2 @Victim
+    '2':
+      cooldown: 4
+      conditions:
+        - '%attacker is holding% = BOW : %allow%'
+      effects:
+        - DECREASE_DAMAGE:4 @Victim
+    '3':
+      cooldown: 4
+      conditions:
+        - '%attacker is holding% = BOW : %allow%'
+      effects:
+        - DECREASE_DAMAGE:6 @Victim
+    '4':
+      cooldown: 4
+      conditions:
+        - '%attacker is holding% = BOW : %allow%'
+      effects:
+        - DECREASE_DAMAGE:8 @Victim
+    '5':
+      cooldown: 4
+      conditions:
+        - '%attacker is holding% = BOW : %allow%'
+      effects:
+        - DECREASE_DAMAGE:10 @Victim
+devour:
+  display: '%group-color%Devour'
+  description: Restore food while killing mobs.
+  applies-to: Weapons
+  type: KILL_MOB
+  group: UNIQUE
+  applies:
+    - ALL_SWORD
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 20
+      effects:
+        - ADD_FOOD:1
+    '2':
+      cooldown: 15
+      effects:
+        - ADD_FOOD:1
+    '3':
+      cooldown: 12
+      effects:
+        - ADD_FOOD:1
+hellfire:
+  display: '%group-color%Hellfire'
+  description: Arrows turn into fireballs.
+  applies-to: Crossbow
+  type: SHOOT;SHOOT_MOB
+  group: ELITE
+  applies:
+    - CROSSBOW
+  levels:
+    '1':
+      cooldown: 20
+      effects:
+        - FIREBALL @Victim
+    '2':
+      cooldown: 15
+      effects:
+        - FIREBALL @Victim
+    '3':
+      cooldown: 10
+      effects:
+        - FIREBALL @Victim
+tank:
+  display: '%group-color%Tank'
+  description: |-
+    Decreases damage from enemy
+    axes by 2% per level.
+  applies-to: Armor
+  type: DEFENSE;DEFENSE_MOB
+  group: ULTIMATE
+  applies:
+    - ALL_ARMOR
+  levels:
+    '1':
+      cooldown: 2
+      conditions:
+        - '%attacker is holding% contains AXE : %allow%'
+      effects:
+        - DECREASE_DAMAGE:2 @Victim
+    '2':
+      cooldown: 2
+      conditions:
+        - '%attacker is holding% contains AXE : %allow%'
+      effects:
+        - DECREASE_DAMAGE:4 @Victim
+    '3':
+      cooldown: 2
+      conditions:
+        - '%attacker is holding% contains AXE : %allow%'
+      effects:
+        - DECREASE_DAMAGE:6 @Victim
+    '4':
+      cooldown: 2
+      conditions:
+        - '%attacker is holding% contains AXE : %allow%'
+      effects:
+        - DECREASE_DAMAGE:8 @Victim
+critical:
+  display: '%group-color%Critical'
+  description: Increase damage done with critical hit.
+  applies-to: Swords
+  type: ATTACK_MOB;ATTACK
+  group: ELITE
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      cooldown: 2
+      conditions:
+        - '%is critical% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:15
+    '2':
+      cooldown: 2
+      conditions:
+        - '%is critical% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:20
+    '3':
+      cooldown: 1
+      conditions:
+        - '%is critical% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:25
+triumph:
+  display: '%group-color%Triumph'
+  description: Gain some health back after player kills.
+  applies-to: Weapons
+  type: KILL_PLAYER
+  group: LEGENDARY
+  applies:
+    - ALL_AXE
+    - ALL_SWORD
+  levels:
+    '1':
+      cooldown: 5
+      effects:
+        - ADD_HEALTH:2 @Attacker
+        - POTION:SPEED:0:20 @Attacker
+        - PLAY_SOUND_OUTLOUD:BLOCK_ANVIL_LAND
+        - PARTICLE:FLASH:4:0 @Attacker
+    '2':
+      cooldown: 5
+      effects:
+        - ADD_HEALTH:4 @Attacker
+        - POTION:SPEED:1:40 @Attacker
+        - PLAY_SOUND_OUTLOUD:BLOCK_ANVIL_LAND
+        - PARTICLE:FLASH:4:0 @Attacker
+    '3':
+      cooldown: 5
+      effects:
+        - ADD_HEALTH:6 @Attacker
+        - POTION:SPEED:2:60 @Attacker
+        - PLAY_SOUND_OUTLOUD:BLOCK_ANVIL_LAND
+        - PARTICLE:FLASH:4:0 @Attacker
+thunderlord:
+  display: '%group-color%Thunderlord'
+  description: |-
+    Strike entities with lightning
+    every 6 consecutive hits.
+  applies-to: Weapons
+  type: ATTACK;ATTACK_MOB
+  group: LEGENDARY
+  applies:
+    - ALL_AXE
+    - ALL_SWORD
+    - TRIDENT
+  levels:
+    '1':
+      cooldown: 2
+      conditions:
+        - '%attacker combo% > 5 : %allow%'
+      effects:
+        - LIGHTNING @Victim
+        - RESET_COMBO @Attacker
+    '2':
+      cooldown: 2
+      conditions:
+        - '%attacker combo% > 5 : %allow%'
+      effects:
+        - LIGHTNING @Victim
+        - RESET_COMBO @Attacker
+    '3':
+      cooldown: 2
+      conditions:
+        - '%attacker combo% > 5 : %allow%'
+      effects:
+        - LIGHTNING @Victim
+        - RESET_COMBO @Attacker
+bleed:
+  display: '%group-color%Bleed'
+  description: Make your opponent bleed.
+  applies-to: Weapons
+  type: ATTACK;ATTACK_MOB
+  group: ULTIMATE
+  applies:
+    - ALL_AXE
+    - TRIDENT
+  levels:
+    '1':
+      effects:
+        - DO_HARM:<random number>1-2</random number> @Victim
+        - WAIT:20
+        - DO_HARM:<random number>1-2</random number> @Victim
+        - WAIT:20
+        - DO_HARM:<random number>1-2</random number> @Victim
+    '2':
+      effects:
+        - POTION:SLOW:0:20 @Victim
+        - DO_HARM:<random number>1-2</random number> @Victim
+        - WAIT:20
+        - DO_HARM:<random number>1-2</random number> @Victim
+        - WAIT:20
+        - DO_HARM:<random number>1-3</random number> @Victim
+lavawalker:
+  display: '%group-color%Lava Walker'
+  description: Walk on Lava.
+  applies-to: Boots
+  type: EFFECT_STATIC
+  group: LEGENDARY
+  applies:
+    - ALL_BOOTS
+  levels:
+    '1':
+      effects:
+        - LAVA_WALKER
+waterwalker:
+  display: '%group-color%Water Walker'
+  description: Walk on Water.
+  applies-to: Boots
+  type: EFFECT_STATIC
+  group: LEGENDARY
+  applies:
+    - ALL_BOOTS
+  levels:
+    '1':
+      effects:
+        - WATER_WALKER
+aqua:
+  display: '%group-color%Aqua'
+  description: Deal double damage while in water.
+  applies-to: Boots
+  type: ATTACK;ATTACK_MOB
+  group: LEGENDARY
+  applies:
+    - ALL_BOOTS
+  levels:
+    '1':
+      cooldown: 3
+      conditions:
+        - '%is under water% = TRUE : %allow%'
+      effects:
+        - DOUBLE_DAMAGE
+chaos:
+  display: '%group-color%Chaos'
+  description: Deal weakness and wither effects.
+  applies-to: Trident
+  type: SHOOT;SHOOT_MOB
+  group: LEGENDARY
+  applies:
+    - TRIDENT
+  levels:
+    '1':
+      cooldown: 40
+      effects:
+        - POTION:WITHER:0:60 @Victim
+        - POTION:WEAKNESS:0:100 @Victim
+    '2':
+      cooldown: 40
+      effects:
+        - POTION:WITHER:1:60 @Victim
+        - POTION:WEAKNESS:0:5 @Victim
+    '3':
+      cooldown: 40
+      effects:
+        - POTION:WITHER:1:60 @Victim
+        - POTION:WEAKNESS:0:100 @Victim
+chunky:
+  display: '%group-color%Chunky'
+  description: Receive less damage.
+  applies-to: Chestplates
+  type: DEFENSE;DEFENSE_MOB
+  group: LEGENDARY
+  applies:
+    - ALL_CHESTPLATE
+  levels:
+    '1':
+      cooldown: 10
+      effects:
+        - NEGATE_DAMAGE:10 @Victim
+    '2':
+      cooldown: 10
+      effects:
+        - NEGATE_DAMAGE:15 @Victim
+    '3':
+      cooldown: 10
+      effects:
+        - NEGATE_DAMAGE:20 @Victim
+    '4':
+      cooldown: 10
+      effects:
+        - NEGATE_DAMAGE:25 @Victim
+    '5':
+      cooldown: 10
+      effects:
+        - NEGATE_DAMAGE:30 @Victim
+doublestrike:
+  display: '%group-color%Double Strike'
+  description: Strike twice.
+  applies-to: Swords
+  type: ATTACK;ATTACK_MOB
+  group: LEGENDARY
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      cooldown: 15
+      effects:
+        - WAIT:20
+        - DO_HARM:%damage% @Victim
+        - BLOOD @Victim
+    '2':
+      cooldown: 12
+      effects:
+        - WAIT:20
+        - DO_HARM:%damage% @Victim
+        - BLOOD @Victim
+    '3':
+      cooldown: 10
+      effects:
+        - WAIT:20
+        - DO_HARM:%damage% @Victim
+        - BLOOD @Victim
+inquisitive:
+  display: '%group-color%Inquisitive'
+  description: Chance to increase EXP drops from mobs.
+  applies-to: Swords
+  type: KILL_MOB
+  group: LEGENDARY
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      chance: 30
+      cooldown: 4
+      effects:
+        - EXP:<math>%exp% * (1.0 + 0.25 * %level%)</math> @Victim
+    '2':
+      chance: 35
+      cooldown: 4
+      effects:
+        - EXP:<math>%exp% * (1.0 + 0.25 * %level%)</math> @Victim
+    '3':
+      chance: 40
+      cooldown: 4
+      effects:
+        - EXP:<math>%exp% * (1.0 + 0.25 * %level%)</math> @Victim
+    '4':
+      chance: 45
+      cooldown: 4
+      effects:
+        - EXP:<math>%exp% * (1.0 + 0.25 * %level%)</math> @Victim
+striker:
+  display: '%group-color%Striker'
+  description: Rain arrows over opponent.
+  applies-to: Bow
+  type: SHOOT;SHOOT_MOB
+  group: ULTIMATE
+  applies:
+    - BOW
+  levels:
+    '1':
+      cooldown: 15
+      effects:
+        - SPAWN_ARROWS @Victim
+    '2':
+      cooldown: 12
+      effects:
+        - SPAWN_ARROWS @Victim
+    '3':
+      cooldown: 10
+      effects:
+        - SPAWN_ARROWS @Victim
+deadshot:
+  display: '%group-color%Deadshot'
+  description: |-
+    Headshots deal double damage.
+  applies-to: Bow, Crossbow, Trident
+  type: SHOOT;SHOOT_MOB
+  group: UNIQUE
+  applies:
+    - TRIDENT
+    - BOW
+    - CROSSBOW
+  levels:
+    '1':
+      cooldown: 10
+      conditions:
+        - '%is headshot% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:100 @Attacker
+    '2':
+      cooldown: 7
+      conditions:
+        - '%is headshot% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:100 @Attacker
+    '3':
+      cooldown: 5
+      conditions:
+        - '%is headshot% = false : %stop%'
+      effects:
+        - INCREASE_DAMAGE:120 @Attacker
+    '4':
+      cooldown: 3
+      conditions:
+        - '%is headshot% = false : %stop%'
+      effects:
+        - INCREASE_DAMAGE:130 @Attacker
+    '5':
+      cooldown: 1
+      conditions:
+        - '%is headshot% = false : %stop%'
+      effects:
+        - INCREASE_DAMAGE:150 @Attacker
+scare:
+  display: '%group-color%Scare'
+  description: |-
+    Chance to replace your opponents helmet
+    to a pumpkin for a short time.
+  applies-to: Weapons
+  type: ATTACK
+  group: FABLED
+  applies:
+    - ALL_SWORD
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 20
+      effects:
+        - PUMPKIN:10 @Victim
+        - PLAY_SOUND_OUTLOUD:BLOCK_ANVIL_LAND
+    '2':
+      cooldown: 20
+      effects:
+        - PUMPKIN:20 @Victim
+        - PLAY_SOUND_OUTLOUD:BLOCK_ANVIL_LAND
+    '3':
+      cooldown: 20
+      effects:
+        - PUMPKIN:30 @Victim
+        - PLAY_SOUND_OUTLOUD:BLOCK_ANVIL_LAND
+    '4':
+      cooldown: 20
+      effects:
+        - PUMPKIN:40 @Victim
+        - PLAY_SOUND_OUTLOUD:BLOCK_ANVIL_LAND
+strife:
+  display: '%group-color%Strife'
+  description: Increases Trident melee damage.
+  applies-to: Trident
+  type: ATTACK;ATTACK_MOB
+  group: LEGENDARY
+  applies:
+    - TRIDENT
+  levels:
+    '1':
+      cooldown: 1
+      effects:
+        - INCREASE_DAMAGE:15
+    '2':
+      cooldown: 1
+      effects:
+        - INCREASE_DAMAGE:25
+    '3':
+      cooldown: 1
+      effects:
+        - INCREASE_DAMAGE:30
+spark:
+  display: '%group-color%Spark'
+  description: Light opponents on fire.
+  applies-to: Trident
+  type: ATTACK;ATTACK_MOB;SHOOT;SHOOT_MOB
+  group: ELITE
+  applies:
+    - TRIDENT
+  levels:
+    '1':
+      cooldown: 1
+      effects:
+        - BURN:40 @Victim
+    '2':
+      cooldown: 1
+      effects:
+        - BURN:60 @Victim
+    '3':
+      cooldown: 1
+      effects:
+        - BURN:80 @Victim
+aegis:
+  display: '%group-color%Aegis'
+  description: Gain speed when taking fall damage.
+  applies-to: Boots
+  type: FALL_DAMAGE
+  group: ULTIMATE
+  applies:
+    - ALL_BOOTS
+  levels:
+    '1':
+      cooldown: 3
+      effects:
+        - POTION:SPEED:0:60
+    '2':
+      cooldown: 3
+      effects:
+        - POTION:SPEED:1:60
+    '3':
+      cooldown: 3
+      effects:
+        - POTION:SPEED:2:60
+plummet:
+  display: '%group-color%Plummet'
+  description: |-
+    Deal damage to nearby entities
+    when taking fall damage.
+  applies-to: Boots
+  type: FALL_DAMAGE
+  group: ULTIMATE
+  applies:
+    - ALL_BOOTS
+  levels:
+    '1':
+      effects:
+        - DO_HARM:2 @Aoe{radius=3,target=damageable}
+    '2':
+      effects:
+        - DO_HARM:3 @Aoe{radius=5,target=damageable}
+    '3':
+      effects:
+        - DO_HARM:4 @Aoe{radius=7,target=damageable}
+nightowl:
+  display: '%group-color%Night Owl'
+  description: Deal more damage to at night.
+  applies-to: Swords
+  type: ATTACK;ATTACK_MOB
+  group: ULTIMATE
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      conditions:
+        - '%is night% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:25
+    '2':
+      conditions:
+        - '%is night% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:35
+    '3':
+      conditions:
+        - '%is night% = true : %allow%'
+      effects:
+        - INCREASE_DAMAGE:45
+slingshot:
+  display: '%group-color%Slingshot'
+  description: Boost yourself into flight by right-clicking.
+  applies-to: Elytra
+  type: RIGHT_CLICK
+  group: LEGENDARY
+  applies:
+    - ELYTRA
+  levels:
+    '1':
+      cooldown: 15
+      conditions:
+        - '%is holding% contains FIREWORK : %stop%'
+      effects:
+        - BOOST:UP:10
+    '2':
+      cooldown: 10
+      conditions:
+        - '%is holding% contains FIREWORK : %stop%'
+      effects:
+        - BOOST:UP:12
+    '3':
+      cooldown: 5
+      conditions:
+        - '%is holding% contains FIREWORK : %stop%'
+      effects:
+        - BOOST:UP:16
+nulify:
+  display: '%group-color%Nulify'
+  description: |-
+    Deal double damage
+    while leaving enemy blind.
+    Costs 40 souls / activation.
+  applies-to: Weapons
+  type: ATTACK
+  group: FABLED
+  applies:
+    - ALL_SWORD
+    - ALL_AXE
+  levels:
+    '1':
+      cooldown: 10
+      conditions:
+        - '%souls on item% < 40 : %stop%'
+      effects:
+        - REMOVE_SOULS: 40 @Attacker
+        - INCREASE_DAMAGE:100
+        - POTION:BLINDNESS:0:80 @Victim
+        - PARTICLE:FLASH:1:0 @Victim
+    '2':
+      cooldown: 10
+      conditions:
+        - '%souls on item% < 40 : %stop%'
+      effects:
+        - REMOVE_SOULS: 40 @Attacker
+        - POTION:BLINDNESS:1:80 @Victim
+        - PARTICLE:FLASH:2:0 @Victim
+    '3':
+      cooldown: 10
+      souls: 40
+      effects:
+        - INCREASE_DAMAGE:100
+        - POTION:BLINDNESS:2:80 @Victim
+        - PARTICLE:FLASH:3:0 @Victim
+    '4':
+      cooldown: 10
+      conditions:
+        - '%souls on item% < 40 : %stop%'
+      effects:
+        - REMOVE_SOULS: 40 @Attacker
+        - POTION:BLINDNESS:3:80 @Victim
+        - PARTICLE:FLASH:4:0 @Victim
+diploid:
+  display: '%group-color%Diploid'
+  description: |-
+    Chance to multiply mob drops.
+    Costs 5 souls / activation.
+  applies-to: Swords
+  type: KILL_MOB
+  group: FABLED
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      chance: 15
+      cooldown: 5
+      souls: 5
+      effects:
+        - MORE_DROPS:1
+    '2':
+      chance: 20
+      cooldown: 5
+      souls: 5
+      effects:
+        - MORE_DROPS:1
+    '3':
+      chance: 25
+      cooldown: 6
+      souls: 5
+      effects:
+        - MORE_DROPS:1
+    '4':
+      chance: 28
+      cooldown: 7
+      souls: 5
+      effects:
+        - MORE_DROPS:1
+    '5':
+      chance: 30
+      cooldown: 8
+      souls: 5
+      effects:
+        - MORE_DROPS:1
+multiplication:
+  display: '%group-color%Multiplication'
+  description: |-
+    Chance to multiply ore drops.
+    Costs 5 souls / activation.
+  applies-to: Pickaxe
+  type: MINING
+  group: FABLED
+  applies:
+    - ALL_PICKAXE
+  levels:
+    '1':
+      chance: 15
+      cooldown: 5
+      conditions:
+        - '%block type% contains ORE : %allow%'
+        - '%souls on item% > 4: %allow%'
+      effects:
+        - MORE_DROPS:1
+        - 'REMOVE_SOULS:5'
+    '2':
+      chance: 20
+      cooldown: 5
+      conditions:
+        - '%block type% contains ORE : %allow%'
+        - '%souls on item% > 4: %allow%'
+      effects:
+        - MORE_DROPS:1
+        - 'REMOVE_SOULS:5'
+    '3':
+      chance: 25
+      cooldown: 6
+      conditions:
+        - '%block type% contains ORE : %allow%'
+        - '%souls on item% > 4: %allow%'
+      effects:
+        - MORE_DROPS:1
+        - 'REMOVE_SOULS:5'
+    '4':
+      chance: 28
+      cooldown: 7
+      conditions:
+        - '%block type% contains ORE : %allow%'
+        - '%souls on item% > 4: %allow%'
+      effects:
+        - MORE_DROPS:1
+        - 'REMOVE_SOULS:5'
+    '5':
+      chance: 30
+      cooldown: 8
+      conditions:
+        - '%block type% contains ORE : %allow%'
+        - '%souls on item% > 4: %allow%'
+      effects:
+        - MORE_DROPS:1
+        - 'REMOVE_SOULS:5'
+spiritmaster:
+  display: '%group-color%Spiritmaster'
+  description: |-
+    Chance to get more souls
+    from killing players.
+  applies-to: Swords
+  type: KILL_PLAYER
+  group: FABLED
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      chance: 35
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '2':
+      chance: 45
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '3':
+      chance: 55
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+axeofspirits:
+  display: '%group-color%Axe of Spirits'
+  description: |-
+    Chance to get more souls
+    from killing players.
+  applies-to: Axes
+  type: KILL_PLAYER
+  group: FABLED
+  applies:
+    - ALL_AXE
+  levels:
+    '1':
+      chance: 45
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '2':
+      chance: 65
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '3':
+      chance: 75
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+soulminer:
+  display: '%group-color%Soulminer'
+  description: Chance to get souls by mining.
+  applies-to: Pickaxe
+  type: MINING
+  group: FABLED
+  applies:
+    - ALL_PICKAXE
+  levels:
+    '1':
+      chance: 5
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '2':
+      chance: 10
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '3':
+      chance: 15
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+soulgrind:
+  display: '%group-color%Soulgrind'
+  description: Chance to get souls by killing mobs.
+  applies-to: Swords
+  type: KILL_MOB
+  group: FABLED
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      chance: 30
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '2':
+      chance: 60
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+    '3':
+      chance: 90
+      effects:
+        - ADD_SOULS:1
+        - PARTICLE:HEART:1:0
+magnet:
+  display: '%group-color%Magnet'
+  description: Your attack pulls entities towards you.
+  applies-to: Swords
+  type: ATTACK_MOB;ATTACK
+  group: ELITE
+  applies:
+    - ALL_SWORD
+  levels:
+    '1':
+      chance: 30
+      cooldown: 5
+      effects:
+        - PULL_CLOSER:1 @Victim
+    '2':
+      chance: 60
+      cooldown: 5
+      effects:
+        - PULL_CLOSER:2 @Victim
+    '3':
+      cooldown: 5
+      effects:
+        - PULL_CLOSER:3 @Victim
+coldsteel:
+  display: '%group-color%Cold Steel'
+  description: Slows attack speed when hit.
+  applies-to: Armor
+  type: DEFENSE;DEFENSE_MOB
+  group: SIMPLE
+  applies:
+    - ALL_ARMOR
+  levels:
+    '1':
+      cooldown: 10
+      effects:
+        - POTION:SLOW_DIGGING:0:20 @Attacker
+    '2':
+      cooldown: 8
+      effects:
+        - POTION:SLOW_DIGGING:0:20 @Attacker
+    '3':
+      cooldown: 7
+      effects:
+        - POTION:SLOW_DIGGING:0:20 @Attacker
+regrowth:
+  display: '%group-color%Regrowth'
+  description: Regenerate health overtime.
+  applies-to: Armor
+  type: REPEATING
+  group: LEGENDARY
+  applies:
+  - ALL_ARMOR
+  levels:
+    '1':
+      time: 20
+      effects:
+        - ADD_HEALTH:0.5
+    '2':
+      time: 17
+      effects:
+        - ADD_HEALTH:0,5
+    '3':
+      time: 15
+      effects:
+        - ADD_HEALTH:0.5
+# strikedown:
+#   display: "%group-color%Strikedown"
+#   description: "Deal more damage the higher the grade of enemy armor"
+#   applies-to: Crossbow
+#   type: SHOOT;SHOOT_MOB
+#   group: "LEGENDARY"
+#   applies:
+#     - CROSSBOW
+#   levels:
+#     1:
+#       cooldown: 1
+#       effects:
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:39_mat:}_LEATHER\_HELMET_10_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:38_mat:}_LEATHER\_CHESTPLATE_30_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:37_mat:}_LEATHER\_LEGGINGS_20_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:36_mat:}_LEATHER\_BOOTS_10_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:39_mat:}_IRON\_HELMET_20_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:38_mat:}_IRON\_CHESTPLATE_50_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:37_mat:}_IRON\_LEGGINGS_30_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:36_mat:}_IRON\_BOOTS_20_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:39_mat:}_DIAMOND\_HELMET_30_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:38_mat:}_DIAMOND\_CHESTPLATE_70_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:37_mat:}_DIAMOND\_LEGGINGS_50_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:36_mat:}_DIAMOND\_BOOTS_30_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:39_mat:}_NETHERITE\_HELMET_40_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:38_mat:}_NETHERITE\_CHESTPLATE_100_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:37_mat:}_NETHERITE\_LEGGINGS_80_0% %attacker%"
+#         - "INCREASE_DAMAGE:%changeoutput_equals_{victim checkitem_getinfo:36_mat:}_NETHERITE\_BOOTS_40_0% %attacker%"

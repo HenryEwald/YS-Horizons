@@ -1,0 +1,15 @@
+{
+  
+  "structures": [
+    {
+      "structure": "gd:church",
+      "weight": 1
+    }
+  ],
+  "placement": {
+    "type": "minecraft:random_spread",
+    "spacing": 65,
+    "separation": 60,
+    "salt": 491633322
+  }
+}

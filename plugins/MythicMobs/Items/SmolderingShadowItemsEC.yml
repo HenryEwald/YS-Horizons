@@ -1,0 +1,18 @@
+DragonHeart: 
+  Id: magma_cream
+  Model: 1000001
+  Data: 0
+  Amount: 1
+  Display: ''
+  Options:
+    Repairable: false
+    Unbreakable: true 
+BlazingSunProjectile:
+  Id: magma_cream
+  Model: 1000002
+  Data: 0
+  Amount: 1
+  Display: ''
+  Options:
+    Repairable: false
+    Unbreakable: true 

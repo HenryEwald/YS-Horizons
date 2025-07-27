@@ -1,0 +1,13 @@
+Id: Nocsy_Doghoul
+MythicMob: Nocsy_FPV2-Doghoul-Pet
+Permission: mcpets.nocsy_doghoul
+Mountable: false
+Distance: 6
+SpawnRange: 1
+ComingBackRange: 3
+Icon:
+  Name: "§bDoghoul"
+  Material: INK_SAC
+  CustomModelData: 77600
+  Description:
+  - §7*§oSlurp* §7eating braaaains !!

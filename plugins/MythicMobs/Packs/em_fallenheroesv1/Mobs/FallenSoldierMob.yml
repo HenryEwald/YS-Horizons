@@ -1,0 +1,73 @@
+soldierfallen:
+  Type: skeleton
+  Display: 'Fallen Soldier'
+  AIGoalSelectors:
+  Modules:
+    ThreatTable: true
+  AITargetSelectors:
+  - 0 clear
+  - 1 SpecificFaction Zombie
+  - 2 attacker
+  - 3 players
+  Health: 45
+  Faction: FallenHero
+  DamageModifiers:
+  - FIRE 0
+  - MAGIC 3.2
+  - PROJECTILE 0.8
+  Damage: 10 #10 is the BASE damage. Setting it to 20 will DOUBLE damage. Setting it to 5 will REDUCE damage in 50% from the original.
+  KillMessages:
+  - '<target.name> was killed by the fallen heroes.'
+  - 'The fallen heroes have claimed justice over <target.name>.'
+  - "<target.name> suffered the revenge of the fallen heroes."
+  - "The fallen heroes have claimed <target.name>'s soul."
+  - '<target.name> tried to defy the fallen heroes. Tried.'
+  Equipment:
+  - air:4
+  - air:3
+  - air:2
+  - imbootsfallenminion:1
+  - air:0 #righthand (equip with iron_axe to negate shields)
+  - air:5 #lefthand
+  Drops:
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  - exp 100-250 1
+  Skills:
+  - rally{types=soldierfallen;radius=15;ot=false} @Trigger ~OnDamaged 0.4
+  - model{mid=fallensoldier;n=false} @self ~onSpawn 1
+  - setstance{stance=normal} @self ~onSpawn
+  - skill{s=cancelatackfallen;sync=true} @self ~onAttack 1 #CANCEL ATTACKS
+  - cancelEvent{sync=true} @self ~onAttack 1
+  - randomskill{s=meleefsoldierAtrigger;sync=true} @Target ~onAttack >0% 1
+  - randomskill{s=meleefsoldierAtrigger;sync=true} @LivingInCone{a=45.0;r=2.8;rot=0.0} ~onTimer:10 1
+  - setvariable{var=caster.combor;value="0";t=integer} @Self ~onSpawn
+  - setvariable{var=caster.comboa;value="0";t=integer} @Self ~onSpawn
+  - effect:particles{particle=cloud;amount=90;hS=1.1;vS=0.55;speed=0;size=4.5;repeat=0;repeatinterval=1;sideOffset=0;delay=20} @ModelPart{m=fallensoldier;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=35;hS=0.3;vS=1.3;size=5} @ModelPart{m=fallensoldier;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=35;hS=0.3;vS=1.3;size=5;delay=19} @ModelPart{m=fallensoldier;p=body;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=35;hS=0.3;vS=1.3;size=5;delay=19} @ModelPart{m=fallensoldier;p=head;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=35;hS=0.3;vS=1.3;size=5;delay=19} @ModelPart{m=fallensoldier;p=sword;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.1;vS=0.2;size=1;repeat=20;repeatinterval=1} @ModelPart{m=fallensoldier;p=rightarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.1;vS=0.2;size=1;repeat=20;repeatinterval=1} @ModelPart{m=fallensoldier;p=leftarmbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.1;vS=0.2;size=1;repeat=20;repeatinterval=1} @ModelPart{m=fallensoldier;p=rightlegbot;offset=LOCAL;y=0} ~onDeath
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=2;hS=0.1;vS=0.2;size=1;repeat=20;repeatinterval=1} @ModelPart{m=fallensoldier;p=leftlegbot;offset=LOCAL;y=0} ~onDeath
+  - randomskill{s=hurt1fsoldierA,hurt2fsoldierA;sync=true} @self ~onDamaged 1 #Hurtmechanic
+  - effect:particles{particle=reddust;color=#9DF2FD;amount=15;hS=0.5;vS=1.3;size=1.1} @ModelPart{m=fallensoldier;p=body;offset=LOCAL;y=0} ~onDamaged
+  - sound{s=emaginationfallensoldier:custom.fallensoldier.death;p=1;v=1} @selflocation ~onDeath 1
+  - variableadd{var=caster.combor;amount=1} @Self ~onDamaged 0
+  Options:
+    Despawn: false
+    Silent: true
+    PreventSunburn: true
+    AlwaysShowName: false
+    MovementSpeed: 0.23
+    Interactable: true
+    PreventOtherDrops: true
+    KnockbackResistance: 0.1
+#kDbtpkZpVXMIdnVD92b5MnQ4IjT5NGRPhXU65UeVRUT6dXRVNzNOljZKhlYUJ1U4VFTwpmN

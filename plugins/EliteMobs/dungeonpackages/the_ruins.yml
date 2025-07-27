@@ -1,0 +1,26 @@
+isEnabled: false
+name: '&2[lvl 150] &6The Ruins'
+dungeonLocationType: WORLD
+customInfo:
+- '&fA fight against a myth from'
+- '&fNorse mythology, be prepared for a smiting!'
+- '&6Credits: 69OzCanOfBepis, MagmaGuy'
+relativeBossLocations:
+- ruins_boss_p1.yml:0,0,0
+relativeTreasureChestLocations: []
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: LAIR
+schematicName: em_the_ruins.schem
+environment: NORMAL
+protect: true
+defaultSchematicRotation: SOUTH
+playerInfo: |-
+  Difficulty: &cHard
+  $bossCount level $lowestTier Big Boss!
+  &cA tough fight against a Norse god!
+regionEnterMessage: '&8[EM] &3Those who challenge the myths must be prepared for their
+  downfall!'
+regionLeaveMessage: '&8[EM] &3You now know what it takes to make a legend!'
+teleportLocationOffset: -1,-4,18,0,0
+contentType: SCHEMATIC_DUNGEON
+dungeonConfigFolderName: the_ruins

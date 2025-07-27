@@ -1,0 +1,30 @@
+undead_king_sword:
+  Type: ZOMBIE
+  Health: 50
+  Damage: 0
+  Faction: Undead
+  Options:
+    FollowRange: 35
+    MovementSpeed: 0
+    Silent: true
+    PreventOtherDrops: true
+    Anger: 500
+    HasNectar: false
+    KnockbackResistance: 1
+    Collidable: false
+  Modules:
+    ThreatTable: true
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  - PROJECTILE 0
+  AIGoalSelectors:
+  - clear
+  AITargetSelectors:
+  - clear
+  - players
+  - golems
+  Skills:
+  - model{mid=undead_king_sword;n=false;d=false} @Self ~onSpawn
+  - state{mid=undead_king_sword;s=attack} @Self ~onSpawn
+  - skill{s=Sword_Wide_Area_Attack} @Self ~onSpawn
+  - remove{delay=100} @Self ~onSpawn

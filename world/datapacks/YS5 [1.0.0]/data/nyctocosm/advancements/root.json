@@ -1,0 +1,25 @@
+{
+    "display": {
+        "title": {
+            "text": "Nyctocosm",
+            "color": "dark_purple"
+        },
+        "description": {
+            "text": "What awaits you in the Realm of Night?",
+            "color": "gray"
+        },
+        "icon": {
+            "item": "minecraft:echo_shard"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false,
+        "background": "minecraft:textures/gui/advancements/backgrounds/nyctocosm.png"
+    },
+    "criteria": {
+        "impossible": {
+            "trigger": "minecraft:impossible"
+        }
+    }
+}

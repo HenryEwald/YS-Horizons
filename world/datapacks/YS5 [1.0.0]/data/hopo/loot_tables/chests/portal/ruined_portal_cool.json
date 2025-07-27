@@ -1,0 +1,23 @@
+{
+	"type": "minecraft:chest",
+	"pools": [
+		{
+			"rolls": {
+				"min": 3,
+				"max": 5
+			},
+			"entries": [
+				{
+					"type": "minecraft:loot_table",
+					"weight": 1,
+					"name": "minecraft:chests/ruined_portal"
+				},
+				{
+					"type": "minecraft:loot_table",
+					"weight": 3,
+					"name": "hopo:chests/portal/better_ruined_portal"
+				}
+			]
+		}
+	]
+}

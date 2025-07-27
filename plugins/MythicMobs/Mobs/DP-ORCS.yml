@@ -1,0 +1,330 @@
+#_______________________________________________________________________________
+#
+#-------------------------------+ INFORMATION +--------------------------------#
+#_______________________________________________________________________________
+
+# File: DP-ORCS
+
+# Created by: Buguser
+# Version: 1.5.0
+# Server Version: Paper - 1.19
+# Hard-Dependencies:
+# - MythicMobs (tested in v5.1.2)
+
+# Join my Discord-Server for support: https://discord.gg/z6A4dk25BC
+
+#_______________________________________________________________________________
+#
+#-----------------------------------+ ORCS +-----------------------------------#
+#_______________________________________________________________________________
+
+### 1. Orcling
+BUG_DP_Orcling:
+  Type: ZOMBIE
+  Display: '&cOrcling'
+  Health: 20
+  Damage: 8
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 20
+    KnockbackResistance: 0.2
+    MaxCombatDistance: 20
+    MovementSpeed: 0.25
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: false
+    PreventSunburn: true
+    Silent: true
+  Disguise: player GoblinSlayer setSkin GoblinSlayer setNameVisible false
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 float
+  - 3 lookatplayers
+  - 4 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - THORNS 0.5
+  - LAVA 1.5
+  - FIRE_TICK 1.5
+  - FIRE 1.5
+  - HOT_FLOOR 0.5
+  - CONTACT 0.5
+  Drops:
+  - exp 9 1
+  Skills:
+  - skill{s=BUG_DP_Random-Equipment_Orcling} @self ~onSpawn
+  - skill{s=BUG_DP_Orc-Drummer_Drum-Buff} @self ~onSignal:DRUMMER
+  - effect:particles{p=crit;amount=6;hS=0.45;vS=1.2;speed=0;y=1} @self ~onTimer:5
+  - sound{s=entity.vindicator.ambient;p=0.9} @self ~onTimer:120 0.7
+  - sound{s=entity.vindicator.hurt;p=0.9} @self ~onDamaged
+  - sound{s=entity.vindicator.death;p=0.9} @self ~onDeath
+
+### 2. Orc Knight
+BUG_DP_Orc-Knight:
+  Type: ZOMBIE
+  Display: '&cOrc Knight'
+  Health: 50
+  Damage: 10
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 25
+    KnockbackResistance: 0.3
+    MaxCombatDistance: 25
+    MovementSpeed: 0.25
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: false
+    PreventSunburn: true
+    Silent: true
+  Disguise: player GoblinSlayer setSkin GoblinSlayer setNameVisible false
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 float
+  - 3 lookatplayers
+  - 4 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - THORNS 0.5
+  - LAVA 1.5
+  - FIRE_TICK 1.5
+  - FIRE 1.5
+  - HOT_FLOOR 0.5
+  - CONTACT 0.5
+  Drops:
+  - exp 21 1
+  Skills:
+  - skill{s=BUG_DP_Orc-Knight_Attack} @self ~onDamaged 0.4
+  - skill{s=BUG_DP_Orc-Knight_Attack-Heavy-Hit} @self ~onAttack 1
+  - skill{s=BUG_DP_Orc-Drummer_Drum-Buff} @self ~onSignal:DRUMMER
+
+  - skill{s=BUG_DP_Random-Equipment_Orc-Knight} @self ~onSpawn
+
+  - sound{s=entity.vindicator.ambient;p=0.8} @self ~onTimer:120 0.7
+  - sound{s=entity.vindicator.hurt;p=0.8} @self ~onDamaged
+  - sound{s=entity.vindicator.death;p=0.8} @self ~onDeath
+
+### 3. Orc Archer
+BUG_DP_Orc-Archer:
+  Type: SKELETON
+  Display: '&cOrc Archer'
+  Health: 40
+  Damage: 10
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 40
+    KnockbackResistance: 0.1
+    MaxCombatDistance: 40
+    MovementSpeed: 0.27
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: false
+    PreventSunburn: true
+    Silent: true
+  Disguise: player GoblinSlayer setSkin GoblinSlayer setNameVisible false
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 skeletonbowattack
+  - 2 float
+  - 3 lookatplayers
+  - 4 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - THORNS 0.5
+  - LAVA 1.5
+  - FIRE_TICK 1.5
+  - FIRE 1.5
+  - HOT_FLOOR 0.5
+  - CONTACT 0.5
+  Drops:
+  - exp 16 1
+  Skills:
+  - skill{s=BUG_DP_Orc-Archer_Fire-Bow} @self ~onTimer:180 0.5
+  - skill{s=BUG_DP_Weapon-7} @self ~onSpawn 1
+  - skill{s=BUG_DP_Orc-Drummer_Drum-Buff} @self ~onSignal:DRUMMER
+
+  - skill{s=BUG_DP_Random-Equipment_Orc-Archer} @self ~onSpawn
+
+  - sound{s=entity.vindicator.ambient;p=1} @self ~onTimer:120 0.7
+  - sound{s=entity.vindicator.hurt;p=1} @self ~onDamaged
+  - sound{s=entity.vindicator.death;p=1} @self ~onDeath
+
+### 4. Orc Drummer
+BUG_DP_Orc-Drummer:
+  Type: ZOMBIE
+  Display: '&cOrc Drummer'
+  Health: 120
+  Damage: 6
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 25
+    KnockbackResistance: 0.5
+    MaxCombatDistance: 25
+    MovementSpeed: 0.2
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: false
+    PreventSunburn: true
+    Silent: true
+  Disguise: player GoblinSlayer setSkin GoblinSlayer setNameVisible false
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 float
+  - 3 lookatplayers
+  - 4 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - THORNS 0.5
+  - LAVA 1.5
+  - FIRE_TICK 1.5
+  - FIRE 1.5
+  - HOT_FLOOR 0.5
+  - CONTACT 0.5
+  Drops:
+  - exp 30 1
+  Equipment:
+  - note_block HAND
+  - stick OFFHAND
+  - leather_helmet{color=BLACK} HEAD
+  - leather_chestplate{color=BLACK} CHEST
+  - leather_leggings{color=BLACK} LEGS
+  - leather_boots{color=BLACK} FEET
+  Skills:
+  - skill{s=BUG_DP_Orc-Drummer_Drum} @self ~onTimer:40 1
+  - skill{s=BUG_DP_Orc-Drummer_Drum-Effect} @self ~onTimer:200 1
+
+
+  - sound{s=entity.vindicator.ambient;p=0.6} @self ~onTimer:120 0.7
+  - sound{s=entity.vindicator.hurt;p=0.8} @self ~onDamaged
+  - sound{s=entity.vindicator.death;p=0.8} @self ~onDeath
+
+### 5. Orc War Mage
+BUG_DP_Orc-War-Mage:
+  Type: ZOMBIE
+  Display: '&cOrc War Mage'
+  Health: 160
+  Damage: 10
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 30
+    KnockbackResistance: 0.2
+    MaxCombatDistance: 30
+    MovementSpeed: 0.16
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: false
+    PreventSunburn: true
+    Silent: true
+  Disguise: player GoblinSlayer setSkin GoblinSlayer setNameVisible false
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 float
+  - 3 lookatplayers
+  - 4 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - THORNS 0.5
+  - LAVA 1.5
+  - FIRE_TICK 1.5
+  - FIRE 1.5
+  - HOT_FLOOR 0.5
+  - CONTACT 0.5
+  Drops:
+  - exp 17 1
+  Skills:
+  - skill{s=BUG_DP_Orc-War-Mage_Attack} @self ~onTimer:40 1
+  - skill{s=BUG_DP_Orc-War-Mage_Attack-Bolt-Strong} @Target ~onSignal:NORMAL
+  - skill{s=BUG_DP_Orc-War-Mage_Attack-Bolt-Weak} @Target ~onSignal:WEAK
+
+  - modifymobscore{objective=magic;action=set;value=0} ~onSpawn
+  - modifymobscore{objective=magic;action=add;value=1} ~onTimer:35
+  - modifymobscore{objective=magic;action=add;value=2} ~onSignal:DRUMMER
+  - skill{s=BUG_DP_Random-Equipment_Orc-War-Mage} @self ~onSpawn
+
+  - effect:particles{p=crit_magic;amount=6;hS=0.45;vS=1.2;speed=0;y=1} @self ~onTimer:5
+  - sound{s=entity.vindicator.ambient;p=0.6} @self ~onTimer:120 0.7
+  - sound{s=entity.vindicator.hurt;p=0.6} @self ~onDamaged
+  - sound{s=entity.vindicator.death;p=0.6} @self ~onDeath
+
+### 6. Orc Axe Thrower
+BUG_DP_Orc-Axe-Thrower:
+  Type: SKELETON
+  Display: '&cAxe Thrower'
+  Health: 75
+  Damage: 10
+  Faction: Dungeon
+  Options:
+    Collidable: true
+    Despawn: true
+    FollowRange: 30
+    KnockbackResistance: 0.2
+    MaxCombatDistance: 30
+    MovementSpeed: 0.16
+    PreventItemPickup: true
+    PreventOtherDrops: true
+    PreventRandomEquipment: false
+    PreventSunburn: true
+    Silent: true
+  Disguise: player GoblinSlayer setSkin GoblinSlayer setNameVisible false
+  Modules:
+    ThreatTable: true
+  AIGoalSelectors:
+  - 0 clear
+  - 1 skeletonbowattack
+  - 2 float
+  - 3 lookatplayers
+  - 4 randomstroll
+  AITargetSelectors:
+  - 0 clear
+  - 1 players
+  DamageModifiers:
+  - THORNS 0.5
+  - LAVA 1.5
+  - FIRE_TICK 1.5
+  - FIRE 1.5
+  - HOT_FLOOR 0.5
+  - CONTACT 0.5
+  Drops:
+  - exp 25 1
+  Skills:
+  - skill{s=BUG_DP_Orc-Axe-Thrower_Attack} @target ~onTimer:70 1
+  - threat{amount=1} @NearestPlayer ~onSpawn
+
+  - skill{s=BUG_DP_Random-Equipment_Orc-Axe-Thrower} @self ~onSpawn
+
+  - sound{s=entity.vindicator.ambient;p=0.6} @self ~onTimer:120 0.7
+  - sound{s=entity.vindicator.hurt;p=0.8} @self ~onDamaged
+  - sound{s=entity.vindicator.death;p=0.8} @self ~onDeath

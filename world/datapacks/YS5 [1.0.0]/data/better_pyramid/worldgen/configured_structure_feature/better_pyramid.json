@@ -1,0 +1,11 @@
+{
+    "type": "minecraft:bastion_remnant",
+    "biomes": [
+      "minecraft:desert"
+    ],
+    "spawn_overrides": {},
+    "config": {
+      "start_pool": "better_pyramid:surface_pyramid",
+      "size": 7
+    }
+  }

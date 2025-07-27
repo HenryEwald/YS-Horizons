@@ -1,0 +1,1 @@
+summon drowned ~ ~1 ~ {PersistenceRequired:1,Attributes:[{Base:50.0d,Name:"minecraft:generic.max_health"}],Health:50.0f,DeathLootTable:"hopo:entities/golddrowned",CanPickUpLoot:1b,HandItems:[{Count:1,id:golden_axe},{}],ArmorItems:[{Count:1,id:golden_boots},{Count:1,id:golden_leggings},{Count:1,id:golden_chestplate},{Count:1,id:golden_helmet}]}

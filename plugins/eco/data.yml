@@ -1,0 +1,12 @@
+# For internal storage use only, do not modify.
+
+previous-handler: YAML
+player:
+  6dbcde8b-c4e7-4adc-bb2b-c94140489002:
+    eco:player_name: Bananlo
+  00000000-0000-0000-0000-000000000000:
+    eco:local_server_id: 34a71444-c2f8-4239-a2b5-e0e7eaa66f2c
+  3af04669-36d3-493e-9bf5-31675278b91c:
+    talismans:talisman_bag: []
+    eco:player_name: Bananalord5747
+

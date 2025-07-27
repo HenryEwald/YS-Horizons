@@ -1,0 +1,129 @@
+# RandomShark:
+#   MobType: MSO_Shark
+#   Worlds: world
+#   Chance: 0.01
+#   Priority: 1
+#   Action: ADD
+#   PositionType: SEA
+  
+
+# RandomShark2:
+#   MobType: MSO_Shark_2
+#   Worlds: world
+#   Chance: 0.01
+#   Priority: 1
+#   Action: ADD
+#   PositionType: SEA
+
+# RandomSwordfish:
+#   MobType: MSO_Swordfish
+#   Worlds: world
+#   Chance: 0.02
+#   Priority: 1
+#   Action: ADD
+#   PositionType: SEA
+
+RandomSeaSlug:
+  MobType: MSO_SeaSlug
+  Worlds: world
+  Chance: 0.2
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+
+RandomMantaRay:
+  MobType: MSO_Manta_Ray
+  Worlds: world
+  Chance: 0.2
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+
+RandomJellyfish:
+  MobType: MSO_Jellyfish
+  Worlds: world
+  Chance: 0.2
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+
+RandomJellyfish2:
+  MobType: MSO_Jellyfish_2
+  Worlds: world
+  Chance: 0.2
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+
+RandomSunfish:
+  MobType: MSO_Sunfish
+  Worlds: world
+  Chance: 0.1
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomStarfish:
+  MobType: MSO_Starfish
+  Worlds: world
+  Chance: 0.3
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+  
+
+RandomCatfish:
+  MobType: MSO_Catfish
+  Worlds: world
+  Chance: 0.15
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomLobster:
+  MobType: MSO_Lobster
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomLobster2:
+  MobType: MSO_Lobster_2
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomSeabass:
+  MobType: MSO_Seabass
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomSpiderCrab:
+  MobType: MSO_SpiderCrab
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  
+
+RandomManatee:
+  MobType: MSO_Manatee
+  Worlds: world
+  Chance: 0.07
+  Priority: 1
+  Action: ADD
+  PositionType: SEA
+  

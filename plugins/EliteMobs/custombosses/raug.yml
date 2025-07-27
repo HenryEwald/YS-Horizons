@@ -1,0 +1,10 @@
+isEnabled: true
+entityType: SILVERFISH
+name: $reinforcementLevel &4Raug
+level: dynamic
+healthMultiplier: 0.1
+damageMultiplier: 0.1
+trails:
+- SMOKE_LARGE
+onSpawnBlockStates: []
+onRemoveBlockStates: []

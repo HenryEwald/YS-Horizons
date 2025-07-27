@@ -1,0 +1,39 @@
+glavenus:
+  Type: ZOMBIE
+  Display: '&c&l斩龙'
+  Faction: 兽龙种
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 1 players
+  - 2 monsters
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.3
+    FollowRange: 30
+    KnockbackResistance: 0.8
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  BossBar:
+    Enabled: true
+    Title: '&c&lGlavenus'
+    Range: 40
+    Color: RED
+    Style: SEGMENTED_10
+  Skills:
+  - effect:particles{p=block_crack;m=orange_stained_glass_pane;amount=15;speed=0.25;hs=2;vs=2} @origin{y=2} ~onDamaged
+  - effect:sound{s=entity.ender_dragon.hurt;v=3;p=1} @self ~onDamaged
+  - effect:particles{p=reddust;color=#F56A31;amount=10;hs=1;vs=1} @ModelPart{mid=glavenus;part=tailblade} ~onTimer:20
+  - randomskill{s=glavenus_rightslash,glavenus_leftsmash,glavenus_jumpsmash,glavenus_bite,glavenus_roundhouse,glavenus_swingtail,glavenus_roar;sync=true} @self ~onTimer:80
+  - skill{s=glavenus_death} @self ~onDeath
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - state{s=idle;r=false} @self ~onSpawn
+  - state{s=walk;r=false} @self ~onSpawn
+  - model{mid=glavenus;n=false;tint=false} @self ~onSpawn

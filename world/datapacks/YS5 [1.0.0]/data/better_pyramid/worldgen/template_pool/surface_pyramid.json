@@ -1,0 +1,15 @@
+{
+    "name": "better_pyramid:surface_pyramid",
+    "fallback": "minecraft:empty",
+    "elements": [
+      {
+        "weight": 10,
+        "element": {
+          "element_type": "minecraft:single_pool_element",
+          "location": "better_pyramid:surface_pyramid",
+          "projection": "rigid",
+          "processors": "minecraft:empty"
+        }
+      }
+    ]
+}

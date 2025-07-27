@@ -1,0 +1,37 @@
+isEnabled: false
+name: '&2[lvl 070] &6The Colosseum'
+dungeonLocationType: WORLD
+customInfo:
+- '&fFeaturing the first true World boss, first'
+- '&fmulti-phased battle, first mounted boss,'
+- '&ffirst disguised boss... a truly epic fight!'
+- '&6Credits: MagmaGuy & Maldini'
+relativeBossLocations:
+- colosseum_tier_70_boss_p1.yml:-0.5,-1.5,47.5
+- colosseum_tier_70_gladiator.yml:5.5,-7.5,22.5
+- colosseum_tier_70_gladiator.yml:1.5,-7.5,22.5
+- colosseum_tier_70_gladiator.yml:0.5,-7.5,30.5
+- colosseum_tier_70_gladiator.yml:-5.5,-7.5,41.5
+- colosseum_tier_70_gladiator.yml:1.5,-7.5,41.5
+- colosseum_tier_70_gladiator.yml:-11.5,-7.5,41.5
+- colosseum_tier_70_gladiator.yml:-14.5,-7.5,23.5
+- colosseum_tier_70_gladiator.yml:-30.5,-7.5,31.5
+- colosseum_tier_70_gladiator.yml:-30.5,-7.5,31.5
+relativeTreasureChestLocations: []
+downloadLink: https://discord.gg/9f5QSka
+dungeonSizeCategory: LAIR
+schematicName: em_colosseum.schem
+environment: NORMAL
+protect: true
+defaultSchematicRotation: SOUTH
+playerInfo: |-
+  Difficulty: &cHard
+  $bossCount bosses, from level $lowestTier to $highestTier
+  &cA true challenge for big groups of players!
+regionEnterMessage: '&8[EM] &6Champions and challengers prepare! &eProve your worth
+  against the most mighty of foes!'
+regionLeaveMessage: '&8[EM] &6Farewell traveller! &eReturn soon to show your might
+  once more!'
+teleportLocationOffset: 0,0,0,0,0
+contentType: SCHEMATIC_DUNGEON
+dungeonConfigFolderName: the_colosseum

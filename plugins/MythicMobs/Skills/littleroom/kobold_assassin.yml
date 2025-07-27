@@ -1,0 +1,643 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+koboldSWIM:
+  Cooldown: 2
+  Conditions:
+  - inblock{b=WATER} true
+  Skills:
+  - setspeed{speed=30;type=walking} @self
+  - setstance{stance=swim} @self
+  - defaultstate{m=kobold_assassin;t=walk;s=swim} @self
+  - defaultstate{m=kobold_assassin;t=idle;s=swim} @self
+
+koboldNOSWIM:
+  Conditions:
+  - inblock{b=WATER} false
+  - onground true
+  - stance swim true
+  Skills:
+  - setspeed{speed=2;type=walking} @self
+  - setstance{stance=ground} @self
+  - defaultstate{m=kobold_assassin;t=walk;s=walk} @self
+  - defaultstate{m=kobold_assassin;t=idle;s=idle} @self
+  - effect:particles{particle=falling_water;amount=4;hs=.25;vs=.25;y=.1;repeat=6;repeatInterval=5} @self
+  
+
+koboldMELEE1sync:
+  Skills:
+  - CancelEvent
+  - skill{s=koboldMELEE1} @self
+  
+koboldMELEE1:
+  Cooldown: 1
+  Conditions:
+  #- onground true  
+  - offgcd true
+  - targetwithin{d=6}
+  Skills:
+  - skill{s=koboldassassinswingsound} @self
+  - skill{s=koboldVIS} @self
+  - gcd{ticks=10} @self
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin_parts;newpart=left_swipe} @self
+  - setspeed{speed=0;type=walking} @self
+  - state{s=melee1} @self
+  - lunge{velocity=1;velocityY=-1} @TargetLocation
+  - delay 5
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin;newpart=left_hand} @self
+  - totem{ch=5;oH=koboldMELEEDamage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - delay 5
+  - setspeed{speed=2;type=walking} @self
+  - skill{s=koboldMELEE2} @self .75
+  - skill{s=koboldINVIS} @self
+  
+koboldMELEE2:
+  Conditions:
+  #- onground true  
+  - targetwithin{d=6}
+  Skills:
+  - delay 1
+  - skill{s=koboldassassinswingsound} @self
+  - skill{s=koboldVIS} @self
+  - gcd{ticks=10} @self
+  - setspeed{speed=0;type=walking} @self
+  - state{s=melee1_2} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin_parts;newpart=right_swipe} @self
+  - lunge{velocity=1;velocityY=-1} @TargetLocation
+  - delay 5
+  - totem{ch=5;oH=koboldMELEEDamage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin;newpart=right_hand} @self
+  - delay 5
+  - setspeed{speed=2;type=walking} @self
+  - skill{s=koboldMELEE3} @self .25
+  - skill{s=koboldINVIS} @self
+  
+koboldMELEE3:
+  Conditions:
+  #- onground true  
+  - targetwithin{d=6}
+  Skills:
+  - delay 1
+  - skill{s=koboldassassinswingsound} @self
+  - skill{s=koboldVIS} @self
+  - gcd{ticks=20} @self
+  - setspeed{speed=0;type=walking} @self
+  - state{s=melee1_3} @self
+  - lunge{velocity=.25;velocityY=-1;repeat=20;repeatInterval=1} @TargetLocation
+  - delay 5
+  - skill{s=koboldassassinswingsound} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin_parts;newpart=right_swipe} @self
+  - totem{ch=5;oH=koboldMELEEDamage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - delay 10
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin;newpart=right_hand} @self
+  - totem{ch=5;oH=koboldMELEEDamage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - delay 5
+  - setspeed{speed=2;type=walking} @self
+  - skill{s=koboldINVIS} @self
+
+koboldMELEEDamage:
+  Skills:
+  - skill{s=koboldassassinimpactsound}
+  - damage{a=5}
+  - skill{s=koboldBLOOD}
+
+koboldBLOOD:
+  TargetConditions:
+  - isblocking false
+  Skills:
+  - effect:particles{particle=block;m=redstone_block;amount=25;hS=.25;vS=.25;y=1.25}
+
+koboldMELEE4sync:
+  Skills:
+  - CancelEvent
+  - skill{s=koboldMELEE4} @self
+  
+koboldMELEE4:
+  Cooldown: 1
+  Conditions:
+  - onground true  
+  - offgcd true
+  - targetwithin{d=6}
+  Skills:
+  - skill{s=koboldassassinswingsound} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin_parts;newpart=right_swipe} @self
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin_parts;newpart=left_swipe} @self
+  - skill{s=koboldVIS} @self
+  - totem{ch=5;oH=koboldMELEE4Damage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - gcd{ticks=10} @self
+  - setspeed{speed=0;type=walking} @self
+  - state{s=melee2} @self
+  - lunge{velocity=1;velocityY=-1} @TargetLocation
+  - delay 5
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin;newpart=right_hand} @self
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin;newpart=left_hand} @self
+  - delay 5
+  - setspeed{speed=2;type=walking} @self
+  - skill{s=koboldMELEE5} @self .75
+  - skill{s=koboldINVIS} @self
+  
+koboldMELEE5:
+  Conditions:
+  - onground true  
+  - offgcd true
+  - targetwithin{d=6}
+  Skills:
+  - delay 1
+  - skill{s=koboldassassinswingsound} @self
+  - skill{s=koboldVIS} @self
+  - gcd{ticks=15} @self
+  - setspeed{speed=0;type=walking} @self
+  - state{s=melee2_2} @self
+  - lunge{velocity=1;velocityY=-1} @TargetLocation
+  - delay 2
+  - totem{ch=5;oH=koboldMELEE5Damage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - delay 5
+  - setspeed{speed=2;type=walking} @self
+  - skill{s=koboldINVIS} @self
+
+
+koboldMELEE4Damage:
+  Skills:
+  - skill{s=koboldassassinimpactsound}
+  - skill{s=koboldBLOOD}
+  - damage{a=5}
+  - throw{velocity=0;velocityY=8}
+  
+koboldMELEE5Damage:
+  Skills:
+  - skill{s=koboldassassinimpactsound}
+  - skill{s=koboldBLOOD}
+  - damage{a=5}
+  - throw{velocity=0;velocityY=-10}
+  
+koboldassassinDODGE:
+  Cooldown: 1
+  LegacyConditions:
+  - mobscore darkmode;0
+  Conditions:
+  - onground true  
+  #- offgcd true
+  - stance swim false
+  Skills:
+  - CancelEvent
+  - holo{t=MISS!;time=20} @selflocation{y=1.6}
+  - gcd{ticks=25} @self
+  - setspeed{speed=0;type=walking} @self
+  - delay 1
+  - state{s=dodge_backflip} @self
+  - delay 5
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.jump;v=5;sc=HOSTILE} @self
+  - lunge{velocity=1;velocityY=.5} @Forward{f=-2}
+  - delay 10
+  - skill{s=koboldassassinlandsound}
+  - delay 10
+  - setspeed{speed=2;type=walking} @self
+  
+koboldassassinROLL:
+  Cooldown: 3
+  LegacyConditions:
+  - mobscore darkmode;0
+  Conditions:
+  - stance swim false
+  - incombat true
+  - onground true
+  - offgcd true
+  - targetwithin{d=8} false
+  Skills:
+  - gcd{ticks=15}
+  - setspeed{speed=0;type=walking} @self
+  - state{s=forward_roll} @self
+  - delay 5
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.roll;v=5;sc=HOSTILE} @self
+  - effect:particles{particle=campfire_cosy_smoke;amount=2;hs=.25;vs=0;y=.1;repeat=15;repeatInterval=1} @self
+  - lunge{velocity=.4;velocityY=-.25;repeat=15;repeatInterval=1} @Forward{f=1;y=1}
+  - delay 20
+  - setspeed{speed=2;type=walking} @self
+  
+koboldassassinLEAP:
+  Cooldown: 3
+  LegacyConditions:
+  - mobscore darkmode;0
+  Conditions:
+  - stance swim false
+  - incombat true
+  - onground true
+  - offgcd true
+  - targetwithin{d=14} false
+  Skills:
+  - gcd{ticks=20}
+  - state{s=leap} @self
+  - delay 5
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.jump;v=5;sc=HOSTILE} @self
+  - lunge{velocity=3;velocityY=.25} @TargetLocation
+  
+koboldassassinINAIR:
+  Cooldown: 5
+  Conditions:
+  - altitude{h=>3} true
+  Skills:
+  - setspeed{speed=0;type=walking} @self
+  - setstance{stance=inair} @self
+  - defaultstate{m=kobold_assassin;t=walk;s=leap_air} @self
+  - defaultstate{m=kobold_assassin;t=idle;s=leap_air} @self
+  - delay 20
+  - setspeed{speed=2;type=walking} @self
+  
+koboldassassinLAND:
+  Cooldown: 5
+  Conditions:
+  - stance inair true
+  - onground true
+  Skills:
+  - skill{s=koboldassassinlandsound}
+  - gcd{ticks=10}
+  - setstance{stance=ground} @self
+  - state{s=leap_land} @self
+  - delay 10
+  - defaultstate{m=kobold_assassin;t=walk;s=walk} @self
+  - defaultstate{m=kobold_assassin;t=idle;s=idle} @self
+  
+koboldassassinCROSSBOW:
+  Cooldown: 5
+  LegacyConditions:
+  - mobscore darkmode;0
+  TargetConditions:
+  - lineofsight true
+  Conditions:
+  - stance swim false
+  - offgcd true
+  - targetwithin{d=8} false
+  Skills:
+  - gcd{ticks=50}
+  - sound{s=minecraft:item.crossbow.loading_start;v=5;sc=HOSTILE} @self
+  - setspeed{speed=0;type=walking;repeat=40;repeatInterval=1} @self
+  - state{s=crossbow} @self
+  - delay 5
+  - ChangePart{model=kobold_assassin;part=xbow;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin_parts;newpart=crossbow} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin_parts;newpart=empty_right} @self
+  - delay 18
+  - sound{s=minecraft:item.crossbow.shoot;v=5;sc=HOSTILE} @self
+  #- ChangePart{model=koboldassassin;part=lefthand;newmodel=koboldassassin_bits;newpart=crossbow_unloaded} @self
+  - projectile{bulletType=ARROW;onTick=koboldassassinCROSSBOWTICK;onHit=koboldassassinCROSSBOWHIT;v=50;i=1;hR=.5;vR=.5;syo=2;sfo=1;hnp=true}
+  - delay 15
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin_parts;newpart=empty_left} @self
+  - ChangePart{model=kobold_assassin;part=xbow;newmodel=kobold_assassin;newpart=xbow} @self
+  - delay 15
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin;newpart=left_hand} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin;newpart=right_hand} @self
+  - setspeed{speed=2;type=walking} @self
+  
+koboldassassinCROSSBOWTICK:
+  Skills:
+  - effect:particles{p=dragon_breath;amount=3;speed=0;hS=0.2;vS=0.2} @origin
+
+koboldassassinCROSSBOWHIT:
+  Skills:
+  - skill{s=koboldassassinimpactsound}
+  - damage{a=5}
+  - skill{s=koboldBLOOD}
+  
+koboldLEAPATTACK:
+  Cooldown: 12
+  Conditions:
+  - stance swim false
+  - incombat true
+  - onground true
+  - offgcd true
+  - targetwithin{d=10}
+  - targetnotwithin{d=7}
+  - offgcd
+  Skills:
+  - gcd{ticks=40}
+  - skill{s=koboldVIS} @self
+  - state{s=leap_attack} @self
+  - setspeed{speed=0;type=walking} @self
+  - delay 3
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.jump;v=5;sc=HOSTILE} @self
+  - lunge{velocity=.5;velocityY=-1;repeat=20;repeatInterval=1} @Forward
+  - delay 2
+  - throw{velocity=7;velocityY=0;repeat=3;repeatInterval=5} @LivingEntitiesInRadius{r=3}
+  - totem{ch=5;oH=koboldMELEEDamage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - delay 5
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin_parts;newpart=left_swipe} @self
+  - delay 5
+  - totem{ch=5;oH=koboldMELEEDamage;int=1;hR=2;md=10;hnp=true} @Forward{f=0.5}
+  - delay 10
+  - skill{s=koboldassassinlandsound}
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin;newpart=left_hand} @self
+  - skill{s=koboldINVIS} @self
+  - delay 15
+  - setspeed{speed=2;type=walking} @self
+  
+  
+koboldFLASHBANG:
+  Cooldown: 15
+  LegacyConditions:
+  - mobscore darkmode;0
+  Conditions:
+  - stance swim false
+  - offgcd true
+  - incombat true
+  - onground true
+  - targetwithin{d=8}
+  Skills:
+  - gcd{ticks=40}
+  - setspeed{speed=0;type=walking} @self
+  - state{s=flash_bang} @self
+  - delay 12  
+  - potion{type=BLINDNESS;duration=60;level=4} @PIR{r=8}
+  - effect:particles{particle=flash;amount=1} @self
+  - delay 1
+  - setspeed{speed=2;type=walking} @self
+  - teleport{spreadh=5;spreadv=0} @Ring{radius=16;points=16;yOffset=1}
+  
+koboldDARKMODE:
+  Cooldown: 120
+  Conditions:
+  - stance swim false
+  - offgcd true
+  - incombat true
+  - onground true
+  LegacyConditions:
+  - mobscore darkmode;0
+  Skills:
+  - setmobscore{o=darkmode;v=1}
+  - gcd{ticks=40}
+  - setAI{ai=false} @self
+  - onDamaged{auraName=DARKMODE;onHit=koboldDARKMODEmiss;duration=280;cE=true} @self ~onTimer:120
+  - state{s=going_dark} @self
+  - delay 25
+  - ChangePart{model=kobold_assassin;part=hood;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_horn;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_horn;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_ear;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_ear;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=head;newmodel=kobold_assassin_parts;newpart=hood2} @self
+  - delay 10
+  - skill{s=koboldINVIS} @self
+  - skill{s=koboldDARKCLOUD;repeat=120;repeatInterval=2} @self
+  - delay 5
+  - setAI{ai=true} @self
+  - delay 240
+  - skill{s=koboldDARKMODEEND} @self
+
+koboldDARKMODEmiss:
+  Cooldown: 1
+  Skills:
+  - holo{t=MISS!;time=20} @selflocation{y=1.6}
+
+koboldDARKMODEsound:
+  Cooldown: 1
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.poof;v=5;sc=HOSTILE} @self
+  
+koboldDARKCLOUD:
+  LegacyConditions:
+  - mobscore darkmode;1
+  Skills:
+  - effect:particles{particle=squid_ink;amount=25;hs=1;vs=.5} @self
+  
+  
+koboldINVIS:
+  LegacyConditions:
+  - mobscore darkmode;1
+  Skills:
+  - skill{s=koboldDARKMODEsound} @self
+  - setspeed{speed=2;type=walking} @self
+  - effect:particles{particle=squid_ink;amount=150;hs=1;vs=2} @self
+  - ChangePart{model=kobold_assassin;part=body;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_leg;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_shin;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_foot;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_leg;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_shin;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_foot;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_arm;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_forearm;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_arm;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_forearm;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=head;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=jaw;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_brow;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_brow;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=tail1;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=tail2;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=tail3;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=tail4;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=xbow;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=scarf1;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=scarf2;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=scarf3;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=scarf4;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=scarf5;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=hood;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_horn;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_horn;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_ear;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_ear;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=head;newmodel=kobold_assassin_parts;newpart=empty} @self
+  
+koboldVIS:
+  LegacyConditions:
+  - mobscore darkmode;1
+  Skills:
+  - skill{s=koboldDARKMODEsound} @self
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.poof;v=5;sc=HOSTILE} @self
+  - effect:particles{particle=squid_ink;amount=150;hs=1;vs=2} @self
+  - ChangePart{model=kobold_assassin;part=body;newmodel=kobold_assassin;newpart=body} @self
+  - ChangePart{model=kobold_assassin;part=left_leg;newmodel=kobold_assassin;newpart=left_leg} @self
+  - ChangePart{model=kobold_assassin;part=left_shin;newmodel=kobold_assassin;newpart=left_shin} @self
+  - ChangePart{model=kobold_assassin;part=left_foot;newmodel=kobold_assassin;newpart=left_foot} @self
+  - ChangePart{model=kobold_assassin;part=right_leg;newmodel=kobold_assassin;newpart=right_leg} @self
+  - ChangePart{model=kobold_assassin;part=right_shin;newmodel=kobold_assassin;newpart=right_shin} @self
+  - ChangePart{model=kobold_assassin;part=right_foot;newmodel=kobold_assassin;newpart=right_foot} @self
+  - ChangePart{model=kobold_assassin;part=left_arm;newmodel=kobold_assassin;newpart=left_arm} @self
+  - ChangePart{model=kobold_assassin;part=left_forearm;newmodel=kobold_assassin;newpart=left_forearm} @self
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin;newpart=left_hand} @self
+  - ChangePart{model=kobold_assassin;part=right_arm;newmodel=kobold_assassin;newpart=right_arm} @self
+  - ChangePart{model=kobold_assassin;part=right_forearm;newmodel=kobold_assassin;newpart=right_forearm} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin;newpart=right_hand} @self
+  - ChangePart{model=kobold_assassin;part=head;newmodel=kobold_assassin_parts;newpart=hood2} @self
+  - ChangePart{model=kobold_assassin;part=jaw;newmodel=kobold_assassin;newpart=jaw} @self
+  - ChangePart{model=kobold_assassin;part=left_brow;newmodel=kobold_assassin;newpart=left_brow} @self
+  - ChangePart{model=kobold_assassin;part=right_brow;newmodel=kobold_assassin;newpart=right_brow} @self
+  - ChangePart{model=kobold_assassin;part=tail1;newmodel=kobold_assassin;newpart=tail1} @self
+  - ChangePart{model=kobold_assassin;part=tail2;newmodel=kobold_assassin;newpart=tail2} @self
+  - ChangePart{model=kobold_assassin;part=tail3;newmodel=kobold_assassin;newpart=tail3} @self
+  - ChangePart{model=kobold_assassin;part=tail4;newmodel=kobold_assassin;newpart=tail4} @self
+  - ChangePart{model=kobold_assassin;part=xbow;newmodel=kobold_assassin;newpart=xbow} @self
+  - ChangePart{model=kobold_assassin;part=scarf1;newmodel=kobold_assassin;newpart=scarf1} @self
+  - ChangePart{model=kobold_assassin;part=scarf2;newmodel=kobold_assassin;newpart=scarf2} @self
+  - ChangePart{model=kobold_assassin;part=scarf3;newmodel=kobold_assassin;newpart=scarf3} @self
+  - ChangePart{model=kobold_assassin;part=scarf4;newmodel=kobold_assassin;newpart=scarf4} @self
+  - ChangePart{model=kobold_assassin;part=scarf5;newmodel=kobold_assassin;newpart=scarf5} @self
+  
+koboldDARKMODEEND:
+  LegacyConditions:
+  - mobscore darkmode;1
+  Skills:
+  - skill{s=koboldDARKMODEsound} @self
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.poof;v=5;sc=HOSTILE} @self
+  - setmobscore{o=darkmode;v=0}
+  - effect:particles{particle=squid_ink;amount=150;hs=1;vs=2} @self
+  - ChangePart{model=kobold_assassin;part=body;newmodel=kobold_assassin;newpart=body} @self
+  - ChangePart{model=kobold_assassin;part=left_leg;newmodel=kobold_assassin;newpart=left_leg} @self
+  - ChangePart{model=kobold_assassin;part=left_shin;newmodel=kobold_assassin;newpart=left_shin} @self
+  - ChangePart{model=kobold_assassin;part=left_foot;newmodel=kobold_assassin;newpart=left_foot} @self
+  - ChangePart{model=kobold_assassin;part=right_leg;newmodel=kobold_assassin;newpart=right_leg} @self
+  - ChangePart{model=kobold_assassin;part=right_shin;newmodel=kobold_assassin;newpart=right_shin} @self
+  - ChangePart{model=kobold_assassin;part=right_foot;newmodel=kobold_assassin;newpart=right_foot} @self
+  - ChangePart{model=kobold_assassin;part=left_arm;newmodel=kobold_assassin;newpart=left_arm} @self
+  - ChangePart{model=kobold_assassin;part=left_forearm;newmodel=kobold_assassin;newpart=left_forearm} @self
+  - ChangePart{model=kobold_assassin;part=left_hand;newmodel=kobold_assassin;newpart=left_hand} @self
+  - ChangePart{model=kobold_assassin;part=right_arm;newmodel=kobold_assassin;newpart=right_arm} @self
+  - ChangePart{model=kobold_assassin;part=right_forearm;newmodel=kobold_assassin;newpart=right_forearm} @self
+  - ChangePart{model=kobold_assassin;part=right_hand;newmodel=kobold_assassin;newpart=right_hand} @self
+  - ChangePart{model=kobold_assassin;part=head;newmodel=kobold_assassin;newpart=head} @self
+  - ChangePart{model=kobold_assassin;part=jaw;newmodel=kobold_assassin;newpart=jaw} @self
+  - ChangePart{model=kobold_assassin;part=left_brow;newmodel=kobold_assassin;newpart=left_brow} @self
+  - ChangePart{model=kobold_assassin;part=right_brow;newmodel=kobold_assassin;newpart=right_brow} @self
+  - ChangePart{model=kobold_assassin;part=tail1;newmodel=kobold_assassin;newpart=tail1} @self
+  - ChangePart{model=kobold_assassin;part=tail2;newmodel=kobold_assassin;newpart=tail2} @self
+  - ChangePart{model=kobold_assassin;part=tail3;newmodel=kobold_assassin;newpart=tail3} @self
+  - ChangePart{model=kobold_assassin;part=tail4;newmodel=kobold_assassin;newpart=tail4} @self
+  - ChangePart{model=kobold_assassin;part=xbow;newmodel=kobold_assassin;newpart=xbow} @self
+  - ChangePart{model=kobold_assassin;part=scarf1;newmodel=kobold_assassin;newpart=scarf1} @self
+  - ChangePart{model=kobold_assassin;part=scarf2;newmodel=kobold_assassin;newpart=scarf2} @self
+  - ChangePart{model=kobold_assassin;part=scarf3;newmodel=kobold_assassin;newpart=scarf3} @self
+  - ChangePart{model=kobold_assassin;part=scarf4;newmodel=kobold_assassin;newpart=scarf4} @self
+  - ChangePart{model=kobold_assassin;part=scarf5;newmodel=kobold_assassin;newpart=scarf5} @self
+  - ChangePart{model=kobold_assassin;part=hood;newmodel=kobold_assassin;newpart=hood} @self
+  - ChangePart{model=kobold_assassin;part=right_horn;newmodel=kobold_assassin;newpart=right_horn} @self
+  - ChangePart{model=kobold_assassin;part=left_horn;newmodel=kobold_assassin;newpart=left_horn} @self
+  - ChangePart{model=kobold_assassin;part=right_ear;newmodel=kobold_assassin;newpart=right_ear} @self
+  - ChangePart{model=kobold_assassin;part=left_ear;newmodel=kobold_assassin;newpart=left_ear} @self
+  - ChangePart{model=kobold_assassin;part=head;newmodel=kobold_assassin;newpart=head} @self
+  - setspeed{speed=2;type=walking} @self
+  
+  
+koboldSTUN:
+  Cooldown: 3
+  Conditions:
+  - damagecause{cause=BLOCK_EXPLOSION} true
+  Skills:
+  - skill{s=koboldVIS} @self
+  - gcd{ticks=30} @self
+  - state{s=stun} @self
+  - setAI{ai=false} @self
+  - delay 25
+  - setAI{ai=true} @self
+  - skill{s=koboldINVIS} @self
+  
+koboldDEATH:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.death;v=5;sc=HOSTILE} @self
+  - delay 15
+  - ChangePart{model=kobold_assassin;part=hood;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_horn;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_horn;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=right_ear;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=left_ear;newmodel=kobold_assassin_parts;newpart=empty} @self
+  - ChangePart{model=kobold_assassin;part=head;newmodel=kobold_assassin_parts;newpart=hood2} @self
+  - delay 35
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.poof;v=5;sc=HOSTILE} @self
+  - effect:particles{particle=squid_ink;amount=150;hs=1;vs=2} @self
+  - model{mid=kobold_assassin;r=true} @self
+ 
+
+koboldTRAPLIFESPAN:
+  Skills:
+  - effect:particles{particle=poof;amount=25;hs=.5;vs=.5} @self
+  - totem{ch=1;oH=koboldTRAPLIFESPANDamage;int=1;hR=1;md=10;hnp=true} @self
+  - delay 50
+  - summon{t=koboldassassin;r=4} @self
+  
+koboldTRAPLIFESPANDamage:
+  Skills:
+  - stun{d=50}
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.trap;v=5;sc=HOSTILE}
+  - delay 10
+  - effect:particles{particle=block;m=redstone_block;amount=25;hS=.25;vS=.25;y=0.25} 
+  - delay 50
+  - effect:particles{particle=poof;amount=25;hs=.5;vs=.5} @self
+  - remove @self
+    
+
+    
+koboldBAIT:
+  Cooldown: 5000
+  Skills:
+  - projectile{bulletType=ITEM;material=diamond;oH=koboldBAITgrab;v=0.01;i=1;hR=0;vR=0;bulletSpin=8;syo=0.5;sfo=0;d=100000} 
+  
+koboldBAITgrab:
+  Cooldown: 1
+  Skills:
+  - summon{t=koboldTRAP} @pir{r=1;limit=1}
+  - remove @self
+  
+
+#### SOUNDS ####
+
+koboldassassinswingsound:
+  Skills:
+  - randomskill{skills=koboldassassinswing1,koboldassassinswing2,koboldassassinswing3,koboldassassinswing4,koboldassassinswing5} @self
+
+koboldassassinswing1:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.swing1;v=5;sc=HOSTILE} @self
+  
+koboldassassinswing2:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.swing2;v=5;sc=HOSTILE} @self
+  
+koboldassassinswing3:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.swing3;v=5;sc=HOSTILE} @self
+  
+koboldassassinswing4:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.swing4;v=5;sc=HOSTILE} @self
+  
+koboldassassinswing5:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.swing5;v=5;sc=HOSTILE} @self
+
+koboldassassinimpactsound:
+  Skills:
+  - randomskill{skills=koboldassassinimpact1,koboldassassinimpact2,koboldassassinimpact3,koboldassassinimpact4} @self
+
+koboldassassinimpact1:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.impact1;v=5;sc=HOSTILE} @self
+  
+koboldassassinimpact2:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.impact2;v=5;sc=HOSTILE} @self
+  
+koboldassassinimpact3:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.impact3;v=5;sc=HOSTILE} @self
+  
+koboldassassinimpact4:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.impact4;v=5;sc=HOSTILE} @self
+  
+koboldassassinlandsound:
+  Skills:
+  - randomskill{skills=koboldassassinland1,koboldassassinland2,koboldassassinland3} @self
+
+koboldassassinland1:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.land1;v=5;sc=HOSTILE} @self
+  
+koboldassassinland2:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.land2;v=5;sc=HOSTILE} @self
+  
+koboldassassinland3:
+  Skills:
+  - sound{s=littleroom_koboldassassin:littleroom.koboldassassin.land3;v=5;sc=HOSTILE} @self

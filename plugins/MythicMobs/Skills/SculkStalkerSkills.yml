@@ -1,0 +1,36 @@
+SculkStalkerInit:
+  Skills:
+  - CancelEvent
+  - skill{s=SculkStalkerSlam} @self
+
+SculkStalkerSlam:
+  Cooldown: 3.05
+  Skills:
+  - state{s=GroundSlam;li=3;lo=2} @self
+  - stun{d=25} @self
+  - delay 25
+  - sound{s=custom.sculkstalker.groundslam} @self
+  - totem{ch=1;onStart=SculkStalkerSlamDamage;int=1;hR=3;md=1} @Forward{f=0.5}
+  - effect:particletornado{p=sculk_soul;cp=largeexplode;mr=1;h=2;i=4;d=20;rs=1;sh=1;cs=0;ca=1;chs=0.1;cvs=0.1;cps=1;cyo=2} @Forward{f=0.5} ~onTimer:20
+  - stun{d=22} @self
+  - delay 20
+  - skill{s=ChainMissile} @target ~onTimer:200
+  - delay 5
+  - skill{s=ChainMissile} @target ~onTimer:200
+  - delay 5
+  - skill{s=ChainMissile} @target ~onTimer:200
+  
+ChainMissile:
+  Skills:
+  - ChainMissile{bounces=10;r=10;in=25;oT=CM_oT;oH=CM_oH;i=1;md=200;mr=30;hnp=true;hp=true;hR=0.2;vR=1;sB=True;sE=false;tyo=1;hs=true;hfs=1;v=7;syo=1}
+
+SculkStalkerSlamDamage:
+  Skills:
+  - damage{amount=3} @EntitiesNearOrigin{r=2}
+
+CM_oT:
+  Skills:
+  - effect:particles{particle=sculk_charge_pop;a=1;hs=0;vs=0;s=0;y=0} @origin
+CM_oH:
+  Skills:
+  - damage{a=1;pkb=true}

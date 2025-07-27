@@ -1,0 +1,17 @@
+{
+    "values":
+        [
+            "minecraft:end_barrens",
+            "minecraft:end_highlands",
+            "minecraft:end_midlands",
+            "minecraft:small_end_islands",
+            "minecraft:the_end",
+            "far_end:ashfall_delta",
+            "far_end:warped_marsh",
+            "far_end:the_nest",
+            "fokastudio:the_hallow",
+            "nullscape:crystal_peaks",
+            "nullscape:shadowlands"
+
+        ]   
+}

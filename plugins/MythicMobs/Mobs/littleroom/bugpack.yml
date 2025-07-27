@@ -1,0 +1,557 @@
+#########################################################
+## Developed by Little Room, patreon.com/littleroomdev ##
+#########################################################
+
+
+bugcatcherNPC:
+  Type: IRON_GOLEM
+  Display: 'Bugcatcher'
+  Modules:
+    ThreatTable: true
+  Options:
+    Invincible: true
+    #FollowRange: 2
+  AITargetSelectors:
+  - clear
+  - SpecificFaction BUG
+  AIGoalSelectors:
+  - clear
+  - meleeattack
+  - lookatplayers
+  Skills:
+  - setstance{stance=alone} @self ~onSpawn
+  - model{mid=bug_catcher;d=false;i=true;step=1} @self ~onSpawn
+  - model{mid=bug_catcher;d=false;i=true;step=1} @self ~onLoad
+  - bindhitbox{m=bug_catcher;p=b_2ndhitbox;t=CAT} @self ~onSpawn
+  - skill{s=bugcatcherHUNT} @self ~onEnterCombat
+  - skill{s=bugcatcherDROPHUNT} @self ~onDropCombat
+  - skill{s=bugcatcherCATCHsync;sync=true} @self ~onAttack
+  - skill{s=bugcatcherGREET} @self ~onTimer:5
+  - skill{s=bugcatcherALONE} @self ~onTimer:5
+  - skill{s=bugcatcherPLAYER} @self ~onTimer:20
+  - skill{s=bugcatcherTRADE} @self ~onInteract
+  - bindhitbox{m=bug_catcher;p=b_2ndhitbox;t=bugcatcherNPChitbox} @self ~onSpawn
+  
+bugcatcherNPChitbox:
+  Type: VILLAGER
+  Skills:
+  - effect:particles{particle=flame;amount=1;speed=.1} @self ~onTimer:1
+
+butterfly:
+  Type: BEE
+  Display: ' Butterfly'  
+  Health: 1
+  Faction: BUG
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - fleeplayers
+  Options:
+    Collidable: true
+    Silent: true
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - randomskill{skills=butterflyred,butterflywhite,butterflyyellow,butterflyred,butterflyblue,butterflyindigo,butterflyviolet} @self ~onSpawn
+  - skill{s=butterflyrandomflap} @self ~onTimer:5 .5
+  - model{mid=butterfly;d=false;i=true} @self ~onSpawn
+  - model{mid=butterfly;d=false;i=true} @self ~onLoad
+  
+moth_atlas:
+  Type: BEE
+  Display: 'n Atlas Moth'  
+  Health: 1
+  Faction: BUG
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - fleeplayers
+  Options:
+    Collidable: true
+    Silent: true
+    MovementSpeed: .01
+    HasNectar: true
+  Skills:
+  - effect:particles{particle=falling_nectar;amount=2;hs=.25;vs=.25} @self ~onTimer:10
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - model{mid=moth_atlas;d=false;i=true} @self ~onSpawn
+  - model{mid=moth_atlas;d=false;i=true} @self ~onLoad
+  
+antpile:
+  Type: ARMOR_STAND
+  Options:
+    NoGravity: true
+    KnockbackResistance: 1
+  Skills:
+  - skill{s=antpilebreak_damaged} @self ~onDamaged
+  - skill{s=antpilebreak_prox} @self ~onTimer:1
+  - skill{s=antpilebreak_noblock} @selflocation{y=-.5} ~onTimer:1
+  - model{mid=ant_pile;d=false;i=true} @self ~onSpawn
+  - model{mid=ant_pile;d=false;i=true} @self ~onLoad
+  
+ant:
+  Type: SILVERFISH
+  Display: 'n Ant'  
+  Health: 5
+  Faction: BUG
+  AITargetSelectors:
+  - villagers
+  - players
+  - golems
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - model{mid=ant;d=false;i=true;step=1} @self ~onSpawn
+  - model{mid=ant;d=false;i=true;step=1} @self ~onLoad
+  
+tarantula:
+  Type: SILVERFISH
+  Display: ' Tarantula'  
+  Health: 5
+  Faction: BUG
+  AITargetSelectors:
+  - villagers
+  - players
+  - golems
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - model{mid=tarantula;d=false;i=true;step=1} @self ~onSpawn
+  - model{mid=tarantula;d=false;i=true;step=1} @self ~onLoad
+  
+
+dung_beetle:
+  Type: PIG
+  Display: ' Dung Beetle'  
+  Health: 5
+  Faction: BUG
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    MovementSpeed: .2
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - model{mid=dung_beetle;d=false;i=true;step=1} @self ~onSpawn
+  - model{mid=dung_beetle;d=false;i=true;step=1} @self ~onLoad
+  
+
+snail:
+  Type: PIG
+  Display: ' Snail'  
+  Health: 5
+  Faction: BUG
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    MovementSpeed: .1
+    Collidable: false
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - model{mid=snail;d=false;i=true;step=1} @self ~onSpawn
+  - model{mid=snail;d=false;i=true;step=1} @self ~onLoad
+
+
+praying_mantis:
+  Type: CHICKEN
+  Display: ' Praying Mantis'  
+  Health: 5
+  Faction: BUG
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  AIGoalSelectors:
+  - fleeplayers
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    MovementSpeed: .1
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - model{mid=praying_mantis;d=false;i=true;step=1} @self ~onSpawn
+  - model{mid=praying_mantis;d=false;i=true;step=1} @self ~onLoad
+  - skill{s=insectFLY} @pir{r=3} ~onTimer:1
+  - skill{s=insectAIR} @self ~onTimer:1
+  - skill{s=insectLAND} @self ~onTimer:1
+  
+ladybug:
+  Type: CHICKEN
+  Display: ' Ladybug'  
+  Health: 5
+  Faction: BUG
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  AIGoalSelectors:
+  - fleeplayers
+  Options:
+    Silent: true
+    PreventOtherDrops: true
+    PreventBlockInfection: true
+    MovementSpeed: .1
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - skill{s=insectFLY} @pir{r=3} ~onTimer:1
+  - skill{s=insectAIR} @self ~onTimer:1
+  - skill{s=insectLAND} @self ~onTimer:1
+  - model{mid=ladybug;d=false;i=true;step=1} @self ~onSpawn
+  - model{mid=ladybug;d=false;i=true;step=1} @self ~onLoad
+  
+firefly:
+  Type: VEX
+  Display: ' Firefly'  
+  Health: 1
+  Faction: BUG
+  DamageModifiers:
+  - ENTITY_ATTACK 0
+  - FIRE_TICK 0
+  AITargetSelectors:
+  - clear
+  AIGoalSelectors:
+  - fleeplayers
+  Equipment:
+  - lantern_invis HAND
+  Options:
+    Collidable: false
+    Despawn: true
+    Silent: true
+  AITargetSelectors:
+  - clear
+  Skills:
+  - skill{s=BUGPACKNET} @self ~onDamaged
+  - skill{s=fireflySPAWN} @self ~onSpawn
+  - potion{type=INVISIBILITY;duration=130;level=0;p=false} @self ~onTimer:120
+  - model{mid=firefly;d=false;i=false} @self ~onSpawn
+  - model{mid=firefly;d=false;i=false} @self ~onLoad
+  
+
+display_ant:
+  Type: ARMOR_STAND
+  Display: 'Ant Farm'
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_antEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=ant_farm;d=false;i=true} @self ~onSpawn
+  - model{mid=ant_farm;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+
+display_snail:
+  Type: ARMOR_STAND
+  Display: 'Snail Display'
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_snailEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=snail_display;d=false;i=true} @self ~onSpawn
+  - model{mid=snail_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  
+display_ladybug:
+  Type: ARMOR_STAND
+  Display: 'Ladybug Display'
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_ladybugEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=ladybug_display;d=false;i=true} @self ~onSpawn
+  - model{mid=ladybug_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  
+display_mantis:
+  Type: ARMOR_STAND
+  Display: 'Mantis Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_mantisEgg 1 1
+  Skills:
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=praying_mantis_display;d=false;i=true} @self ~onSpawn
+  - model{mid=praying_mantis_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFEEDcarn} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  
+display_tarantula:
+  Type: ARMOR_STAND
+  Display: 'Tarantula Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_tarantulaEgg 1 1
+  Skills:
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=tarantula_display;d=false;i=true} @self ~onSpawn
+  - model{mid=tarantula_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFEEDcarn} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  
+display_redbutterfly:
+  Type: ARMOR_STAND
+  Display: 'Red Butterfly Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_redbutterflyEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onLoad
+  - skill{s=butterflyrandomflap} @self ~onTimer:5 .5
+  - model{mid=butterfly_display;d=false;i=true} @self ~onSpawn
+  - model{mid=butterfly_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFIDGET} @self ~onTimer:60 .25
+  
+display_whitebutterfly:
+  Type: ARMOR_STAND
+  Display: 'White Butterfly Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_whitebutterflyEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onLoad
+  - skill{s=butterflyrandomflap} @self ~onTimer:5 .5
+  - model{mid=butterfly_display;d=false;i=true} @self ~onSpawn
+  - model{mid=butterfly_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFIDGET} @self ~onTimer:60 .25
+  
+display_yellowbutterfly:
+  Type: ARMOR_STAND
+  Display: 'Yellow Butterfly Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_yellowbutterflyEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onLoad
+  - skill{s=butterflyrandomflap} @self ~onTimer:5 .5
+  - model{mid=butterfly_display;d=false;i=true} @self ~onSpawn
+  - model{mid=butterfly_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFIDGET} @self ~onTimer:60 .25
+  
+display_bluebutterfly:
+  Type: ARMOR_STAND
+  Display: 'Blue Butterfly Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_bluebutterflyEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onLoad
+  - skill{s=butterflyrandomflap} @self ~onTimer:5 .5
+  - model{mid=butterfly_display;d=false;i=true} @self ~onSpawn
+  - model{mid=butterfly_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFIDGET} @self ~onTimer:60 .25
+  
+display_indigobutterfly:
+  Type: ARMOR_STAND
+  Display: 'Indigo Butterfly Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_indigobutterflyEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onLoad
+  - skill{s=butterflyrandomflap} @self ~onTimer:5 .5
+  - model{mid=butterfly_display;d=false;i=true} @self ~onSpawn
+  - model{mid=butterfly_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFIDGET} @self ~onTimer:60 .25
+  
+display_violetbutterfly:
+  Type: ARMOR_STAND
+  Display: 'Violet Butterfly Display'
+  Health: 25
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+  Drops:
+  - display_violetbutterflyEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onSpawn
+  - skill{s=display_butterflyspawn} @self ~onLoad
+  - skill{s=butterflyrandomflap} @self ~onTimer:5 .5
+  - model{mid=butterfly_display;d=false;i=true} @self ~onSpawn
+  - model{mid=butterfly_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  - skill{s=displayFIDGET} @self ~onTimer:60 .25
+  
+display_firefly:
+  Type: ARMOR_STAND
+  Display: 'Firefly Display'
+  Health: 5
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventBlockInfection: true
+  Drops:
+  - display_fireflyEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=display_firefly;d=false;i=true} @self ~onSpawn
+  - model{mid=display_firefly;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  
+display_dungbeetle:
+  Type: ARMOR_STAND
+  Display: 'Dung Beetle Display'
+  Health: 5
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventBlockInfection: true
+  Drops:
+  - display_dungbeetleEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=dung_beetle_display;d=false;i=true} @self ~onSpawn
+  - model{mid=dung_beetle_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract
+  
+display_moth_atlas:
+  Type: ARMOR_STAND
+  Display: 'Atlas Moth Display'
+  Health: 5
+  Options:
+    HasArms: false
+    PreventOtherDrops: true
+    Despawn: false
+    Persistent: true
+    Collidable: false
+    PreventBlockInfection: true
+  Drops:
+  - display_moth_atlasEgg 1 1
+  Skills:
+  - skill{s=displayFEEDherb} @self ~onInteract
+  - skill{s=displayMOOD} @self ~onTimer:5
+  - skill{s=displayHUNGRY} @self ~onTimer:5
+  - skill{s=blockcheckDISPLAY} @self ~onSpawn
+  - model{mid=moth_atlas_display;d=false;i=true} @self ~onSpawn
+  - model{mid=moth_atlas_display;d=false;i=true} @self ~onLoad
+  - skill{s=displayROT} @self ~onInteract

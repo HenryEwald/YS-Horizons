@@ -1,0 +1,1 @@
+give @s command_block{CustomModelData:17205,display:{Name:'[{"text":"Ankh Shard","italic":false,"color":"white"}]',Lore:['[{"text":"Ingredients","italic":false,"color":"blue"}]']}} 64

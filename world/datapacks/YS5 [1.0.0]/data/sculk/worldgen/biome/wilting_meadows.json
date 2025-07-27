@@ -1,0 +1,40 @@
+{
+  "temperature": 0.8,
+  "downfall": 0.4,
+  "precipitation": "none",
+  "effects": {
+    "sky_color": 66859,
+    "fog_color": 532056,
+    "water_color": 336939,
+    "water_fog_color": 336929,
+    "grass_color": 4672586,
+    "particle": {
+      "options": {
+        "type": "sculk_soul"
+      },
+      "probability": 0.001
+    }
+  },
+  "spawners": {},
+  "spawn_costs": {},
+  "carvers": {},
+  "features": [
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [
+      "minecraft:sculk_vein",
+      "sculk:sculk_patch"
+    ],
+    [],
+    [
+      "sculk:wilting_meadows_flowers",
+      "minecraft:patch_grass_plain"
+    ],
+    []
+  ]
+}

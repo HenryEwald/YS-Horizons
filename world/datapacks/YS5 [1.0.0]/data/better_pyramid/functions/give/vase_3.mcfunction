@@ -1,0 +1,1 @@
+give @s item_frame{CustomModelData:17204,display:{Name:'{"text":"vase_3"}'},EntityTag:{id:"minecraft:item_frame",Facing:1b,Invulnerable:1b,Invisible:1b,Silent:1b,Fixed:1b,Tags:["custom_block","unset"],Item:{id:"minecraft:item_frame",Count:1b,tag:{CustomModelData:17204}}}}

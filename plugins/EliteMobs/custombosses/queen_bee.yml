@@ -1,0 +1,17 @@
+isEnabled: true
+entityType: BEE
+name: $eventBossLevel &6Queen Bee
+level: dynamic
+uniqueLootList:
+- the_stinger.yml:1
+powers:
+- summonable:summonType=ON_HIT:chance=0.5:filename=imperial_bee_guard.yml
+trails:
+- SMOKE_LARGE
+- SMOKE_LARGE
+- SMOKE_LARGE
+- SMOKE_LARGE
+- FLAME
+- FLAME
+onSpawnBlockStates: []
+onRemoveBlockStates: []

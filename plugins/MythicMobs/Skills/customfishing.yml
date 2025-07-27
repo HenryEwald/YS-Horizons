@@ -1,0 +1,24 @@
+piranhaSwoop:
+  Skills:
+  - p{ot=swoopEffect;i=1;v=20;g=0.5;md=10;mr=20;sb=true;se=true;fo=true;vn=92}
+  - delay 10
+  - missile{ot=swoopEffect;oh=swoopHit;in=1;i=1;v=20;g=1;fo=false;hittargetonly=true;sb=true;se=true}
+
+swoopHit:
+  Skills:
+  - damage{a=12}
+
+swoopEffect:
+  Skills:
+  - effect:particles{p=bubble;a=5;hs=0.1;vs=0.1} @Origin # 视频演示中的粒子特效
+  - teleport @Origin
+
+# sharkAttack:
+#   Skills:
+#   - customentity{play=attack} @self ~onAttack
+#   - damage{a=7}
+#   - delay 60
+
+attackEffect:
+  Skills:
+  - effect:particles{p=reddust;a=20;hs=0.25;vs=0.1} @Trigger

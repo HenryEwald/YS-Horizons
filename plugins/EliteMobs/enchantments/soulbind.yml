@@ -1,0 +1,6 @@
+isEnabled: true
+name: Soulbind
+maxLevelV2: 1
+value: 10.0
+loreStrings: '&7Soulbound to &f$player'
+hologramString: $player&f's

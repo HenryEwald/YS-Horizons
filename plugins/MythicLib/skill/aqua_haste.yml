@@ -1,0 +1,5 @@
+mythicmobs-skill-id: Aqua_Haste
+name: Aqua Haste
+cooldown: 0
+passive-type: TIMER
+timer: 10

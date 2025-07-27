@@ -1,0 +1,106 @@
+{
+  "@type" : "customcrafting:crafting_shaped",
+  "group" : "",
+  "hidden" : false,
+  "vanillaBook" : true,
+  "priority" : "NORMAL",
+  "checkNBT" : false,
+  "conditions" : {
+    "values" : [ ]
+  },
+  "symmetry" : {
+    "horizontal" : false,
+    "vertical" : false,
+    "rotate" : false
+  },
+  "shape" : [ " B ", " E ", "GHI" ],
+  "ingredients" : {
+    "I" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GOLD_NUGGET"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "H" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "MAGMA_CREAM"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "G" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "GOLD_NUGGET"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "E" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "QUARTZ"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    },
+    "B" : {
+      "items" : [ {
+        "custom_amount" : 1,
+        "item" : {
+          "==" : "org.bukkit.inventory.ItemStack",
+          "v" : 3117,
+          "type" : "STRING"
+        }
+      } ],
+      "tags" : [ ],
+      "replaceWithRemains" : true,
+      "allowEmpty" : false
+    }
+  },
+  "checkAllNBT" : false,
+  "settings" : { },
+  "result" : {
+    "items" : [ {
+      "custom_amount" : 1,
+      "item" : {
+        "==" : "org.bukkit.inventory.ItemStack",
+        "v" : 3117,
+        "type" : "PAPER",
+        "meta" : {
+          "==" : "ItemMeta",
+          "meta-type" : "UNSPECIFIC",
+          "display-name" : "{\"italic\":false,\"text\":\"Wild Bait\"}",
+          "lore" : [ "{\"italic\":false,\"color\":\"white\",\"text\":\"Decreases fishing time by 30%.\"}" ],
+          "custom-model-data" : 696,
+          "internal" : "H4sIAAAAAAAA/+NiYOBi4HUuLS7Jz3XLLM7IzEvnYGApqSxIZWBJSsws4WBgykxh4CzPzEmJB/EZGAC6Uv8HMgAAAA=="
+        }
+      }
+    } ],
+    "tags" : [ ],
+    "extensions" : [ ]
+  }
+}

@@ -1,0 +1,225 @@
+locale: en
+hardship: 617.8158333333333
+mana: 0
+days-since-hardship-depreciation: 1
+tutorial-index: 2
+tutorial-path: default
+tutorial-progress: 0
+use-announcements: true
+kills: 0
+kill-streak: 0
+deaths: 0
+highest-kill-streak: 0
+points: 0.0
+karma: 0
+classes: []
+last-karma-depreciation: 0
+skills:
+  exploration:
+    COLD_OCEAN: 1
+    PLAINS: 1
+    SUNFLOWER_PLAINS: 1
+    DEEP_OCEAN: 1
+    RIVER: 1
+    FLOWER_FOREST: 1
+    STONY_SHORE: 1
+    DESERT: 1
+    SNOWY_SLOPES: 1
+    FROZEN_OCEAN: 1
+    SNOWY_BEACH: 1
+    SAVANNA: 1
+    FOREST: 1
+    SPARSE_JUNGLE: 1
+    BADLANDS: 1
+    ERODED_BADLANDS: 1
+    WOODED_BADLANDS: 1
+    LUSH_CAVES: 1
+    WARM_OCEAN: 1
+    THE_END: 1
+    OLD_GROWTH_BIRCH_FOREST: 1
+    DARK_FOREST: 1
+    OCEAN: 1
+    BEACH: 1
+    DEEP_DARK: 1
+    SNOWY_PLAINS: 1
+    FROZEN_RIVER: 1
+    END_MIDLANDS: 1
+    END_BARRENS: 1
+    SMALL_END_ISLANDS: 1
+    END_HIGHLANDS: 1
+    GROVE: 1
+    SNOWY_TAIGA: 1
+    FROZEN_PEAKS: 1
+  building:
+    council_room: 3
+    npc_hovel: 5
+    altar: 1
+    cobble_quarry: 1
+    purifier: 1
+    inn: 1
+    shack: 1
+    npc_shack: 1
+    hovel: 1
+    church: 1
+    embassy: 1
+  sword:
+    CREEPER: 2
+    SPIDER: 4
+    HUSK: 9
+    ZOMBIFIED_PIGLIN: 1
+    ZOMBIE: 9
+    WITHER_SKELETON: 1
+    SKELETON: 8
+    STRAY: 2
+    POLAR_BEAR: 1
+    PANDA: 1
+    PARROT: 2
+    DROWNED: 1
+    PIG: 1
+    IRON_GOLEM: 8
+    BEE: 2
+    VILLAGER: 1
+    SHEEP: 1
+    VEX: 5
+    COW: 2
+    CHICKEN: 1
+    ENDERMAN: 4
+    RABBIT: 1
+    CAT: 9
+    CAVE_SPIDER: 1
+  bow:
+    PIG: 3
+    IRON_GOLEM: 3
+    SKELETON: 9
+    CHICKEN: 1
+    PARROT: 1
+    HUSK: 9
+    SALMON: 2
+    SPIDER: 3
+    ZOMBIE: 9
+    SQUID: 1
+    DROWNED: 2
+    TROPICAL_FISH: 4
+    DOLPHIN: 1
+    PILLAGER: 5
+    SKELETON_HORSE: 1
+    VINDICATOR: 1
+    SHEEP: 1
+    SHULKER: 1
+    VEX: 5
+    PHANTOM: 2
+  shield:
+    DAMAGE: 62
+    BLOCKED: 20
+  axe:
+    ZOMBIE_VILLAGER: 1
+    SKELETON: 4
+    ZOMBIE: 6
+    HUSK: 9
+    PARROT: 1
+    IRON_GOLEM: 4
+    WOLF: 2
+    VEX: 2
+    PIG: 5
+    PILLAGER: 2
+    ZOMBIFIED_PIGLIN: 1
+    ENDERMAN: 9
+  food:
+    ENCHANTED_GOLDEN_APPLE: 7
+    COOKED_BEEF: 7
+    SWEET_BERRIES: 7
+    MUTTON: 4
+    GOLDEN_APPLE: 10
+    BEEF: 3
+    MELON_SLICE: 1
+    COD: 1
+    BREAD: 3
+  armor:
+    NETHERITE_HELMET: 30
+    NETHERITE_CHESTPLATE: 30
+    NETHERITE_BOOTS: 30
+    NETHERITE_LEGGINGS: 30
+    DIAMOND_CHESTPLATE: 4
+    IRON_HELMET: 5
+    LEATHER_LEGGINGS: 7
+    LEATHER_HELMET: 7
+    LEATHER_CHESTPLATE: 7
+    LEATHER_BOOTS: 6
+    DIAMOND_BOOTS: 6
+  potion:
+    INCREASE_DAMAGE: 7
+    SPEED: 3
+    WEAKNESS: 2
+    NIGHT_VISION: 1
+  enchant:
+    knockback1: 3
+    fire_aspect1: 1
+    sharpness1: 2
+    unbreaking1: 2
+    bane_of_arthropods1: 2
+    piercing4: 3
+    quick_charge2: 3
+    piercing3: 3
+    quick_charge1: 3
+    unbreaking3: 3
+    multishot1: 3
+    protection4: 2
+    fire_protection3: 1
+    protection3: 3
+    respiration3: 1
+    power4: 3
+    sweeping3: 2
+    sharpness4: 2
+    fire_protection2: 1
+    loyalty2: 1
+    luck_of_the_sea2: 1
+    power3: 2
+    lure2: 1
+    smite4: 1
+    loyalty3: 1
+    sharpness3: 1
+    blast_protection4: 1
+    bane_of_arthropods4: 1
+  crafting:
+    BEEHIVE: 3
+    BEACON: 3
+    PAPER: 2
+    TIPPED_ARROW: 5
+    OAK_PLANKS: 4
+    WOODEN_SWORD: 1
+    PRISMARINE_SHARD: 2
+    DIAMOND_SWORD: 1
+  crossbow:
+    PIG: 7
+    ZOMBIE: 9
+    SPIDER: 5
+    HUSK: 5
+    ELDER_GUARDIAN: 1
+    SALMON: 1
+    SKELETON: 3
+    IRON_GOLEM: 1
+    VEX: 9
+    COD: 1
+    ZOMBIFIED_PIGLIN: 1
+    GLOW_SQUID: 8
+    WITHER_SKELETON: 2
+    CREEPER: 9
+    STRAY: 9
+    SHEEP: 2
+    FOX: 4
+    SKELETON_HORSE: 1
+    WOLF: 1
+    DROWNED: 2
+  mining:
+    DIAMOND_ORE: 13
+    COAL_ORE: 12
+    GOLD_ORE: 1
+    IRON_ORE: 5
+    COPPER_ORE: 12
+items:
+  elemental: 1
+  default: 1
+  plot7x7: 1
+  shelter: 1
+  archer: 1
+  plot11x11: 1

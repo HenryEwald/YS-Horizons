@@ -1,0 +1,9 @@
+MSO_DwellingBug:
+  Type: SILVERFISH
+  Health: 40
+  Damage: 0
+  Skills:
+  - cancelevent{sync=true} @Self ~onAttack
+  - model{mid=mso_cave_insect;n=false} @Self ~onSpawn
+  - skill:DwellingBugAttack @Self ~onAttack
+#  - skill:DwellingBugTame @Self ~onInteract COMING SOON!!!!!!!

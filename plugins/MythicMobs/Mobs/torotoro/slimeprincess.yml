@@ -1,0 +1,84 @@
+slime_princess:
+  Type: HUSK
+  Display: '&3&lSuke'
+  Faction: Slime
+  Health: 1000
+  KillMessages:
+  - '&2&l<target.name> got shattered by Slime Princess'
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 meleeattack
+  - 2 randomstroll
+  AITargetSelectors:
+  - 1 players
+  - 2 monster
+  Modules:
+    ThreatTable: true
+  Options:
+    NoDamageTicks: 1
+    MovementSpeed: 0.15
+    FollowRange: 35
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: false
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  BossBar:
+    Enabled: true
+    Title: 'The Slime Princess'
+    Range: 40
+    Color: Green
+    Style: SEGMENTED_10
+  Skills:
+  - effect:particles{p=block_crack;m=green_stained_glass;amount=15;speed=0.25;hs=0.5;vs=0.5} @origin{y=1} ~onDamaged
+  - effect:sound{s=entity.slime.squish} @origin ~onDamaged 0.3
+  - effect:particles{p=block_crack;m=green_stained_glass;amount=50;speed=0.25;hs=1;vs=1} @origin ~onDeath
+  - skill{s=slime_princess_startcombo;sync=true} @target ~onTimer:60
+  - state{s=idle;r=false} @self ~onSpawn
+  - state{s=walk;r=false} @self ~onSpawn
+  - skill{s=CancelEventSkill;sync=true} @self ~onAttack
+  - model{mid=slimegirlprincess;n=false;tint=false} @self ~onSpawn
+
+strangeslime:
+  Type: SLIME
+  Display: '&3&lStrange Slime'
+  Health: 1000
+  Damage: 0
+  AIGoalSelectors:
+  - 0 clear
+  - 1 randomstroll
+  AITargetSelectors:
+  - 1 players
+  - 2 monster
+  Options:
+    NoAI: false
+    Size: 2
+    PreventSlimeSplit: true
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=strangeslime_death} @self ~onDamaged
+  
+slime_princess_spawner:
+  Type: HUSK
+  Display: '&3&lSuke'
+  Health: 1000
+  Damage: 0
+  Options:
+    NoAI: false
+    KnockbackResistance: 1
+    Silent: true
+    Despawn: true
+    Invincible: false
+    PreventBlockInfection: true
+    PreventOtherDrops: true
+  Skills:
+  - skill{s=slime_princess_spawn} @self ~onDeath
+  - skill{s=slime_princess_spawner_spawn} @self ~onSpawn
+  - model{mid=slimegirlprincessspawn;h=true;n=false;tint=false} @self ~onSpawn

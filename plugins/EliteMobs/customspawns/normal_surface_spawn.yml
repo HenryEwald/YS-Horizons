@@ -1,0 +1,8 @@
+isEnabled: true
+validWorlds: []
+validWorldEnvironments:
+- NORMAL
+- CUSTOM
+validBiomes: []
+canSpawnInLight: true
+isSurfaceSpawn: true

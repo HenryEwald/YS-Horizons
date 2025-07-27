@@ -1,0 +1,320 @@
+{
+  "name": "gd:cloud_traders",
+  "fallback": "minecraft:empty",
+  "elements": [
+    {
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add1",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add2",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add3",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add4",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add5",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add6",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add7",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add8",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add9",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add10",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add11",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add12",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add13",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add14",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add15",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add16",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/add17",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/feature1",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/feature2",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/feature_main",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/main_ship_1",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/main_ship_2",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/main_ship_3",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/main_ship_4",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_1y",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_2y",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_3y",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_1b",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_2b",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_3b",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_1dg",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_2dg",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/medium_ship_3dg",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/small_ship_1bl",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/small_ship_2bl",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/small_ship_1lg",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/small_ship_2lg",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/small_ship_1p",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    },{
+      "weight": 20,
+      "element": {
+        "element_type": "minecraft:single_pool_element",
+        "location": "gd:cloud_traders/small_ship_2p",
+        "projection": "rigid",
+        "processors": "gd:cloud_traders"
+      }
+    }
+
+  ]
+}

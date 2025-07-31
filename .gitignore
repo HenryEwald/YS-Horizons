@@ -5,10 +5,10 @@ world_nyctocosm_nyctocosm
 world_the_end
 
 # Ignore everything in 'main' folder
-world* 
+world/* 
 
 # Except for 'subfolder2'
 !world/datapacks
 
 # Additionally, include all files inside 'subfolder2'
-!world/datapacks**   
+!world/datapacks/**   
